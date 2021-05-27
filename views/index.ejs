@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Module -->
+    <div class="container">
+      <h3>Module: <%= moduleName %></h3>
+      <!-- Instructions -->
+      <div class="grey-text text-darken-2"><%= instructions %></div>
+      <hr />
+
+      <!-- Sections -->
+      <% sections.map(section => { %>
+
+      <!-- Section -->
+      <div>
+        <h5 class="text-grey text-darken-2">
+          Section: <%= section.sectionName %>
+        </h5>
+
+        <!-- Questions -->
+        <% section.questions.map(question => { %>
+
+        <!-- Question -->
+        <div>
+          <!-- content -->
+          <div><%= question.content %></div>
+          <!-- options -->
+
+          <% [0,1,2,3,4,5].map(option => { %>
+
+          <!-- Option -->
+          <p>
+            <label>
+              <input name="<%= question.id %>" type="radio" />
+              <span><%= option %></span>
+            </label>
+          </p>
+
+          <% }) %>
+        </div>
+
+        <% }) %>
+      </div>
+      <% }) %>
+
+      <!-- Module ends here -->
+    </div>
+  </body>
+</html>
