@@ -1,1 +1,1 @@
-exports.DB_URL = "mongodb:://localhost:27017/aspireDB";
+exports.DB_URL = "mongodb://localhost:27017/aspireDB";

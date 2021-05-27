@@ -7,6 +7,7 @@ const moduleData = require("./data");
 require("./mongodb")();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
 
 app.use(express.static("public"));
