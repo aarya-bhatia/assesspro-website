@@ -4,6 +4,33 @@ const mongoose = require("mongoose");
 
 const { Candidate, Module } = require("./model");
 
+// Get candidates
+// Return name,age,email,status and modules enrolled of each candidate
+router.get("/candidates", async (req, res) => {
+  try {
+    const candidates = await Candidate.find({});
+    let result = [];
+    candidates.map((candidate) => {
+      result.push(
+        Object.assign(
+          {},
+          {
+            name: candidate.name,
+            age: candidate.age,
+            email: candidate.email,
+            status: candidate.status,
+            modules_enrolled: candidate.modules_enrolled,
+          }
+        )
+      );
+    });
+
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
+
 // Login candidate
 // body: { username, password }
 router.post("/login", async (req, res) => {
@@ -57,9 +84,9 @@ router.post("/signup", async (req, res) => {
       age: req.body.age,
       status: "trial",
     });
-    res.status(201).json(candidate);
+    return res.status(201).json(candidate);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 });
 
@@ -68,9 +95,9 @@ router.post("/signup", async (req, res) => {
 router.get("/modules", async (req, res) => {
   try {
     const modules = await Module.find({});
-    res.status(200).json(modules);
+    return res.status(200).json(modules);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 });
 
@@ -100,7 +127,7 @@ router.post("/modules", async (req, res) => {
     });
     return res.status(201).json(module);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 });
 
@@ -129,9 +156,9 @@ router.put("/modules/:module_id", async (req, res) => {
 
     await module.save();
 
-    res.status(200).json(module);
+    return res.status(200).json(module);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 });
 
@@ -164,7 +191,7 @@ router.post("/modules/:module_id/sections", async (req, res) => {
 
     return res.status(201).json(module);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 });
 
@@ -197,9 +224,9 @@ router.put("/modules/:module_id/sections/:section_id", async (req, res) => {
 
     await module.save();
 
-    res.status(200).json(module);
+    return res.status(200).json(module);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 });
 
@@ -239,59 +266,144 @@ router.post(
 
       await module.save();
 
-      res.status(200).json(module);
+      return res.status(200).json(module);
     } catch (error) {
-      res.status(500).json(error);
+      return res.status(500).json(error);
     }
   }
 );
 
 // Answer Question
-// POST /api/candidates/:candidate_id/modules/:module_id/answer
-router.post(
-  "/candidates/:candidate_id/modules/:module_id/answer/:question_id",
-  async (req, res) => {}
-);
+// POST /api/candidates/:candidate_id/answer
+// Body: {rating, module_id, section_id, question_id}
+// Return: candidate
+router.post("/candidates/:candidate_id/answer", async (req, res) => {
+  try {
+    if (!req.body.rating) {
+      return res.status(400).json({ message: "Rating is missing" });
+    }
+    if (!req.body.module_id) {
+      return res.status(400).json({ message: "module_id is missing" });
+    }
+    if (!req.body.section_id) {
+      return res.status(400).json({ message: "section_id is missing" });
+    }
+    if (!req.body.question_id) {
+      return res.status(400).json({ message: "question_id is missing" });
+    }
+
+    const candidate = await Candidate.findById(req.params.candidate_id);
+
+    if (!candidate) {
+      return res.status(400).json({ message: "Candidate not found" });
+    }
+
+    const found = candidate.modules_enrolled.find(
+      (module_id) => module_id == req.body.module_id
+    );
+
+    if (!found) {
+      return res.status(400).json({
+        message: "Not enrolled in module",
+      });
+    }
+
+    const module = await Module.findById(req.body.module_id);
+
+    if (!module) {
+      return res.status(400).json({ message: "Module not found" });
+    }
+
+    const section = module.sections.find(
+      (section) => section._id == req.body.section_id
+    );
+
+    if (!section) {
+      return res.status(400).json({
+        message: "Section not found",
+      });
+    }
+
+    const question = section.questions.find(
+      (question) => question._id == req.body.question_id
+    );
+
+    if (!question) {
+      return res.status(400).json({ message: "Question not found" });
+    }
+
+    const module_answers = candidate.answers.find(
+      (answers) => answers.module_id == req.body.module_id
+    );
+
+    if (!module_answers) {
+      candidate.answers.push({
+        module_id: req.body.module_id,
+        values: [
+          {
+            section_id: req.body.section_id,
+            question_id: req.body.question_id,
+            rating: req.body.rating,
+          },
+        ],
+      });
+    } else {
+      module_answers.values.push({
+        section_id: req.body.section_id,
+        question_id: req.body.question_id,
+        rating: req.body.rating,
+      });
+    }
+
+    await candidate.save();
+
+    return res.json(200).json(candidate);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+});
 
 // Enroll Module
-// POST /api/candidates/:candidate_id/modules/:module_id/enroll
-// Response: module
-router.post(
-  "/candidates/:candidate_id/modules/:module_id/enroll",
-  async (req, res) => {
-    try {
-      const candidate = await Candidate.findById(req.params.candidate_id);
-      if (!candidate) {
-        return res.status(400).json({ message: "Candidate not found" });
-      }
-
-      const module = await Module.findById(req.params.module_id);
-
-      if (!module) {
-        return res.status(400).json({ message: "Module not found" });
-      }
-
-      const found = candidate.modules_enrolled.find(
-        (module_id) => module_id == req.params.module_id
-      );
-
-      if (!found) {
-        candidate.modules_enrolled.push(req.params.modules_enrolled);
-      } else {
-        return res.status(400).json({
-          message: "Already enrolled in module",
-        });
-      }
-
-      res.json(200).json(module);
-    } catch (error) {
-      res.status(500).json(error);
+// POST /api/candidates/:candidate_id/enroll/:module_id
+// Body: {}
+// Return: module
+router.post("/candidates/:candidate_id/enroll/:module_id", async (req, res) => {
+  try {
+    const candidate = await Candidate.findById(req.params.candidate_id);
+    if (!candidate) {
+      return res.status(400).json({ message: "Candidate not found" });
     }
+
+    const module = await Module.findById(req.params.module_id);
+
+    if (!module) {
+      return res.status(400).json({ message: "Module not found" });
+    }
+
+    const found = candidate.modules_enrolled.find(
+      (module_id) => module_id == req.params.module_id
+    );
+
+    if (!found) {
+      candidate.modules_enrolled.push(req.params.module_id);
+    } else {
+      return res.status(400).json({
+        message: "Already enrolled in module",
+      });
+    }
+
+    await candidate.save();
+
+    return res.json(200).json(module);
+  } catch (error) {
+    return res.status(500).json(error);
   }
-);
+});
 
 // Edit Candidate Details
 // PUT /api/candidates/:candidate_id
+// Body { name, age, email, status, password, username } (optional)
+// Return candidate
 router.put("/candidates/:candidate_id", async (req, res) => {
   try {
     const candidate = await Candidate.findById(req.params.candidate_id);
@@ -339,7 +451,7 @@ router.put("/candidates/:candidate_id", async (req, res) => {
 
     res.status(200).json(candidate);
   } catch (error) {
-    res.status(500).json(error);
+    return res.status(500).json(error);
   }
 });
 
