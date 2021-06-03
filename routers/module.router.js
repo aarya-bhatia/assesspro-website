@@ -1,7 +1,9 @@
-import { Router } from "express";
-import {} from "../controller/module.controller";
-import {} from "../controller/question.controller";
+const { Router } = require("express");
+const {} = require("../controller/module.controller");
+const {} = require("../controller/question.controller");
 
 const router = Router();
 
-exports = router;
+router.post("/", (req, res) => {});
+
+module.exports = router;

@@ -1,4 +1,4 @@
-import { Question } from "../model";
+const { Question } = require("../model");
 
 exports.createQuestion = async (question, callback, error) => {
   try {

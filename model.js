@@ -16,7 +16,7 @@ const user_schema = new Schema(
     email: String,
     modules: [
       {
-        module_id,
+        module_id: ObjectId,
         answers: [{ question_id: ObjectId, value: Number }],
       },
     ],

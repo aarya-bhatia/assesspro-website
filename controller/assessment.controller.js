@@ -1,4 +1,4 @@
-import { Assessment } from "../model";
+const { Assessment } = require("../model");
 
 exports.createAssessment = async ({ name }, callback, error) => {
   try {

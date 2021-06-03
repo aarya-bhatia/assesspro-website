@@ -1,7 +1,7 @@
-import { PORT } from "./config";
-import express from "express";
-import path from "path";
-import moduleData from "./data";
+const { PORT } = require("./config");
+const express = require("express");
+const path = require("path");
+const moduleData = require("./data");
 
 require("./mongodb")();
 
@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
+
 app.use(express.static("public"));
 app.use("/css", express.static(path.join(__dirname, "public/css")));
 app.use("/js", express.static(path.join(__dirname, "public/js")));
@@ -34,5 +35,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log("Server has started on port " + port);
+  console.log("Server has started on port " + PORT);
 });

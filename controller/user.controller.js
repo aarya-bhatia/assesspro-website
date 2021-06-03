@@ -1,4 +1,4 @@
-import { User } from "../model";
+const { User } = require("../model");
 
 exports.createUser = async (user, callback, error) => {
   try {
