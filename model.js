@@ -4,7 +4,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 const assessment_schema = new Schema({
   name: String,
-  modules: [ObjectId],
+  module_ids: [ObjectId],
 });
 
 const user_schema = new Schema(
@@ -14,12 +14,15 @@ const user_schema = new Schema(
     password: { type: String, required: true },
     age: Number,
     email: String,
-    modules: [
-      {
-        module_id: ObjectId,
-        answers: [{ question_id: ObjectId, value: Number }],
-      },
-    ],
+    modules: {
+      type: [
+        {
+          module_id: ObjectId,
+          answers: [{ question_id: ObjectId, value: Number }],
+        },
+      ],
+      default: [],
+    },
   },
   { timestamps: true }
 );

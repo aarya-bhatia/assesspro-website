@@ -22,7 +22,7 @@ exports.getUser = async ({ id }, callback, error) => {
   try {
     const found = await User.findById(id);
     if (!found) {
-      throw Error({ status: 400, message: "User not found" });
+      throw { status: 400, message: "User not found" };
     }
     callback(found);
   } catch (err) {
