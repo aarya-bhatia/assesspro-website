@@ -1,19 +1,22 @@
-const express = require("express");
-const path = require("path");
-const port = 3000 || process.env.PORT;
-const app = express();
-const moduleData = require("./data");
+import { PORT } from "./config";
+import express from "express";
+import path from "path";
+import moduleData from "./data";
 
 require("./mongodb")();
+
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
-
 app.use(express.static("public"));
-app.use("/css", express.static(__dirname + "public/css"));
-app.use("/js", express.static(__dirname + "public/js"));
-app.use("/images", express.static(__dirname + "public/images"));
+app.use("/css", express.static(path.join(__dirname, "public/css")));
+app.use("/js", express.static(path.join(__dirname, "public/js")));
+app.use("/images", express.static(path.join(__dirname, "public/images")));
+
+app.use("/api/assessments", require("./routers/assessment.router"));
+app.use("/api/modules", require("./routers/module.router"));
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -22,10 +25,14 @@ app.get("/", (req, res) => {
   res.render("index", moduleData);
 });
 
-// Routers
-app.use("/api", require("./routes"));
+app.get("*", (req, res) => {
+  res.status(404).send("Page Not Found...");
+});
 
-// Start server
-app.listen(port, () => {
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json(err);
+});
+
+app.listen(PORT, () => {
   console.log("Server has started on port " + port);
 });
