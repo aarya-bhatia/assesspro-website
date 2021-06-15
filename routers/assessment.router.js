@@ -11,27 +11,19 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   Assessment.findById(req.params.id)
-    .then((assessment) => {
-      if (!assessment) {
-        throw { status: 400, message: "Assessment not found" };
+    .populate("modules")
+    .exec((err, doc) => {
+      if (err) {
+        console.log("Error populating assessments");
+        next(err);
+      } else {
+        res.json(doc);
       }
-      Module.find({ _id: { $in: assessment.module_ids } })
-        .then((modules) => {
-          // console.log(modules);
-
-          assessment.modules = modules;
-          console.log(assessment);
-
-          const doc = Object.assign(assessment, { modules });
-          res.status(200).json(doc);
-        })
-        .catch((err) => next(err));
-    })
-    .catch((err) => next(err));
+    });
 });
 
 router.post("/", (req, res, next) => {
-  Assessment.create(Object.assign({ name: "" }, req.body))
+  Assessment.create(req.body)
     .then((doc) => res.status(201).json(doc))
     .catch((err) => next(err));
 });
@@ -41,8 +33,8 @@ router.post("/:id/add_module/:module_id", (req, res, next) => {
   Assessment.findById(req.params.id)
     .then((found) => {
       if (found) {
-        if (!found.module_ids.find((m) => m == module_id)) {
-          found.module_ids.push(module_id);
+        if (!found.modules.find((m) => m == module_id)) {
+          found.modules.push(module_id);
         }
         found.save().then((doc) => {
           res.json(doc);

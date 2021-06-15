@@ -4,7 +4,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 const assessment_schema = new Schema({
   name: String,
-  module_ids: [ObjectId],
+  modules: [{ type: ObjectId, ref: "Module" }],
 });
 
 const user_schema = new Schema(
@@ -14,15 +14,14 @@ const user_schema = new Schema(
     password: { type: String, required: true },
     age: Number,
     email: String,
-    modules: {
-      type: [
-        {
-          module_id: ObjectId,
-          answers: [{ question_id: ObjectId, value: Number }],
-        },
-      ],
-      default: [],
-    },
+    enrolled: [ObjectId],
+    answers: [
+      {
+        module_id: ObjectId,
+        question_id: ObjectId,
+        value: Number,
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -45,7 +44,7 @@ const module_schema = new Schema({
 const question_schema = new Schema({
   module_id: { type: ObjectId, required: true },
   content: { type: String, required: true },
-  rating_direction: { type: Boolean, default: true }, // For rating questions
+  rating_direction: Boolean, // For rating questions
   answer_key: Number, // For scoring objective
 });
 

@@ -1,63 +1,67 @@
-const { PORT, DB_URL } = require("./config");
+// library imports
 const express = require("express");
 const path = require("path");
-const moduleData = require("./data");
-const mongoose = require("mongoose");
+const fs = require("fs");
 
-mongoose
-  .connect(DB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
-  .then(() => {
-    console.log("Successfully connected to database");
-  })
-  .catch((err) => {
-    console.log("Error connecting to database", err);
-    process.exit(0);
-  });
+// connect to mongodb
+require("./init.db");
 
-process.on("SIGINT", function () {
-  mongoose.connection.close(function () {
-    console.log("closing connection with database");
-    process.exit(0);
-  });
-});
+// set up passport strategy
+require("./config/passport_setup.js");
 
+// local imports
+const moduleData = require("./data.json");
+
+// create express app
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
 
+// static assets
 app.use(express.static("public"));
 app.use("/css", express.static(path.join(__dirname, "public/css")));
 app.use("/js", express.static(path.join(__dirname, "public/js")));
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
-app.use("/api", require("./routers/auth.router"));
-app.use("/api/users", require("./routers/user.router"));
-app.use("/api/modules", require("./routers/module.router"));
-app.use("/api/questions", require("./routers/question.router"));
-app.use("/api/assessments", require("./routers/assessment.router"));
+// routers
+app.use("/auth", require("./routers/auth.router"));
+// app.use("/api/users", require("./routers/user.router"));
+// app.use("/api/modules", require("./routers/module.router"));
+// app.use("/api/questions", require("./routers/question.router"));
+// app.use("/api/assessments", require("./routers/assessment.router"));
 
-app.set("views", path.join(__dirname, "views"));
+// set up view engine
+//app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
+app.get("/assessments/nest", (req, res) => {
+  res.render("assessments/nest");
+});
+
+// home route
+app.get("/assessment/form", (req, res) => {
   res.render("index", moduleData);
 });
 
+app.get("/", (req, res) => {
+  res.render("home.ejs");
+});
+
+// 404 route
 app.get("*", (req, res) => {
-  res.status(404).send("Page Not Found...");
+  res.status(404).send("Sorry, page was not found.");
 });
 
+// Error handler
 app.use((err, req, res, next) => {
-  console.log(JSON.stringify(err));
-  res.status(err.status || 500).json(err);
+  console.log("ERROR: ", err);
+  res.status(err.status || 500).send("Error: " + JSON.stringify(err));
 });
 
+// start listening on port
 app.listen(PORT, () => {
   console.log("Server has started on port " + PORT);
 });

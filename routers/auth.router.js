@@ -1,7 +1,34 @@
 const { Router } = require("express");
-const { User } = require("../model");
-
+//const { User } = require("../model");
+const passport = require("passport");
 const router = Router();
+
+// auth login
+router.get("/login", (req, res) => {
+  res.render("login", { user: req.user });
+});
+
+// auth logout
+router.get("/logout", (req, res) => {
+  // TODO: Handle with passport
+  res.send("Logging out");
+});
+
+// auth with google
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
+);
+
+// callback route for google to redirect to
+// hand control to passport to use code and grab profile info
+router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
+  res.send("You reached the redirect URL");
+});
+
+/* ignore for now
 
 router.post("/login", (req, res, next) => {
   User.findOne({ username: req.body.username })
@@ -43,5 +70,7 @@ router.post("/signup", (req, res, next) => {
     })
     .catch((err) => next(err));
 });
+
+*/
 
 module.exports = router;
