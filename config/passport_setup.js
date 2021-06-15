@@ -1,10 +1,17 @@
-require("dotenv").config();
-
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
 
-// todo: import User model
 const user_profile = require("../models/user/user_profile");
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  user_profile.findById(id).then((user_found) => {
+    done(null, user_found);
+  });
+});
 
 passport.use(
   new GoogleStrategy(
@@ -34,10 +41,12 @@ passport.use(
         if (currentUser) {
           // already have this User
           console.log("User is: ", currentUser);
+          done(null, currentUser);
         } else {
           // create user in db
           user_profile.create(user_data).then((newUser) => {
             console.log("Created User: ", newUser);
+            done(null, newUser);
           });
         }
       });

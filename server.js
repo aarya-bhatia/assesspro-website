@@ -1,7 +1,9 @@
 // library imports
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const fs = require("fs");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
 
 // connect to mongodb
 require("./init.db");
@@ -20,6 +22,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
 
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY],
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 // static assets
 app.use(express.static("public"));
 app.use("/css", express.static(path.join(__dirname, "public/css")));
@@ -28,10 +40,12 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 // routers
 app.use("/auth", require("./routers/auth.router"));
-// app.use("/api/users", require("./routers/user.router"));
-// app.use("/api/modules", require("./routers/module.router"));
-// app.use("/api/questions", require("./routers/question.router"));
-// app.use("/api/assessments", require("./routers/assessment.router"));
+/*
+app.use("/api/users", require("./routers/user.router"));
+app.use("/api/modules", require("./routers/module.router"));
+app.use("/api/questions", require("./routers/question.router"));
+app.use("/api/assessments", require("./routers/assessment.router"));
+*/
 
 // set up view engine
 //app.set("views", path.join(__dirname, "views"));

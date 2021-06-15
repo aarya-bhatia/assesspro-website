@@ -15,6 +15,10 @@ const user_assessments_schema = new Schema({
     default: Date.now,
   },
   date_taken: Date,
+  attempts: {
+    type: Number,
+    default: 0,
+  },
   completed: Boolean,
   status: {
     type: String,
