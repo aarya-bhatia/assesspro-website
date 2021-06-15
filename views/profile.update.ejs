@@ -1,0 +1,308 @@
+<%- include('partials/header.ejs', { user }) %>
+
+<!-- profile update page -->
+
+<div class="container">
+  <h1>Update Profile</h1>
+
+  <form action="/users/profile/update" method="POST" class="row g-3">
+    <!-- begin form -->
+    <div class="col-md-12">
+      <p class="form-text">
+        Please update your details below and submit the form.
+      </p>
+    </div>
+
+    <div class="h4">General</div>
+
+    <!-- name -->
+    <div class="col-md-12">
+      <label for="inputName" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputName"
+        name="name"
+        placeholder="Name"
+        value="<%= user.name ? user.name : '' %>"
+        required
+      />
+    </div>
+
+    <!-- user bio -->
+    <div class="col-md-12">
+      <label for="bio" class="form-label">Bio</label>
+      <textarea
+        name="bio"
+        id="bio"
+        rows="5"
+        placeholder="Write a short paragraph about yourself..."
+        class="form-control"
+        value="<%= user && user.bio ? user.bio : '' %>"
+      ></textarea>
+    </div>
+
+    <div class="h4">Address</div>
+
+    <!-- city input -->
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">City</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputCity"
+        name="city"
+        placeholder="City"
+        value="<%= user.address && user.address.city ? user.address.city : '' %>"
+      />
+    </div>
+
+    <!-- state input -->
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">State</label>
+      <select
+        name="state"
+        id="state"
+        class="form-select"
+        value="<%= user.address && user.address.state ? user.address.state : '' %>"
+      >
+        <option value="">State</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Andaman and Nicobar Islands">
+          Andaman and Nicobar Islands
+        </option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Assam">Assam</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Chandigarh">Chandigarh</option>
+        <option value="Chhattisgarh">Chhattisgarh</option>
+        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+        <option value="Daman and Diu">Daman and Diu</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Lakshadweep">Lakshadweep</option>
+        <option value="Puducherry">Puducherry</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Himachal Pradesh">Himachal Pradesh</option>
+        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Sikkim">Sikkim</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Tripura">Tripura</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+      </select>
+    </div>
+
+    <!-- zip input -->
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">Zip</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputZip"
+        name="zip"
+        placeholder="Zip"
+        value="<%= user.address && user.address.zip ? user.address.zip : '' %>"
+      />
+    </div>
+
+    <div class="col-md-12">
+      <p class="form-text">
+        Please enter the day, month and year of your birth below.
+      </p>
+    </div>
+
+    <div class="h4">Date of Birth</div>
+
+    <!-- dob day -->
+    <div class="col-md-4">
+      <select name="day" class="form-select">
+        <option value="">Day</option>
+        <% for(let i = 1; i <= 31; i++) { %>
+        <option value="<%= i %>"><%= i %></option>
+        <% } %>
+      </select>
+    </div>
+
+    <!-- dob month -->
+    <div class="col-md-4">
+      <select name="month" class="form-select">
+        <option value="">Month</option>
+        <% const months =
+        ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+        %> <% for(let i = 0; i < months.length; i++) { %>
+        <option value="<%= i+1 %>"><%= months[i] %></option>
+        <% } %>
+      </select>
+    </div>
+
+    <!-- dob year -->
+    <div class="col-md-4">
+      <select name="year" class="form-select">
+        <option value="">Year</option>
+        <% const currentYear = new Date().getFullYear(); %> <% for(let i
+        =currentYear; i >= currentYear - 80; i--) { %>
+        <option value="<%= i %>"><%= i %></option>
+        <% } %>
+      </select>
+    </div>
+
+    <div class="h4">Privacy</div>
+    <p class="form-text">
+      Your status will determine if your assessment scores are visible to
+      others.
+    </p>
+
+    <div class="col-md-12">
+      <!-- status switch -->
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="status"
+          name="status"
+          checked
+        />
+        <label class="form-check-label" for="status">Public </label>
+      </div>
+    </div>
+
+    <!-- educational qualifications -->
+    <div class="h4">Educational Qualifications</div>
+
+    <div class="col-md-4">
+      <p>Grade 10</p>
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Subject"
+        class="form-control"
+        name="grade-10-subject"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Institution"
+        class="form-control"
+        name="grade-10-institution"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <p>Grade 12</p>
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Subject"
+        class="form-control"
+        name="grade-12-subject"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Institution"
+        class="form-control"
+        name="grade-12-institution"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <p>Bachelors</p>
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Subject"
+        class="form-control"
+        name="bachelors-subject"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Institution"
+        class="form-control"
+        name="bacherlors-institution"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <p>Masters</p>
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Subject"
+        class="form-control"
+        name="masters-subject"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Institution"
+        class="form-control"
+        name="masters-institution"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <p>Other</p>
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Subject"
+        class="form-control"
+        name="other-subject"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Institution"
+        class="form-control"
+        name="other-institution"
+      />
+    </div>
+
+    <!-- submit button -->
+
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="submit">Save Changes</button>
+    </div>
+  </form>
+
+  <!-- form end -->
+</div>
+
+<%- include('partials/footer.ejs', { user }) %>

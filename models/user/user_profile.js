@@ -16,22 +16,43 @@ const user_profile_schema = new Schema(
       required: true,
     },
     bio: String,
-    dob: String,
-    city: String,
-    state: String,
-    country: String,
+    dob: {
+      day: Number,
+      month: Number,
+      year: Number,
+    },
+    address: {
+      city: String,
+      state: String,
+      zip: String,
+    },
     status: {
       type: String,
       enum: ["public", "private"],
       default: "public",
     },
-    qualifications: [
-      {
-        title: String,
-        subjects: [String],
+    qualifications: {
+      grade10: {
+        subject: String,
         institution: String,
       },
-    ],
+      grade12: {
+        subject: String,
+        institution: String,
+      },
+      bachelors: {
+        subject: String,
+        institution: String,
+      },
+      masters: {
+        subject: String,
+        institution: String,
+      },
+      other: {
+        subject: String,
+        institution: String,
+      },
+    },
   },
   { timestamps: true }
 );
