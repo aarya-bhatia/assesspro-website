@@ -1,22 +1,27 @@
-// library imports
+// Load env vars
 require("dotenv").config();
+
+// imports
 const express = require("express");
 const path = require("path");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 
 // connect to mongodb
-require("./init.db");
+require("./config/db.config.js");
 
 // set up passport strategy
-require("./config/passport_setup.js");
+require("./config/passport.config.js");
 
 // local imports
 const moduleData = require("./data.json");
+const { isAuth } = require("./controller/auth");
 
 // create express app
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// middleware
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,39 +45,42 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 // routers
 app.use("/auth", require("./routers/auth.router"));
+app.use("/users", isAuth, require("./routers/user.router"));
+
 /*
-app.use("/api/users", require("./routers/user.router"));
-app.use("/api/modules", require("./routers/module.router"));
-app.use("/api/questions", require("./routers/question.router"));
-app.use("/api/assessments", require("./routers/assessment.router"));
+app.use("/modules", require("./routers/module.router"));
+app.use("/questions", require("./routers/question.router"));
+app.use("/assessments", require("./routers/assessment.router"));
 */
 
 // set up view engine
-//app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 app.get("/assessments/nest", (req, res) => {
-  res.render("assessments/nest");
+  res.render("assessments/nest", { user: req.user });
+});
+
+app.get("/assessment/form", (req, res) => {
+  res.render("assessment", { ...moduleData, user: req.user });
 });
 
 // home route
-app.get("/assessment/form", (req, res) => {
-  res.render("index", moduleData);
-});
-
 app.get("/", (req, res) => {
-  res.render("home.ejs");
+  res.render("home", { user: req.user });
 });
 
-// 404 route
+// 404
 app.get("*", (req, res) => {
-  res.status(404).send("Sorry, page was not found.");
+  res.status(404).render("404", { user: req.user });
 });
 
 // Error handler
 app.use((err, req, res, next) => {
-  console.log("ERROR: ", err);
-  res.status(err.status || 500).send("Error: " + JSON.stringify(err));
+  console.log(err);
+  res
+    .status(err.status || 500)
+    .json({ ...err, message: err.message || "There was an error!" });
 });
 
 // start listening on port

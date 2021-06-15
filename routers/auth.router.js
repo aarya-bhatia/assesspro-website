@@ -1,5 +1,4 @@
 const { Router } = require("express");
-//const { User } = require("../model");
 const passport = require("passport");
 const router = Router();
 
@@ -10,22 +9,19 @@ router.get("/login", (req, res) => {
 
 // auth logout
 router.get("/logout", (req, res) => {
-  // TODO: Handle with passport
-  res.send("Logging out");
+  req.logout();
+  res.redirect("/");
 });
 
 // auth with google
 router.get(
   "/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
-  })
+  passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
-// callback route for google to redirect to
-// hand control to passport to use code and grab profile info
+// google auth callback route
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
-  res.send("You reached the redirect URL");
+  res.redirect("/users/profile");
 });
 
 /* ignore for now

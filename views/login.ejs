@@ -1,7 +1,10 @@
-<%- include('partials/header'); %>
-<div class="container">
-  <h1>Login</h1>
-  <p>Login with</p>
-  <a class="btn btn-primary" href="/auth/google">Google</a>
+<%- include('partials/header', { user }); %>
+<div class="container text-center">
+  <h1 class="display-4 my-2">Login</h1>
+  <form action="/auth/login" method="POST">
+  <p class="lead">With your social media account</p>
+  <a class="btn btn-info text-white" href="/auth/twitter"><span class="bi bi-twitter"></span> Twitter</a>
+  <a class="btn btn-primary text-white" href="/auth/facebook"><span class="bi bi-facebook"></span> Facebook</a>
+  <a class="btn btn-danger" href="/auth/google"><span class="bi bi-google"></span> Google</a>
 </div>
 <%- include('partials/footer'); %>

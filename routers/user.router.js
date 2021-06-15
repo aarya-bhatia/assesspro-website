@@ -1,8 +1,11 @@
 const { Router } = require("express");
-const { User } = require("../model");
-
 const router = Router();
 
+router.get("/profile", (req, res) => {
+  res.render("profile.ejs", { user: req.user });
+});
+
+/*
 router.post("/:id/enroll/:module_id", (req, res, next) => {
   const id = req.params.id;
   const module_id = req.params.module_id;
@@ -25,7 +28,8 @@ router.post("/:id/enroll/:module_id", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-// router.post("/:id/unenroll/:module_id");
-// router.post("/:id/answer");
+router.post("/:id/unenroll/:module_id");
+router.post("/:id/answer");
+*/
 
 module.exports = router;

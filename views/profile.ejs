@@ -1,0 +1,23 @@
+<%- include('partials/header.ejs') %>
+<div class="container text-center">
+  <div class="my-2 mx-auto">
+    <img
+      src="<%= user.img_url %>"
+      alt="profile image"
+      class="img-fluid rounded-circle"
+      width="100"
+    />
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="display-4"><%= user.name %></h1>
+      <p><%= user.email %></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  console.log("Signed in with: <%= user.provider.name %>");
+</script>
+<%- include('partials/footer.ejs') %>

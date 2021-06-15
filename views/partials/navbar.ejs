@@ -2,10 +2,18 @@
   <div class="container-fluid">
     <a href="/" class="navbar-brand">
       <img
-        src="images/aspire_impact_logo.png"
+        src="/images/aspire_logo.png"
+        class="img-fluid"
         alt="logo"
         width="100"
-        height="60"
+      />
+    </a>
+    <a href="/" class="navbar-brand">
+      <img
+        src="/images/aspire_impact_logo.png"
+        class="img-fluid"
+        alt="logo"
+        width="100"
       />
     </a>
     <button
@@ -27,12 +35,20 @@
         </li>
 
         <li class="nav-item">
-          <a href="/auth/login" class="nav-link">Login</a>
+          <a href="/users/profile" class="nav-link">Profile</a>
         </li>
 
+        <!-- user not logged in -->
+        <% if(!user) { %>
+        <li class="nav-item">
+          <a href="/auth/login" class="nav-link">Login</a>
+        </li>
+        <!-- user is logged in -->
+        <% } else { %>
         <li class="nav-item">
           <a href="/auth/logout" class="nav-link">Logout</a>
         </li>
+        <% } %>
       </ul>
     </div>
   </div>
