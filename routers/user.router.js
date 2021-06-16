@@ -2,9 +2,37 @@ const { Router } = require("express");
 const router = Router();
 const user_profile = require("../models/user/user_profile");
 
+const qualificationKeys = [
+  {
+    title: "Grade 10",
+    subjectKey: "grade10-subject",
+    institutionKey: "grade10-institution"
+  },
+  {
+    title: "Grade 12",
+    subjectKey: "grade12-subject",
+    institutionKey: "grade12-institution"
+  }, 
+  {
+    title: "Bachelors",
+    subjectKey: "bachelors-subject",
+    institutionKey: "bachelors-institution"
+  }, 
+  {
+    title: "Masters",
+    subjectKey: "masters-subject",
+    institutionKey: "masters-institution"
+  }, 
+  {
+    title: "Other",
+    subjectKey: "other-subject",
+    institutionKey: "other-institution"
+  }, 
+]
+
 // Get profile update form
 router.get("/profile/update", (req, res) => {
-  res.render("profile.update.ejs", { user: req.user });
+  res.render("profile.update.ejs", { user: req.user, qualificationKeys });
 });
 
 // Post update profile
@@ -21,18 +49,23 @@ router.post("/profile/update", (req, res) => {
       state: req.body.state || user.address.state,
       zip: req.body.zip || user.address.zip,
     },
+    dob: {
+      day: req.body.day || user.dob.day,
+      month: req.body.month || user.dob.month,
+      year: req.body.year || user.dob.year,
+    },
     status: req.body.status === "on" ? "public" : "private",
     qualifications: {
       grade10: {
         subject:
-          req.body["grade-10-subject"] || user.qualifications.grade10.subject,
+          req.body["grade10-subject"] || user.qualifications.grade10.subject,
         institution:
-          req.body["grade-10-institution"] ||
+          req.body["grade10-institution"] ||
           user.qualifications.grade10.institution,
       },
       grade12: {
         subject:
-          req.body["grade-12-subject"] || user.qualifications.grade12.subject,
+          req.body["grade12-subject"] || user.qualifications.grade12.subject,
         institution:
           req.body["grade-12-institution"] ||
           user.qualifications.grade12.institution,

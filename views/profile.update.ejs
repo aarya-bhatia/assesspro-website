@@ -38,7 +38,6 @@
         rows="5"
         placeholder="Write a short paragraph about yourself..."
         class="form-control"
-        value="<%= user && user.bio ? user.bio : '' %>"
       ></textarea>
     </div>
 
@@ -46,25 +45,23 @@
 
     <!-- city input -->
     <div class="col-md-6">
-      <label for="inputCity" class="form-label">City</label>
+      <label for="city" class="form-label">City</label>
       <input
         type="text"
         class="form-control"
-        id="inputCity"
+        id="city"
         name="city"
         placeholder="City"
-        value="<%= user.address && user.address.city ? user.address.city : '' %>"
       />
     </div>
 
     <!-- state input -->
     <div class="col-md-4">
-      <label for="inputState" class="form-label">State</label>
+      <label for="state" class="form-label">State</label>
       <select
         name="state"
         id="state"
         class="form-select"
-        value="<%= user.address && user.address.state ? user.address.state : '' %>"
       >
         <option value="">State</option>
         <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -110,14 +107,13 @@
 
     <!-- zip input -->
     <div class="col-md-2">
-      <label for="inputZip" class="form-label">Zip</label>
+      <label for="zip" class="form-label">Zip</label>
       <input
         type="text"
         class="form-control"
-        id="inputZip"
+        id="zip"
         name="zip"
         placeholder="Zip"
-        value="<%= user.address && user.address.zip ? user.address.zip : '' %>"
       />
     </div>
 
@@ -131,9 +127,9 @@
 
     <!-- dob day -->
     <div class="col-md-4">
-      <select name="day" class="form-select">
+      <select name="day" class="form-select" id="day">
         <option value="">Day</option>
-        <% for(let i = 1; i <= 31; i++) { %>
+        <% for(let i=1; i <=31; i++) { %>
         <option value="<%= i %>"><%= i %></option>
         <% } %>
       </select>
@@ -141,11 +137,11 @@
 
     <!-- dob month -->
     <div class="col-md-4">
-      <select name="month" class="form-select">
+      <select name="month" class="form-select" id="month">
         <option value="">Month</option>
-        <% const months =
-        ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
-        %> <% for(let i = 0; i < months.length; i++) { %>
+        <% const
+        months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+        %> <% for(let i=0; i < months.length; i++) { %>
         <option value="<%= i+1 %>"><%= months[i] %></option>
         <% } %>
       </select>
@@ -153,10 +149,10 @@
 
     <!-- dob year -->
     <div class="col-md-4">
-      <select name="year" class="form-select">
+      <select name="year" class="form-select" id="year">
         <option value="">Year</option>
-        <% const currentYear = new Date().getFullYear(); %> <% for(let i
-        =currentYear; i >= currentYear - 80; i--) { %>
+        <% const currentYear=new Date().getFullYear(); %> <% for(let
+        i=currentYear; i>= currentYear - 80; i--) { %>
         <option value="<%= i %>"><%= i %></option>
         <% } %>
       </select>
@@ -183,10 +179,41 @@
     </div>
 
     <!-- educational qualifications -->
+
     <div class="h4">Educational Qualifications</div>
 
+    <%
+    [
+      {
+        title: "Grade 10",
+        subjectKey: "grade10-subject",
+        institutionKey: "grade10-institution"
+      },
+      {
+        title: "Grade 12",
+        subjectKey: "grade12-subject",
+        institutionKey: "grade12-institution"
+      }, 
+      {
+        title: "Bachelors",
+        subjectKey: "bachelors-subject",
+        institutionKey: "bachelors-institution"
+      }, 
+      {
+        title: "Masters",
+        subjectKey: "masters-subject",
+        institutionKey: "masters-institution"
+      }, 
+      {
+        title: "Other",
+        subjectKey: "other-subject",
+        institutionKey: "other-institution"
+      }, 
+    ].map(level => { 
+    %>
+
     <div class="col-md-4">
-      <p>Grade 10</p>
+      <p><%= level.title %></p>
     </div>
 
     <div class="col-md-4">
@@ -194,7 +221,8 @@
         type="text"
         placeholder="Subject"
         class="form-control"
-        name="grade-10-subject"
+        name="<%= level.subjectKey %>"
+        id="<%= level.subjectKey %>"
       />
     </div>
 
@@ -203,106 +231,60 @@
         type="text"
         placeholder="Institution"
         class="form-control"
-        name="grade-10-institution"
+        name="<%= level.institutionKey %>"
+        id="<%= level.institutionKey %>"
       />
     </div>
 
-    <div class="col-md-4">
-      <p>Grade 12</p>
-    </div>
-
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Subject"
-        class="form-control"
-        name="grade-12-subject"
-      />
-    </div>
-
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Institution"
-        class="form-control"
-        name="grade-12-institution"
-      />
-    </div>
-
-    <div class="col-md-4">
-      <p>Bachelors</p>
-    </div>
-
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Subject"
-        class="form-control"
-        name="bachelors-subject"
-      />
-    </div>
-
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Institution"
-        class="form-control"
-        name="bacherlors-institution"
-      />
-    </div>
-
-    <div class="col-md-4">
-      <p>Masters</p>
-    </div>
-
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Subject"
-        class="form-control"
-        name="masters-subject"
-      />
-    </div>
-
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Institution"
-        class="form-control"
-        name="masters-institution"
-      />
-    </div>
-
-    <div class="col-md-4">
-      <p>Other</p>
-    </div>
-
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Subject"
-        class="form-control"
-        name="other-subject"
-      />
-    </div>
-
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Institution"
-        class="form-control"
-        name="other-institution"
-      />
-    </div>
+    <% }) %>
 
     <!-- submit button -->
-
     <div class="col-md-12">
       <button class="btn btn-primary" type="submit">Save Changes</button>
     </div>
-  </form>
 
+  </form>
   <!-- form end -->
+
 </div>
+
+<script>
+
+  /* Set the bio */
+  const user_bio = "<%= user.bio %>";
+
+  if(user_bio) {
+    document.getElementById('bio').innerHTML = user_bio
+  }
+
+  /* Set the status */
+  document.getElementById('status').checked = "<%= user.status %>" === 'public';
+
+  /* Set the address and dob fields */ 
+  Object.entries({...(<%- user.address %>), ...(<%- user.dob %>)})
+    .forEach(([key, value]) => {
+      const element = document.getElementById(key)
+      if(value) {
+      element.value = value
+    }
+  })
+
+  /* Set the qualification fields */
+  const qualifications = <%- user.qualifications %>;
+  if(qualifications) {
+    Object.entries(qualifications).forEach(([key, value]) => {
+      console.log(key, value)
+      if(value.subject) {
+        const subjectField = document.getElementById(key + '-subject');
+        subjectField.value = value.subject;
+      }
+      if(value.institution) {
+        const institutionField = document.getElementById(key + '-institution');
+        institutionField.value = value.institution;
+      }
+    })
+  }
+
+</script>
 
 <%- include('partials/footer.ejs', { user }) %>
