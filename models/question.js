@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 const ObjectId = Schema.Types.ObjectId;
 
-const question_schema = new Schema({
+const schema = new Schema({
   module_name: String,
   module_id: ObjectId,
   module_key: Number,
@@ -20,4 +19,4 @@ const question_schema = new Schema({
   ]
 });
 
-module.exports = model("question", question_schema);
+module.exports = model("Question", schema);

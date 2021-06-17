@@ -1,36 +1,37 @@
 const mongoose = require("mongoose");
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const Schema = mongoose.Schema;
-const model = mongoose.model;
-const ObjectId = Schema.Types.ObjectId;
-
-const assessments_schema = new Schema(
+const schema = new mongoose.Schema(
   {
-    category_name: String,
-    category_id: ObjectId,
+    category: String,
     name: String,
-    short: String,
+    key: String,
     description: String,
     plot_type: {
       type: String,
       enum: ["hbar", "bar", "spider", "line"],
       required: true,
     },
+    public: {
+      type: Boolean,
+      default: true,
+    },
     show_average: {
       type: Boolean,
       default: false,
     },
-    modules: [
-      {
-        id: ObjectId,
-        name: String,
-      },
-    ],
+    modules: [{
+      id: ObjectId,
+      key: Number,
+      name: String,
+    }],
     price: Number,
+    currency: {
+      type: String,
+      default: 'usd',
+    }
   },
   { timestamps: true }
 );
 
-const assessment = model("assessment", assessments_schema);
-
-module.exports = assessment;
+module.exports = mongoose.model("Assessment", schema);

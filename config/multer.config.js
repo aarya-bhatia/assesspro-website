@@ -9,7 +9,8 @@ const imageStorage = multer.diskStorage({
 
     filename: (req, file, cb) => {
 
-        const filename = req.user._id + '_' + path.extname(file.originalname)
+        const filename = req.user._id + '_' + String(new Date()) +
+            '_' + path.extname(file.originalname)
         console.log('Saving image as: ', filename)
 
         cb(null, filename)

@@ -8,7 +8,7 @@ const cookieSession = require("cookie-session");
 const passport = require("passport");
 
 // connect to mongodb
-require("./config/db.config.js");
+require("./config/db.config.js").connect();
 
 // set up passport strategy
 require("./config/passport.config.js");

@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
-const module_schema = new Schema({
+const schema = new Schema({
   name: { type: String, required: true },
   key: Number,
   type: {
@@ -15,4 +14,4 @@ const module_schema = new Schema({
   time_limit: Number,
 });
 
-module.exports = model("module", module_schema);
+module.exports = model("Module", schema);

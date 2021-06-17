@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 const ObjectId = Schema.Types.ObjectId;
 
-const user_assessments_schema = new Schema({
+const schema = new Schema({
   user_id: ObjectId,
   username: String,
   enrollment_id: ObjectId,
@@ -38,6 +37,4 @@ const user_assessments_schema = new Schema({
   },
 });
 
-const user_assessments = model("user_assessment", user_assessments_schema);
-
-module.exports = user_assessments;
+module.exports = model("UserAssessment", schema);

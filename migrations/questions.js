@@ -1,43 +1,22 @@
-require('../config/db.config')
-
-const fs = require('fs');
-const csvReader = require('csv-reader')
-
+/**
+ * This migration will create the questions from the question bank
+ */
+const { processCSV, initColumns } = require('.');
+const { connect, dropCollections } = require('../config/db.config')
 const mongoose = require('mongoose')
-const connection = mongoose.connection
+const { capitalize } = require('../controller/util')
+const Module = require('../models/Module')
+const Question = require('../models/Question');
 const collections = ['modules', 'questions']
+const FILE = 'resources/csv/QuestionBank.csv'
 
-const FILE = 'resources/QuestionBank.csv'
+let ModuleCache = {}
 
-const csvOptions = {
-    parseNumbers: true,
-    trim: true,
-    skipHeader: true,
-    skipEmptyLines: true
-}
-
-/* Models */
-const moduleModel = require('../models/module')
-const questionModel = require('../models/question');
-
-const headerCols = {}
-
-const headers = ['srNo', 'moduleKey', 'moduleName', 'questionNo', 'question', 'type', 'choiceA',
-    'choiceB', 'choiceC', 'choiceD', 'choiceE', 'answer', 'pointsA', 'pointsB',
-    'pointsC', 'pointsD', 'pointsE']
-
-headers.map((str, i) => {
-    headerCols[str] = i
-})
-
-let moduleMap = {}
-
-function capitalize(str) {
-    if (!str || typeof (str) !== 'string') {
-        return str;
-    }
-    return str.charAt(0).toUpperCase() + str.slice(1)
-}
+const Columns = initColumns(Array.from(
+    ['srNo', 'moduleKey', 'moduleName', 'questionNo', 'question', 'type',
+        'choiceA', 'choiceB', 'choiceC', 'choiceD', 'choiceE', 'answer',
+        'pointsA', 'pointsB', 'pointsC', 'pointsD', 'pointsE'])
+)
 
 function getChoicesArray(row) {
     let choices = [];
@@ -45,8 +24,10 @@ function getChoicesArray(row) {
 
     for (let i = 0; i < suffixs.length; i++) {
         const suffix = suffixs[i]
-        const rowChoice = capitalize(row[headerCols[`choice${suffix}`]])
-        const rowPoint = parseInt(row[headerCols[`points${suffix}`]])
+        const choiceKey = `choice${suffix}`
+        const pointKey = `points${suffix}`
+        const rowChoice = capitalize(row[Columns[choiceKey]])
+        const rowPoint = Number(row[Columns[pointKey]])
 
         if (rowChoice.length <= 0) {
             break;
@@ -62,117 +43,71 @@ function getChoicesArray(row) {
     return choices;
 }
 
-async function getModuleIdFromMap(data) {
-    // Create key if the map does not have the module with that key
-    if (!moduleMap.hasOwnProperty(data.key)) {
-        console.log('Module key not found, creating module...', moduleMap)
-        const moduleObj = await moduleModel.create(data)
+async function getModuleId(data) {
+
+    if (!ModuleCache[data.key]) {
+        // console.log('Module key not found, creating module...', ModuleCache)
+        const obj = await Module.create(data)
+
         // Save the id of the module in the map for future reference
-        moduleMap[data.key] = moduleObj._id
+        ModuleCache[data.key] = obj._id
     }
+
     // Return the id of the module through the map
-    return moduleMap[data.key]
+    return ModuleCache[data.key]
 }
 
-async function getModuleId({ key, name, type }) {
-    const found = await moduleModel.findOne({ name })
+const processRow = async (row) => {
+    const module_key = Number(row[Columns.moduleKey])
+    const module_name = row[Columns.moduleName]
+    const module_type = row[Columns.type]
+    const content = row[Columns.question]
+    const choices = getChoicesArray(row)
 
-    if (!found) {
-        console.log('Module not found, creating module...')
-        const newModule = await moduleModel.create({ key, name, type })
-        return newModule._id
+    const questionData = {
+        module_name,
+        module_key,
+        content,
+        choices
     }
-    else {
-        return found._id
+
+    const moduleData = {
+        key: module_key,
+        name: module_name,
+        type: module_type,
     }
+
+    const module_id = await getModuleId(moduleData)
+
+    await Question.create({ module_id, ...questionData })
 }
 
-async function runMigration(INPUT_FILE) {
-    const inputStream = fs.createReadStream(INPUT_FILE, 'utf8');
-
-    console.log('STARTING MIGRATIONS')
-    console.log('============================================')
-
-    const parser = new csvReader(csvOptions)
-
-    inputStream
-        .pipe(parser)
-        .on('data', async (row) => {
-
-            // console.log('pausing')
-            parser.pause();
-
-            // Process current row
-            const module_key = parseInt(row[headerCols.moduleKey])
-            const module_name = row[headerCols.moduleName]
-            const module_type = row[headerCols.type]
-            const content = row[headerCols.question]
-            const choices = getChoicesArray(row)
-
-            const questionData = {
-                module_name,
-                module_key,
-                content,
-                choices
-            }
-
-            const moduleData = {
-                key: module_key,
-                name: module_name,
-                type: module_type,
-            }
-
-            // console.log('Module: ', moduleData)
-            // console.log('Question: ', questionData)
-
-            // Find or create module then get its id
-            const module_id = await getModuleIdFromMap(moduleData)
-
-            // Create the question object and set the module id from before
-            await questionModel.create({ module_id, ...questionData })
-
-            // console.log('resuming')
-            parser.resume();
-
-        })
-        .on('end', () => {
-            console.log('FINISHED MIGRATIONS')
-            console.log('============================================')
-        })
+async function down() {
+    await dropCollections(collections)
 }
 
-
-function dropCollections(collections) {
-    return new Promise((resolve, reject) => {
-        connection.db.listCollections().toArray((err, docs) => {
-            if (!err) {
-                for (i = 0; i < docs.length; i++) {
-                    const collection = docs[i].name
-                    console.log(collection)
-                    if (collections.includes(collection)) {
-                        connection.db.dropCollection(collection, (err, res) => {
-                            if (!err) {
-                                console.log('Collection dropped: ' + collection)
-                            }
-                        })
-                    }
-                }
-                resolve()
-            }
-            else {
-                reject(err)
-            }
-        })
-    })
+async function up() {
+    await processCSV(FILE, processRow)
 }
 
+connect()
 
-connection.once('open', () => {
-    dropCollections(collections).then(async () => {
-        try {
-            await runMigration(FILE);
-        } catch (err) {
-            console.log("Error running migration", err)
+mongoose.connection.once('open', async () => {
+    try {
+        if (process.argv[2] === 'down') {
+            console.log('Destroying tables')
+            await down()
         }
-    })
+        else {
+            console.log('Creating tables')
+            await up()
+        }
+    }
+    catch (err) {
+        console.log('ERROR RUNNING MIGRATIONS...', err)
+    }
 })
+
+module.exports = {
+    up, down
+}
