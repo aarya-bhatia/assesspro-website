@@ -9,6 +9,7 @@ const assessments_schema = new Schema(
     category_name: String,
     category_id: ObjectId,
     name: String,
+    short: String,
     description: String,
     plot_type: {
       type: String,

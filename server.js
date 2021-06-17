@@ -14,7 +14,7 @@ require("./config/db.config.js");
 require("./config/passport.config.js");
 
 // local imports
-const moduleData = require("./data.json");
+const moduleData = require("./resources/json/data.json");
 const { isAuth } = require("./controller/auth");
 
 // create express app

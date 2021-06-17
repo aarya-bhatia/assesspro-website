@@ -1,33 +1,27 @@
 const { Router } = require("express");
-const { Module, Question } = require("../model");
+const Module = require("../models/module")
 
 const router = Router();
 
-router.get("/", (req, res, next) => {
+// Get all modules 
+// GET /api/modules
+router.get("/", (req, res) => {
   Module.find()
     .then((docs) => res.json(docs))
-    .catch((err) => next(err));
 });
 
-router.get("/:id", (req, res, next) => {
+// Get one module
+// GET api/modules/<id>
+router.get("/:id", (req, res) => {
   Module.findById(req.params.id)
-    .then((module) => {
-      if (!module) {
-        throw { status: 400, message: "Module not found" };
-      }
-      Question.find({ module_id: module._id })
-        .then((questions) => {
-          res.status(200).json(Object.assign(module, { questions }));
-        })
-        .catch((err) => next(err));
-    })
-    .catch((err) => next(err));
+    .then((module) => res.json(module))
 });
 
-router.post("/", (req, res, next) => {
+// Create a module
+// POST api/modules
+router.post("/", (req, res) => {
   Module.create(req.body)
-    .then((module) => res.status(201).json(module))
-    .catch((err) => next(err));
+    .then((module) => res.json(module))
 });
 
 module.exports = router;

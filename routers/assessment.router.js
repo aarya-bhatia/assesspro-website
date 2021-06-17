@@ -1,61 +1,64 @@
 const { Router } = require("express");
-const { Assessment, Module } = require("../model");
+const Assessment = require("../models/assessment");
 
 const router = Router();
 
-router.get("/", (req, res, next) => {
-  Assessment.find()
-    .then((docs) => res.json(docs))
-    .catch((err) => next(err));
+// GET ALL ASSESSMENTS
+// GET /api/assessments/
+router.get("/", (req, res) => {
+  Assessment.find().then((docs) => res.json(docs))
 });
 
-router.get("/:id", (req, res, next) => {
-  Assessment.findById(req.params.id)
-    .populate("modules")
-    .exec((err, doc) => {
-      if (err) {
-        console.log("Error populating assessments");
-        next(err);
-      } else {
-        res.json(doc);
-      }
-    });
+// GET ONE ASSESSMENT
+// GET api/assessments/<id>
+router.get("/:id", (req, res) => {
+  Assessment.findById(req.params.id).then(doc => res.json(doc))
 });
 
-router.post("/", (req, res, next) => {
-  Assessment.create(req.body)
-    .then((doc) => res.status(201).json(doc))
-    .catch((err) => next(err));
+
+// CREATE AN ASSESSMENT
+// POST api/assessments
+router.post("/", (req, res) => {
+  Assessment.create(req.body).then((doc) => res.json(doc))
 });
 
-router.post("/:id/add_module/:module_id", (req, res, next) => {
-  const module_id = req.params.module_id;
+// ADD MODULE TO ASSESSMENT
+// POST api/assessments/<id>/add-module 
+router.post("/:id/add-module", (req, res) => {
+
+  const module_id = req.body.module_id
+  const module_name = req.body.module_name
+
   Assessment.findById(req.params.id)
     .then((found) => {
       if (found) {
-        if (!found.modules.find((m) => m == module_id)) {
-          found.modules.push(module_id);
+
+        // check for duplicates before adding
+        if (!found.modules.find((m) => m.id == module_id)) {
+          found.modules.push({
+            id: module_id,
+            name: module_name
+          });
+
         }
-        found.save().then((doc) => {
-          res.json(doc);
-        });
-      } else {
-        throw { status: 400, message: "Assessment not found" };
       }
+
+      found.save().then(doc => res.json(doc))
     })
-    .catch((err) => next(err));
 });
 
-router.put("/:id", (req, res, next) => {
+// UPDATE ASSESSMENT
+// PUT api/assessments/<id>
+router.put("/:id", (req, res) => {
   Assessment.findOneAndUpdate({ _id: req.params.id }, req.body)
     .then((doc) => res.json(doc))
-    .catch((err) => next(err));
 });
 
-router.delete("/:id", (req, res, next) => {
+// DELETE ASSESSMENT
+// DELETE api/assessments/<id>
+router.delete("/:id", (req, res) => {
   Assessment.findOneAndDelete({ _id: req.params.id })
     .then((doc) => res.json(doc))
-    .catch((err) => next(err));
 });
 
 module.exports = router;

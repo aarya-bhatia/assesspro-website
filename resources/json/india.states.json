@@ -1,0 +1,146 @@
+[
+  {
+    "key":"AP",
+    "value":"Andhra Pradesh"
+  },
+  {
+    "key":"AR",
+    "value":"Arunachal Pradesh"
+  },
+  {
+    "key":"AS",
+    "value":"Assam"
+  },
+  {
+    "key":"BR",
+    "value":"Bihar"
+  },
+  {
+    "key":"CT",
+    "value":"Chhattisgarh"
+  },
+  {
+    "key":"GA",
+    "value":"Goa"
+  },
+  {
+    "key":"GJ",
+    "value":"Gujarat"
+  },
+  {
+    "key":"HR",
+    "value":"Haryana"
+  },
+  {
+    "key":"HP",
+    "value":"Himachal Pradesh"
+  },
+  {
+    "key":"JK",
+    "value":"Jammu and Kashmir"
+  },
+  {
+    "key":"JH",
+    "value":"Jharkhand"
+  },
+  {
+    "key":"KA",
+    "value":"Karnataka"
+  },
+  {
+    "key":"KL",
+    "value":"Kerala"
+  },
+  {
+    "key":"MP",
+    "value":"Madhya Pradesh"
+  },
+  {
+    "key":"MH",
+    "value":"Maharashtra"
+  },
+  {
+    "key":"MN",
+    "value":"Manipur"
+  },
+  {
+    "key":"ML",
+    "value":"Meghalaya"
+  },
+  {
+    "key":"MZ",
+    "value":"Mizoram"
+  },
+  {
+    "key":"NL",
+    "value":"Nagaland"
+  },
+  {
+    "key":"OR",
+    "value":"Odisha"
+  },
+  {
+    "key":"PB",
+    "value":"Punjab"
+  },
+  {
+    "key":"RJ",
+    "value":"Rajasthan"
+  },
+  {
+    "key":"SK",
+    "value":"Sikkim"
+  },
+  {
+    "key":"TN",
+    "value":"Tamil Nadu"
+  },
+  {
+    "key":"TG",
+    "value":"Telangana"
+  },
+  {
+    "key":"TR",
+    "value":"Tripura"
+  },
+  {
+    "key":"UT",
+    "value":"Uttarakhand"
+  },
+  {
+    "key":"UP",
+    "value":"Uttar Pradesh"
+  },
+  {
+    "key":"WB",
+    "value":"West Bengal"
+  },
+  {
+    "key":"AN",
+    "value":"Andaman and Nicobar Islands"
+  },
+  {
+    "key":"CH",
+    "value":"Chandigarh"
+  },
+  {
+    "key":"DN",
+    "value":"Dadra and Nagar Haveli"
+  },
+  {
+    "key":"DD",
+    "value":"Daman and Diu"
+  },
+  {
+    "key":"DL",
+    "value":"Delhi"
+  },
+  {
+    "key":"LD",
+    "value":"Lakshadweep"
+  },
+  {
+    "key":"PY",
+    "value":"Puducherry"
+  }
+]
