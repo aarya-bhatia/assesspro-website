@@ -3,7 +3,7 @@ const router = Router();
 
 const { updateUserProfile, getProfileUpdateForm } = require("../controller/user.profile.js");
 const imageUpload = require('../config/multer.config.js');
-const user_profile = require("../models/user_profile.js");
+const UserProfile = require("../models/UserProfile.js");
 
 // Get profile update form
 router.get("/profile/update", getProfileUpdateForm);
@@ -18,7 +18,7 @@ router.get("/profile", (req, res) => {
 
 // For Single image upload
 router.post('/upload', imageUpload.single('fileUpload'), (req, res) => {
-  user_profile.findById(req.user._id)
+  UserProfile.findById(req.user._id)
     .then(found => {
       found.img_url = `/images/uploads/${req.file.filename}`
       found.save().then(user => {

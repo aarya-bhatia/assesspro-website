@@ -5,6 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cookieSession = require("cookie-session");
+// const cookieParser = require("cookie-parser")
 const passport = require("passport");
 
 // connect to mongodb
@@ -22,7 +23,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // middleware
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
@@ -33,6 +33,8 @@ app.use(
     keys: [process.env.COOKIE_KEY],
   })
 );
+
+app.use(cookieParser())
 
 app.use(passport.initialize());
 app.use(passport.session());

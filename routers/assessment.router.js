@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const Assessment = require("../models/assessment");
+const Assessment = require("../models/Assessment");
 
 const router = Router();
 
@@ -14,7 +14,6 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   Assessment.findById(req.params.id).then(doc => res.json(doc))
 });
-
 
 // CREATE AN ASSESSMENT
 // POST api/assessments
