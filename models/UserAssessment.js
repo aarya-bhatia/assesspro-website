@@ -13,9 +13,12 @@ const schema = new Schema({
   user_id: ObjectId,
   user_name: String,
   assessment_id: ObjectId,
-  assessment_key: ObjectId,
+  assessment_key: String,
   assessment_name: String,
-  data_purchased: {
+  assessment_category: String,
+  assessment_plot_type: String,
+  assessment_description: String,
+  date_purchased: {
     type: Date,
     default: Date.now,
   },

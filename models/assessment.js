@@ -24,6 +24,7 @@ const schema = new mongoose.Schema(
       id: ObjectId,
       key: Number,
       name: String,
+      no_questions: Number,
     }],
     price: Number,
     currency: {

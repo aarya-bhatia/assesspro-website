@@ -1,7 +1,7 @@
 const qualificationKeys = require('../resources/json/qualification.keys.json')
 const statesList = require('../resources/json/india.states.json')
 const { getFormDays, getFormMonths, getFormYears } = require('./util');
-const user_profile = require("../models/user_profile.js");
+const UserProfile = require("../models/UserProfile.js");
 
 /* update user profile */
 module.exports.updateUserProfile = (req, res, next) => {
@@ -46,7 +46,7 @@ module.exports.updateUserProfile = (req, res, next) => {
     })
 
     /* update user in db */
-    user_profile.findById({ _id: user._id }).then((profile) => {
+    UserProfile.findById({ _id: user._id }).then((profile) => {
         Object.assign(profile, user);
         profile.save().then((newProfile) => {
 
@@ -62,7 +62,8 @@ module.exports.updateUserProfile = (req, res, next) => {
 }
 
 module.exports.getProfileUpdateForm = (req, res) => {
-    res.render("profile.update.ejs", {
+    res.render("profile/update", {
+        loggedIn: true,
         user: req.user,
         qualificationKeys,
         states: statesList,
@@ -73,5 +74,5 @@ module.exports.getProfileUpdateForm = (req, res) => {
 }
 
 module.exports.getUserProfile = (req, res) => {
-    res.render("profile", { user: req.user });
+    res.render("profile/profile", { loggedIn: true, user: req.user });
 }

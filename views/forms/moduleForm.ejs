@@ -1,91 +1,105 @@
 <!--
     Locals: {
-        user,
+        loggedIn,
         title,
         description,
-        module_id,
-        questions
+        assessment_id,
+        questions,
+        user_module
     }
 -->
 
-<%- include('../partials/header.ejs', { user }) %>
+<%- include('../partials/header.ejs', { loggedIn }) %>
 
-<div class="display-4"><%= title %></div>
+<div class="container">
 
-<div class="lead"><%= description %></div>
+    <div class="display-4"><%= title %></div>
 
-<form action="/forms/submit" method="POST">
+    <div class="lead"><%= description %></div>
 
-    <input type='text' name='module_id' value='<%= module_id %>' hidden />
+    <form action="/forms/<%= assessment_id %>/submit/<%= user_module._id %>" method="POST">
 
-    <% questions.map((question, num) => { %>
+        <% questions.map((question, num) => { %>
 
-        <div class="row p-2 my-2">
+            <div class="row p-2 my-2 bg-light">
 
-            <p><%= num+1 %>.</p>
+                <p><%= num+1 %>.</p>
 
-            <% if(question.content) { %>
+                <% if(question.content) { %>
 
-                <p><%= question.content %></p>
+                    <p><%= question.content %></p>
 
-            <% } else if(question.image) { %>
+                <% } else if(question.image) { %>
 
-               <img 
-                    src="<%= question.image %>" 
-                    alt="" 
-                    class="img-fluid" 
-                    width="128" 
-                /> 
+                <img 
+                        src="<%= question.image %>" 
+                        alt="" 
+                        class="img-fluid" 
+                        width="128" 
+                    /> 
 
-            <% } %>
+                <% } %>
 
-            <div class="form-check">
+                <div class="container">
 
-            <% question.choices.map(choice => { %>
+                    <% question.choices.map(choice => { %>
 
-                    <input 
-                        type="radio" 
-                        class="form-check-input" 
-                        name="<%= question._id %>"
-                        id="<%= question._id %>" 
-                        value="<%= choice._id %>"
-                    />
+                            <div class="form-check">
 
-                    <% if(choice.text) { %>
+                                <input 
+                                    type="radio" 
+                                    class="form-check-input" 
+                                    name="<%= question._id %>"
+                                    id="<%= choice._id %>" 
+                                    value="<%= choice._id %>"
+                                />
 
-                        <label for="<%= question._id %>">
-                            <%= choice.text %>    
-                        </label>
+                                <% if(choice.text) { %>
 
-                    <% } %>
+                                    <label for="<%= choice._id %>">
+                                        <%= choice.text %>    
+                                    </label>
 
-                    <% if(choice.image) { %>
+                                <% } %>
 
-                        <img 
-                            src="<%= choice.image %>"
-                            alt="" 
-                            class="img-fluid" 
-                            width="100" 
-                        />
+                                <% if(choice.image) { %>
 
-                    <% } %>
+                                    <img 
+                                        src="<%= choice.image %>"
+                                        alt="" 
+                                        class="img-fluid" 
+                                        width="100" 
+                                    />
 
-            <% }) %>
+                                <% } %>
+
+                            </div>
+
+                    <% }) %>
+                
+                </div>
 
             </div>
 
-        </div>
+        <% }) %>
 
-    <% }) %>
+        <input 
+            type="submit" 
+            class="btn btn-primary" 
+            value="Submit" 
+        />
 
-    <input 
-        type="submit" 
-        class="btn btn-primary" 
-        value="Submit" 
-    />
+        <a href="/forms/<%= assessment_id %>" class="btn btn-secondary">Back</a>
 
-    <a href="/" class="btn btn-secondary">Back</a>
+    </form>
 
-</form>
+</div>
+
+<% user_answers.map(id => { %>
+    <script>
+        document.getElementById("<%= id %>").checked = true
+    </script>
+<% }) %>
+
 
 <%- include('../partials/footer.ejs') %>

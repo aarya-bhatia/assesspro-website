@@ -1,14 +1,13 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
-
-const user_profile = require("../models/user_profile");
+const UserProfile = require("../models/UserProfile");
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  user_profile.findById(id).then((user_found) => {
+  UserProfile.findById(id).then((user_found) => {
     done(null, user_found);
   });
 });
@@ -37,14 +36,14 @@ passport.use(
       };
 
       // check if user already exists in our db
-      user_profile.findOne(query).then((currentUser) => {
+      UserProfile.findOne(query).then((currentUser) => {
         if (currentUser) {
           // already have this User
           console.log("User is: ", currentUser);
           done(null, currentUser);
         } else {
           // create user in db
-          user_profile.create(user_data).then((newUser) => {
+          UserProfile.create(user_data).then((newUser) => {
             console.log("Created User: ", newUser);
             done(null, newUser);
           });

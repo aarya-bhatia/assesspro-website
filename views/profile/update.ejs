@@ -1,45 +1,47 @@
+<!--
+  Locals: {
+    loggedIn,
+    user
+  }
+-->
+
 <!-- Header -->
-<%- include('partials/header.ejs', { user }) %>
+<%- include('../partials/header.ejs', { loggedIn }) %>
 
   <!-- profile update page -->
 
   <div class="container">
     <h1>Update Profile</h1>
 
-      <!-- introduction -->
+    <!-- introduction -->
+    <div class="col-md-12">
+      <p class="form-text">
+        Please update your details below and submit the form.
+      </p>
+    </div>
+
+    <!-- IMAGE UPLOAD FORM -->
+    <form action="/users/upload" method="POST" class="row g-3 mb-3" enctype="multipart/form-data">
+
+      <div class="h4">Profile Picture</div>
+
+      <!-- profile image -->
       <div class="col-md-12">
-        <p class="form-text">
-          Please update your details below and submit the form.
-        </p>
+        <img src="<%= user.img_url %>" alt="profile image" class="img-fluid img-thumbnail" width="128" />
       </div>
 
-      <!-- IMAGE UPLOAD FORM -->
-      <form action="/users/upload" method="POST" class="row g-3 mb-3" enctype="multipart/form-data">
+      <div class="col-md-6">
+        <input name='fileUpload' id='fileUpload' class="form-control" type="file" accept="image/png|image/jpg">
+      </div>
 
-        <div class="h4">Profile Picture</div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </div>
 
-        <!-- profile image -->
-        <div class="col-md-12">
-          <img
-            src="<%= user.img_url %>"
-            alt="profile image"
-            class="img-fluid img-thumbnail"
-            width="128"
-          />
-        </div>
+    </form>
 
-        <div class="col-md-6">
-          <input name='fileUpload' id='fileUpload' class="form-control" type="file" accept="image/png|image/jpg">
-        </div>
-
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-primary">Upload</button>
-        </div>
-      
-      </form>
-
-      <!-- BEGIN FORM -->
-      <form action="/users/profile/update" method="POST" class="row g-3">
+    <!-- BEGIN FORM -->
+    <form action="/users/profile/update" method="POST" class="row g-3">
 
 
       <!-- GENERAL SECTION -->
@@ -177,7 +179,7 @@
           <!-- submit button -->
           <div class="col-md-12">
             <button class="btn btn-primary" type="submit">Save Changes</button>
-            <button class="btn btn-secondary ms-2" type="button" onclick="goBack()">Back</button>
+            <button class="btn btn-secondary ms-2" type="button" onclick="window.history.back()">Back</button>
           </div>
 
           <!-- FORM END -->
@@ -196,33 +198,30 @@
     document.getElementById('status').checked = "<%= user.status %>" === 'public';
 
     /* Set the address and dob fields */
-    Object.entries({ ...(<%- user.address %>), ...(<%- user.dob %>) })
+    Object.entries({ ...<%- user.address %>, ...<%- user.dob %> })
       .forEach(([key, value]) => {
-        const element = document.getElementById(key)
-        if (value) {
-          element.value = value
+        if (key) {
+          document.getElementById(key).value = value
         }
       })
 
     /* Set the qualification fields */
     const qualifications = <%- user.qualifications %>;
+
     if (qualifications) {
       Object.entries(qualifications).forEach(([key, value]) => {
-        if (value.subject) {
-          const subjectField = document.getElementById(key + '-subject');
-          subjectField.value = value.subject;
-        }
-        if (value.institution) {
-          const institutionField = document.getElementById(key + '-institution');
-          institutionField.value = value.institution;
+        if (key && value) {
+          if (value.subject) {
+            document.getElementById(key + '-' + 'subject').value = value.subject;
+          }
+          if (value.institution) {
+            document.getElementById(key + '-' + 'institution').value = value.institution;
+          }
         }
       })
     }
 
-    function goBack() {
-      window.history.back();
-    }
   </script>
 
   <!-- Footer -->
-  <%- include('partials/footer.ejs', { user }) %>
+  <%- include('../partials/footer.ejs') %>

@@ -15,6 +15,8 @@ const schema = new Schema({
   user_id: { type: ObjectId, required: true },
   question_id: { type: ObjectId, required: true },
   module_id: { type: ObjectId, required: true },
+  module_key: Number,
+  module_name: String,
   choice_id: { type: ObjectId, required: true },
   value: String
 });

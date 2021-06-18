@@ -12,6 +12,7 @@ const schema = new Schema({
   },
   instructions: String,
   time_limit: Number,
+  no_questions: Number
 });
 
 module.exports = model("Module", schema);

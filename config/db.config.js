@@ -2,6 +2,10 @@ require("dotenv").config();
 
 const mongoose = require("mongoose");
 
+mongoose.Promise = global.Promise
+
+// mongoose.set('debug', true);
+
 module.exports.connect = () => {
   mongoose
     .connect(process.env.DB_URL, {

@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs", { loggedIn }); %>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price($)</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% assessments.map((assessment, i)=> { %>
+                    <tr>
+                        <th scope="row">
+                            <%= i+1 %>
+                        </th>
+                        <td>
+                            <%= assessment.name %>
+                        </td>
+                        <td>
+                            <%= assessment.category %>
+                        </td>
+                        <td>
+                            0
+                        </td>
+                        <td>
+                            <a href="/assessments/<%= assessment._id %>" class="btn btn-dark">Open</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <%- include("partials/footer.ejs"); %>

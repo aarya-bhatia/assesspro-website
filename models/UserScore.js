@@ -17,6 +17,7 @@ const schema = new Schema({
     assessment_key: String,
     module_scores: [
         {
+            key: Number,
             name: String,
             score: Number
         }
@@ -29,4 +30,4 @@ const schema = new Schema({
     },
 });
 
-module.exports = model("UserAssessmentScore", schema);
+module.exports = model("UserScore", schema);

@@ -1,45 +1,58 @@
-const { saveAnswers } = require('../controller/form');
+const { saveAnswers } = require('../controller/user.answers');
 const { scoreAssessment } = require('../controller/scorer');
-const { checkUserEnrolled } = require('../controller/auth')
-const { Assessment, Module, Question } = require('../models')
-
+const { Question, UserAnswer, UserModule } = require('../models');
 const router = require('express').Router()
 
-// Get the form for an assessment
-// GET /forms/:assessment_key
-router.get('/:assessment_key', async (req, res) => {
-    const { name, _id, modules } = await Assessment.findOne({ key: req.params.assessment_key })
+// Get the module list page for an assessment
+// GET /forms/:assessment_id
+router.get('/', async (req, res) => {
+
+    const { assessment_id, user_assessment } = res.locals
+    const { assessment_description, assessment_name } = user_assessment
+
+    const user_modules = await UserModule.find({ user_id: req.user._id, assessment_id })
 
     res.render('forms/moduleList.ejs', {
-        user: req.user,
-        title: name,
-        description: 'Todo... Description',
-        assessment_id: _id,
-        modules
+        loggedIn: true,
+        assessment_id,
+        user_modules,
+        title: assessment_name,
+        description: assessment_description,
     })
 })
 
-// Render questions for a module
-// Get /forms/questions
-router.get('/questions', getModuleId, (req, res) => {
-    const { module_id, module_name } = req.body
+// Get form questions for user module
+// Get /forms/:assessment_id/questions/:user_module_id
+router.get('/questions/:user_module_id', async (req, res) => {
+
+    const { assessment_id } = res.locals
+    const { user_module_id } = req.params
+
+    const user_module = await UserModule.findById(user_module_id)
+    const { module_id, module_name } = user_module
+
     const questions = await Question.find({ module_id })
 
+    const prevAnswers = await UserAnswer.find({ user_id: req.user._id, module_id })
+    const choices = prevAnswers.map(({ choice_id }) => choice_id)
+
     res.render('forms/moduleForm.ejs', {
-        user: req.user,
+        loggedIn: true,
         title: 'Module: ' + module_name,
-        description: 'Todo... Description',
-        module_id,
-        questions
+        description: '',
+        assessment_id,
+        questions,
+        user_answers: choices,
+        user_module: user_module
     })
 })
 
 // Sumbit user's answers for the questions in a module 
-// POST /forms/submit
-router.post('/submit', saveAnswers)
+// POST /forms/:assessment_id/submit
+router.post('/submit/:user_module_id', saveAnswers)
 
 // Submit the form and score all questions
-// POST /forms/score
+// POST /forms/:assessment_id/score
 router.post('/score', scoreAssessment)
 
 module.exports = router

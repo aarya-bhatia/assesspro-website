@@ -5,7 +5,7 @@ const router = Router();
 
 // Auth Login Page
 router.get("/login", (req, res) => {
-  res.render("login", { user: req.user });
+  res.render("auth/login", { loggedIn: req.user ? true : false });
 });
 
 // Auth Logout/Redirect
