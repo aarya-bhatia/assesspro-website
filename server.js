@@ -5,7 +5,6 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const cookieSession = require("cookie-session");
-// const cookieParser = require("cookie-parser")
 const passport = require("passport");
 
 // connect to mongodb
@@ -16,7 +15,7 @@ require("./config/passport.config.js");
 
 // local imports
 const moduleData = require("./resources/json/data.json");
-const { isAuth } = require("./controller/auth");
+const { isAuth, checkUserEnrolled } = require("./controller/auth");
 
 // create express app
 const app = express();
@@ -52,12 +51,7 @@ app.use(
 // routers
 app.use("/auth", require("./routers/auth.router"));
 app.use("/users", isAuth, require("./routers/user.router"));
-
-/*
-app.use("/modules", require("./routers/module.router"));
-app.use("/questions", require("./routers/question.router"));
-app.use("/assessments", require("./routers/assessment.router"));
-*/
+app.use('/forms', isAuth, checkUserEnrolled, require('./routers/forms.router'))
 
 // set up view engine
 app.set("view engine", "ejs");
@@ -65,10 +59,6 @@ app.set("views", path.join(__dirname, "views"));
 
 app.get("/assessments/nest", (req, res) => {
   res.render("assessments/nest", { user: req.user });
-});
-
-app.get("/assessment/form", (req, res) => {
-  res.render("assessment", { ...moduleData, user: req.user });
 });
 
 // home route

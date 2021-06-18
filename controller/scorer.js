@@ -12,7 +12,7 @@ const { UserAnswer, Question, UserAssessment, UserScore, Assessment } = require(
  */
 module.exports.scoreAssessment = async function (req, res) {
     try {
-        const { assessment_id } = req.params
+        const { assessment_id } = req.body
 
         const { modules } = assessment_id
 

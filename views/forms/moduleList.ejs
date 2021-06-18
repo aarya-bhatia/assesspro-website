@@ -1,0 +1,98 @@
+<!--
+    Locals: {
+        user,
+        title,
+        description,
+        assessment_id,
+        modules
+    }
+-->
+
+<%- include('../partials/header.ejs', { user }) %>
+
+<div class="container">
+    <!-- container begin -->
+    
+    <div class="display-4"><%= title %></div>
+
+    <div class="lead"><%= description %></div>
+
+    <% modules.map(module => { %>
+
+        <div class="bg-light row p-2 my-2">
+            <!-- row being -->
+
+            <!-- module name -->
+            <div class="col-md-4 col-lg-3">
+                <%= module.name %>
+            </div>
+
+            <!-- status -->
+            <div class="col-md-4 col-lg-3">
+                Status
+            </div>
+
+            <!-- action -->
+            <div class="col-md-4 col-lg-3">
+
+                <!-- open module form -->
+                <form action="/forms/questions" method="POST">
+
+                    <!-- module id field -->
+                    <input 
+                        type="text"
+                        name="module_id"
+                        value="<%= module._id %>"
+                        hidden
+                    />
+
+                     <!-- module name field -->
+                    <input 
+                        type="text"
+                        name="module_name"
+                        value="<%= module.name %>"
+                        hidden
+                    />
+
+                    <input type="submit" class="btn btn-light" value="Open" />
+                </form>
+
+            </div>
+
+            <!-- question stats -->
+            <div class="col-md-4 col-lg-3 text-grey">
+                5/10 Questions
+            </div>
+
+            <!-- time stats -->
+            <div class="col-md-4 col-lg-3 text-info">
+                5/20 min Remaining
+            </div>
+
+            <!-- row end -->
+        </div>
+
+    <% }) %>
+
+    <!-- submit assessment -->
+    <form action="/forms/score" method="POST">
+
+        <!-- assessment id field -->
+        <input 
+            type="text"
+            name="assessment_id"
+            value="<%= assessment_id %>"
+            hidden
+        />
+
+        <p class="form-text-muted">
+            Please attempt all modules in this assessment before you submit.
+        </p>
+
+        <input type="submit" class="btn btn-primary" value="Submit All">
+
+    </form>
+
+    <!-- container end -->
+</div>
+<%- include('../partials/footer.ejs') %>

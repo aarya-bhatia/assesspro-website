@@ -1,0 +1,91 @@
+<!--
+    Locals: {
+        user,
+        title,
+        description,
+        module_id,
+        questions
+    }
+-->
+
+<%- include('../partials/header.ejs', { user }) %>
+
+<div class="display-4"><%= title %></div>
+
+<div class="lead"><%= description %></div>
+
+<form action="/forms/submit" method="POST">
+
+    <input type='text' name='module_id' value='<%= module_id %>' hidden />
+
+    <% questions.map((question, num) => { %>
+
+        <div class="row p-2 my-2">
+
+            <p><%= num+1 %>.</p>
+
+            <% if(question.content) { %>
+
+                <p><%= question.content %></p>
+
+            <% } else if(question.image) { %>
+
+               <img 
+                    src="<%= question.image %>" 
+                    alt="" 
+                    class="img-fluid" 
+                    width="128" 
+                /> 
+
+            <% } %>
+
+            <div class="form-check">
+
+            <% question.choices.map(choice => { %>
+
+                    <input 
+                        type="radio" 
+                        class="form-check-input" 
+                        name="<%= question._id %>"
+                        id="<%= question._id %>" 
+                        value="<%= choice._id %>"
+                    />
+
+                    <% if(choice.text) { %>
+
+                        <label for="<%= question._id %>">
+                            <%= choice.text %>    
+                        </label>
+
+                    <% } %>
+
+                    <% if(choice.image) { %>
+
+                        <img 
+                            src="<%= choice.image %>"
+                            alt="" 
+                            class="img-fluid" 
+                            width="100" 
+                        />
+
+                    <% } %>
+
+            <% }) %>
+
+            </div>
+
+        </div>
+
+    <% }) %>
+
+    <input 
+        type="submit" 
+        class="btn btn-primary" 
+        value="Submit" 
+    />
+
+    <a href="/" class="btn btn-secondary">Back</a>
+
+</form>
+
+<%- include('../partials/footer.ejs') %>
