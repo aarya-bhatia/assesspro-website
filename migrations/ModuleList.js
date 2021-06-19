@@ -4,8 +4,7 @@
 const { processCSV, initColumns } = require('.')
 const { connect } = require('../config/db.config')
 const mongoose = require('mongoose')
-const Assessment = require('../models/Assessment')
-const Module = require('../models/Module')
+const { Assessment, Module } = require('../models')
 const FILE = 'resources/csv/ModuleList.csv'
 const columns = initColumns(Array.from(['assessment_key', 'module_name', 'module_key']))
 

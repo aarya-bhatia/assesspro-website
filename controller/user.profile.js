@@ -76,6 +76,6 @@ module.exports.getProfileUpdateForm = (req, res) => {
 
 module.exports.getUserProfile = async (req, res) => {
     const userScores = await UserScore.find({ user_id: req.user._id })
-    console.log(userScores)
+    // console.log(userScores)
     res.render("profile/profile", { loggedIn: true, user: req.user, userScores });
 }

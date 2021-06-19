@@ -1,7 +1,7 @@
 module.exports = {
-    Assessment: require('./Assessment'),
-    Module: require('./Module'),
-    Question: require('./Question'),
+    Assessment: require('./assessment'),
+    Module: require('./module'),
+    Question: require('./question'),
     UserAnswer: require('./UserAnswer'),
     UserAssessment: require('./UserAssessment'),
     UserModule: require('./UserModule'),

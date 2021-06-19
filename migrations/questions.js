@@ -5,8 +5,7 @@ const { processCSV, initColumns } = require('.');
 const { connect, dropCollections } = require('../config/db.config')
 const mongoose = require('mongoose')
 const { capitalize } = require('../controller/util')
-const Module = require('../models/Module')
-const Question = require('../models/Question');
+const { Module, Question } = require('../models')
 const collections = ['modules', 'questions']
 const FILE = 'resources/csv/QuestionBank.csv'
 
