@@ -83,25 +83,27 @@ const processRow = async (row) => {
 }
 
 async function down() {
-    await dropCollections(collections)
+    return new Promise(async res => {
+        await dropCollections(collections)
+        res()
+    })
 }
 
 async function up() {
-    await processCSV(FILE, processRow)
+    return new Promise(async res => {
+        await processCSV(FILE, processRow)
+        res()
+    })
 }
 
 connect()
 
 mongoose.connection.once('open', async () => {
     try {
-        if (process.argv[2] === 'down') {
-            console.log('Destroying tables')
-            await down()
-        }
-        else {
-            console.log('Creating tables')
-            await up()
-        }
+        console.log('Destroying tables')
+        await down()
+        console.log('Creating tables')
+        await up()
     }
     catch (err) {
         console.log('ERROR RUNNING MIGRATIONS...', err)

@@ -42,10 +42,11 @@ module.exports.scoreAssessment = async function (req, res) {
     user_assessment.completed = true
     await user_assessment.save()
 
-    console.log('Updated user assessment stats')
-    console.log('Finished Scoring: ', assessment_score)
+    // console.log('Updated user assessment stats')
+    // console.log('Finished Scoring: ', assessment_score)
 
-    res.json(assessment_score)
+    // res.json(assessment_score)
+    res.redirect('/users/profile')
 }
 
 async function score_all_modules(user_modules) {

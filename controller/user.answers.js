@@ -55,7 +55,7 @@ module.exports.saveAnswers = async function (req, res) {
         }
     })
 
-    console.log('attempted questions: ', attempted)
+    // console.log('attempted questions: ', attempted)
 
     user_module.no_attempted = attempted
 
@@ -67,7 +67,7 @@ module.exports.saveAnswers = async function (req, res) {
         user_module.status = 'Pending'
     }
 
-    console.log('user module: ', user_module)
+    // console.log('user module: ', user_module)
 
     await user_module.save()
 

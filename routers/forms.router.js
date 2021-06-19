@@ -33,13 +33,15 @@ router.get('/questions/:user_module_id', async (req, res) => {
 
     const questions = await Question.find({ module_id })
 
+    // console.log("QUESTIONS", questions)
+
     const prevAnswers = await UserAnswer.find({ user_id: req.user._id, module_id })
     const choices = prevAnswers.map(({ choice_id }) => choice_id)
 
     res.render('forms/moduleForm.ejs', {
         loggedIn: true,
         title: 'Module: ' + module_name,
-        description: '',
+        description: user_module.module_description || '',
         assessment_id,
         questions,
         user_answers: choices,

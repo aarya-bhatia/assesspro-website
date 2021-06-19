@@ -66,7 +66,7 @@ app.set("views", path.join(__dirname, "views"));
 app.get("/", async (req, res) => {
   const assessments = await Assessment.find({ public: true })
   // console.log('Assessments: ', assessments)
-  console.log(res.locals)
+  // console.log(res.locals)
   res.render("index", { assessments, loggedIn: res.locals.loggedIn });
 });
 

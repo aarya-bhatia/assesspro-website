@@ -9,6 +9,7 @@ const schema = new Schema({
     module_id: ObjectId,
     module_name: String,
     module_key: Number,
+    module_description: String,
     module_type: String,
     no_questions: Number,
     no_attempted: Number,

@@ -10,7 +10,7 @@ const schema = new Schema({
     enum: ["Objective", "Subjective"],
     required: true,
   },
-  instructions: String,
+  description: String,
   time_limit: Number,
   no_questions: Number
 });

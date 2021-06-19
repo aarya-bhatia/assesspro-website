@@ -1,3 +1,11 @@
+<!--
+  locals: {
+    user,
+    loggedIn,
+    userScores
+  }
+-->
+
 <%- include('../partials/header.ejs', { loggedIn }) %>
   <div class="container text-center">
     <div class="my-2 mx-auto">
@@ -14,6 +22,19 @@
         </p>
       </div>
     </div>
+
+    <% if(user.bio) { %>
+    <p><%= user.bio %></p>
+    <% } %>
+
+    <% if(user.address.city) { %>
+    <p class="fw-bold"><%= user.address.city %>
+    <% } %>
+    <% if(user.address.state) { %>
+    , <%= user.address.state %>
+    <% } %>
+    </p>
+
   </div>
 
   <ul class="nav justify-content-center">
@@ -21,6 +42,54 @@
       <a href="/users/profile/update" class="nav-link">Update Profile</a>
     </li>
   </ul>
+
+  <div class="container">
+
+    <% if(userScores.length==0) { %>
+      <p>You do not have any assessments. Click <a href="/">here</a> to find one...</p>
+      <% } else { %>
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Assessment Name</th>
+              <th>Module Name</th>
+              <th>Module Score</th>
+              <th>Date Taken</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% userScores.map((userScore)=> { %>
+              <% userScore.module_scores.map(moduleScore=> { %>
+                <tr>
+                  <td>
+                    <%= userScore.assessment_key %>
+                  </td>
+                  <td>
+                    <%= moduleScore.name %>
+                  </td>
+                  <td>
+                    <%= moduleScore.score %>
+                  </td>
+                  <td>
+                    <%= userScore.date.toLocaleDateString('en-US') %>
+                  </td>
+                  <td>
+                    <%= userScore.status %>
+                  </td>
+                  <td></td>
+                </tr>
+                <% }) %>
+                  <% }) %>
+          </tbody>
+        </table>
+
+        <!-- End else -->
+        <% } %>
+  </div>
 
   <script>
     console.log("Signed in with: <%= user.provider.name %>");

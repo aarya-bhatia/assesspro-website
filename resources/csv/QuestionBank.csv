@@ -27,14 +27,14 @@
 26,3,Verbal Reasoning,6,Bread: Yeast:: Curd:?,Objective,bacteria,fungi,germs,virus,,A,1,0,0,0,0
 27,3,Verbal Reasoning,7,What is closet in meaning to Passageway?,Objective,passport,stop,corridor,ticket,,C,0,0,1,0,0
 28,3,Verbal Reasoning,8,Liquid is to Fluid as Comedian is to……….?,Objective,ridicule,solemnity,companion,humor,,D,0,0,0,1,0
-29,4,Abstract Reasoning,1,Which image does not belong to the group? ,Objective,,,,,,A,1,0,0,0,0
-30,4,Abstract Reasoning,2,Which shape completes the analogy? ,Objective,,,,,,D,0,0,0,1,0
-31,4,Abstract Reasoning,3,Which shape completes the analogy? ,Objective,,,,,,C,0,0,1,0,0
-32,4,Abstract Reasoning,4,Which circle completes the analogy? ,Objective,,,,,,C,0,0,1,0,0
-33,4,Abstract Reasoning,5,Which figure completes the series? ,Objective,,,,,,C,0,0,1,0,0
-34,4,Abstract Reasoning,6,Which of these comes next in sequence? ,Objective,,,,,,D,0,0,0,1,0
-35,4,Abstract Reasoning,7,Which comes next in the series? ,Objective,,,,,,D,0,0,0,1,0
-36,4,Abstract Reasoning,8,Which is the odd one out? ,Objective,,,,,,C,0,0,1,0,0
+29,4,Abstract Reasoning,1,Which image does not belong to the group? ,Objective,A,B,C,D,,A,1,0,0,0,0
+30,4,Abstract Reasoning,2,Which shape completes the analogy? ,Objective,A,B,C,D,,D,0,0,0,1,0
+31,4,Abstract Reasoning,3,Which shape completes the analogy? ,Objective,A,B,C,D,,C,0,0,1,0,0
+32,4,Abstract Reasoning,4,Which circle completes the analogy? ,Objective,A,B,C,D,,C,0,0,1,0,0
+33,4,Abstract Reasoning,5,Which figure completes the series? ,Objective,A,B,C,D,,C,0,0,1,0,0
+34,4,Abstract Reasoning,6,Which of these comes next in sequence? ,Objective,A,B,C,D,,D,0,0,0,1,0
+35,4,Abstract Reasoning,7,Which comes next in the series? ,Objective,A,B,C,D,,D,0,0,0,1,0
+36,4,Abstract Reasoning,8,Which is the odd one out? ,Objective,A,B,C,D,,C,0,0,1,0,0
 37,5,Logical Reasoning,1,"Pointing to a photograph, a person tells his friend, “She is the grand-daughter of the elder brother of my father"". How is the girl in the photograph related to this man?",Objective,aunt,niece,daughter-in-law,none,,B,0,1,0,0,0
 38,5,Logical Reasoning,2,Shyam is older than Deepak who is older than Ram. Suman is older than Manish who is younger than Deepak. Shyam is younger than Suman. Ram is younger than Manish. Who is the eldest?,Objective,shyam,deepak,ram,suman,manish,D,0,0,0,1,0
 39,5,Logical Reasoning,3,"January, February, April, July, November, April, ?",Objective,july,december,october,january,,C,0,0,1,0,0

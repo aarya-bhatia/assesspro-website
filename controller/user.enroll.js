@@ -61,6 +61,7 @@ async function createUserModules(user_id, assessment_id, modules) {
                 module_name: m.name,
                 module_key: m.key,
                 module_type: m.type,
+                module_description: m.description,
                 no_questions: m.no_questions,
                 no_attempted: 0,
                 time_spent: 0,

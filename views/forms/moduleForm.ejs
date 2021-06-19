@@ -29,13 +29,15 @@
 
                     <p><%= question.content %></p>
 
-                <% } else if(question.image) { %>
+                <% } %>
+                
+                <% if(question.image) { %>
 
                 <img 
                         src="<%= question.image %>" 
                         alt="" 
-                        class="img-fluid" 
-                        width="128" 
+                        class="img-fluid img-thumbnail" 
+                        height="64"
                     /> 
 
                 <% } %>

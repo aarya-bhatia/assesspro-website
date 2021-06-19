@@ -4,8 +4,6 @@ const router = Router();
 const { updateUserProfile, getProfileUpdateForm, getUserProfile } = require("../controller/user.profile.js");
 const imageUpload = require('../config/multer.config.js');
 const UserProfile = require("../models/UserProfile.js");
-
-const { UserAssessment, Assessment, UserModule, Module } = require('../models');
 const { EnrollUser } = require("../controller/user.enroll.js");
 
 // Get profile update form
@@ -25,7 +23,7 @@ router.post('/upload', imageUpload.single('fileUpload'), (req, res) => {
       found.save().then(user => {
         req.logIn(user, (err) => {
           if (!err) {
-            console.log("updated user", req.user);
+            // console.log("updated user", req.user);
             res.redirect("/users/profile/update");
           }
         });
@@ -38,7 +36,7 @@ router.post('/upload', imageUpload.single('fileUpload'), (req, res) => {
 
 function getAssessmentId(req, res, next) {
   res.locals.assessment_id = req.params.assessment_id
-  console.log(res.locals)
+  // console.log(res.locals)
   next()
 }
 

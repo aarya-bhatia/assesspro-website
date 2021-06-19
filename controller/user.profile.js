@@ -2,6 +2,7 @@ const qualificationKeys = require('../resources/json/qualification.keys.json')
 const statesList = require('../resources/json/india.states.json')
 const { getFormDays, getFormMonths, getFormYears } = require('./util');
 const UserProfile = require("../models/UserProfile.js");
+const { UserScore } = require('../models');
 
 /* update user profile */
 module.exports.updateUserProfile = (req, res, next) => {
@@ -73,6 +74,8 @@ module.exports.getProfileUpdateForm = (req, res) => {
     });
 }
 
-module.exports.getUserProfile = (req, res) => {
-    res.render("profile/profile", { loggedIn: true, user: req.user });
+module.exports.getUserProfile = async (req, res) => {
+    const userScores = await UserScore.find({ user_id: req.user._id })
+    console.log(userScores)
+    res.render("profile/profile", { loggedIn: true, user: req.user, userScores });
 }

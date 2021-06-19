@@ -39,25 +39,25 @@ const processRow = async function (row) {
 }
 
 async function up() {
-    await processCSV(FILE, processRow)
+    return new Promise(async res => {
+        await processCSV(FILE, processRow)
+        res()
+    })
 }
 
 async function down() {
-    await Assessment.updateMany({}, { modules: [] })
+    return new Promise(async res => {
+        await Assessment.updateMany({}, { modules: [] })
+        res()
+    })
 }
 
 connect()
 
 mongoose.connection.once('open', async () => {
     try {
-        if (process.argv[2] === 'down') {
-            console.log('Down')
-            await down()
-        }
-        else {
-            console.log('Up')
-            await up()
-        }
+        await down()
+        await up()
     }
     catch (err) {
         console.log('ERROR RUNNING MIGRATIONS...', err)

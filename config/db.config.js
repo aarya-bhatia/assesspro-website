@@ -6,9 +6,12 @@ mongoose.Promise = global.Promise
 
 // mongoose.set('debug', true);
 
+// For Development use this
+// const URL = process.env.DB_URL
+
 module.exports.connect = () => {
   mongoose
-    .connect(process.env.DB_URL, {
+    .connect(process.env.ATLAS_DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
