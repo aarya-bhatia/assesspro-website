@@ -1,4 +1,6 @@
-const { UserAnswer, Question, UserAssessment, UserScore, Assessment, UserModule } = require("../models")
+const { UserAnswer, Question, UserAssessment, UserScore, UserModule } = require("../models")
+
+const LOCAL_DEBUG = false
 
 //
 // This function accepts an assessment_id through the request url.
@@ -11,92 +13,95 @@ const { UserAnswer, Question, UserAssessment, UserScore, Assessment, UserModule 
 // neat object.
 ///
 module.exports.scoreAssessment = async function (req, res) {
-    const { assessment_id } = req.body
+    const { assessment_id, user_assessment } = res.locals
     const user_id = req.user._id
-    const { user_assessment } = res.locals
-    const { assessment_name, assessment_key } = user_assessment
+
+    // console.log(assessment_id, user_id)
+
     const user_modules = await UserModule.find({ user_id, assessment_id })
+    const result = await score_all_modules(user_modules)
 
-    return res.json(await
+    console.log('Result: ', result)
 
-        (async function score_all_modules() {
+    const { assessment_name, assessment_key } = user_assessment
 
-            let module_scores = []
+    // A score object is created each time the user submits the form,
+    // so as to have access to previous attempt scores. The module scores
+    // contains the data required to make the plots for the assessment
+    // on the client, using the chartjs library.
+    const assessment_score = await UserScore.create({
+        user_id,
+        assessment_id,
+        assessment_name,
+        assessment_key,
+        module_scores: result,
+        date: new Date()
+    })
 
-            user_modules.map(async ({ user_id, module_id, module_name }) => {
-
-                const user_answers = await UserAnswer.find({ user_id, module_id })
-
-                const score = await (
-
-                    // Function to score the answers for one module.
-                    // From the user answer collection, it fetches all the answers
-                    // for the module. Then as it loops through the answers,
-                    // it fetches each question from the bank and
-                    // retrieves the points assigned to the answer choice.
-
-                    async function get_module_score() {
-                        let score = 0
-                        user_answers.map(async user_answer => {
-
-                            const choice = await (
-                                //Function to retrieve the choice selected by the user for
-                                //a question. The choice object contains the points
-                                //assigned to that choice. The user score is updated with the value
-                                //
-                                async function get_selected_choice({ choice_id, question_id }) {
-
-                                    const { choices } = await Question.findById(question_id)
-                                    return choices.find(choice => choice._id.toString() == choice_id)
-
-                                })(user_answer)
-
-                            console.log('Points Awarded: ', choice.points)
-                            score += choice.points
-                        })
-                        return score
-                    })()
-
-                console.log('MODULE TOTAL POINTS: ', score)
-
-                module_scores.push({
-                    name: module_name,
-                    score
-                })
-            })
-
-            return module_scores
-
-        })()
-    )
-
-    /*
-     * A score object is created each time the user submits the form,
-     * so as to have access to previous attempt scores. The module scores
-     * contains the data required to make the plots for the assessment
-     * on the client, using the chartjs library.
-     */
-    // const assessment_score = await UserScore.create({
-    //     user_id,
-    //     assessment_id,
-    //     assessment_name,
-    //     assessment_key,
-    //     module_scores,
-    //     date: new Date()
-    // })
-
-    // await update_user_assessment_stat(user_id, assessment_id)
-    // console.log('assessment scoring finished: ', assessment_score)
-}
-
-
-/*
- * This function updates the attempts count and marks the assessment as completed for the user.
- */
-async function update_user_assessment_stat(user_id, assessment_id) {
-    const user_assessment = await UserAssessment.findOne({ user_id, assessment_id })
     user_assessment.attempts = (user_assessment.attempts || 0) + 1
     user_assessment.completed = true
     await user_assessment.save()
+
+    console.log('Updated user assessment stats')
+    console.log('Finished Scoring: ', assessment_score)
+
+    res.json(assessment_score)
 }
 
+async function score_all_modules(user_modules) {
+    return new Promise(async function (res) {
+        let result = []
+
+        // Get result for each module synchronously
+        for (const user_module of user_modules) {
+            const { module_name, module_id, user_id } = user_module
+
+            // Get the module answers
+            const user_answers = await UserAnswer.find({
+                user_id,
+                module_id
+            })
+
+            // Get the module score
+            const module_score = await get_module_score(user_answers)
+            if (LOCAL_DEBUG) console.log('[score_all_modules]: adding score to result', module_score)
+
+            // Add to { module name, module score } to result set
+            result.push({ name: module_name, score: module_score })
+        }
+        res(result)
+    })
+}
+
+// Function to score the answers for one module.
+// From the user answer collection, it fetches all the answers
+// for the module. Then as it loops through the answers,
+// it fetches each question from the bank and
+// retrieves the points assigned to the answer choice.
+
+async function get_module_score(user_answers) {
+    return new Promise(async function (res) {
+        let score = 0
+        for (const user_answer of user_answers) {
+            const choice = await get_selected_choice(user_answer)
+            if (LOCAL_DEBUG) console.log('[get_module_score]: Points Awarded: ', choice.points)
+            score += choice.points
+        }
+        if (LOCAL_DEBUG) console.log('[get_moule_score]: Module Total Points: ', score)
+        res(score)
+    })
+}
+
+// Function to retrieve the choice selected by the user for
+// a question. The choice object contains the points
+// assigned to that choice. The user score is updated with this value.
+async function get_selected_choice(user_answer) {
+    return new Promise(async function (res) {
+        const { choice_id, question_id } = user_answer
+        const question = await Question.findById(question_id)
+        const { choices } = question
+        const selected = choices.find(choice => choice._id.toString() == choice_id)
+        if (LOCAL_DEBUG) console.log('[get_selected_choice] selected choice found')
+        res(selected)
+    })
+}

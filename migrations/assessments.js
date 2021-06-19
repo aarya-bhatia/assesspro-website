@@ -7,8 +7,8 @@ const mongoose = require('mongoose')
 const FILE = 'resources/csv/Assessments.csv'
 const Assessment = require('../models/Assessment')
 const collections = ['assessments']
-const assessment_keys = ['category', 'name', 'key', 'plot_type', 'price', 'no_modules', 'public']
-const Columns = initColumns(Array.from(['srNo', 'category', 'name', 'key', 'plot_type', 'price', 'no_modules', 'public']))
+const assessment_keys = ['category', 'name', 'key', 'plot_type', 'price', 'no_modules', 'public', 'description']
+const Columns = initColumns(Array.from(['srNo', 'category', 'name', 'key', 'plot_type', 'price', 'no_modules', 'public', 'description']))
 
 const processRow = async function (row) {
     const data = {}
@@ -16,15 +16,15 @@ const processRow = async function (row) {
     assessment_keys.map(header => {
         const value = row[Columns[header]]
 
-        if (header === 'public') {
-            data[header] = Boolean(value)
+        if (header.toLowerCase() === 'public') {
+            data[header] = Boolean(value.toLowerCase())
         } else {
             data[header] = value
         }
     })
 
     const doc = await Assessment.create(data)
-    // console.log('Created assessment: ', doc)
+    console.log('Created assessment: ', doc.key)
 }
 
 async function down() {
@@ -42,9 +42,16 @@ mongoose.connection.once('open', async () => {
         if (process.argv[2] === 'down') {
             console.log('Destroying tables')
             await down()
-        } else {
+        } else if (process.argv[2] === 'up') {
             console.log('Creating tables')
             await up()
+        }
+        else {
+            console.log('Destroying tables')
+            await down().then(() => {
+                console.log('Creating tables')
+                await up()
+            })
         }
     }
     catch (err) {

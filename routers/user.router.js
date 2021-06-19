@@ -5,7 +5,8 @@ const { updateUserProfile, getProfileUpdateForm, getUserProfile } = require("../
 const imageUpload = require('../config/multer.config.js');
 const UserProfile = require("../models/UserProfile.js");
 
-const { UserAssessment, Assessment, UserModule, Module } = require('../models')
+const { UserAssessment, Assessment, UserModule, Module } = require('../models');
+const { EnrollUser } = require("../controller/user.enroll.js");
 
 // Get profile update form
 router.get("/profile/update", getProfileUpdateForm);
@@ -35,72 +36,13 @@ router.post('/upload', imageUpload.single('fileUpload'), (req, res) => {
   res.status(400).json({ message: err.message })
 })
 
-// Enroll user in assessment
-// router.get('/enroll/:assessment_id', [isEnrolled], EnrollUser)
-router.get('/enroll/:assessment_id', async (req, res) => {
-
+function getAssessmentId(req, res, next) {
   res.locals.assessment_id = req.params.assessment_id
   console.log(res.locals)
+  next()
+}
 
-  try {
-    const user = req.user
-    const { assessment_id } = res.locals
-
-    if (await UserAssessment.findOne({ user_id: user._id, assessment_id })) {
-      console.log('User is already enrolled')
-      return res.redirect('/forms/' + assessment_id)
-    }
-
-    const assessment = await Assessment.findById(assessment_id)
-    const { modules } = assessment
-
-    await UserAssessment.create({
-      user_id: user._id,
-      user_name: user.name,
-      assessment_id: assessment._id,
-      assessment_key: assessment.key,
-      assessment_name: assessment.name,
-      assessment_category: assessment.category,
-      assessment_plot_type: assessment.plot_type,
-      assessment_description: assessment.description,
-      date_purchased: new Date(),
-      attempts: 0,
-      completed: false
-    })
-
-    modules.map(async ({ id }) => {
-
-      const m = await Module.findById(id)
-
-      await UserModule.create({
-        user_id: user._id,
-        assessment_id,
-        module_id: id,
-        module_name: m.name,
-        module_key: m.key,
-        module_type: m.type,
-        no_questions: m.no_questions,
-        no_attempted: 0,
-        time_spent: 0,
-        time_limit: m.time_limit,
-        status: 'Pending'
-      })
-
-    })
-
-    res.redirect('/forms/' + assessment._id)
-
-  }
-
-  catch (err) {
-
-    console.log('==================================================================')
-    console.log(err);
-    res
-      .status(err.status || 500)
-      .json({ ...err, message: err.message || "There was an error!" });
-
-  }
-})
+// Enroll user in assessment
+router.get('/enroll/:assessment_id', getAssessmentId, EnrollUser)
 
 module.exports = router;
