@@ -1,5 +1,7 @@
 // Load env vars
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 // imports
 const express = require("express");
