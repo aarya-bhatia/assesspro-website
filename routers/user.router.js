@@ -2,7 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const { updateUserProfile, getProfileUpdateForm, getUserProfile, uploadProfilePicture } = require("../controller/user.profile.js");
 const imageUpload = require('../config/multer.config.js');
-const { EnrollUser } = require("../controller/user.enroll.js");
+const { EnrollUser, UnenrollUser } = require("../controller/user.enroll.js");
 const { UserScore, UserAssessment } = require("../models/index.js");
 const { formatDateString } = require('../controller/util')
 
@@ -46,6 +46,8 @@ router.get('/enroll/:assessment_id', async (req, res, next) => {
 
 }, EnrollUser)
 
+router.get('/unenroll/:assessment_id', UnenrollUser)
+
 // Delete a score
 router.get('/scores/delete/:score_id', async (req, res) => {
   await UserScore.findOneAndRemove({ _id: req.params.score_id })
@@ -53,6 +55,6 @@ router.get('/scores/delete/:score_id', async (req, res) => {
 })
 
 // Retake Test
-// Enrolls user again
+// Enrolls user again? Todo
 
 module.exports = router;

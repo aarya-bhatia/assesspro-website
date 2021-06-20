@@ -26,8 +26,9 @@
                                 <%= completed ? 'Completed' : 'Incomplete' %>
                             </p>
                             <div class="d-flex flex-column col-md-2">
-                                <a href="/forms/<%= assessment_id %>" class="btn btn-dark my-2">Open</a>
-                                <a href="/users/profile" class="btn btn-secondary">Result</a>
+                                <a href="/forms/<%= assessment_id %>" class="btn btn-dark mb-2">Open</a>
+                                <a href="/users/profile" class="btn btn-secondary mb-2">Result</a>
+                                <a href="/users/unenroll/<%= assessment_id %>" class="btn btn-danger mb-3">Remove</a>
                             </div>
                         </div>
                     </div>

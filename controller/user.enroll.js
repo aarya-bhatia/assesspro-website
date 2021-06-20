@@ -2,7 +2,7 @@ const { UserAssessment, Assessment, UserModule, Module } = require('../models')
 
 module.exports = {
     EnrollUser,
-    createUserModules
+    UnenrollUser
 }
 
 /*
@@ -66,4 +66,12 @@ async function createUserModules(user_id, assessment_id, modules) {
         }
         res()
     })
+}
+
+async function UnenrollUser(req, res) {
+    const user_id = req.user._id
+    const { assessment_id } = req.params
+    await UserAssessment.deleteOne({ user_id, assessment_id })
+    await UserModule.deleteMany({ user_id, assessment_id })
+    res.redirect('/users/assessments')
 }

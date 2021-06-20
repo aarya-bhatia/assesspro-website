@@ -14,17 +14,9 @@
 <div class="container">
 
     <div class="display-4"><%= title %></div>
-
     <div class="lead"><%= description %></div>
 
-    <!-- <div class="row">
-        <div class="col-md-4">
-            <div class="input-group">
-                <div class="input-group-text">Time spent</div>
-                <input class="form-control" type="text" id="timer_display" readonly>
-            </div>
-        </div>
-    </div> -->
+    <input type="text" id="module_id" value="<%= user_module._id %>" hidden>
 
     <div class="p-2 my-2">
         Time spent:
@@ -126,55 +118,6 @@
     </script>
 <% }) %>
 
-<script>
-    const element = document.getElementById('time_spent')
-    const timerDisplay = document.getElementById('timer_display')
-
-    let prev_time = null
-    let timer = null
-    let accum = 0
-
-    function handleTimer() {
-        const current_time = Date.now()
-        const time_change = current_time - prev_time
-        accum += time_change
-        prev_time = current_time
-        element.value = Math.floor(accum)
-
-        let seconds = accum/1000
-        let minutes = seconds/60
-        seconds = seconds % 60
-
-        minutes = Math.round(minutes)
-        seconds = Math.round(seconds)
-
-        minutes = String(minutes) 
-        seconds = String(seconds)
-
-        if(minutes.length === 1) {
-            minutes = '0' + minutes
-        }
-
-        if(seconds.length === 1) {
-            seconds = '0' + seconds
-        }
-
-        timerDisplay.innerText = `${minutes} min: ${seconds} sec`
-    }
-
-    // start timer
-    window.onload = function() {
-        prev_time = Date.now()
-        element.value = Math.floor(prev_time)
-        timer = setInterval(handleTimer, 1000)
-    }
-
-    // end timer
-    window.onunload = function() {
-        if(timer) {
-            clearInterval(timer)
-        }
-    }
-</script>
+<script src="/js/module.timer.js"></script>
 
 <%- include('../partials/footer.ejs') %>

@@ -23,7 +23,12 @@
 
         <div class="row">
 
-            <% user_modules.map(module=> { %>
+            <script>
+                const formatTimeSpent = <%- formatTimeSpent %>
+                let module_id = null
+            </script>
+
+            <% user_modules.map((module, index)=> { %>
 
                 <div class="card col-md-6 col-lg-4 bg-light p-3 my-2">
 
@@ -57,10 +62,20 @@
                                 <span class="text-muted">
                                     Time Spent:
                                 </span>
-                                <span class="fw-bold">
+                                <span class="fw-bold" id="moduleTimerDisplay_<%= index %>">
                                     <%= formatTimeSpent(module.time_spent) %>
                                 </span>
                             </div>
+
+                            <script>
+                                module_id = "<%= module._id %>"
+
+                                if(localStorage.getItem(module_id)) {
+                                    document.getElementById('moduleTimerDisplay_<%= index %>')
+                                    .innerText = formatTimeSpent(Number(localStorage.getItem(module_id)))
+                                }
+                               
+                            </script>
 
 
                             <!-- actions -->
