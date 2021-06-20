@@ -19,13 +19,36 @@ module.exports.getProfileUpdateForm = (req, res) => {
 // Get signed in user's profile page
 module.exports.getUserProfile = async (req, res) => {
 
+    function getLabels(moduleScores) {
+        return moduleScores.map(moduleScore => moduleScore.name)
+    }
+
+    function getValues(moduleScores) {
+        return moduleScores.map(moduleScore => moduleScore.score)
+    }
+
+    function getChartData(userScore) {
+        const data = {
+            labels: getLabels(userScore.module_scores),
+            datasets: [{
+                label: userScore.assessment_name,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgb(54, 162, 235)',
+                borderWidth: 1,
+                data: getValues(userScore.module_scores)
+            }]
+        };
+        return JSON.stringify(data)
+    }
+
     // Get assessment scores
     const userScores =
         await UserScore.find({ user_id: req.user._id })
             .sort('-date').exec()
 
     res.render("profile/profile", {
-        loggedIn: true, user: req.user, userScores, formatTime, formatDateString
+        loggedIn: true, user: req.user, userScores, formatTime, formatDateString,
+        getLabels, getValues, getChartData
     });
 }
 

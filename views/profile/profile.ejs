@@ -6,94 +6,154 @@ locals: {
 }
 -->
 <%- include('../partials/header.ejs', { loggedIn }) %>
-<div class="container text-center">
-  <div class="my-2 mx-auto">
-    <img src="<%= user.img_url %>" alt="profile image" class="img-fluid img-thumbnail" width="128" />
-  </div>
+  <script>
+    let ctx = null, config = null
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript-canvas-to-blob/3.28.0/js/canvas-to-blob.js" integrity="sha512-QinObFNs7mVBtipyw8BEERLHKQ1P2n5Wbxd8Kt+G9ST/lp99qZKlJUUsNSZYSPf/yGL7eNN0UCcDaMiZjXMtGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <h1 class="display-4">
-        <%= user.name %>
-      </h1>
-      <p>
-        <%= user.email %>
-      </p>
+  <div class="container text-center">
+    <div class="my-2 mx-auto">
+      <img src="<%= user.img_url %>" alt="profile image" class="img-fluid img-thumbnail" width="128" />
     </div>
-  </div>
 
-  <% if(user.bio) { %>
-    <p>
-      <%= user.bio %>
-    </p>
-    <% } %>
-
-      <% if(user.address.city) { %>
-        <p class="fw-bold">
-          <%= user.address.city %>
-            <% } %>
-              <% if(user.address.state) { %>
-                , <%= user.address.state %>
-                  <% } %>
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="display-4">
+          <%= user.name %>
+        </h1>
+        <p>
+          <%= user.email %>
         </p>
-
-</div>
-
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a href="/users/profile/update" class="nav-link">Update Profile</a>
-  </li>
-  <li class="nav-item">
-    <a href="/users/assessments" class="nav-link">My Assessments</a>
-  </li>
-</ul>
-
-<div class="container mt-2">
-  <% userScores.map(userScore=> { %>
-    <div class="display-6">
-      <%= userScore.assessment_name %>
-    </div>
-    <div class="lead">
-      <span>
-        <%= formatDateString(userScore.date) %>,
-      </span>
-      <span>
-        <%= formatTime(userScore.date) %>
-      </span>
+      </div>
     </div>
 
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Module</th>
-          <th>Score</th>
-      </thead>
-      </tr>
+    <% if(user.bio) { %>
+      <p>
+        <%= user.bio %>
+      </p>
+      <% } %>
 
-      <tbody>
-        <% userScore.module_scores.map((moduleScore, i)=> { %>
-          <tr>
-            <td>
-              <%= i+1 %>
-            </td>
-            <td>
-              <%= moduleScore.name %>
-            </td>
-            <td>
-              <%= moduleScore.score %>
-            </td>
-          </tr>
-          <% }) %>
-      </tbody>
-    </table>
+        <% if(user.address.city) { %>
+          <p class="fw-bold">
+            <%= user.address.city %>
+              <% } %>
+                <% if(user.address.state) { %>
+                  , <%= user.address.state %>
+                    <% } %>
+          </p>
 
-    <a href="/forms/<%= userScore.assessment_id %>" class="btn btn-primary my-2">Take Again</a>
-    <a href="/users/scores/delete/<%= userScore._id %>" class="btn btn-secondary">Delete Score</a>
-    <% }) %>
-</div>
+  </div>
 
-<script>
-  console.log("Signed in with: <%= user.provider.name %>");
-</script>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a href="/users/profile/update" class="nav-link">Update Profile</a>
+    </li>
+    <li class="nav-item">
+      <a href="/users/assessments" class="nav-link">My Assessments</a>
+    </li>
+  </ul>
+
+  <div class="container mt-2">
+
+    <% userScores.map((userScore, scoreIndex)=> { %>
+
+      <div class="display-6">
+        <%= userScore.assessment_name %>
+      </div>
+
+      <div class="lead">
+        <span>
+          <%= formatDateString(userScore.date) %>,
+        </span>
+        <span>
+          <%= formatTime(userScore.date) %>
+        </span>
+      </div>
+
+      <!-- start row -->
+      <div class="row">
+
+        <!-- left col -->
+        <div class="col-md-6">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Module</th>
+                <th>Score</th>
+            </thead>
+            </tr>
+
+            <tbody>
+              <% userScore.module_scores.map((moduleScore, i)=> { %>
+                <tr>
+                  <td>
+                    <%= i+1 %>
+                  </td>
+                  <td>
+                    <%= moduleScore.name %>
+                  </td>
+                  <td>
+                    <%= moduleScore.score %>
+                  </td>
+                </tr>
+                <% }) %>
+            </tbody>
+          </table>
+
+          <a href="/forms/<%= userScore.assessment_id %>" class="btn btn-primary my-2">Take Again</a>
+          <a href="/users/scores/delete/<%= userScore._id %>" class="btn btn-secondary">Delete Score</a>
+
+          <!-- end left col -->
+        </div>
+
+        <!-- right col -->
+        <div class="col-md-6">
+          <canvas id="<%= userScore._id %>"></canvas>
+          <div class="d-flex justify-content-center">
+            <!-- <button id="save_<%= scoreIndex %>" class="btn btn-dark">Save as Image</button> -->
+          </div>
+        </div>
+
+        <script>
+          ctx = document.getElementById('<%= userScore._id %>')
+          ctx.style.backgroundColor = 'rgba(255,255,255,255)';
+          ctx = ctx.getContext('2d');
+
+          config = {
+            type: 'radar',
+            data: (<%- getChartData(userScore) %>),
+            options: {
+              scales: {
+                r: {
+                  angleLines: {
+                    color: 'red'
+                  }
+                }
+              },
+              // animation: {
+              //   onComplete: function done() {
+              //     console.log('Chart completed')
+              //     const link = document.getElementById('save_<%= scoreIndex %>')
+              //     const canvas = document.getElementById('<%= userScore._id %>')
+              //     link.onclick = () => {
+              //       canvas.toBlob(blob => {
+              //         saveAs(blob, "<%= userScore.assessment_key + '_' + (Date.now()) + '.jpeg' %>")
+              //       })
+              //     }
+              //   }
+              // },
+            }
+          };
+
+          new Chart(ctx, config)
+        </script>
+
+        <!-- end row -->
+      </div>
+      <% }) %>
+
+  </div>
 <%- include('../partials/footer.ejs') %>
