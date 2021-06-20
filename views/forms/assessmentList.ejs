@@ -11,8 +11,10 @@
         <% if(assessments.length === 0) { %> 
         <p>You do not have any assessments. Click <a href="/">here</a> to find one...</p>
         <% } else { %>
-            <% assessments.map(({ assessment_id, assessment_name, date_purchased, completed })=> { %>
-                <div class="card p-2 m-2">
+
+            <div class="row">
+            <% assessments.map(({ assessment_id, assessment_name, date_purchased, completed, attempts })=> { %>
+                <div class="card col-md-6 col-lg-4 p-2 m-2">
 
                     <div class="card-body">
                         <div class="card-title">
@@ -21,11 +23,23 @@
                             </span>
                         </div>
                         <div class="card-text">
-                            <p class="">Started: <%= formatDateString(date_purchased) %></p>
-                            <p class="text-muted">
-                                <%= completed ? 'Completed' : 'Incomplete' %>
-                            </p>
-                            <div class="d-flex flex-column col-md-2">
+
+                            <div class="mb-2 p-2 ">
+                                <span class="text-muted">Started:</span>
+                                <span><%= formatDateString(date_purchased) %></span>
+                            </div>
+
+                            <div class="mb-2 p-2 ">
+                                <span class="text-muted">Status:</span>
+                                <span><%= completed ? 'Completed' : 'Incomplete' %></span>
+                            </div>
+
+                            <div class="mb-2 p-2 ">
+                               <span class="text-muted">Attempts:</span>
+                               <span><%= attempts %></span>
+                           </div>
+                                
+                            <div class="d-flex flex-column">
                                 <a href="/forms/<%= assessment_id %>" class="btn btn-dark mb-2">Open</a>
                                 <a href="/users/profile" class="btn btn-secondary mb-2">Result</a>
                                 <a href="/users/unenroll/<%= assessment_id %>" class="btn btn-danger mb-3">Remove</a>
@@ -34,6 +48,10 @@
                     </div>
                 </div>
             <% }) %>
+            <!-- end row -->
+            </div>
+
+        <!-- end else -->
         <% } %>
     </div>
 
