@@ -11,13 +11,14 @@ module.exports = new Strategy(
                 return done(null, false, { message: 'Incorrect username' })
             }
 
-            bcrypt.compare(password, user.password, function (err, result) {
-                if (!result) {
-                    return done(null, false, { message: 'Incorrect password' })
-                }
-            })
+            const result = await bcrypt.compare(password, user.password)
 
-            return done(null, user)
+            if (!result) {
+                return done(null, false, { message: 'Incorrect password' })
+            }
+            else {
+                return done(null, user)
+            }
         }
         catch (err) {
             done(err)
