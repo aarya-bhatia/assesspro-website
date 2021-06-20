@@ -1,37 +1,51 @@
 <%- include("partials/header.ejs", { loggedIn }); %>
     <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Price($)</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
 
-            <tbody>
-                <% assessments.map((assessment, i)=> { %>
-                    <tr>
-                        <th scope="row">
-                            <%= i+1 %>
-                        </th>
-                        <td>
-                            <%= assessment.name %>
-                        </td>
-                        <td>
-                            <%= assessment.category %>
-                        </td>
-                        <td>
-                            0
-                        </td>
-                        <td>
-                            <a href="/assessments/<%= assessment._id %>" class="btn btn-dark">Open</a>
-                        </td>
-                    </tr>
-                    <% }) %>
-            </tbody>
-        </table>
+        <div class="row justify-content-center">
+            <% assessments.map(assessment=> { %>
+                <div class="card col-md-6 col-lg-4 p-2 m-2">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span class="display-5">
+                                <%= assessment.name %>
+                            </span>
+                        </div>
+                        <div class="card-text">
+                            <div class="mb-2">
+                                <span class="text-muted">
+                                    Category:
+                                </span>
+                                <span>
+                                    <%= assessment.category %>
+                                </span>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="text-muted">
+                                    Price:
+                                </span>
+                                <span>
+                                    $0.00
+                                </span>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="text-muted">
+                                    Number of Modules:
+                                </span>
+                                <span>
+                                    <%= assessment.modules.length %>
+                                </span>
+                            </div>
+
+                            <div class="mb-3">
+                                <a href="/assessments/<%= assessment._id %>" class="btn btn-dark">Open</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        <!-- end row -->
+        </div>
     </div>
     <%- include("partials/footer.ejs"); %>

@@ -13,19 +13,12 @@ async function EnrollUser(req, res) {
     const user_id = req.user._id
     const { assessment_id } = req.params
 
-    // const { user_assessment } = res.locals
-    // let user_assessment = await UserAssessment.findOne({ user_id, assessment_id })
-    // if (user_assessment) {
-    //     console.log('User is enrolled, redirecting to assessment')
-    //     return res.redirect('/forms/' + assessment_id)
-    // }
-
     console.log('User is not enrolled, enrolling user...')
 
     const assessment = await Assessment.findById(assessment_id)
     const { modules } = assessment
 
-    const user_assessment = await UserAssessment.create({
+    await UserAssessment.create({
         user_id,
         user_name: req.user.name,
         assessment_id: assessment._id,
@@ -56,7 +49,7 @@ async function createUserModules(user_id, assessment_id, modules) {
 
             const m = await Module.findById(module.id)
 
-            const usermodule = await UserModule.create({
+            UserModule.create({
                 user_id,
                 assessment_id,
                 module_id: m.id,
@@ -70,8 +63,6 @@ async function createUserModules(user_id, assessment_id, modules) {
                 time_limit: m.time_limit,
                 status: 'Pending'
             })
-
-            // console.log('Created User Module [id]: ', usermodule._id)
         }
         res()
     })
