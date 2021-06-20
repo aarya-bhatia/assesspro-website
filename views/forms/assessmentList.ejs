@@ -1,0 +1,40 @@
+<!--
+    Locals: {
+        loggedIn,
+        assessments
+    }
+-->
+
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+    <div class="container">
+        <% if(assessments.length === 0) { %> 
+        <p>You do not have any assessments. Click <a href="/">here</a> to find one...</p>
+        <% } else { %>
+            <% assessments.map(({ assessment_id, assessment_name, date_purchased, completed })=> { %>
+                <div class="card p-2 m-2">
+
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span class="display-6">
+                                <%= assessment_name %>
+                            </span>
+                        </div>
+                        <div class="card-text">
+                            <p class="">Started: <%= formatDateString(date_purchased) %></p>
+                            <p class="text-muted">
+                                <%= completed ? 'Completed' : 'Incomplete' %>
+                            </p>
+                            <div class="d-flex flex-column col-md-2">
+                                <a href="/forms/<%= assessment_id %>" class="btn btn-dark my-2">Open</a>
+                                <a href="/users/profile" class="btn btn-secondary">Result</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+
+
+    <%- include('../partials/footer.ejs', { loggedIn }) %>

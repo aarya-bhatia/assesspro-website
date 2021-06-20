@@ -1,105 +1,99 @@
 <!--
-  locals: {
-    user,
-    loggedIn,
-    userScores
-  }
+locals: {
+  user,
+  loggedIn,
+  userScores
+}
 -->
-
 <%- include('../partials/header.ejs', { loggedIn }) %>
-  <div class="container text-center">
-    <div class="my-2 mx-auto">
-      <img src="<%= user.img_url %>" alt="profile image" class="img-fluid img-thumbnail" width="128" />
-    </div>
+<div class="container text-center">
+  <div class="my-2 mx-auto">
+    <img src="<%= user.img_url %>" alt="profile image" class="img-fluid img-thumbnail" width="128" />
+  </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <h1 class="display-4">
-          <%= user.name %>
-        </h1>
-        <p>
-          <%= user.email %>
-        </p>
-      </div>
-    </div>
-
-    <% if(user.bio) { %>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="display-4">
+        <%= user.name %>
+      </h1>
       <p>
-        <%= user.bio %>
+        <%= user.email %>
       </p>
-      <% } %>
-
-        <% if(user.address.city) { %>
-          <p class="fw-bold">
-            <%= user.address.city %>
-              <% } %>
-                <% if(user.address.state) { %>
-                  , <%= user.address.state %>
-                    <% } %>
-          </p>
-
+    </div>
   </div>
 
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a href="/users/profile/update" class="nav-link">Update Profile</a>
-    </li>
-  </ul>
+  <% if(user.bio) { %>
+    <p>
+      <%= user.bio %>
+    </p>
+    <% } %>
 
-  <div class="container mt-2">
-
-    <% if(userScores.length==0) { %>
-      <p>You do not have any assessments. Click <a href="/">here</a> to find one...</p>
-      <% } else { %>
-
-        <% userScores.map(userScore=> { %>
-          <div class="display-6">
-            <%= userScore.assessment_name %>
-          </div>
-          <div class="lead">
-            <span>
-              <%= formatDateString(userScore.date) %>,
-            </span>
-            <span>
-              <%= formatTime(userScore.date) %>
-            </span>
-          </div>
-
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Module</th>
-                <th>Score</th>
-            </thead>
-            </tr>
-
-            <tbody>
-              <% userScore.module_scores.map((moduleScore, i)=> { %>
-                <tr>
-                  <td>
-                    <%= i+1 %>
-                  </td>
-                  <td>
-                    <%= moduleScore.name %>
-                  </td>
-                  <td>
-                    <%= moduleScore.score %>
-                  </td>
-                </tr>
-                <% }) %>
-            </tbody>
-          </table>
-
-          <a class="btn btn-primary my-2">Take Again</a>
-          <a href="/users/scores/delete/<%= userScore._id %>" class="btn btn-secondary">Delete Score</a>
-          <% }) %>
-
-            <!-- End else -->
+      <% if(user.address.city) { %>
+        <p class="fw-bold">
+          <%= user.address.city %>
             <% } %>
-  </div>
+              <% if(user.address.state) { %>
+                , <%= user.address.state %>
+                  <% } %>
+        </p>
 
-  <script>
-    console.log("Signed in with: <%= user.provider.name %>");
-  </script>
-  <%- include('../partials/footer.ejs') %>
+</div>
+
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a href="/users/profile/update" class="nav-link">Update Profile</a>
+  </li>
+  <li class="nav-item">
+    <a href="/users/assessments" class="nav-link">My Assessments</a>
+  </li>
+</ul>
+
+<div class="container mt-2">
+  <% userScores.map(userScore=> { %>
+    <div class="display-6">
+      <%= userScore.assessment_name %>
+    </div>
+    <div class="lead">
+      <span>
+        <%= formatDateString(userScore.date) %>,
+      </span>
+      <span>
+        <%= formatTime(userScore.date) %>
+      </span>
+    </div>
+
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Module</th>
+          <th>Score</th>
+      </thead>
+      </tr>
+
+      <tbody>
+        <% userScore.module_scores.map((moduleScore, i)=> { %>
+          <tr>
+            <td>
+              <%= i+1 %>
+            </td>
+            <td>
+              <%= moduleScore.name %>
+            </td>
+            <td>
+              <%= moduleScore.score %>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+
+    <a href="/forms/<%= userScore.assessment_id %>" class="btn btn-primary my-2">Take Again</a>
+    <a href="/users/scores/delete/<%= userScore._id %>" class="btn btn-secondary">Delete Score</a>
+    <% }) %>
+</div>
+
+<script>
+  console.log("Signed in with: <%= user.provider.name %>");
+</script>
+<%- include('../partials/footer.ejs') %>

@@ -4,6 +4,7 @@ const { updateUserProfile, getProfileUpdateForm, getUserProfile, uploadProfilePi
 const imageUpload = require('../config/multer.config.js');
 const { EnrollUser } = require("../controller/user.enroll.js");
 const { UserScore, UserAssessment } = require("../models/index.js");
+const { formatDateString } = require('../controller/util')
 
 // Get profile update form
 router.get("/profile/update", getProfileUpdateForm);
@@ -16,6 +17,18 @@ router.get("/profile", getUserProfile);
 
 // For Single image upload
 router.post('/upload', imageUpload.single('fileUpload'), uploadProfilePicture)
+
+// List user assessments
+router.get('/assessments', async (req, res) => {
+  const user_id = req.user._id
+  const assessments = await UserAssessment.find({ user_id })
+  res.render('forms/assessmentList',
+    {
+      loggedIn: true,
+      assessments,
+      formatDateString
+    })
+})
 
 // Enroll user in assessment
 router.get('/enroll/:assessment_id', async (req, res, next) => {

@@ -21,60 +21,74 @@
             <%= description %>
         </div>
 
-        <% user_modules.map(module=> { %>
+        <div class="row">
 
-            <div class="bg-light row p-3 my-2">
-                <!-- row being -->
+            <% user_modules.map(module=> { %>
 
-                <!-- module name -->
-                <div class="col-md-4 col-lg-3">
-                    <%= module.module_name %>
+                <div class="card col-md-6 col-lg-4 bg-light p-3 my-2">
+
+                    <div class="card-body">
+                        <div class="card-title">
+                            <span class="display-6">
+                                <%= module.module_name %>
+                            </span>
+                        </div>
+                        <div class="card-text">
+
+                            <div class="mb-2">
+                                <span class="text-muted">
+                                    Status:
+                                </span>
+                                <span class="fw-bold <%- module.status === 'Pending' ? 'text-danger' : 'text-primary' %>">
+                                    <%= module.status %>
+                                </span>
+                            </div>
+
+                            <div class="mb-2">
+                                <span class="text-muted">
+                                    Questions Attempted:
+                                </span>
+                                <span class="fw-bold">
+                                    <%= module.no_attempted %> of <%= module.no_questions %>
+                                </span>
+                            </div>
+
+                            <div class="mb-2">
+                                <span class="text-muted">
+                                    Time Spent:
+                                </span>
+                                <span class="fw-bold">
+                                    <%= formatTimeSpent(module.time_spent) %>
+                                </span>
+                            </div>
+
+
+                            <!-- actions -->
+                            <a href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
+                                class="btn btn-dark">Open</a>
+
+                        </div>
+                    </div>
                 </div>
+                <% }) %>
 
-                <!-- status -->
-                <div class="col-md-3 col-lg-2 
-                    <%- module.status === 'Pending' ? 'text-danger' : 'text-primary' %>"
-                >
-                    <%= module.status %>
-                </div>
+                    <!-- end row -->
+        </div>
 
-                <!-- question stats -->
-                <div class="col-md-3 col-lg-2 text-muted">
-                    <!-- 5/10 Questions -->
-                    <%= module.no_attempted %>/<%= module.no_questions %> questions
-                </div>
+        <!-- submit assessment -->
+        <form action="/forms/<%= assessment_id %>/score" method="POST">
 
-                <!-- time stats -->
-                <div class="col-md-3 col-lg-2 text-secondary">
-                    <%= formatTimeSpent(module.time_spent) %>
-                </div>
+            <!-- assessment id field -->
+            <input type="text" name="assessment_id" value="<%= assessment_id %>" hidden />
 
-                <!-- action -->
-                <div class="col-md-4 col-lg-3">
-                    <!-- open module form -->
-                    <a href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
-                        class="btn btn-dark">Open</a>
-                </div>
+            <p class="form-text-muted">
+                Please attempt all modules in this assessment before you submit.
+            </p>
 
-                <!-- row end -->
-            </div>
+            <input type="submit" class="btn btn-primary" value="Submit All">
 
-            <% }) %>
+        </form>
 
-                <!-- submit assessment -->
-                <form action="/forms/<%= assessment_id %>/score" method="POST">
-
-                    <!-- assessment id field -->
-                    <input type="text" name="assessment_id" value="<%= assessment_id %>" hidden />
-
-                    <p class="form-text-muted">
-                        Please attempt all modules in this assessment before you submit.
-                    </p>
-
-                    <input type="submit" class="btn btn-primary" value="Submit All">
-
-                </form>
-
-                <!-- container end -->
+        <!-- container end -->
     </div>
     <%- include('../partials/footer.ejs') %>
