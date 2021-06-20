@@ -12,10 +12,9 @@ module.exports = {
 async function EnrollUser(req, res) {
     const user_id = req.user._id
     const { assessment_id } = req.params
-    const { user_assessment } = res.locals
 
+    // const { user_assessment } = res.locals
     // let user_assessment = await UserAssessment.findOne({ user_id, assessment_id })
-
     // if (user_assessment) {
     //     console.log('User is enrolled, redirecting to assessment')
     //     return res.redirect('/forms/' + assessment_id)
@@ -26,7 +25,7 @@ async function EnrollUser(req, res) {
     const assessment = await Assessment.findById(assessment_id)
     const { modules } = assessment
 
-    user_assessment = await UserAssessment.create({
+    const user_assessment = await UserAssessment.create({
         user_id,
         user_name: req.user.name,
         assessment_id: assessment._id,
