@@ -1,11 +1,52 @@
 const qualificationKeys = require('../resources/json/qualification.keys.json')
 const statesList = require('../resources/json/india.states.json')
-const { getFormDays, getFormMonths, getFormYears } = require('./util');
-const UserProfile = require("../models/UserProfile.js");
-const { UserScore } = require('../models');
+const { formatTime, formatDateString, getFormDays, getFormMonths, getFormYears } = require('./util');
+const { UserScore, UserProfile } = require('../models');
+
+// Get profile update page
+module.exports.getProfileUpdateForm = (req, res) => {
+    res.render("profile/update", {
+        loggedIn: true,
+        user: req.user,
+        qualificationKeys,
+        states: statesList,
+        months: getFormMonths(),
+        days: getFormDays(),
+        years: getFormYears(),
+    });
+}
+
+// Get signed in user's profile page
+module.exports.getUserProfile = async (req, res) => {
+
+    // Get assessment scores
+    const userScores =
+        await UserScore.find({ user_id: req.user._id })
+            .sort('-date').exec()
+
+    res.render("profile/profile", {
+        loggedIn: true, user: req.user, userScores, formatTime, formatDateString
+    });
+}
+
+// Upload profile picture
+module.exports.uploadProfilePicture = async (req, res) => {
+    UserProfile.findById(req.user._id)
+        .then(found => {
+            found.img_url = `/images/uploads/${req.file.filename}`
+            found.save().then(user => {
+                req.logIn(user, (err) => {
+                    if (!err) {
+                        res.redirect("/users/profile/update");
+                    }
+                });
+            })
+        })
+}
+
 
 /* update user profile */
-module.exports.updateUserProfile = (req, res, next) => {
+module.exports.updateUserProfile = async (req, res) => {
     // console.log('Form submitted! ', req.body);
 
     const user = req.user;
@@ -47,35 +88,16 @@ module.exports.updateUserProfile = (req, res, next) => {
     })
 
     /* update user in db */
-    UserProfile.findById({ _id: user._id }).then((profile) => {
-        Object.assign(profile, user);
-        profile.save().then((newProfile) => {
+    let profile = await UserProfile.findById({ _id: user._id })
 
-            /* authenticate user */
-            req.logIn(newProfile, (err) => {
-                if (!err) {
-                    console.log("updated user", req.user);
-                    res.redirect("/users/profile");
-                }
-            });
-        });
-    }).catch(err => next(err))
-}
+    Object.assign(profile, user);
+    const newProfile = await profile.save()
 
-module.exports.getProfileUpdateForm = (req, res) => {
-    res.render("profile/update", {
-        loggedIn: true,
-        user: req.user,
-        qualificationKeys,
-        states: statesList,
-        months: getFormMonths(),
-        days: getFormDays(),
-        years: getFormYears(),
+    /* authenticate user */
+    req.logIn(newProfile, (err) => {
+        if (!err) {
+            console.log("updated user", req.user);
+            res.redirect("/users/profile");
+        }
     });
-}
-
-module.exports.getUserProfile = async (req, res) => {
-    const userScores = await UserScore.find({ user_id: req.user._id })
-    // console.log(userScores)
-    res.render("profile/profile", { loggedIn: true, user: req.user, userScores });
 }

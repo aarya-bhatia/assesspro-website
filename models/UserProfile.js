@@ -6,13 +6,12 @@ const schema = new Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true },
+    username: String,
+    password: String,
     img_url: String,
     provider: {
-      type: {
-        name: String,
-        id: String,
-      },
-      required: true,
+      name: String,
+      id: String,
     },
     bio: String,
     dob: {

@@ -1,28 +1,57 @@
 <%- include('../partials/header', { loggedIn }); %>
 
-  <div class="container text-center">
+  <div class="container">
 
-    <h1 class="display-4 my-2">Login</h1>
+    <div class="row justify-content-center">
 
-    <form action="/auth/login" method="POST">
+      <div class="col-sm-10 col-lg-6">
+        <h1 class="display-5 mb-2 text-center">Login</h1>
 
-      <p class="lead">With your social media account</p>
+        <form action="/auth/login" method="POST" class="d-flex flex-column justify-content-start">
 
-      <div class="row justify-content-center">
+          <input type="text" class="form-control mb-3" id="username" name="username" placeholder="Username" required />
+          <input type="password" class="form-control mb-3" id="password" name="password" placeholder="Password"
+            required />
+          <input type="submit" class="btn btn-primary py-2 mb-3" />
 
-        <div class="col-md-4">
-          <a class="btn btn-danger" href="/auth/google"><span class="bi bi-google"></span> Google</a>
-        </div>
+          <hr>
+          <p class="form-text text-center">Or, login with your social media account.</p>
 
-        <!-- <div class="col-md-4">
-        <a class="btn btn-info text-white" href="/auth/twitter"><span class="bi bi-twitter"></span> Twitter</a>
-    </div>
+          <a class="btn btn-danger py-2 mb-2" href="/auth/google"><span class="bi bi-google"></span> Login With
+            Google
+          </a>
 
-    <div class="col-md-4">
-      <a class="btn btn-primary text-white" href="/auth/facebook"><span class="bi bi-facebook"></span> Facebook</a>
-    </div> -->
+          <!-- <a class="btn btn-info text-white py-2 mb-2" href="/auth/twitter"><span class="bi bi-twitter"></span> Login Twitter</a>
+          <a class="btn btn-primary text-white py-2 mb-2" href="/auth/facebook"><span class="bi bi-facebook"></span> Login Facebook</a> -->
+
+          <hr>
+
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a href="/auth/forgot-password" class="nav-link">Forgot Password</a>
+            </li>
+            <li class="nav-item">
+              <a href="/auth/signup" class="nav-link">Create Account</a>
+            </li>
+            <li class="nav-item">
+              <a href="/help" class="nav-link">Help</a>
+            </li>
+          </ul>
+
+          <!-- server messages -->
+          <% if(message.error) { message.error.map(errorMessage=> { %>
+            <div class="bg-warning py-2 my-2">
+              <%= errorMessage %>
+            </div>
+            <% }) } %>
+
+        </form>
 
       </div>
 
+      <!-- end row -->
+    </div>
+
+    <!-- end container -->
   </div>
   <%- include('../partials/footer'); %>

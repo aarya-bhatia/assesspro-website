@@ -12,13 +12,14 @@ module.exports = {
 async function EnrollUser(req, res) {
     const user_id = req.user._id
     const { assessment_id } = req.params
+    const { user_assessment } = res.locals
 
-    let user_assessment = await UserAssessment.findOne({ user_id, assessment_id })
+    // let user_assessment = await UserAssessment.findOne({ user_id, assessment_id })
 
-    if (user_assessment) {
-        console.log('User is enrolled, redirecting to assessment')
-        return res.redirect('/forms/' + assessment_id)
-    }
+    // if (user_assessment) {
+    //     console.log('User is enrolled, redirecting to assessment')
+    //     return res.redirect('/forms/' + assessment_id)
+    // }
 
     console.log('User is not enrolled, enrolling user...')
 
@@ -48,6 +49,8 @@ async function EnrollUser(req, res) {
 
 async function createUserModules(user_id, assessment_id, modules) {
 
+    console.log('Initialising ' + modules.length + ' modules for user [id]: ' + user_id)
+
     return new Promise(async function (res) {
 
         for (const module of modules) {
@@ -69,7 +72,7 @@ async function createUserModules(user_id, assessment_id, modules) {
                 status: 'Pending'
             })
 
-            console.log('Created User Module [id]: ', usermodule._id)
+            // console.log('Created User Module [id]: ', usermodule._id)
         }
         res()
     })

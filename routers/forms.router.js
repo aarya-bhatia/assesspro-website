@@ -1,5 +1,6 @@
 const { saveAnswers } = require('../controller/user.answers');
 const { scoreAssessment } = require('../controller/scorer');
+const { formatTimeSpent } = require('../controller/util')
 const { Question, UserAnswer, UserModule } = require('../models');
 const router = require('express').Router()
 
@@ -18,6 +19,7 @@ router.get('/', async (req, res) => {
         user_modules,
         title: assessment_name,
         description: assessment_description,
+        formatTimeSpent
     })
 })
 
@@ -45,7 +47,8 @@ router.get('/questions/:user_module_id', async (req, res) => {
         assessment_id,
         questions,
         user_answers: choices,
-        user_module: user_module
+        user_module: user_module,
+        formatTimeSpent
     })
 })
 

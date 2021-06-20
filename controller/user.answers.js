@@ -58,6 +58,7 @@ module.exports.saveAnswers = async function (req, res) {
     // console.log('attempted questions: ', attempted)
 
     user_module.no_attempted = attempted
+    user_module.time_spent += parseInt(req.body.time_spent) | 0
 
     if (attempted === user_module.no_questions) {
 

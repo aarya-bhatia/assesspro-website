@@ -8,6 +8,7 @@ const express = require("express");
 const path = require("path");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
+const flash = require("connect-flash")
 
 // connect to mongodb
 require("./config/db.config.js").connect();
@@ -29,6 +30,7 @@ const { isAuth, checkUserEnrolled, isLoggedIn } = require("./controller/auth");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
+app.use(flash())
 
 app.use(
   cookieSession({
@@ -51,6 +53,11 @@ app.use(
 );
 
 app.use(isLoggedIn)
+
+app.use((req, res, next) => {
+  // console.log('FLASH: ', req.flash())
+  next()
+})
 
 // routers
 app.use("/auth", require("./routers/auth.router"));

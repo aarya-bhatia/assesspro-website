@@ -1,10 +1,9 @@
 const { Router } = require("express");
 const router = Router();
-// const { isEnrolled, EnrollUser } = require('../controller/user.enroll');
-const { updateUserProfile, getProfileUpdateForm, getUserProfile } = require("../controller/user.profile.js");
+const { updateUserProfile, getProfileUpdateForm, getUserProfile, uploadProfilePicture } = require("../controller/user.profile.js");
 const imageUpload = require('../config/multer.config.js');
-const UserProfile = require("../models/UserProfile.js");
 const { EnrollUser } = require("../controller/user.enroll.js");
+const { UserScore, UserAssessment } = require("../models/index.js");
 
 // Get profile update form
 router.get("/profile/update", getProfileUpdateForm);
@@ -16,31 +15,31 @@ router.post("/profile/update", updateUserProfile);
 router.get("/profile", getUserProfile);
 
 // For Single image upload
-router.post('/upload', imageUpload.single('fileUpload'), (req, res) => {
-  UserProfile.findById(req.user._id)
-    .then(found => {
-      found.img_url = `/images/uploads/${req.file.filename}`
-      found.save().then(user => {
-        req.logIn(user, (err) => {
-          if (!err) {
-            // console.log("updated user", req.user);
-            res.redirect("/users/profile/update");
-          }
-        });
-      })
-    })
-}, (err, req, res, next) => {
-  console.log(err);
-  res.status(400).json({ message: err.message })
-})
-
-function getAssessmentId(req, res, next) {
-  res.locals.assessment_id = req.params.assessment_id
-  // console.log(res.locals)
-  next()
-}
+router.post('/upload', imageUpload.single('fileUpload'), uploadProfilePicture)
 
 // Enroll user in assessment
-router.get('/enroll/:assessment_id', getAssessmentId, EnrollUser)
+router.get('/enroll/:assessment_id', async (req, res, next) => {
+  res.locals.assessment_id = req.params.assessment_id
+
+  let user_assessment = await UserAssessment.findOne({ user_id: req.user._id, assessment_id: req.params.assessment_id })
+
+  if (user_assessment) {
+    console.log('User is enrolled, redirecting to assessment')
+    return res.redirect('/forms/' + req.params.assessment_id)
+  }
+
+  res.locals.user_assessment = user_assessment
+  next()
+
+}, EnrollUser)
+
+// Delete a score
+router.get('/scores/delete/:score_id', async (req, res) => {
+  await UserScore.findOneAndRemove({ _id: req.params.score_id })
+  res.redirect('/users/profile')
+})
+
+// Retake Test
+// Enrolls user again
 
 module.exports = router;

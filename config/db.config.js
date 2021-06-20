@@ -1,23 +1,32 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
 const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise
 
-// mongoose.set('debug', true);
+let URL = null
 
-// For Development use this
-// const URL = process.env.DB_URL
+if (process.env.NODE_ENV !== "production") {
 
+  require("dotenv").config();
+
+  // mongoose.set('debug', Boolean(process.env.SHOW_DEBUG_MONGOOSE));
+
+  URL = process.env.DB_URL // localhost:27017 FOR DEVELOPMENT
+
+}
+
+else {
+  URL = process.env.ATLAS_DB_URL
+}
+
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+}
+
+// OPEN CONNECTION TO DATABASE
 module.exports.connect = () => {
-  mongoose
-    .connect(process.env.ATLAS_DB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-    })
+  mongoose.connect(URL, options)
     .then(() => {
       console.log("Successfully connected to database");
     })
@@ -28,13 +37,15 @@ module.exports.connect = () => {
 }
 
 process.on("SIGINT", function () {
-  mongoose.connection.close(function () {
+  mongoose.connection.close(() => {
     console.log("closing connection with database");
     process.exit(0);
   });
 });
 
 
+// Accepts an array of collection names
+// This function drops collections with those names if they exist
 module.exports.dropCollections = (collections) => {
   const connection = mongoose.connection
 
