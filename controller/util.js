@@ -55,7 +55,18 @@ module.exports.formatTime = (date) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const ampm = hours >= 12 ? "PM" : "AM";
-  return `${hours}:${minutes} ${ampm}`;
+
+  let h = hours % 12;
+  if (h < 10) {
+    h = `0${h}`;
+  }
+
+  let m = minutes % 60;
+  if (m < 10) {
+    m = `0${m}`;
+  }
+
+  return `${h}:${m} ${ampm}`;
 };
 
 module.exports.formatTimeSpent = (milli) => {
