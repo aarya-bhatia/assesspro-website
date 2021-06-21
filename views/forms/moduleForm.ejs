@@ -23,7 +23,7 @@
         <span id="timer_display"></span>
     </div>
 
-    <form action="/forms/<%= assessment_id %>/submit/<%= user_module._id %>" method="POST" id="module_form">
+    <form action="/forms/<%= assessment_id %>/submit/<%= user_module._id %>" method="POST" id="module_form" name='moduleForm'>
 
         <% questions.map((question, num) => { %>
 

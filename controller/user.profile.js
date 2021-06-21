@@ -1,6 +1,7 @@
 const qualificationKeys = require("../resources/json/qualification.keys.json");
 const statesList = require("../resources/json/india.states.json");
-const { UserScore, UserProfile } = require("../models");
+const { UserScore, UserProfile, UserAssessment } = require("../models");
+const { downloadImage } = require("../config/s3.config");
 
 const {
   formatTime,
@@ -41,10 +42,46 @@ module.exports.getUserProfile = async (req, res) => {
   });
 };
 
+module.exports.peekProfile = async (req, res) => {
+  const user_id = req.params.id;
+  const user = await UserProfile.findById(user_id);
+  const userScores = await UserScore.find({ user_id }).sort("-date").exec();
+
+  res.render("profile/peekProfile", {
+    loggedIn: true,
+    user,
+    userScores,
+    formatTime,
+    formatDateString,
+    getChartData,
+  });
+};
+
+module.exports.listUsers = async (req, res) => {
+  const users = await UserProfile.find();
+  res.render("admin/userList", {
+    loggedIn: true,
+    users,
+  });
+};
+
+module.exports.openReport = async (req, res) => {
+  const userScore = await UserScore.findById(req.params.user_score_id);
+  const { assessment_key } = userScore;
+  res.render("reports/" + assessment_key, {
+    loggedIn: true,
+    userScore,
+    getChartData,
+  });
+};
+
 // Upload profile picture
 module.exports.uploadProfilePicture = async (req, res) => {
+  console.log("uploaded profile picture");
+  const { key } = req.file;
   UserProfile.findById(req.user._id).then((found) => {
-    found.img_url = `/images/uploads/${req.file.filename}`;
+    found.img_url = `/users/images/${key}`;
+    console.log("img url: ", found.img_url);
     found.save().then((user) => {
       req.logIn(user, (err) => {
         if (!err) {
@@ -55,10 +92,29 @@ module.exports.uploadProfilePicture = async (req, res) => {
   });
 };
 
+module.exports.downloadProfilePicture = async (req, res) => {
+  const { key } = req.params;
+  const readStream = downloadImage(key);
+  readStream.pipe(res);
+};
+
+module.exports.listUserAssessments = async (req, res) => {
+  const user_id = req.user._id;
+  const assessments = await UserAssessment.find({ user_id });
+  res.render("forms/assessmentList", {
+    loggedIn: true,
+    assessments,
+    formatDateString,
+  });
+};
+
+module.exports.deleteUserScore = async (req, res) => {
+  await UserScore.findOneAndRemove({ _id: req.params.score_id });
+  res.redirect("/users/profile");
+};
+
 /* update user profile */
 module.exports.updateUserProfile = async (req, res) => {
-  // console.log('Form submitted! ', req.body);
-
   const user = req.user;
 
   /* update name, email and bio */
