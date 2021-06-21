@@ -16,6 +16,7 @@
   <div class="display-4">NEST Report</div>
 
   <p class="lead">
+      Thank you for taking Aspire’s National Employability Skills Test (NEST™). Please review each score for detailed insight with respect to specific areas of strength and development for enhancing your employability and a better potential job fit
   </p>
 
     <canvas id="<%= userScore._id %>"></canvas>
@@ -27,6 +28,32 @@
         getChartData,
         scoreIndex: 0
     }) %>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Score</th>
+                <th>Feedback</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <% userScore.module_scores.map(moduleScore => { %> 
+
+                <tr>
+                    <td><%= moduleScore.name %></td>
+                    <td><%= moduleScore.score %></td>
+                    <td></td>
+                </tr>
+            
+            <% }) %>
+
+        </tbody>
+    </table>
+
+
 </div>
 
 <%- include('../partials/footer', { loggedIn }) %>
