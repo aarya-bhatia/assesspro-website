@@ -27,7 +27,7 @@
 
       <!-- profile image -->
       <div class="col-md-12">
-        <img src="<%= user.img_url %>" alt="profile image" class="img-fluid img-thumbnail" width="128" />
+        <%- include('./thumbnail.ejs', { img_url: user.img_url }) %>
       </div>
 
       <div class="col-md-6">
@@ -182,46 +182,11 @@
             <button class="btn btn-secondary ms-2" type="button" onclick="window.history.back()">Back</button>
           </div>
 
-          <!-- FORM END -->
     </form>
   </div>
 
-  <script type="text/javascript">
-    /* Set the bio */
-    const user_bio = "<%= user.bio %>";
+  <!-- script -->
+  <%- include('./scripts/setFieldValues.ejs', { user }) %>
 
-    if (user_bio) {
-      document.getElementById('bio').innerHTML = user_bio
-    }
-
-    /* Set the status */
-    document.getElementById('status').checked = "<%= user.status %>" === 'public';
-
-    /* Set the address and dob fields */
-    Object.entries({ ...<%- user.address %>, ...<%- user.dob %> })
-      .forEach(([key, value]) => {
-        if (key) {
-          document.getElementById(key).value = value
-        }
-      })
-
-    /* Set the qualification fields */
-    const qualifications = <%- user.qualifications %>;
-
-    if (qualifications) {
-      Object.entries(qualifications).forEach(([key, value]) => {
-        if (key && value) {
-          if (value.subject) {
-            document.getElementById(key + '-' + 'subject').value = value.subject;
-          }
-          if (value.institution) {
-            document.getElementById(key + '-' + 'institution').value = value.institution;
-          }
-        }
-      })
-    }
-
-  </script>
-
-  <!-- Footer -->
-  <%- include('../partials/footer.ejs') %>
+    <!-- Footer -->
+    <%- include('../partials/footer.ejs') %>

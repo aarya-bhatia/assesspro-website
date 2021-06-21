@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+<div class="container">
+    <div class="display-5 text-center">Users</div>
+
+  <div class="list-group list-group-flush">
+    <% users.map(user => { %>
+    <div class="list-group-item">
+      <%- include('../profile/thumbnail.ejs', { img_url: user.img_url }) %>
+      <a
+        href="/users/profile/<%= user._id %>"
+        class="list-group-item-action"
+        ><%= user.name %></a
+      >
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('../partials/footer.ejs', { loggedIn }) %>

@@ -1,0 +1,35 @@
+<script type="text/javascript">
+/* Set the bio */
+const user_bio = "<%= user.bio %>";
+
+if (user_bio) {
+    document.getElementById('bio').innerHTML = user_bio
+}
+
+/* Set the status */
+document.getElementById('status').checked = "<%= user.status %>" === 'public';
+
+/* Set the address and dob fields */
+Object.entries({ ...<%- user.address %>, ...<%- user.dob %> })
+    .forEach(([key, value]) => {
+    if (key) {
+        document.getElementById(key).value = value
+    }
+    })
+
+/* Set the qualification fields */
+const qualifications = <%- user.qualifications %>;
+
+if (qualifications) {
+    Object.entries(qualifications).forEach(([key, value]) => {
+    if (key && value) {
+        if (value.subject) {
+        document.getElementById(key + '-' + 'subject').value = value.subject;
+        }
+        if (value.institution) {
+        document.getElementById(key + '-' + 'institution').value = value.institution;
+        }
+    }
+    })
+}
+</script>

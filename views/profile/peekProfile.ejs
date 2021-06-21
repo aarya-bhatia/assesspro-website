@@ -1,42 +1,32 @@
 <!--
-locals: {
-  user,
-  loggedIn,
-  userScores
-}
+    Locals: {
+        user,
+        loggedIn,
+        userScores 
+    }
 -->
+
+<!-- See Profile of another user -->
 
 <%- include('./profileHeader.ejs', { loggedIn }) %>
 <%- include('./basicProfile', { user }) %> 
-<%- include('./profileNav', { user }) %>
 
 <!-- SCORES -->
-<!-- left col of row has table, and right has the chart -->
 <div class="container mt-2">
   <% userScores.map((userScore, scoreIndex)=> { %> 
   <%- include('./userScoreHeader.ejs', { userScore, formatDateString, formatTime }) %>
   <div class="row">
     <div class="col-lg-6 mb-3">
       <%- include('./moduleScoreTable.ejs', { userScore }) %> 
-      <%- include('./userScoreActions.ejs', { userScore }) %>
     </div>
     <div class="col-lg-6 mb-3">
       <canvas id="<%= userScore._id %>"></canvas>
       <div class="d-flex justify-content-center"></div>
     </div>
+    
     <%- include('./scripts/createScoreChart.ejs', { userScore, scoreIndex, getChartData }) %>
   </div>
   <% }) %>
 </div>
 
 <%- include('../partials/footer.ejs') %>
-
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/javascript-canvas-to-blob/3.28.0/js/canvas-to-blob.js"
-  integrity="sha512-QinObFNs7mVBtipyw8BEERLHKQ1P2n5Wbxd8Kt+G9ST/lp99qZKlJUUsNSZYSPf/yGL7eNN0UCcDaMiZjXMtGg=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
--->

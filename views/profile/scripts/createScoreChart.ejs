@@ -1,0 +1,33 @@
+<script>
+  ctx = document.getElementById('<%= userScore._id %>')
+  ctx.style.backgroundColor = 'rgba(255,255,255,255)';
+  ctx = ctx.getContext('2d');
+
+  config = {
+    type: 'radar',
+    data: <%- getChartData(userScore) %>,
+    options: {
+      scales: {
+        r: {
+          angleLines: {
+            color: 'red'
+          }
+        }
+      },
+      // animation: {
+      //   onComplete: function done() {
+      //     console.log('Chart completed')
+      //     const link = document.getElementById('save_<%= scoreIndex %>')
+      //     const canvas = document.getElementById('<%= userScore._id %>')
+      //     link.onclick = () => {
+      //       canvas.toBlob(blob => {
+      //         saveAs(blob, "<%= userScore.assessment_key + '_' + (Date.now()) + '.jpeg' %>")
+      //       })
+      //     }
+      //   }
+      // },
+    }
+  };
+
+  new Chart(ctx, config)
+</script>
