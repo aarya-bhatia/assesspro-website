@@ -1,0 +1,37 @@
+<!--
+    locals { loggedIn, userScore, getChartData }
+-->
+
+<%- include('../partials/header', { loggedIn }) %>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/javascript-canvas-to-blob/3.28.0/js/canvas-to-blob.js"
+  integrity="sha512-QinObFNs7mVBtipyw8BEERLHKQ1P2n5Wbxd8Kt+G9ST/lp99qZKlJUUsNSZYSPf/yGL7eNN0UCcDaMiZjXMtGg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+<div class="container">
+  <div class="display-4">CPT Report</div>
+
+  <p class="lead">
+    The Theory of Multiple suggests that each individual possesses at least
+    eight relatively independent mental abilities or intelligences. Career
+    Preference Test (CPT) emphasizes identifying a person’s areas of strength
+    and then using this information as the basis for career preference choices.
+    Understanding your CPT Profile can help you identify a career focus and
+    begin your career planning and exploration process.
+  </p>
+
+    <canvas id="<%= userScore._id %>"></canvas>
+    <button class="btn btn-primary" id="save_0">Save as Image</button>
+
+    <%- include('../profile/scripts/createBarChart.ejs', {
+        userScore,
+        getChartData,
+        scoreIndex: 0
+    }) %>
+</div>
+
+<%- include('../partials/footer', { loggedIn }) %>

@@ -29,7 +29,8 @@ module.exports.scoreAssessment = async function (req, res) {
 
   console.log("Result: ", result);
 
-  const { assessment_name, assessment_key } = user_assessment;
+  const { assessment_name, assessment_key, assessment_plot_type } =
+    user_assessment;
 
   // A score object is created each time the user submits the form,
   // so as to have access to previous attempt scores. The module scores
@@ -40,6 +41,7 @@ module.exports.scoreAssessment = async function (req, res) {
     assessment_id,
     assessment_name,
     assessment_key,
+    plot_type: assessment_plot_type,
     module_scores: result,
     date: new Date(),
   });
@@ -61,8 +63,14 @@ async function score_all_modules(user_modules) {
 
     // Get result for each module synchronously
     for (const user_module of user_modules) {
-      const { module_name, module_id, user_id, no_questions, module_type } =
-        user_module;
+      const {
+        module_name,
+        module_id,
+        user_id,
+        no_questions,
+        module_type,
+        module_key,
+      } = user_module;
 
       // Get the module answers
       const user_answers = await UserAnswer.find({
@@ -92,6 +100,8 @@ async function score_all_modules(user_modules) {
 
       // Add to { module name, module score } to result set
       result.push({
+        module_key,
+        module_id,
         name: module_name,
         score: Math.floor(module_score_scaled),
       });

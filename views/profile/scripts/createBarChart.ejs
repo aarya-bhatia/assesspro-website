@@ -1,0 +1,54 @@
+<script>
+  ctx = document.getElementById('<%= userScore._id %>').getContext('2d')
+
+  config = {
+    type: "bar",
+    data: <%- getChartData(userScore) %>,
+    options: {
+      scales: {
+          x: {
+              min: 0,
+              max: 100
+          },
+      },
+      indexAxis: 'y',
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "Your Score",
+        },
+      },
+      animation: {
+            onComplete: function done() {
+                console.log('Chart completed')
+                const link = document.getElementById('save_<%= scoreIndex %>')
+                const canvas = document.getElementById('<%= userScore._id %>')
+                link.onclick = () => {
+                    canvas.toBlob(blob => {
+                        saveAs(blob, "<%= userScore.assessment_key + '_' + (Date.now()) + '.png' %>")
+                    })
+                }
+            }
+        },
+    },
+    plugins: [
+      {
+        id: 'custom_canvas_background_color',
+        beforeDraw: (chart) => {
+          const ctx = chart.canvas.getContext('2d');
+          ctx.save();
+          ctx.globalCompositeOperation = 'destination-over';
+          ctx.fillStyle = 'white';
+          ctx.fillRect(0, 0, chart.width, chart.height);
+          ctx.restore();
+        }
+      }
+    ],
+  };
+
+  new Chart(ctx, config)
+</script>

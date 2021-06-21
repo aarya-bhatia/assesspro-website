@@ -42,7 +42,7 @@ router.get("/profile/:id", async (req, res) => {
   });
 });
 
-// View users
+// View all users
 router.get("/", async (req, res) => {
   const users = await UserProfile.find();
   res.render("admin/userList", {
@@ -54,7 +54,17 @@ router.get("/", async (req, res) => {
 // Get current user profile
 router.get("/profile", getUserProfile);
 
-// For Single image upload
+router.get("/reports/:user_score_id", async (req, res) => {
+  const userScore = await UserScore.findById(req.params.user_score_id);
+  const { assessment_key } = userScore;
+  res.render("reports/" + assessment_key, {
+    loggedIn: true,
+    userScore,
+    getChartData,
+  });
+});
+
+// For profile image upload
 router.post("/upload", imageUpload.single("fileUpload"), uploadProfilePicture);
 
 // List user assessments
@@ -90,15 +100,13 @@ router.get(
   EnrollUser
 );
 
+// Delete user assessment
 router.get("/unenroll/:assessment_id", UnenrollUser);
 
-// Delete a score
+// Delete user score
 router.get("/scores/delete/:score_id", async (req, res) => {
   await UserScore.findOneAndRemove({ _id: req.params.score_id });
   res.redirect("/users/profile");
 });
-
-// Retake Test
-// Enrolls user again? Todo
 
 module.exports = router;
