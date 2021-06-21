@@ -12,7 +12,9 @@ const schema = new Schema({
   },
   description: String,
   time_limit: Number,
-  no_questions: Number
+  no_questions: Number,
+  no_choices: Number,
+  scale_factor: Number,
 });
 
 module.exports = model("Module", schema);

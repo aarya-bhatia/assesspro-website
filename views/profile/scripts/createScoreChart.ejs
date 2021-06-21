@@ -14,6 +14,17 @@
           }
         }
       },
+      scales: {
+            y: {
+                min: 0,
+                max: 100
+            }
+        }
+    }
+  };
+
+  new Chart(ctx, config)
+
       // animation: {
       //   onComplete: function done() {
       //     console.log('Chart completed')
@@ -26,8 +37,4 @@
       //     }
       //   }
       // },
-    }
-  };
-
-  new Chart(ctx, config)
 </script>

@@ -1,32 +1,29 @@
 const mongoose = require("mongoose");
 
-mongoose.Promise = global.Promise
+mongoose.Promise = global.Promise;
 
-let URL = null
+let URL = null;
 
 if (process.env.NODE_ENV !== "production") {
-
   require("dotenv").config();
 
   // mongoose.set('debug', Boolean(process.env.SHOW_DEBUG_MONGOOSE));
 
-  URL = process.env.DB_URL // localhost:27017 FOR DEVELOPMENT
-
-}
-
-else {
-  URL = process.env.ATLAS_DB_URL
+  URL = process.env.DB_URL; // localhost:27017 FOR DEVELOPMENT
+} else {
+  URL = process.env.ATLAS_DB_URL;
 }
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-}
+};
 
 // OPEN CONNECTION TO DATABASE
 module.exports.connect = () => {
-  mongoose.connect(URL, options)
+  mongoose
+    .connect(URL, options)
     .then(() => {
       console.log("Successfully connected to database");
     })
@@ -34,7 +31,7 @@ module.exports.connect = () => {
       console.log("Error connecting to database", err);
       process.exit(0);
     });
-}
+};
 
 process.on("SIGINT", function () {
   mongoose.connection.close(() => {
@@ -43,31 +40,29 @@ process.on("SIGINT", function () {
   });
 });
 
-
 // Accepts an array of collection names
 // This function drops collections with those names if they exist
 module.exports.dropCollections = (collections) => {
-  const connection = mongoose.connection
+  const connection = mongoose.connection;
 
   return new Promise((resolve, reject) => {
     connection.db.listCollections().toArray((err, docs) => {
       if (!err) {
         for (i = 0; i < docs.length; i++) {
-          const collection = docs[i].name
-          console.log(collection)
+          const collection = docs[i].name;
+          console.log(collection);
           if (collections.includes(collection)) {
             connection.db.dropCollection(collection, (err, res) => {
               if (!err) {
-                console.log('Collection dropped: ' + collection)
+                console.log("Collection dropped: " + collection);
               }
-            })
+            });
           }
         }
-        resolve()
+        resolve();
+      } else {
+        reject(err);
       }
-      else {
-        reject(err)
-      }
-    })
-  })
-}
+    });
+  });
+};
