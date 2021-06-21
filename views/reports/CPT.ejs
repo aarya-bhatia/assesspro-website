@@ -24,14 +24,87 @@
     begin your career planning and exploration process.
   </p>
 
+  <div class="d-flex flex-column align-items-center my-3">
     <canvas id="<%= userScore._id %>"></canvas>
     <button class="btn btn-primary" id="save_0">Save as Image</button>
+  </div>
 
     <%- include('../profile/scripts/createBarChart.ejs', {
         userScore,
         getChartData,
         scoreIndex: 0
     }) %>
+
+    <p>Besides your top 3 intelligences, if your score for any intelligence is above 60%, you’re probably using that intelligence quite often to help you learn. Refer to the table below for a detailed description of each of your dominant intelligence.
+    </p>
+
+   <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Intelligence Type</th>
+          <th scope="col">Intelligence Description</th>
+          <th scope="col">Sample Careers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Verbal-Linguistic</td>
+          <td>Words and language, written and spoken; retention, interpretation and explanation of ideas and information.</td>
+          <td>• Editors, linguists, translators • PR consultants, media consultants • TV and radio presenters, voice-over artistes • Lawyer– legal assistant – comedian –historian • Interpreter – journalist – lawyer – librarian • Manager – novelist –
+            orator – philosopher • Writers -play writer– poet – politician – proofreader </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Logical-Mathematical</td>
+          <td>Logical thinking, detecting patterns, scientific reasoning and deduction; analyze problems, perform mathematical calculations.</td>
+          <td>• Scientists, engineers, computer experts • Accountants, statisticians, researchers, analysts • Traders, bankers’, • Bookmakers, insurance brokers, • Negotiators, dealmakers, trouble-shooters, directors • Investment broker - lawyer •
+            Biologist - chemist - microbiologist - pharmacist - physician </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Visual-Spatial</td>
+          <td>Visual and spatial perception; interpretation and creation of visual images.</td>
+          <td>• Artists, designers, cartoonists, story-boarders • Architects, photographers, sculptors, town-planners • Engineers, cosmetics and beauty consultants. • Photographer - graphic designer • Advertiser - architect - artist - builder -
+            carpenter • Chess player - commercial artist • Computer specialist - craftsperson - decorator - dentist </td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Musical</td>
+          <td>Musical ability, awareness, appreciation and use of sound.</td>
+          <td>• Musicians, singers, composers • DJ's, music producers • Piano tuners, acoustic engineers • Entertainers, party-planners • Environment and noise advisors, voice coaches • Conductor - composer - band member - choir director </td>
+        </tr>
+        <tr>
+          <th scope="row">5</th>
+          <td>Bodily-Kinesthetic</td>
+          <td>Body movement control, manual dexterity, physical agility and balance; eye and body coordination.</td>
+          <td> • Dancers, demonstrators, actors • Athletes, divers, sportsperson • Soldiers, fire-fighters • Fishermen, crafts-people • Gardeners, chefs • Acupuncturists, healers, adventurers • Acrobat - aerobic teacher - coach • Physical education
+            teacher - athlete - ballet dancer </td>
+        </tr>
+        <tr>
+          <th scope="row">6</th>
+          <td>Interpersonal</td>
+          <td>Perception of other people's feelings; ability to relate to others; interpretation of behavior and communications</td>
+          <td>• Therapists, HR professionals, mediators • Leaders, counselors, politicians, educators • Sales-people • Clergy, psychologists, teachers • Doctors, healers, organizers, advertising professionals • Coaches and mentors • Travel
+            agent/counselor • Business person - child care worker </td>
+        </tr>
+        <tr>
+          <th scope="row">7</th>
+          <td>Intrapersonal</td>
+          <td>Self-awareness, personal cognizance, personal objectivity, the capability to understand oneself, one's relationship to others and the world, and one's own reaction to change.</td>
+          <td>• Entrepreneur - consultant - counselor - creative writer • Guru - leadership trainer - philosopher - psychiatrist • Psychologist - psychotherapist - researcher - sage • Self employed people - spiritual counselor - therapist • Writer
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">8</th>
+          <td>Naturalistic</td>
+          <td>Understanding the natural world of plants and animals, noticing their characteristics, and categorizing them.</td>
+          <td>• Forest rangers, nature guides • Animal trainers, zoo keepers • Landscape designers, gardeners • Scientists investigating the biological and physical worlds • Bird watchers, veterinarians, farmers • People involved in scouting and
+            camping </td>
+        </tr>
+      </tbody>
+    </table>
 </div>
 
 <%- include('../partials/footer', { loggedIn }) %>

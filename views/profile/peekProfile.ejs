@@ -24,7 +24,12 @@
       <div class="d-flex justify-content-center"></div>
     </div>
     
+    <% if(userScore.plot_type == 'hbar') { %>
+    <%- include('./scripts/createBarChart.ejs', { userScore, scoreIndex, getChartData }) %>
+    <% } else { %> 
     <%- include('./scripts/createScoreChart.ejs', { userScore, scoreIndex, getChartData }) %>
+    <% } %>
+
   </div>
   <% }) %>
 </div>
