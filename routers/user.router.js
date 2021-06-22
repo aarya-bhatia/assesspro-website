@@ -9,6 +9,7 @@ const {
   downloadProfilePicture,
   listUserAssessments,
   deleteUserScore,
+  DeleteAccount,
 } = require("../controller/user.profile.js");
 
 const {
@@ -18,6 +19,7 @@ const {
 } = require("../controller/user.enroll.js");
 
 const { uploadImage } = require("../config/s3.config");
+const { UserScore, UserAnswer } = require("../models/index.js");
 
 // Router
 const router = require("express").Router();
@@ -60,6 +62,28 @@ router.get("/unenroll/:assessment_id", UnenrollUser);
 
 // Delete user score
 router.get("/scores/delete/:score_id", deleteUserScore);
+
+// Settings page
+router.get("/settings", (req, res) => {
+  res.render("profile/settings", { loggedIn: true });
+});
+
+// Delete all answers
+router.get("/delete/answers", async (req, res) => {
+  const doc = await UserAnswer.deleteMany({ user_id: req.user._id });
+  console.log(doc);
+  res.redirect("/");
+});
+
+// Delete all scores
+router.get("/delete/scores", async (req, res) => {
+  const doc = await UserScore.deleteMany({ user_id: req.user._id });
+  console.log(doc);
+  res.redirect("/");
+});
+
+// Delete account
+router.get("/delete/account", DeleteAccount);
 
 module.exports = router;
 

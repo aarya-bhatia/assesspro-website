@@ -1,0 +1,41 @@
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+
+        <form action="/users/delete/account" method="GET" onsubmit="return confirmDeleteAction(event)">
+            <button class="btn btn-danger m-2">Delete Account</button>
+        </form>
+
+        <form action="/users/delete/answers" method="GET" onsubmit="return confirmClearAnswerAction(event)">
+            <button class="btn btn-primary m-2">Clear Answers</button>
+        </form>
+
+        <form action="/users/delete/scores" method="GET" onsubmit="return confirmClearScoreAction(event)">
+            <button class="btn btn-dark m-2">Clear Scores</button>
+        </form>
+
+    </div>
+</div>
+
+<script>
+    function confirmDeleteAction(event) {
+        if(!confirm('Are you sure you want to delete your profile? This will delete all your assessments and answers. Your scores will not be deleted.')) {
+            event.preventDefault() 
+        }
+    }
+
+    function confirmClearAnswerAction(event) {
+        if(!confirm('Are you sure you wish to delete all your answers? You can still take all your assessments again...')) {
+            event.preventDefault()
+        }
+    }
+
+    function confirmClearScoreAction(event) {
+        if(!confirm('Are you sure you wish to delete all your scores? You can still take all your assessments again...')) {
+            event.preventDefault()
+        }
+    }
+</script>
+
+<%- include('../partials/footer.ejs', { loggedIn }) %>

@@ -15,9 +15,7 @@ router.get("/", async (req, res) => {
     assessment_id,
   });
 
-  let description = assessment_description;
-
-  description = description.replace("\\n", " ");
+  let description = assessment_description.replace("\\n", " ");
 
   res.render("forms/moduleList.ejs", {
     loggedIn: true,

@@ -1,6 +1,12 @@
 const qualificationKeys = require("../resources/json/qualification.keys.json");
 const statesList = require("../resources/json/india.states.json");
-const { UserScore, UserProfile, UserAssessment } = require("../models");
+const {
+  UserScore,
+  UserProfile,
+  UserAssessment,
+  UserModule,
+  UserAnswer,
+} = require("../models");
 const { downloadImage } = require("../config/s3.config");
 
 const {
@@ -166,4 +172,16 @@ module.exports.updateUserProfile = async (req, res) => {
       res.redirect("/users/profile");
     }
   });
+};
+
+module.exports.DeleteAccount = async (req, res) => {
+  const user_id = req.user._id;
+  req.logout();
+  console.log("Deleting profile...");
+  await UserProfile.findByIdAndRemove(user_id);
+  console.log("Deleting modules...");
+  await UserModule.deleteMany({ user_id });
+  console.log("Deleting User answers...");
+  await UserAnswer.deleteMany({ user_id });
+  res.redirect("/");
 };
