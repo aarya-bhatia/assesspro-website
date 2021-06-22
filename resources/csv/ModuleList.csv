@@ -1,19 +1,19 @@
-﻿Assessment Key,Module Name,Module Key
-NEST,Accuracy In English,1
-NEST,English Comprehension,2
-NEST,Verbal Reasoning,3
-NEST,Abstract Reasoning,4
-NEST,Logical Reasoning,5
-NEST,Numerical Reasoning,6
-NEST,Social Skills,7
-NEST,Team Work,8
-NEST,Emotional Intelligence,9
-NEST,Self Management,10
-CPT,Verbal Linguistic,11
-CPT,Logical Mathematical,12
-CPT,Visual Spatial,13
-CPT,Musical,14
-CPT,Bodily Kinesthetic,15
-CPT,Interpersonal,16
-CPT,Intrapersonal,17
-CPT,Naturalist,18
+﻿Assessment Key,Module Name,Module Key,Module Type,Scale Factor,Time Limit,Module Description,Feedback Description
+NEST,Accuracy In English,1,Objective,1,0,,"Measures expressive and receptive language skills and seeks to understand the ability of a person to translate ones thoughts and intent into its articulation with the correct use of grammar, spelling and punctuation."
+NEST,English Comprehension,2,Objective,1,0,,Measures expressive and receptive language and the ability to infer verbal information accurately. Organize and express ideas concisely and clearly both verbally and in written work.
+NEST,Verbal Reasoning,3,Objective,1,0,,Measures the ability of how well a person can communicate and reason with words.
+NEST,Abstract Reasoning,4,Objective,1,0,,"Measures the ability to identify the underlying logic of a pattern and then determine the solution. As questions are  independent of educational experience and cultural background, it can be used to provide an objective indication of intellectual potential."
+NEST,Logical Reasoning,5,Objective,1,0,,Measures a person’s ability to make logical decisions.
+NEST,Numerical Reasoning,6,Objective,1,0,,These questions provide information about a person’s ability to use numbers even if this is not a major part of the job.
+NEST,Social Skills,7,Subjective,5,0,,"Measures understanding of oneself and others, relating well to people, being assertive and adapting to and coping with the immediate surroundings to be more successful in dealing with environmental demands."
+NEST,Team Work,8,Subjective,5,0,,Measures team versus individual orientation and provides a glimpse into an important aspect of what motivates a person at work i.e. - preferred work orientation.
+NEST,Emotional Intelligence,9,Subjective,5,0,,"Measures the awareness of and ability to manage one's emotions in a healthy and productive manner. Also the ability of how well we handle ourselves and manage the emotions of one's self, of others, and of groups."
+NEST,Self Management,10,Subjective,5,0,,"Measures a person’s conscientiousness, initiative, adaptability and drive to succeed and also the ability to use time productively, which involves staying organized, working smarter rather than faster, and avoiding potential time-wasters."
+CPT,Verbal Linguistic,11,Subjective,5,0,,
+CPT,Logical Mathematical,12,Subjective,5,0,,
+CPT,Visual Spatial,13,Subjective,5,0,,
+CPT,Musical,14,Subjective,5,0,,
+CPT,Bodily Kinesthetic,15,Subjective,5,0,,
+CPT,Interpersonal,16,Subjective,5,0,,
+CPT,Intrapersonal,17,Subjective,5,0,,
+CPT,Naturalist,18,Subjective,5,0,,

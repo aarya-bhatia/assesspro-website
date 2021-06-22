@@ -34,18 +34,20 @@
             <tr>
                 <th>Module</th>
                 <th>Score</th>
+                <th>Description</th>
                 <th>Feedback</th>
             </tr>
         </thead>
 
         <tbody>
 
-            <% userScore.module_scores.map(moduleScore => { %> 
+            <% user_feedbacks.map(row => { %> 
 
                 <tr>
-                    <td><%= moduleScore.name %></td>
-                    <td><%= moduleScore.score %></td>
-                    <td></td>
+                    <td><%= row.module_name %></td>
+                    <td><%= row.module_score %></td>
+                    <td><%= row.feedback_description %></td>
+                    <td><%= row.module_feedback %></td>
                 </tr>
             
             <% }) %>

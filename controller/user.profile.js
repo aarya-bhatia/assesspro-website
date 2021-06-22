@@ -6,6 +6,8 @@ const {
   UserAssessment,
   UserModule,
   UserAnswer,
+  Feedback,
+  Module,
 } = require("../models");
 const { downloadImage } = require("../config/s3.config");
 
@@ -74,10 +76,52 @@ module.exports.listUsers = async (req, res) => {
 module.exports.openReport = async (req, res) => {
   const userScore = await UserScore.findById(req.params.user_score_id);
   const { assessment_key } = userScore;
+
+  const user_feedbacks = [];
+
+  const moduleIds = {};
+
+  if (assessment_key == "NEST") {
+    for (const module_score of userScore.module_scores) {
+      if (!moduleIds[module_score.name]) {
+        const module = await Module.findOne({ name: module_score.name });
+
+        moduleIds[module_score.name] = {
+          module_id: module._id,
+          feedback_description: module.feedback_description,
+        };
+      }
+
+      const module_id = moduleIds[module_score.name].module_id;
+      const feedback_description =
+        moduleIds[module_score.name].feedback_description;
+
+      const module_feedbacks = await Feedback.find({ module_id });
+
+      const feedback = module_feedbacks.find(
+        (module_feedback) =>
+          module_score.score >= module_feedback.min_value &&
+          module_score.score <= module_feedback.max_value
+      );
+
+      if (feedback) {
+        user_feedbacks.push({
+          module_name: module_score.name,
+          module_score: module_score.score,
+          module_feedback: feedback.feedback,
+          feedback_description,
+        });
+      }
+    }
+  }
+
+  // console.log("user feedbacks", user_feedbacks);
+
   res.render("reports/" + assessment_key, {
     loggedIn: true,
     userScore,
     getChartData,
+    user_feedbacks,
   });
 };
 

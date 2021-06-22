@@ -11,9 +11,9 @@ const schema = new Schema({
     required: true,
   },
   description: String,
+  feedback_description: String,
   time_limit: Number,
   no_questions: Number,
-  no_choices: Number,
   scale_factor: Number,
 });
 
