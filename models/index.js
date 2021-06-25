@@ -1,4 +1,5 @@
 module.exports = {
+  Category: require("./category"),
   Assessment: require("./assessment"),
   Module: require("./module"),
   Question: require("./question"),

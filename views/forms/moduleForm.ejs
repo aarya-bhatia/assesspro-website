@@ -12,112 +12,97 @@
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
 <div class="container">
+  <div class="display-4"><%= title %></div>
+  <div class="lead"><%= description %></div>
 
-    <div class="display-4"><%= title %></div>
-    <div class="lead"><%= description %></div>
+  <input type="text" id="module_id" value="<%= user_module._id %>" hidden />
 
-    <input type="text" id="module_id" value="<%= user_module._id %>" hidden>
+  <div class="p-2 my-2">
+    Time spent:
+    <span id="timer_display"></span>
+  </div>
 
-    <div class="p-2 my-2">
-        Time spent:
-        <span id="timer_display"></span>
-    </div>
+  <form
+    action="/forms/<%= assessment_id %>/submit/<%= user_module._id %>"
+    method="POST"
+    id="module_form"
+    name="moduleForm"
+  >
+    <% questions.map((question, num) => { %>
 
-    <form action="/forms/<%= assessment_id %>/submit/<%= user_module._id %>" method="POST" id="module_form" name='moduleForm'>
+    <div class="row p-2 my-2 bg-light">
+      <p><%= num+1 %>.</p>
 
-        <% questions.map((question, num) => { %>
+      <% if(question.content) { %>
 
-            <div class="row p-2 my-2 bg-light">
+      <p><%= question.content %></p>
 
-                <p><%= num+1 %>.</p>
+      <% } %> <% if(question.image) { %>
 
-                <% if(question.content) { %>
+      <img
+        src="<%= question.image %>"
+        alt=""
+        class="img-fluid img-thumbnail"
+        height="64"
+      />
 
-                    <p><%= question.content %></p>
+      <% } %>
 
-                <% } %>
-                
-                <% if(question.image) { %>
+      <div class="container">
+        <% question.choices.map(choice => { %>
 
-                <img 
-                        src="<%= question.image %>" 
-                        alt="" 
-                        class="img-fluid img-thumbnail" 
-                        height="64"
-                    /> 
+        <div class="form-check">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="<%= question._id %>"
+            id="<%= choice._id %>"
+            value="<%= choice._id %>"
+          />
 
-                <% } %>
+          <% if(choice.text) { %>
 
-                <div class="container">
+          <label for="<%= choice._id %>"> <%= choice.text %> </label>
 
-                    <% question.choices.map(choice => { %>
+          <% } %> <% if(choice.image) { %>
 
-                            <div class="form-check">
+          <img src="<%= choice.image %>" alt="" class="img-fluid" width="100" />
 
-                                <input 
-                                    type="radio" 
-                                    class="form-check-input" 
-                                    name="<%= question._id %>"
-                                    id="<%= choice._id %>" 
-                                    value="<%= choice._id %>"
-                                />
-
-                                <% if(choice.text) { %>
-
-                                    <label for="<%= choice._id %>">
-                                        <%= choice.text %>    
-                                    </label>
-
-                                <% } %>
-
-                                <% if(choice.image) { %>
-
-                                    <img 
-                                        src="<%= choice.image %>"
-                                        alt="" 
-                                        class="img-fluid" 
-                                        width="100" 
-                                    />
-
-                                <% } %>
-
-                            </div>
-
-                    <% }) %>
-                
-                </div>
-
-            </div>
+          <% } %>
+        </div>
 
         <% }) %>
+      </div>
+    </div>
 
-        <!-- Time spent since page load -->
-        <input 
-            type="number"
-            value="0"
-            id="time_spent"
-            name="time_spent"
-            hidden
-        />
+    <% }) %>
 
-        <input 
-            type="submit" 
-            class="btn btn-primary" 
-            value="Submit" 
-        />
+    <!-- Time spent since page load -->
+    <input type="number" value="0" id="time_spent" name="time_spent" hidden />
 
-        <a href="/forms/<%= assessment_id %>" class="btn btn-secondary">Back</a>
+    <input type="submit" class="btn btn-primary" value="Submit" />
 
-    </form>
-
+    <a href="/forms/<%= assessment_id %>" class="btn btn-secondary">Back</a>
+  </form>
 </div>
 
 <% user_answers.map(id => { %>
-    <script>
-        document.getElementById("<%= id %>").checked = true
-    </script>
+<script>
+  document.getElementById("<%= id %>").checked = true;
+</script>
 <% }) %>
 
 <script src="/js/module.timer.js"></script>
+
+<button onclick="clearTimerCache()" class="btn btn-dark">Clear Timer</button>
+
+<script>
+  function clearTimerCache() {
+    localStorage.removeItem("<%= user_module._id %>");
+    console.log("Removed Item", localStorage);
+  }
+
+  document.moduleForm.onsubmit = clearTimerCache;
+</script>
 
 <%- include('../partials/footer.ejs') %>

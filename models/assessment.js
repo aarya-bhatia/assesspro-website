@@ -3,7 +3,8 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const schema = new mongoose.Schema(
   {
-    category: String,
+    category_key: Number,
+    category_name: String,
     name: String,
     key: String,
     description: String,
@@ -20,17 +21,18 @@ const schema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    modules: [{
-      id: ObjectId,
-      key: Number,
-      name: String,
-      no_questions: Number,
-    }],
+    modules: [
+      {
+        _id: ObjectId,
+        key: Number,
+        name: String,
+      },
+    ],
     price: Number,
     currency: {
       type: String,
-      default: 'usd',
-    }
+      default: "usd",
+    },
   },
   { timestamps: true }
 );

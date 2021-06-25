@@ -18,6 +18,7 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
+  useCreateIndex: true,
 };
 
 // OPEN CONNECTION TO DATABASE
@@ -50,7 +51,6 @@ module.exports.dropCollections = (collections) => {
       if (!err) {
         for (i = 0; i < docs.length; i++) {
           const collection = docs[i].name;
-          console.log(collection);
           if (collections.includes(collection)) {
             connection.db.dropCollection(collection, (err, res) => {
               if (!err) {

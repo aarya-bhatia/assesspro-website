@@ -8,7 +8,7 @@ const express = require("express");
 const path = require("path");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
-const flash = require("connect-flash")
+const flash = require("connect-flash");
 
 // connect to mongodb
 require("./config/db.config.js").connect();
@@ -18,10 +18,10 @@ require("./config/passport.config.js");
 
 // create express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // DB Models
-const { Assessment } = require("./models");
+const { Assessment, Category } = require("./models");
 
 // auth middleware
 const { isAuth, checkUserEnrolled, isLoggedIn } = require("./controller/auth");
@@ -30,7 +30,7 @@ const { isAuth, checkUserEnrolled, isLoggedIn } = require("./controller/auth");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
-app.use(flash())
+app.use(flash());
 
 app.use(
   cookieSession({
@@ -52,20 +52,19 @@ app.use(
   express.static(path.join(__dirname, "public/favicon_io"))
 );
 
-app.use(isLoggedIn)
-
-app.use((req, res, next) => {
-  // console.log('FLASH: ', req.flash())
-  next()
-})
+app.use(isLoggedIn);
 
 // routers
 app.use("/auth", require("./routers/auth.router"));
-app.use('/assessments', require('./routers/assessment.router'))
+app.use("/assessments", require("./routers/assessment.router"));
 
 // Restricted routes
 app.use("/users", isAuth, require("./routers/user.router"));
-app.use('/forms/:assessment_id', [isAuth, checkUserEnrolled], require('./routers/forms.router'))
+app.use(
+  "/forms/:assessment_id",
+  [isAuth, checkUserEnrolled],
+  require("./routers/forms.router")
+);
 
 // set up view engine
 app.set("view engine", "ejs");
@@ -73,10 +72,22 @@ app.set("views", path.join(__dirname, "views"));
 
 // home route
 app.get("/", async (req, res) => {
-  const assessments = await Assessment.find({ public: true })
-  // console.log('Assessments: ', assessments)
-  // console.log(res.locals)
-  res.render("index", { assessments, loggedIn: res.locals.loggedIn });
+  const categories = await Category.find({});
+  const data = [];
+
+  for (const category of categories) {
+    const assessments = await Assessment.find({ category_key: category.key });
+    data.push({
+      category_name: category.name,
+      category_description: category.description,
+      assessments,
+    });
+  }
+
+  res.render("index", {
+    data,
+    loggedIn: res.locals.loggedIn,
+  });
 });
 
 // 404
@@ -86,7 +97,9 @@ app.get("*", (req, res) => {
 
 // Error handler
 app.use((err, req, res, next) => {
-  console.log('==================================================================')
+  console.log(
+    "=================================================================="
+  );
   console.log(err);
   res
     .status(err.status || 500)
@@ -95,6 +108,9 @@ app.use((err, req, res, next) => {
 
 // start listening on port
 app.listen(PORT, () => {
-  // console.log("Server has started on port " + PORT);
-  console.log("Express server listening on port %d in %s mode", PORT, app.settings.env);
+  console.log(
+    "Express server listening on port %d in %s mode",
+    PORT,
+    app.settings.env
+  );
 });

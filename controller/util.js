@@ -47,7 +47,7 @@ module.exports.capitalize = (str) => {
   if (!str || typeof str !== "string") {
     return str;
   } else {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
   }
 };
 

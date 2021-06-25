@@ -24,7 +24,8 @@
     "multer-s3": "^2.9.0",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "csv-reader": "^1.0.8"

@@ -1,33 +1,68 @@
 <%- include('../partials/header', { loggedIn }); %>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-10 col-lg-6">
-                <h1 class="display-5 mb-2 text-center">Signup</h1>
 
-                <form action="/auth/signup" method="POST" class="d-flex flex-column justify-content-start">
+<h1 class="display-5 mb-2 text-center">Signup</h1>
 
-                    <div class="d-flex justify-content-around mb-3">
-                        <input type="text" name="firstname" class="form-control me-3" placeholder="First Name *" required>
-                        <input type="text" name="lastname" class="form-control" placeholder="Last Name *" required>
-                    </div>
+<div class="container d-flex align-items-center justify-content-center">
+  <form action="/auth/signup" method="POST">
 
-                    <input type="email" name="email" class="form-control mb-3" placeholder="Email *" required>
+    <div class="row mb-3">
+      <div class="col-6">
+        <label for="firstname">First Name</label>
+        <input
+          type="text"
+          name="firstname"
+          class="form-control me-3"
+          placeholder="First Name *"
+          required
+          autocapitalize="words"
+          pattern="\w+"
+          autofocus
+        />
+      </div>
 
-                    <input type="text" class="form-control mb-3" id="username" name="username" placeholder="Username *"
-                        minlength="6" pattern="[A-Za-z0-9_]*" required>
-                    <p class="form-text">Username should be atleast six characters long and can contain
-                        alphanumeric characters and underscores only.
-                    </p>
-
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password *"
-                        minlength="6" required>
-                    <p class="form-text">Password should be atleast six characters long.</p>
-
-                    <input type="submit" class="btn btn-primary py-2 mb-2" />
-
-                </form>
-
-            </div>
-        </div>
+      <div class="col-6">
+        <label for="lastname">Last Name</label>
+        <input
+          type="text"
+          name="lastname"
+          class="form-control"
+          placeholder="Last Name *"
+          required
+          autocapitalize="words"
+          pattern="\w+"
+        />
+      </div>
     </div>
-    <%- include('../partials/footer'); %>
+
+    <label for="email" class="form-label text-muted">Email</label>
+
+    <input
+      type="email"
+      name="email"
+      class="form-control mb-3"
+      placeholder="Email *"
+      required
+    />
+
+    <label for="password" class="form-label text-muted">Password</label>
+
+    <input
+      type="password"
+      class="form-control mb-3"
+      id="password"
+      name="password"
+      placeholder="Password *"
+      minlength="6"
+      required
+    />
+
+    <input type="submit" class="form-control btn btn-primary py-2 mb-2" />
+
+    <% if(message & message.error) { message.error.map(errorMessage=> { %>
+    <div class="bg-warning p-2 my-2 rounded"><%= errorMessage %></div>
+    <% }) } %>
+
+  </form>
+</div>
+
+<%- include('../partials/footer'); %>

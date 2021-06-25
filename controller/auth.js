@@ -1,5 +1,6 @@
 const { UserAssessment, UserProfile } = require("../models");
 const bcrypt = require("bcrypt");
+const { capitalize } = require("../controller/util");
 
 /*
  * Middleware to check if user is logged in
@@ -34,56 +35,26 @@ module.exports.checkUserEnrolled = async (req, res, next) => {
     res.locals.user_assessment = found;
     next();
   } else {
-    next({ status: 400, message: "Access Denied" });
+    next({
+      status: 400,
+      message: "Access Denied. User is not enrolled in this assessment.",
+    });
   }
 };
 
+/*
+ * Register new user
+ */
 module.exports.CreateUser = async (req, res) => {
-  const { firstname, lastname, username, email, password } = req.body;
+  const { firstname, lastname, email, password } = req.body;
+  const name = [capitalize(firstname), capitalize(lastname)].join(" ");
+  const user = new UserProfile({ name, email, password });
 
-  if (!firstname || !lastname || !username || !email || !password) {
-    return res.status(400).json({ message: "All fields must have a value" });
+  try {
+    await user.save();
+  } catch (err) {
+    res.status(400).json(err);
   }
-
-  if (username.length < 6 || password.length < 6) {
-    return res
-      .status(400)
-      .json({
-        message: "Username or password must be atleast 6 characters long.",
-      });
-  }
-
-  const name =
-    firstname.charAt(0).toUpperCase() +
-    firstname.substring(1).toLowerCase() +
-    " " +
-    lastname.charAt(0).toUpperCase() +
-    lastname.substring(1).toLowerCase();
-
-  const found = await UserProfile.findOne({ username });
-
-  if (found) {
-    return res.status(400).json({ message: "Username is taken." });
-  }
-
-  const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
-  const hash = await bcrypt.hash(password, salt);
-
-  const img_url = `https://ui-avatars.com/api/?background=random&size=128&name=${name}`;
-
-  const user = await UserProfile.create({
-    name,
-    username,
-    email,
-    password: hash,
-    img_url,
-  });
-
-  console.log("Created new user: ", user._id);
-
-  req.flash({
-    success: ["You are signed up! Please login to continue"],
-  });
 
   res.redirect("/auth/login");
 };

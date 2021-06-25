@@ -1,51 +1,41 @@
-<%- include("partials/header.ejs", { loggedIn }); %>
-    <div class="container">
+<%- include("partials/header.ejs", { loggedIn }); %> 
+<%#- include('partials/banner.ejs') %>
 
-        <div class="row justify-content-center">
-            <% assessments.map(assessment=> { %>
-                <div class="card col-md-6 col-lg-4 p-2 m-2">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <span class="display-5">
-                                <%= assessment.name %>
-                            </span>
-                        </div>
-                        <div class="card-text">
-                            <div class="mb-2">
-                                <span class="text-muted">
-                                    Category:
-                                </span>
-                                <span>
-                                    <%= assessment.category %>
-                                </span>
-                            </div>
+<div class="container p-2">
+  <% data.forEach(item => { %>
 
-                            <div class="mb-3">
-                                <span class="text-muted">
-                                    Price:
-                                </span>
-                                <span>
-                                    $0.00
-                                </span>
-                            </div>
+    <div class="display-6"><%= item.category_name %></div>
+    <p><%= item.category_description %></p>
 
-                            <div class="mb-3">
-                                <span class="text-muted">
-                                    Number of Modules:
-                                </span>
-                                <span>
-                                    <%= assessment.modules.length %>
-                                </span>
-                            </div>
+    <div class="mb-3 row align-items-stretch flex-wrap">
 
-                            <div class="mb-3">
-                                <a href="/assessments/<%= assessment._id %>" class="btn btn-dark">Open</a>
-                            </div>
-                        </div>
-                    </div>
+      <% item.assessments.forEach(assessment => { %> 
+
+        <div class="card col-md-4 p-2 m-2">
+
+              <div class="card-body">
+                <div class="card-title">
+                  <span class="h4"> <%= assessment.name %> </span>
                 </div>
-                <% }) %>
-        <!-- end row -->
+
+                <div class="card-text">
+
+                  <div class="text-muted mb-3" style="position: absolute; top: 5px; right: 15px;">
+                    $<%= assessment.price %>
+                  </div>
+
+                  <div class="mb-3 text-muted"><%= assessment.modules.length %> Modules</div>
+
+                  <a href="/assessments/<%= assessment._id %>" class="btn btn-dark">Open</a>
+
+                </div>
+              </div>
         </div>
+
+      <% }) %> 
+
     </div>
-    <%- include("partials/footer.ejs"); %>
+
+  <% }) %>
+</div>
+<%- include("partials/footer.ejs"); %>

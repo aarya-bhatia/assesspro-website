@@ -1,1 +1,13 @@
-<img src="<%= img_url %>" alt="profile image" class="img-fluid img-thumbnail" width="128" />
+<img
+  src="<%= img_url %>"
+  alt="profile image"
+  class="img-fluid img-thumbnail"
+  width="128"
+  onerror="this.src=getDefaultAvatar(name)"
+/>
+
+<script>
+  function getDefaultAvatar(name) {
+    return `https://ui-avatars.com/api/?background=random&size=128&name=${name}`;
+  }
+</script>

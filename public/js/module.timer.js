@@ -29,7 +29,10 @@ function handleTimer() {
 // start timer
 window.onload = function () {
   prev_time = Date.now();
-  accum = Number(localStorage.getItem(module_id)) || 0;
+  accum =
+    Number(localStorage.getItem(module_id)) ||
+    Number("<%= user_module.time_spent %>") ||
+    0;
   console.log("total elapsed time milli: ", accum);
   updateTimerDisplay(accum);
   timer = setInterval(handleTimer, 1000);

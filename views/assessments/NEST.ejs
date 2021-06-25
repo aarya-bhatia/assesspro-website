@@ -1,104 +1,118 @@
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
-  <!-- introduction -->
-  <section>
-    <div class="container mt-2">
-      <!-- Title  -->
-      <div class="display-5">National Employability Skills Test</div>
+<div class="container mt-2">
+  <div class="display-5 mb-2">National Employability Skills Test</div>
+  <p>
+    N.E.S.T. is a proprietary assessment module which delivers both online and
+    offline assessments for all Aspire Employability Products. It is designed to
+    assess an individual on 10 different axes related to a person’s:
+  </p>
+  <ul>
+    <li>Personality and Soft Skills</li>
+    <li>General Aptitude and Reasoning</li>
+    <li>English Language and Communication Skills</li>
+  </ul>
+  <hr />
+</div>
 
-      <hr>
-
-      <p>
-        N.E.S.T. is a proprietary assessment module which delivers both online
-        and offline assessments for all Aspire Employability Products. It is
-        designed to assess an individual on 10 different axes related to a
-        person’s:
-      </p>
-      <ul>
-        <li>Personality and Soft Skills</li>
-        <li>General Aptitude and Reasoning</li>
-        <li>English Language and Communication Skills</li>
-      </ul>
+<div class="container p-2">
+  <div class="d-flex align-items-start">
+    <div class="nav nav-pills flex-column me-3" id="v-pills-tab" role="tablist">
+      <button
+        class="btn nav-link active"
+        data-bs-toggle="pill"
+        data-bs-target="#highlights"
+      >
+        Highlights
+      </button>
+      <button
+        class="btn nav-link"
+        data-bs-toggle="pill"
+        data-bs-target="#features"
+      >
+        Features
+      </button>
+      <button
+        class="btn nav-link"
+        data-bs-toggle="pill"
+        data-bs-target="#benefits"
+      >
+        Benefits
+      </button>
     </div>
-  </section>
 
-  <!-- highlights -->
-  <section>
-    <div class="container">
-      <h2>Online Testing</h2>
-      <p>
-        Aspire has the capability to deliver N.E.S.T. online for 100s of
-        candidates simultaneously.
-      </p>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="highlights">
+        <h4><span class="bi bi-clipboard-check"></span> Online Testing</h4>
+        <p>
+          Aspire has the capability to deliver N.E.S.T. online for 100s of
+          candidates simultaneously.
+        </p>
 
-      <h2>Configurable Axes</h2>
-      <p>
-        N.E.S.T. can be easily customized for multiple tests across 50+ axes
-        like Personality and Soft Skills, General Aptitude and Reasoning and
-        English Language and Communication Skills, etc.
-      </p>
+        <h4><span class="bi bi-gear"></span> Configurable Axes</h4>
+        <p>
+          N.E.S.T. can be easily customized for multiple tests across 50+ axes
+          like Personality and Soft Skills, General Aptitude and Reasoning and
+          English Language and Communication Skills, etc.
+        </p>
 
-      <h2>Dynamic Benchmarking</h2>
-      <p>
-        N.E.S.T. compares every assessed candidate with his/her university,
-        state, country, etc. to give a dynamic benchmarking and percentile
-        score for real understanding of his/her competitive career
-        positioning.
-      </p>
+        <h4><span class="bi bi-grid"></span> Dynamic Benchmarking</h4>
+        <p>
+          N.E.S.T. compares every assessed candidate with his/her university,
+          state, country, etc. to give a dynamic benchmarking and percentile
+          score for real understanding of his/her competitive career
+          positioning.
+        </p>
 
-      <h2>Employability Index</h2>
-      <p>
-        Finally, N.E.S.T. is unique in also comparing each candidate’s scores
-        with an Employability Index, an Employer-driven dynamic, real-time
-        index for skills in entry-level professionals.
-      </p>
+        <h4><span class="bi bi-globe"></span> Employability Index</h4>
+        <p>
+          Finally, N.E.S.T. is unique in also comparing each candidate’s scores
+          with an Employability Index, an Employer-driven dynamic, real-time
+          index for skills in entry-level professionals.
+        </p>
+      </div>
+
+      <div class="tab-pane show fade" id="features">
+        <h4>Features</h4>
+        <ul>
+          <li>Questions of multiple difficulty levels</li>
+          <li>Questions in the form of text or image</li>
+          <li>Up to 5 choices for the answers to every question</li>
+          <li>Large question bank to ensure randomness</li>
+          <li>Automatic individual score analysis and generation of reports</li>
+        </ul>
+      </div>
+
+      <div class="tab-pane show fade" id="benefits">
+        <h4>Benefits</h4>
+
+        <ul>
+          <li>
+            Candidates can identify their strengths and development areas in
+            relation to their goals
+          </li>
+          <li>Objective pre-and-post training assessment for SWOT diagnosis</li>
+          <li>
+            Assesses individuals in their listening skills, leadership, team
+            work, time management, language and the seven management hats
+          </li>
+          <li>
+            Gives the candidates a clear idea of where they stand vis-a-vis the
+            employability index
+          </li>
+        </ul>
+      </div>
     </div>
-  </section>
-
-  <!-- features -->
-  <section>
-    <div class="container">
-      <h2>Features</h2>
-      <ul>
-        <li>Questions of multiple difficulty levels</li>
-        <li>Questions in the form of text or image</li>
-        <li>Up to 5 choices for the answers to every question</li>
-        <li>Large question bank to ensure randomness</li>
-        <li>Automatic individual score analysis and generation of reports</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- benefits -->
-  <section>
-    <div class="container">
-      <h2>Benefits</h2>
-
-      <ul>
-        <li>
-          Candidates can identify their strengths and development areas in
-          relation to their goals
-        </li>
-        <li>Objective pre-and-post training assessment for SWOT diagnosis</li>
-        <li>
-          Assesses individuals in their listening skills, leadership, team
-          work, time management, language and the seven management hats
-        </li>
-        <li>
-          Gives the candidates a clear idea of where they stand vis-a-vis the
-          employability index
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <div class="container text-center py-3 my-3">
-    <a href="/users/enroll/<%= assessment_id %>" class="btn btn-primary ">START</a>
   </div>
+  <hr />
+</div>
 
+<div class="container text-center py-3 my-3">
+  <a href="/users/enroll/<%= assessment_id %>" class="btn btn-primary">START</a>
+</div>
 
-  <!-- access test -->
-  <!-- <section class="my-2 py-2">
+<!-- access test -->
+<!-- <section class="my-2 py-2">
   <div class="container">
     <div class="d-flex justify-content-center">
       <form action="">
@@ -117,8 +131,8 @@
       </button>
     </div> -->
 
-  <!-- access code modal  -->
-  <!-- <div
+<!-- access code modal  -->
+<!-- <div
       id="access-code-modal"
       class="modal fade"
       tabindex="-1"
@@ -159,4 +173,4 @@
   </div>
 </section> -->
 
-  <%- include('../partials/footer.ejs') %>
+<%- include('../partials/footer.ejs') %>

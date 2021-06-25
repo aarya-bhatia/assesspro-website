@@ -4,6 +4,7 @@ const { formatTimeSpent } = require("../controller/util");
 const { Question, UserAnswer, UserModule } = require("../models");
 const router = require("express").Router();
 
+// MODULE LIST
 // Get the module list page for an assessment
 // GET /forms/:assessment_id
 router.get("/", async (req, res) => {
@@ -27,6 +28,7 @@ router.get("/", async (req, res) => {
   });
 });
 
+// MODULE FORM
 // Get form questions for user module
 // Get /forms/:assessment_id/questions/:user_module_id
 router.get("/questions/:user_module_id", async (req, res) => {
@@ -37,8 +39,6 @@ router.get("/questions/:user_module_id", async (req, res) => {
   const { module_id, module_name } = user_module;
 
   const questions = await Question.find({ module_id });
-
-  // console.log("QUESTIONS", questions)
 
   const prevAnswers = await UserAnswer.find({
     user_id: req.user._id,

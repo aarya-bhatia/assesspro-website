@@ -11,12 +11,12 @@ const schema = new Schema({
   image: String,
   choices: [
     {
-      key: Number,
+      key: String,
       text: String,
       image: String,
-      points: Number
-    }
-  ]
+      points: Number,
+    },
+  ],
 });
 
 module.exports = model("Question", schema);

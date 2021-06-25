@@ -1,8 +1,8 @@
-﻿Sr No,Category,Name,Key,Plot Type,Price($),No Modules,Public,Description
-1,Psychometric Assessments,National Employability Skills Test,NEST,spider,1,10,TRUE,"The National Employability Skills Test (N.E.S.T.™) contains 92 questions divided into the following two sections:\n SECTION 1 contains 40 questions and seeks to assess aspects of your personality which are relevant to the workplace and would help build a successful career.\n SECTION 2 contains 52 questions designed to assess your aptitude and skills related to language and the industry:\n Accuracy in English, English Comprehension, Verbal Reasoning, Abstract Reasoning, Logical Reasoning and Numerical Reasoning.\n All questions carry equal marks. \n There is no negative marking. \n Duration of the test is for 60 minute"
-2,Psychometric Assessments,Career Preference Test,CPT,hbar,1,8,TRUE,"The Career Preference Test has 104 questions:\nExamine each question and indicate the degree to which it applies to you.\nTry to be as honest as possible, as answering truthfully will enhance the quality of your results.\nUse the option 3 rarely; use it only when neither of the other options seems to be right for you.\nDo not skip any question."
-3,Aptitude Assessments,Logical Reasoning,LR,hbar,1,0,FALSE,
-4,Aptitude Assessments,Verbal Reasoning,VR,hbar,1,0,FALSE,
-5,Creativity Assessments,Creativity Personality,CP,hbar,1,0,FALSE,
-6,Creativity Assessments,Creativity Motivation,CM,hbar,1,0,FALSE,
-7,Creativity Assessments,Creativity Temperament,CT,hbar,1,0,FALSE,
+﻿Sr No,Category Key,Category Name,Name,Key,Plot Type,Price($),Public,Description
+1,1,Psychometric Assessments,National Employability Skills Test,NEST,spider,0,TRUE,"The National Employability Skills Test (N.E.S.T.™) contains 92 questions divided into the following two sections: SECTION 1 contains 40 questions and seeks to assess aspects of your personality which are relevant to the workplace and would help build a successful career. SECTION 2 contains 52 questions designed to assess your aptitude and skills related to language and the industry: Accuracy in English, English Comprehension, Verbal Reasoning, Abstract Reasoning, Logical Reasoning and Numerical Reasoning. All questions carry equal marks. There is no negative marking. Duration of the test is for 60 minute"
+2,1,Psychometric Assessments,Career Preference Test,CPT,hbar,0,TRUE,"The Career Preference Test has 104 questions: Examine each question and indicate the degree to which it applies to you. Try to be as honest as possible, as answering truthfully will enhance the quality of your results. Use the option 3 rarely; use it only when neither of the other options seems to be right for you. Do not skip any question."
+3,2,Aptitude Assessments,Logical Reasoning,LR,hbar,0,FALSE,
+4,2,Aptitude Assessments,Verbal Reasoning,VR,hbar,0,FALSE,
+5,3,Creativity Assessments,Creativity Personality,CP,hbar,0,FALSE,
+6,3,Creativity Assessments,Creativity Motivation,CM,hbar,0,FALSE,
+7,3,Creativity Assessments,Creativity Temperament,CT,hbar,0,FALSE,

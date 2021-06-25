@@ -1,10 +1,4 @@
-const {
-  UserAnswer,
-  Question,
-  UserAssessment,
-  UserScore,
-  UserModule,
-} = require("../models");
+const { UserAnswer, Question, UserScore, UserModule } = require("../models");
 
 const LOCAL_DEBUG = false;
 
@@ -22,8 +16,6 @@ module.exports.scoreAssessment = async function (req, res) {
   const { assessment_id, user_assessment } = res.locals;
   const user_id = req.user._id;
 
-  // console.log(assessment_id, user_id)
-
   const user_modules = await UserModule.find({ user_id, assessment_id });
   const result = await score_all_modules(user_modules);
 
@@ -36,7 +28,7 @@ module.exports.scoreAssessment = async function (req, res) {
   // so as to have access to previous attempt scores. The module scores
   // contains the data required to make the plots for the assessment
   // on the client, using the chartjs library.
-  const assessment_score = await UserScore.create({
+  await UserScore.create({
     user_id,
     assessment_id,
     assessment_name,
@@ -68,7 +60,8 @@ async function score_all_modules(user_modules) {
         module_id,
         user_id,
         no_questions,
-        module_type,
+        // module_type,
+        scale_factor,
         module_key,
       } = user_module;
 
@@ -81,8 +74,8 @@ async function score_all_modules(user_modules) {
       // Get the module score
       const module_score = await get_module_score(user_answers);
 
-      const module_max_score =
-        module_type == "Subjective" ? no_questions * 5 : no_questions * 1;
+      // const module_max_score = module_type == "Subjective" ? no_questions * 5 : no_questions * 1;
+      const module_max_score = no_questions * scale_factor;
       const module_score_scaled = (module_score * 100) / module_max_score;
 
       console.log(

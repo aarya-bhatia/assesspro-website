@@ -19,7 +19,7 @@ const {
 } = require("../controller/user.enroll.js");
 
 const { uploadImage } = require("../config/s3.config");
-const { UserScore, UserAnswer } = require("../models/index.js");
+const { UserScore, UserAnswer, UserModule } = require("../models/index.js");
 
 // Router
 const router = require("express").Router();
@@ -66,6 +66,30 @@ router.get("/scores/delete/:score_id", deleteUserScore);
 // Settings page
 router.get("/settings", (req, res) => {
   res.render("profile/settings", { loggedIn: true });
+});
+
+router.get("/retake/:assessment_id", async (req, res) => {
+  const { assessment_id } = req.params;
+
+  // Reeset user modules
+
+  const doc = await UserModule.updateMany(
+    {
+      user_id: req.user._id,
+      assessment_id,
+    },
+    {
+      $set: {
+        time_spent: 0,
+        status: "Pending",
+        no_attempted: 0,
+      },
+    }
+  );
+
+  console.log(doc);
+
+  res.redirect("/forms/" + assessment_id);
 });
 
 // Delete all answers

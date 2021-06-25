@@ -83,6 +83,7 @@ async function createUserModules(user_id, assessment_id, modules) {
         no_attempted: 0,
         time_spent: 0,
         time_limit: m.time_limit,
+        scale_factor: m.scale_factor,
         status: "Pending",
       });
     }
