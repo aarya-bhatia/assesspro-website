@@ -2,6 +2,7 @@ const passport = require("passport");
 const UserProfile = require("../models/UserProfile");
 
 passport.serializeUser((user, done) => {
+  // console.log("Serializing user...", user);
   done(null, user.id);
 });
 
@@ -11,5 +12,5 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-passport.use(require('./google.strategy'));
-passport.use(require('./local.strategy'))
+passport.use(require("./google.strategy"));
+passport.use(require("./local.strategy"));

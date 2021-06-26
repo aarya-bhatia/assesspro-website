@@ -34,6 +34,10 @@
       </div>
     </div>
 
+    <% if(error.name) { %>
+    <div class="bg-warning p-2 my-2 rounded"><%= error.name %></div>
+    <% } %>
+
     <label for="email" class="form-label text-muted">Email</label>
 
     <input
@@ -43,6 +47,10 @@
       placeholder="Email *"
       required
     />
+
+    <% if(error.email) { %>
+    <div class="bg-warning p-2 my-2 rounded"><%= error.email %></div>
+    <% } %>
 
     <label for="password" class="form-label text-muted">Password</label>
 
@@ -56,11 +64,15 @@
       required
     />
 
+    <% if(error.password) { %>
+    <div class="bg-warning p-2 my-2 rounded"><%= error.password %></div>
+    <% } %>
+
     <input type="submit" class="form-control btn btn-primary py-2 mb-2" />
 
-    <% if(message & message.error) { message.error.map(errorMessage=> { %>
-    <div class="bg-warning p-2 my-2 rounded"><%= errorMessage %></div>
-    <% }) } %>
+    <% if(error.other) { %>
+    <div class="bg-warning p-2 my-2 rounded">[ERROR] <%= error.other %></div>
+    <% } %>
 
   </form>
 </div>

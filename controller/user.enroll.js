@@ -57,24 +57,26 @@ async function EnrollUser(req, res) {
 
   console.log("Created user assessment");
 
-  await createUserModules(user_id, assessment_id, modules);
-
-  res.redirect("/forms/" + assessment_id);
+  await createUserModules(user_id, assessment_id, modules).then(() => {
+    res.redirect("/forms/" + assessment_id);
+  });
 }
 
 async function createUserModules(user_id, assessment_id, modules) {
-  console.log(
-    "Initialising " + modules.length + " modules for user [id]: " + user_id
-  );
-
   return new Promise(async function (res) {
+    console.log(
+      "Initialising " + modules.length + " modules for user [id]: " + user_id
+    );
+
     for (const module of modules) {
-      const m = await Module.findById(module.id);
+      console.log(module);
+      const m = await Module.findById(module._id);
+      console.log("m: ", m);
 
       UserModule.create({
         user_id,
         assessment_id,
-        module_id: m.id,
+        module_id: m._id,
         module_name: m.name,
         module_key: m.key,
         module_type: m.type,
@@ -96,6 +98,13 @@ async function UnenrollUser(req, res) {
   const { assessment_id } = req.params;
   const assessment = await Assessment.findById(assessment_id);
   const modules = assessment.modules.map((module) => module.id);
+
+  console.log(
+    "Unenrolling user ",
+    req.user.name,
+    " from assessment: ",
+    assessment.key
+  );
 
   await UserAssessment.deleteOne({ user_id, assessment_id });
   await UserModule.deleteMany({ user_id, assessment_id });

@@ -65,9 +65,10 @@
       </li>
     </ul>
 
-    <% if(message && message.error) { message.error.map(errorMessage=> { %>
-    <div class="bg-warning p-2 my-2 rounded"><%= errorMessage %></div>
+    <% if(error) { error.map(msg => { %>
+    <div class="bg-warning p-2 my-2 rounded"><%= msg %></div>
     <% }) } %>
+
   </form>
 </div>
 <%- include('../partials/footer'); %>

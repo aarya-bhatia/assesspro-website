@@ -94,15 +94,14 @@
 
 <script src="/js/module.timer.js"></script>
 
-<button onclick="clearTimerCache()" class="btn btn-dark">Clear Timer</button>
-
 <script>
-  function clearTimerCache() {
-    localStorage.removeItem("<%= user_module._id %>");
-    console.log("Removed Item", localStorage);
-  }
+  // function clearTimerCache() {
+  //   localStorage.removeItem("<%= user_module._id %>");
+  //   console.log("Removed Item", localStorage);
+  //   return true;
+  // }
 
-  document.moduleForm.onsubmit = clearTimerCache;
+  // document.moduleForm.onsubmit = clearTimerCache;
 </script>
 
 <%- include('../partials/footer.ejs') %>

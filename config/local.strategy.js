@@ -1,27 +1,17 @@
-const { Strategy } = require('passport-local')
-const { UserProfile } = require('../models')
-const bcrypt = require('bcrypt')
+const { Strategy } = require("passport-local");
+const { UserProfile } = require("../models");
 
 module.exports = new Strategy(
-    async function (username, password, done) {
-        try {
-            const user = await UserProfile.findOne({ username })
-
-            if (!user) {
-                return done(null, false, { message: 'Incorrect username' })
-            }
-
-            const result = await bcrypt.compare(password, user.password)
-
-            if (!result) {
-                return done(null, false, { message: 'Incorrect password' })
-            }
-            else {
-                return done(null, user)
-            }
-        }
-        catch (err) {
-            done(err)
-        }
+  {
+    usernameField: "email",
+    passwordField: "password",
+  },
+  async function (email, password, done) {
+    try {
+      const user = await UserProfile.login(email, password);
+      return done(null, user);
+    } catch (err) {
+      return done(null, false, { message: err.message });
     }
-)
+  }
+);

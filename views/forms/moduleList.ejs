@@ -10,110 +10,115 @@
 
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
-    <div class="container">
-        <!-- container begin -->
+<div class="container">
+  <!-- container begin -->
 
-        <div class="display-5 text-center my-2">
-            <%= title %>
-        </div>
+  <div class="display-5 text-center my-2"><%= title %></div>
 
-        <div class="p">
-            <%= description %>
-        </div>
+  <div class="p"><%= description %></div>
 
-        <div class="row">
-
-            <script>
-                const formatTimeSpent = <%- formatTimeSpent %>
-                let module_id = null
-            </script>
-
-            <% user_modules.map((module, index)=> { %>
-
-                <div class="card col-md-6 col-lg-4 bg-light p-2 my-2 ">
-
-                    <div class="card-body">
-                        <div class="card-title">
-                            <span class="display-6">
-                                <%= module.module_name %>
-                            </span>
-                        </div>
-                        <div class="card-text">
-
-                            <div class="mb-2">
-                                <span class="text-muted">
-                                    Status:
-                                </span>
-                                <span class="fw-bold <%- module.status === 'Pending' ? 'text-danger' : 'text-primary' %>">
-                                    <%= module.status %>
-                                </span>
-                            </div>
-
-                            <div class="mb-2">
-                                <span class="text-muted">
-                                    Questions Attempted:
-                                </span>
-                                <span class="fw-bold">
-                                    <%= module.no_attempted %> of <%= module.no_questions %>
-                                </span>
-                            </div>
-
-                            <div class="mb-2">
-                                <span class="text-muted">
-                                    Time Spent:
-                                </span>
-                                <span class="fw-bold" id="moduleTimerDisplay_<%= index %>">
-                                    <%= formatTimeSpent(module.time_spent) %>
-                                </span>
-                            </div>
-
-                            <script>
-                                module_id = "<%= module._id %>"
-
-                                if(localStorage.getItem(module_id)) {
-                                    document.getElementById('moduleTimerDisplay_<%= index %>')
-                                    .innerText = formatTimeSpent(Number(localStorage.getItem(module_id)))
-                                }
-                               
-                            </script>
-
-
-                            <!-- actions -->
-                            <a href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
-                                class="btn btn-dark">Open</a>
-
-                        </div>
-                    </div>
-                </div>
-                <% }) %>
-
-                    <!-- end row -->
-        </div>   
-
-        <!-- submit assessment -->
-        <form name='myForm' action="/forms/<%= assessment_id %>/score" method="POST">
-
-            <!-- assessment id field -->
-            <input type="text" name="assessment_id" value="<%= assessment_id %>" hidden />
-
-            <p class="form-text-muted">
-                Please attempt all modules in this assessment before you submit.
-            </p>
-
-            <input type="submit" class="btn btn-primary" value="Submit All">
-
-        </form>
-
-        <!-- container end -->
-    </div>
-
+  <div class="row">
     <script>
-        document.myForm.addEventListener('submit', event => {
-            if(!confirm('Are you sure you wish to submit the test? Make sure you have completed all the modules.')) {
-                console.log('Not submitting form.')
-                event.preventDefault()
-            }  
-        })
+        let index,module_id,value;
+        let formatTimeSpent = <%- formatTimeSpent %>;
     </script>
 
-    <%- include('../partials/footer.ejs') %>
+    <% user_modules.map((module, index)=> { %>
+
+    <div class="card col-md-6 col-lg-4 bg-light p-2 my-2">
+      <div class="card-body">
+        <div class="card-title">
+          <span class="display-6"> <%= module.module_name %> </span>
+        </div>
+        <div class="card-text">
+          <div class="mb-2">
+            <span class="text-muted"> Status: </span>
+            <span
+              class="
+                fw-bold
+                <%-
+                module.status
+                ===
+                'Pending'
+                ?
+                'text-danger'
+                :
+                'text-primary'
+                %>
+              "
+            >
+              <%= module.status %>
+            </span>
+          </div>
+
+          <div class="mb-2">
+            <span class="text-muted"> Questions Attempted: </span>
+            <span class="fw-bold">
+              <%= module.no_attempted %> of <%= module.no_questions %>
+            </span>
+          </div>
+
+          <div class="mb-2">
+            <span class="text-muted"> Time Spent: </span>
+            <span class="fw-bold" id="moduleTimerDisplay_<%= index %>">
+              <%= formatTimeSpent(module.time_spent || 0) %>
+            </span>
+          </div>
+
+          <script>
+            module_id = "<%= module._id %>";
+            index = "<%= index %>";
+            if (localStorage.getItem(module_id)) {
+              value = Number(localStorage.getItem(module_id));
+              document.getElementById("moduleTimerDisplay_" + index).innerText = formatTimeSpent(value)
+            }
+          </script>
+
+          <!-- actions -->
+          <a
+            href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
+            class="btn btn-dark"
+            >Open</a
+          >
+        </div>
+      </div>
+    </div>
+    <% }) %>
+
+    <!-- end row -->
+  </div>
+
+  <!-- submit assessment -->
+  <form name="myForm" action="/forms/<%= assessment_id %>/score" method="POST">
+    <!-- assessment id field -->
+    <input
+      type="text"
+      name="assessment_id"
+      value="<%= assessment_id %>"
+      hidden
+    />
+
+    <p class="form-text-muted">
+      Please attempt all modules in this assessment before you submit.
+    </p>
+
+    <input type="submit" class="btn btn-primary" value="Submit All" />
+  </form>
+
+  <!-- container end -->
+</div>
+
+<script>
+  document.myForm.addEventListener("submit", (event) => {
+    if (
+      !confirm(
+        "Are you sure you wish to submit the test? Make sure you have completed all the modules."
+      )
+    ) {
+      console.log("Not submitting form.");
+      event.preventDefault();
+    }
+  });
+</script>
+
+<%- include('../partials/footer.ejs') %>

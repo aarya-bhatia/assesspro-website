@@ -47,14 +47,41 @@ module.exports.checkUserEnrolled = async (req, res, next) => {
  */
 module.exports.CreateUser = async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
+
   const name = [capitalize(firstname), capitalize(lastname)].join(" ");
-  const user = new UserProfile({ name, email, password });
+
+  let user = new UserProfile({ name, email, password });
+
+  console.log(req.body);
+  console.log(name);
 
   try {
-    await user.save();
+    user = await user.save();
+    console.log("Saved user.");
+    res.redirect("/auth/login");
   } catch (err) {
-    res.status(400).json(err);
-  }
+    const error = {};
 
-  res.redirect("/auth/login");
+    if (err.name === "ValidationError") {
+      const { errors } = err;
+      if (errors.name) {
+        error.name = errors.name.message;
+      }
+      if (errors.email) {
+        error.email = errors.email.message;
+      }
+      if (errors.password) {
+        error.password = errors.password.message;
+      }
+    }
+
+    error.other = err.message;
+
+    console.log(error);
+
+    res.render("auth/signup", {
+      loggedIn: res.locals.loggedIn,
+      error,
+    });
+  }
 };
