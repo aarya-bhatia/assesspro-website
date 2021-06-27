@@ -1,0 +1,2094 @@
+[
+    {
+        "user_id": "60cd8026a0f743ae06d85b33",
+        "name": "Aarya Bhatia",
+        "email": "aarya.bhatia1678@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-19T08:27:40.365Z",
+        "user_scores": [
+            {
+                "name": "Verbal Linguistic",
+                "score": 57
+            },
+            {
+                "name": "Logical Mathematical",
+                "score": 0
+            },
+            {
+                "name": "Visual Spatial",
+                "score": 0
+            },
+            {
+                "name": "Musical",
+                "score": 0
+            },
+            {
+                "name": "Bodily Kinesthetic",
+                "score": 0
+            },
+            {
+                "name": "Interpersonal",
+                "score": 0
+            },
+            {
+                "name": "Intrapersonal",
+                "score": 0
+            },
+            {
+                "name": "Naturalist",
+                "score": 0
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf2b43f80dc7000458af12",
+        "name": "kushagra batra",
+        "email": "kushagra.batra.can@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-20T12:35:33.994Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 93
+            },
+            {
+                "name": "English Comprehension",
+                "score": 80
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 63
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 88
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Social Skills",
+                "score": 80
+            },
+            {
+                "name": "Team Work",
+                "score": 84
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 66
+            },
+            {
+                "name": "Self Management",
+                "score": 48
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf3fcae9e30300040f4ac0",
+        "name": "Anushka Bansal",
+        "email": "anushkabansal03@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-20T13:23:16.335Z",
+        "user_scores": [
+            {
+                "name": "Verbal Linguistic",
+                "score": 91
+            },
+            {
+                "name": "Logical Mathematical",
+                "score": 58
+            },
+            {
+                "name": "Visual Spatial",
+                "score": 75
+            },
+            {
+                "name": "Musical",
+                "score": 75
+            },
+            {
+                "name": "Bodily Kinesthetic",
+                "score": 66
+            },
+            {
+                "name": "Interpersonal",
+                "score": 75
+            },
+            {
+                "name": "Intrapersonal",
+                "score": 85
+            },
+            {
+                "name": "Naturalist",
+                "score": 63
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf2b43f80dc7000458af12",
+        "name": "kushagra batra",
+        "email": "kushagra.batra.can@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-20T14:19:55.885Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 14
+            },
+            {
+                "name": "English Comprehension",
+                "score": 4
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 5
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 7
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 8
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 8
+            },
+            {
+                "name": "Social Skills",
+                "score": 40
+            },
+            {
+                "name": "Team Work",
+                "score": 42
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 33
+            },
+            {
+                "name": "Self Management",
+                "score": 24
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf4d85e9e30300040f4ade",
+        "name": "Kanav Batra",
+        "email": "knvbatra@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-20T15:23:40.514Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 93
+            },
+            {
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 75
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 88
+            },
+            {
+                "name": "Social Skills",
+                "score": 76
+            },
+            {
+                "name": "Team Work",
+                "score": 78
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 80
+            },
+            {
+                "name": "Self Management",
+                "score": 70
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf6056e9e30300040f4b09",
+        "name": "ΣПYGMΛ",
+        "email": "arjuntuli10@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-20T16:11:33.802Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 100
+            },
+            {
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Social Skills",
+                "score": 90
+            },
+            {
+                "name": "Team Work",
+                "score": 88
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 100
+            },
+            {
+                "name": "Self Management",
+                "score": 82
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf6056e9e30300040f4b09",
+        "name": "ΣПYGMΛ",
+        "email": "arjuntuli10@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-20T16:35:22.786Z",
+        "user_scores": [
+            {
+                "name": "Verbal Linguistic",
+                "score": 86
+            },
+            {
+                "name": "Logical Mathematical",
+                "score": 94
+            },
+            {
+                "name": "Visual Spatial",
+                "score": 91
+            },
+            {
+                "name": "Musical",
+                "score": 80
+            },
+            {
+                "name": "Bodily Kinesthetic",
+                "score": 62
+            },
+            {
+                "name": "Interpersonal",
+                "score": 100
+            },
+            {
+                "name": "Intrapersonal",
+                "score": 91
+            },
+            {
+                "name": "Naturalist",
+                "score": 69
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0262eb284c700046a273e",
+        "name": "mandeep kaur",
+        "email": "mankaurman9056@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T06:20:08.881Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 67
+            },
+            {
+                "name": "English Comprehension",
+                "score": 60
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 63
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 50
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 63
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 38
+            },
+            {
+                "name": "Social Skills",
+                "score": 64
+            },
+            {
+                "name": "Team Work",
+                "score": 58
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 70
+            },
+            {
+                "name": "Self Management",
+                "score": 64
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d02589b284c700046a2727",
+        "name": "aman kaur",
+        "email": "manr17616@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T06:42:06.682Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 53
+            },
+            {
+                "name": "English Comprehension",
+                "score": 80
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 50
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 63
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 50
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 0
+            },
+            {
+                "name": "Social Skills",
+                "score": 54
+            },
+            {
+                "name": "Team Work",
+                "score": 52
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 52
+            },
+            {
+                "name": "Self Management",
+                "score": 56
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d026a2b284c700046a274a",
+        "name": "Manreet Chauhaun",
+        "email": "reetman12354@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T06:52:38.880Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 80
+            },
+            {
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 63
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 50
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 38
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 50
+            },
+            {
+                "name": "Social Skills",
+                "score": 82
+            },
+            {
+                "name": "Team Work",
+                "score": 56
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 70
+            },
+            {
+                "name": "Self Management",
+                "score": 64
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d02574b284c700046a2726",
+        "name": "randeep kaur",
+        "email": "depkaur9056@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T07:02:33.292Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 60
+            },
+            {
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 75
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 25
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 25
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 25
+            },
+            {
+                "name": "Social Skills",
+                "score": 60
+            },
+            {
+                "name": "Team Work",
+                "score": 64
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 36
+            },
+            {
+                "name": "Self Management",
+                "score": 52
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf3fcae9e30300040f4ac0",
+        "name": "Anushka Bansal",
+        "email": "anushkabansal03@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T07:05:40.483Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 100
+            },
+            {
+                "name": "English Comprehension",
+                "score": 80
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 88
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 88
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 88
+            },
+            {
+                "name": "Social Skills",
+                "score": 72
+            },
+            {
+                "name": "Team Work",
+                "score": 60
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 58
+            },
+            {
+                "name": "Self Management",
+                "score": 52
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d03539b284c700046a2789",
+        "name": "Diya Singhal",
+        "email": "diyasinghal2006@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T07:27:53.108Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 87
+            },
+            {
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 75
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 88
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 75
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 100
+            },
+            {
+                "name": "Social Skills",
+                "score": 72
+            },
+            {
+                "name": "Team Work",
+                "score": 80
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 74
+            },
+            {
+                "name": "Self Management",
+                "score": 64
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d03539b284c700046a2789",
+        "name": "Diya Singhal",
+        "email": "diyasinghal2006@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T07:28:05.923Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 13
+            },
+            {
+                "name": "English Comprehension",
+                "score": 5
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 6
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 7
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 6
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 8
+            },
+            {
+                "name": "Social Skills",
+                "score": 36
+            },
+            {
+                "name": "Team Work",
+                "score": 40
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 37
+            },
+            {
+                "name": "Self Management",
+                "score": 32
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0403b770a550004419590",
+        "name": "Amit Bhatia",
+        "email": "amit.bhatia@aspireimpact.in",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T07:36:09.583Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 0
+            },
+            {
+                "name": "English Comprehension",
+                "score": 0
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 0
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 0
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 0
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 0
+            },
+            {
+                "name": "Social Skills",
+                "score": 0
+            },
+            {
+                "name": "Team Work",
+                "score": 0
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 0
+            },
+            {
+                "name": "Self Management",
+                "score": 6
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d03539b284c700046a2789",
+        "name": "Diya Singhal",
+        "email": "diyasinghal2006@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T07:39:34.416Z",
+        "user_scores": [
+            {
+                "name": "Verbal Linguistic",
+                "score": 82
+            },
+            {
+                "name": "Logical Mathematical",
+                "score": 74
+            },
+            {
+                "name": "Visual Spatial",
+                "score": 78
+            },
+            {
+                "name": "Musical",
+                "score": 86
+            },
+            {
+                "name": "Bodily Kinesthetic",
+                "score": 86
+            },
+            {
+                "name": "Interpersonal",
+                "score": 92
+            },
+            {
+                "name": "Intrapersonal",
+                "score": 71
+            },
+            {
+                "name": "Naturalist",
+                "score": 66
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0420c770a5500044195a7",
+        "name": "Parth Lakhina",
+        "email": "lakhinaparth31@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T07:53:27.787Z",
+        "user_scores": [
+            {
+                "name": "Verbal Linguistic",
+                "score": 46
+            },
+            {
+                "name": "Logical Mathematical",
+                "score": 54
+            },
+            {
+                "name": "Visual Spatial",
+                "score": 55
+            },
+            {
+                "name": "Musical",
+                "score": 54
+            },
+            {
+                "name": "Bodily Kinesthetic",
+                "score": 52
+            },
+            {
+                "name": "Interpersonal",
+                "score": 57
+            },
+            {
+                "name": "Intrapersonal",
+                "score": 58
+            },
+            {
+                "name": "Naturalist",
+                "score": 51
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d03b5ab284c700046a27b6",
+        "name": "Jahnavi Batlish",
+        "email": "jahnavibatlish@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T09:10:40.625Z",
+        "user_scores": [
+            {
+                "name": "Accuracy In English",
+                "score": 86
+            },
+            {
+                "name": "English Comprehension",
+                "score": 80
+            },
+            {
+                "name": "Verbal Reasoning",
+                "score": 62
+            },
+            {
+                "name": "Abstract Reasoning",
+                "score": 62
+            },
+            {
+                "name": "Logical Reasoning",
+                "score": 62
+            },
+            {
+                "name": "Numerical Reasoning",
+                "score": 50
+            },
+            {
+                "name": "Social Skills",
+                "score": 76
+            },
+            {
+                "name": "Team Work",
+                "score": 66
+            },
+            {
+                "name": "Emotional Intelligence",
+                "score": 76
+            },
+            {
+                "name": "Self Management",
+                "score": 62
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d03b5ab284c700046a27b6",
+        "name": "Jahnavi Batlish",
+        "email": "jahnavibatlish@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T09:22:58.351Z",
+        "user_scores": [
+            {
+                "name": "Verbal Linguistic",
+                "score": 83
+            },
+            {
+                "name": "Logical Mathematical",
+                "score": 75
+            },
+            {
+                "name": "Visual Spatial",
+                "score": 83
+            },
+            {
+                "name": "Musical",
+                "score": 90
+            },
+            {
+                "name": "Bodily Kinesthetic",
+                "score": 86
+            },
+            {
+                "name": "Interpersonal",
+                "score": 80
+            },
+            {
+                "name": "Intrapersonal",
+                "score": 87
+            },
+            {
+                "name": "Naturalist",
+                "score": 84
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cd8026a0f743ae06d85b33",
+        "name": "Aarya Bhatia",
+        "email": "aarya.bhatia1678@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T10:58:41.966Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 0
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 0
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 0
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 12
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 0
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 12
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 0
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 0
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 32
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 0
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d026a2b284c700046a274a",
+        "name": "Manreet Chauhaun",
+        "email": "reetman12354@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T12:42:18.399Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 80
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 62
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 50
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 37
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 50
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 82
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 56
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 70
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 64
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0262eb284c700046a273e",
+        "name": "mandeep kaur",
+        "email": "mankaurman9056@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T12:50:40.126Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 63
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 60
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 67
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 75
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 76
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 70
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 66
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 64
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d02574b284c700046a2726",
+        "name": "randeep kaur",
+        "email": "depkaur9056@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T12:53:18.905Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 69
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 52
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 61
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 69
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 84
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 60
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 67
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 78
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d026a2b284c700046a274a",
+        "name": "Manreet Chauhaun",
+        "email": "reetman12354@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T13:11:31.652Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 81
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 73
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 89
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 90
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 87
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 90
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 92
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 96
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d02589b284c700046a2727",
+        "name": "aman kaur",
+        "email": "manr17616@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T13:12:36.259Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 58
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 55
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 69
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 78
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 72
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 58
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 63
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 64
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0a186612bb50004a60145",
+        "name": "Incredible Creativity",
+        "email": "aaduarihant@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T17:51:12.436Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 60
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 100
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 62
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 75
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 70
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 70
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 60
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 62
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0a186612bb50004a60145",
+        "name": "Incredible Creativity",
+        "email": "aaduarihant@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T18:11:50.313Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 60
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 60
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 53
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 53
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 76
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 70
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 67
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 73
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0420c770a5500044195a7",
+        "name": "Parth Lakhina",
+        "email": "lakhinaparth31@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T18:34:53.350Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 73
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 50
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 100
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 100
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 62
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 60
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 66
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 66
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 60
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0d769a1756b0004d2f1c5",
+        "name": "Abhiraj Singh",
+        "email": "aburaja0707@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T19:01:20.161Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 93
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 78
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 68
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 70
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 52
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0d769a1756b0004d2f1c5",
+        "name": "Abhiraj Singh",
+        "email": "aburaja0707@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T19:11:18.754Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 78
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 80
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 69
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 76
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 89
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 70
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 60
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 58
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf6816e9e30300040f4b15",
+        "name": "Krish Aryan Chawla 15",
+        "email": "krishnoni17@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-21T19:43:54.984Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 66
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 80
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 37
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 25
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 50
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 25
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 80
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 56
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 68
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 52
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf6816e9e30300040f4b15",
+        "name": "Krish Aryan Chawla 15",
+        "email": "krishnoni17@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-21T19:57:20.139Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 63
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 63
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 72
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 67
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 80
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 76
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 83
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 66
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d156a643da4600041913a1",
+        "name": "Saanvi Sood",
+        "email": "saanv.sood@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-22T03:40:24.439Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 66
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 81
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 76
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 84
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 70
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 64
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 63
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 72
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d156a643da4600041913a1",
+        "name": "Saanvi Sood",
+        "email": "saanv.sood@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-22T04:39:50.466Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 93
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 75
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 75
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 78
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 80
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 58
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 68
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cd8026a0f743ae06d85b33",
+        "name": "Aarya Bhatia",
+        "email": "aarya.bhatia1678@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-22T06:12:44.995Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 0
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 0
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 0
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 12
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 0
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 12
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 0
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 0
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 32
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 0
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d1ae4f35481900046e938d",
+        "name": "Kaushal Guntur",
+        "email": "kaushalguntur18@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-22T10:26:35.475Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 80
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 75
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 75
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 62
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 66
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 68
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 52
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 42
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0c77aa1756b0004d2f1a5",
+        "name": "Dyotona Raay",
+        "email": "dyotona@gmail.com",
+        "assessment_name": "National Employability Skills Test",
+        "assessment_key": "NEST",
+        "date": "2021-06-22T16:27:01.788Z",
+        "user_scores": [
+            {
+                "module_key": 1,
+                "name": "Accuracy In English",
+                "score": 86
+            },
+            {
+                "module_key": 2,
+                "name": "English Comprehension",
+                "score": 100
+            },
+            {
+                "module_key": 3,
+                "name": "Verbal Reasoning",
+                "score": 75
+            },
+            {
+                "module_key": 4,
+                "name": "Abstract Reasoning",
+                "score": 87
+            },
+            {
+                "module_key": 5,
+                "name": "Logical Reasoning",
+                "score": 50
+            },
+            {
+                "module_key": 6,
+                "name": "Numerical Reasoning",
+                "score": 25
+            },
+            {
+                "module_key": 7,
+                "name": "Social Skills",
+                "score": 64
+            },
+            {
+                "module_key": 8,
+                "name": "Team Work",
+                "score": 68
+            },
+            {
+                "module_key": 9,
+                "name": "Emotional Intelligence",
+                "score": 64
+            },
+            {
+                "module_key": 10,
+                "name": "Self Management",
+                "score": 54
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d0c77aa1756b0004d2f1a5",
+        "name": "Dyotona Raay",
+        "email": "dyotona@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-22T16:44:51.282Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 69
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 58
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 67
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 60
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 60
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 58
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 66
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 64
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60cf4d85e9e30300040f4ade",
+        "name": "Kanav Batra",
+        "email": "knvbatra@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-23T03:21:56.498Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 83
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 80
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 76
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 80
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 73
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 78
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 89
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 73
+            }
+        ],
+        "status": "public"
+    },
+    {
+        "user_id": "60d1ae4f35481900046e938d",
+        "name": "Kaushal Guntur",
+        "email": "kaushalguntur18@gmail.com",
+        "assessment_name": "Career Preference Test",
+        "assessment_key": "CPT",
+        "date": "2021-06-23T06:54:00.209Z",
+        "user_scores": [
+            {
+                "module_key": 11,
+                "name": "Verbal Linguistic",
+                "score": 66
+            },
+            {
+                "module_key": 12,
+                "name": "Logical Mathematical",
+                "score": 81
+            },
+            {
+                "module_key": 13,
+                "name": "Visual Spatial",
+                "score": 58
+            },
+            {
+                "module_key": 14,
+                "name": "Musical",
+                "score": 61
+            },
+            {
+                "module_key": 15,
+                "name": "Bodily Kinesthetic",
+                "score": 75
+            },
+            {
+                "module_key": 16,
+                "name": "Interpersonal",
+                "score": 75
+            },
+            {
+                "module_key": 17,
+                "name": "Intrapersonal",
+                "score": 61
+            },
+            {
+                "module_key": 18,
+                "name": "Naturalist",
+                "score": 66
+            }
+        ],
+        "status": "public"
+    }
+]

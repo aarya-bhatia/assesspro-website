@@ -74,7 +74,6 @@ async function score_all_modules(user_modules) {
       // Get the module score
       const module_score = await get_module_score(user_answers);
 
-      // const module_max_score = module_type == "Subjective" ? no_questions * 5 : no_questions * 1;
       const module_max_score = no_questions * scale_factor;
       const module_score_scaled = (module_score * 100) / module_max_score;
 
