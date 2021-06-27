@@ -92,7 +92,7 @@ schema.pre("save", async function (next) {
 });
 
 schema.post("save", async function (user, next) {
-  console.log("Created new user: ", user);
+  console.log("Saving user profile: ", user);
   next();
 });
 

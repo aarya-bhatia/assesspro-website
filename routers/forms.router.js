@@ -40,7 +40,7 @@ router.get("/questions/:user_module_id", async (req, res) => {
 
   const questions = await Question.find({ module_id });
 
-  console.log("QUESTIONS", questions);
+  // console.log("QUESTIONS", questions);
 
   const prevAnswers = await UserAnswer.find({
     user_id: req.user._id,
