@@ -3,7 +3,8 @@
 <h1 class="display-5 mb-2 text-center">Signup</h1>
 
 <div class="container d-flex align-items-center justify-content-center">
-  <form action="/auth/signup" method="POST">
+
+  <form action="/auth/signup" method="POST" name="signupForm" style="width: 400px;">
 
     <div class="row mb-3">
       <div class="col-6">
@@ -68,13 +69,52 @@
     <div class="alert alert-danger"><%= error.password %></div>
     <% } %>
 
-    <input type="submit" class="form-control btn btn-primary py-2 mb-2" />
+    <label for="confirm-password" class="form-label text-muted">Confirm Password</label>
+
+    <input type="password"
+      type="password"
+      class="form-control mb-3"
+      id="confirm-password"
+      placeholder="Confirm Password *"
+      minlength="6"
+      required 
+    />
+
+    <div class="alert alert-warning" id="passwordMatchError" hidden></div>
+
+    <button class="form-control btn btn-primary py-2 mb-2" onclick="handleClick()">
+      Submit
+    </button>
 
     <% if(error.other) { %>
     <div class="alert alert-danger">[ERROR] <%= error.other %></div>
     <% } %>
 
+    <p class="text-center my-4">Already have an account? <a href="/auth/login" style="text-decoration: none;">Log In</a></p>
+
   </form>
+  
+  <script>
+    function handleClick() {
+      const password = document.getElementById('password').value
+      const confirmPassword = document.getElementById('confirm-password').value
+      if(confirmPassword !== password) {
+        document.getElementById('passwordMatchError').innerText = 'Passwords do not Match';
+        document.getElementById('passwordMatchError').hidden = false
+        return;
+      } else {
+        document.getElementById('passwordMatchError').innerText = ''
+        document.getElementById('passwordMatchError').hidden = true
+        document.signupForm.submit();
+      }
+    }
+
+    window.onload = () => {
+      document.signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+      })
+    }
+  </script>
 </div>
 
 <%- include('../partials/footer'); %>

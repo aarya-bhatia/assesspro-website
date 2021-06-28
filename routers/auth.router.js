@@ -39,6 +39,22 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
+router.get("/passwordReset", (req, res) => {
+  res.render("auth/reset.password.ejs", {
+    loggedIn: res.locals.loggedIn,
+    error: null,
+    message: null,
+  });
+});
+
+router.post("/passwordReset", (req, res) => {
+  res.render("auth/reset.password.ejs", {
+    loggedIn: res.locals.loggedIn,
+    error: null,
+    message: "Please check your email info for further instructions.",
+  });
+});
+
 // auth with google
 router.get(
   "/google",
