@@ -78,7 +78,7 @@ function getAvatar(name) {
 
 schema.pre("save", async function (next) {
   // Hash Password
-  if (this.password) {
+  if (this.isModified("password")) {
     const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
     this.password = await bcrypt.hash(this.password, salt);
   }

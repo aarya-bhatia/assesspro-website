@@ -1,3 +1,6 @@
+// Catch all async errors
+require("express-async-errors");
+
 // Load env vars
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();

@@ -11,4 +11,5 @@ module.exports = {
   UserProfile: require("./UserProfile"),
   UserCart: require("./UserCart"),
   Feedback: require("./feedback.js"),
+  Token: require("./token"),
 };

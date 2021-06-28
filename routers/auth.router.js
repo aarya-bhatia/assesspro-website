@@ -2,6 +2,11 @@ const { Router } = require("express");
 const passport = require("passport");
 const router = Router();
 const { CreateUser } = require("../controller/auth");
+const { Token } = require("../models");
+const { requestPasswordReset } = require("../services/auth.service");
+const { sendEmail } = require("../services/send.email");
+const bcrypt = require("bcrypt");
+const { UserProfile } = require("../models");
 
 // Auth Login Page
 router.get("/login", (req, res) => {
@@ -39,7 +44,7 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.get("/passwordReset", (req, res) => {
+router.get("/passwordResetRequest", (req, res) => {
   res.render("auth/reset.password.ejs", {
     loggedIn: res.locals.loggedIn,
     error: null,
@@ -47,12 +52,70 @@ router.get("/passwordReset", (req, res) => {
   });
 });
 
-router.post("/passwordReset", (req, res) => {
-  res.render("auth/reset.password.ejs", {
-    loggedIn: res.locals.loggedIn,
-    error: null,
-    message: "Please check your email info for further instructions.",
+router.post("/passwordResetRequest", async (req, res) => {
+  const email = req.body.email;
+
+  await requestPasswordReset(email).then(() => {
+    res.render("auth/reset.password.ejs", {
+      loggedIn: res.locals.loggedIn,
+      error: null,
+      message: "Please check your email info for further instructions.",
+    });
   });
+});
+
+router.get("/passwordReset", async (req, res) => {
+  const { token, id } = req.query;
+
+  const tokenHash = await Token.findOne({ user_id: id });
+
+  if (!tokenHash) {
+    throw new Error("Invalid or expired password reset token");
+  }
+
+  const isValid = await bcrypt.compare(token, tokenHash.token);
+
+  if (!isValid) {
+    throw new Error("Invalid or expired password reset token");
+  }
+  res.render("auth/update.password.ejs", {
+    loggedIn: res.locals.loggedIn,
+    user_id: id,
+    token,
+  });
+});
+
+router.post("/passwordReset", async (req, res) => {
+  const user_id = req.body.user_id;
+  const token = req.body.token;
+  const password = req.body.password;
+
+  const tokenHash = await Token.findOne({ user_id });
+
+  if (!tokenHash) {
+    throw new Error("Invalid or expired password reset token");
+  }
+
+  const isValid = await bcrypt.compare(token, tokenHash.token);
+
+  if (!isValid) {
+    throw new Error("Invalid or expired password reset token");
+  }
+
+  user = await UserProfile.findById(user_id);
+  user.password = password;
+  await user.save();
+
+  await tokenHash.deleteOne();
+
+  await sendEmail(
+    user.email,
+    "Password Reset Successfully!",
+    { name: user.name },
+    "./template/reset.password.ejs"
+  );
+
+  res.redirect("/auth/login");
 });
 
 // auth with google
