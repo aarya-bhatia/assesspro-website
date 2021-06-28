@@ -1,6 +1,7 @@
 const element = document.getElementById("time_spent");
 const timerDisplay = document.getElementById("timer_display");
-const module_id = document.getElementById("module_id").value;
+const module_id = document.getElementById("user_module_id").value;
+console.log("user module id: ", module_id);
 
 let prev_time = null,
   timer = null,

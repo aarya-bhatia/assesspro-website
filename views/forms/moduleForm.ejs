@@ -11,13 +11,14 @@
 
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
+<input type='text' id='user_module_id' value='<%= user_module._id %>'
+  hidden />
+
 <div class="container">
   <div class="display-4"><%= title %></div>
   <div class="lead"><%= description %></div>
 
-  <input type="text" id="module_id" value="<%= user_module._id %>" hidden />
-
-  <div class="p-2 my-2">
+  <div class="alert alert-success">
     Time spent:
     <span id="timer_display"></span>
   </div>
@@ -25,7 +26,6 @@
   <form
     action="/forms/<%= assessment_id %>/submit/<%= user_module._id %>"
     method="POST"
-    id="module_form"
     name="moduleForm"
   >
     <% questions.map((question, num) => { %>
@@ -94,15 +94,5 @@
 <% }) %>
 
 <script src="/js/module.timer.js"></script>
-
-<script>
-  // function clearTimerCache() {
-  //   localStorage.removeItem("<%= user_module._id %>");
-  //   console.log("Removed Item", localStorage);
-  //   return true;
-  // }
-
-  // document.moduleForm.onsubmit = clearTimerCache;
-</script>
 
 <%- include('../partials/footer.ejs') %>

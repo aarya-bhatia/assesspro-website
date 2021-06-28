@@ -11,14 +11,11 @@
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
 <div class="container">
-  <!-- container begin -->
-
   <div class="display-5 text-center my-2"><%= title %></div>
 
   <div class="p"><%= description %></div>
 
   <div class="row g-2 my-4">
-
     <script>
       let index,module_id,value;
       let formatTimeSpent = <%- formatTimeSpent %>;
@@ -107,23 +104,42 @@
       Please attempt all modules in this assessment before you submit.
     </p>
 
-    <input type="submit" class="btn btn-primary" value="Submit All" />
+    <button class="btn btn-primary" onclick="handleSubmit()">
+      Submit All
+    </button>
   </form>
 
   <!-- container end -->
 </div>
 
 <script>
-  document.myForm.addEventListener("submit", (event) => {
-    if (
-      !confirm(
-        "Are you sure you wish to submit the test? Make sure you have completed all the modules."
-      )
-    ) {
+
+  const user_module_ids = <%- JSON.stringify(user_modules.map(user_module => user_module._id)) %>
+
+  console.log(user_module_ids)
+
+  function handleSubmit() {
+    if (confirm("Are you sure you wish to submit the test? Make sure you have completed all the modules.")) {
+
+      // clear local timers
+      for(const key of user_module_ids) {
+        if(localStorage.getItem(key)) {
+          localStorage.removeItem(key);
+        }
+      }
+
+      document.myForm.submit();
+    } 
+    else {
       console.log("Not submitting form.");
-      event.preventDefault();
     }
-  });
+  }
+
+  window.onload = () => {
+    document.myForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+    })
+  }
 </script>
 
 <%- include('../partials/footer.ejs') %>
