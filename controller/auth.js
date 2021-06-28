@@ -6,7 +6,7 @@ const { capitalize } = require("../controller/util");
  * Middleware to check if user is logged in
  */
 module.exports.isAuth = (req, res, next) => {
-  if (!req.user) {
+  if (!req.isAuthenticated()) {
     res.redirect("/auth/login");
   } else {
     next();
