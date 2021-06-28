@@ -1,11 +1,11 @@
 /**
- * This migration will create the questions from the question bank
+ * This migration will create the questions and answers from the question bank
  */
 const { processCSV, initColumns } = require(".");
 const { connect, dropCollections } = require("../config/db.config");
 const mongoose = require("mongoose");
 const { capitalize } = require("../controller/util");
-const { Module, Question } = require("../models");
+const { Module, Question, Answer } = require("../models");
 const FILE = "resources/csv/QuestionBank.csv";
 
 let ModuleCache = {};
@@ -66,24 +66,49 @@ async function getModuleId(key) {
 }
 
 const processRow = async (row) => {
+  // Create question
+
   const module_key = parseInt(row[Columns.module_key]);
   const module_name = row[Columns.module_name];
   const content = row[Columns.content];
-  const choices = getChoicesArray(row);
   const module_id = await getModuleId(module_key);
+  const choices = getChoicesArray(row);
 
-  await Question.create({
+  const question = await Question.create({
     module_id,
     module_name,
     module_key,
     content,
-    choices,
+
+    // Get the id and text for each choice
+    choices: choices.map((choice) => {
+      return {
+        _id: choice.key,
+        text: choice.text,
+      };
+    }),
   });
+
+  console.log("Added question...[id]", question._id);
+
+  // Create answers for each choice
+
+  const question_id = question._id;
+
+  for (const choice of choices) {
+    const answer = await Answer.create({
+      question_id,
+      choice: choice.key,
+      points: choice.points,
+    });
+
+    // console.log("Added answer...[id]", answer._id);
+  }
 };
 
 async function down() {
   return new Promise(async (res) => {
-    await dropCollections(["questions"]);
+    await dropCollections(["questions", "answers"]);
     res();
   });
 }

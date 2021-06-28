@@ -16,7 +16,7 @@ require("mongoose").connection.once("open", async () => {
       const choices = question.choices;
 
       for (let j = 0; j < choices.length; j++) {
-        const key = choices[j].key.toLowerCase();
+        const key = choices[j]._id.toLowerCase();
         choices[j].image = imageDir + count + key + ".png";
       }
     }

@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 /**
  * The user assessment model is used to track
  * the assessments enrolled by the user. The id of the
  * object is the access code for this assessment.
  */
 
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 const model = mongoose.model;
 const ObjectId = Schema.Types.ObjectId;
 
@@ -29,18 +29,6 @@ const schema = new Schema({
   completed: {
     type: Boolean,
     default: false,
-  },
-  reports: {
-    created: Boolean,
-    file_url: String,
-    date_created: Date,
-    prev_file_urls: [String],
-  },
-  plots: {
-    created: Boolean,
-    file_url: String,
-    date_created: Date,
-    prev_file_urls: [String],
   },
 });
 

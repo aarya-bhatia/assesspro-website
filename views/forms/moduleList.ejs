@@ -17,69 +17,74 @@
 
   <div class="p"><%= description %></div>
 
-  <div class="row">
+  <div class="row g-2 my-4">
+
     <script>
-        let index,module_id,value;
-        let formatTimeSpent = <%- formatTimeSpent %>;
+      let index,module_id,value;
+      let formatTimeSpent = <%- formatTimeSpent %>;
     </script>
 
     <% user_modules.map((module, index)=> { %>
 
-    <div class="card col-md-6 col-lg-4 bg-light p-2 my-2">
-      <div class="card-body">
-        <div class="card-title">
-          <span class="display-6"> <%= module.module_name %> </span>
-        </div>
-        <div class="card-text">
-          <div class="mb-2">
-            <span class="text-muted"> Status: </span>
-            <span
-              class="
-                fw-bold
-                <%-
-                module.status
-                ===
-                'Pending'
-                ?
-                'text-danger'
-                :
-                'text-primary'
-                %>
-              "
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card bg-light p-2">
+        <div class="card-body">
+          <div class="card-title">
+            <span class="h4"> <%= module.module_name %> </span>
+          </div>
+          <div class="card-text">
+            <div class="mb-2">
+              <span class="text-muted"> Status: </span>
+              <span
+                class="
+                  fw-bold
+                  <%-
+                  module.status
+                  ===
+                  'Pending'
+                  ?
+                  'text-danger'
+                  :
+                  'text-primary'
+                  %>
+                "
+              >
+                <%= module.status %>
+              </span>
+            </div>
+
+            <div class="mb-2">
+              <span class="text-muted"> Questions Attempted: </span>
+              <span class="fw-bold">
+                <%= module.no_attempted %> of <%= module.no_questions %>
+              </span>
+            </div>
+
+            <div class="mb-2">
+              <span class="text-muted"> Time Spent: </span>
+              <span class="fw-bold" id="moduleTimerDisplay_<%= index %>">
+                <%= formatTimeSpent(module.time_spent || 0) %>
+              </span>
+            </div>
+
+            <script>
+              module_id = "<%= module._id %>";
+              index = "<%= index %>";
+              if (localStorage.getItem(module_id)) {
+                value = Number(localStorage.getItem(module_id));
+                document.getElementById(
+                  "moduleTimerDisplay_" + index
+                ).innerText = formatTimeSpent(value);
+              }
+            </script>
+
+            <!-- actions -->
+            <a
+              href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
+              class="btn btn-dark"
+              >Open</a
             >
-              <%= module.status %>
-            </span>
           </div>
-
-          <div class="mb-2">
-            <span class="text-muted"> Questions Attempted: </span>
-            <span class="fw-bold">
-              <%= module.no_attempted %> of <%= module.no_questions %>
-            </span>
-          </div>
-
-          <div class="mb-2">
-            <span class="text-muted"> Time Spent: </span>
-            <span class="fw-bold" id="moduleTimerDisplay_<%= index %>">
-              <%= formatTimeSpent(module.time_spent || 0) %>
-            </span>
-          </div>
-
-          <script>
-            module_id = "<%= module._id %>";
-            index = "<%= index %>";
-            if (localStorage.getItem(module_id)) {
-              value = Number(localStorage.getItem(module_id));
-              document.getElementById("moduleTimerDisplay_" + index).innerText = formatTimeSpent(value)
-            }
-          </script>
-
-          <!-- actions -->
-          <a
-            href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
-            class="btn btn-dark"
-            >Open</a
-          >
         </div>
       </div>
     </div>

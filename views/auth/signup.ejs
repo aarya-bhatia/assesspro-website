@@ -7,7 +7,7 @@
 
     <div class="row mb-3">
       <div class="col-6">
-        <label for="firstname">First Name</label>
+        <label for="firstname" class="text-muted">First Name</label>
         <input
           type="text"
           name="firstname"
@@ -21,7 +21,7 @@
       </div>
 
       <div class="col-6">
-        <label for="lastname">Last Name</label>
+        <label for="lastname" class="text-muted">Last Name</label>
         <input
           type="text"
           name="lastname"
@@ -35,7 +35,7 @@
     </div>
 
     <% if(error.name) { %>
-    <div class="bg-warning p-2 my-2 rounded"><%= error.name %></div>
+    <div class="alert alert-danger"><%= error.name %></div>
     <% } %>
 
     <label for="email" class="form-label text-muted">Email</label>
@@ -49,7 +49,7 @@
     />
 
     <% if(error.email) { %>
-    <div class="bg-warning p-2 my-2 rounded"><%= error.email %></div>
+    <div class="alert alert-danger"><%= error.email %></div>
     <% } %>
 
     <label for="password" class="form-label text-muted">Password</label>
@@ -65,13 +65,13 @@
     />
 
     <% if(error.password) { %>
-    <div class="bg-warning p-2 my-2 rounded"><%= error.password %></div>
+    <div class="alert alert-danger"><%= error.password %></div>
     <% } %>
 
     <input type="submit" class="form-control btn btn-primary py-2 mb-2" />
 
     <% if(error.other) { %>
-    <div class="bg-warning p-2 my-2 rounded">[ERROR] <%= error.other %></div>
+    <div class="alert alert-danger">[ERROR] <%= error.other %></div>
     <% } %>
 
   </form>

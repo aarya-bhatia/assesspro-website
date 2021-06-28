@@ -69,11 +69,9 @@ async function createUserModules(user_id, assessment_id, modules) {
     );
 
     for (const module of modules) {
-      console.log(module);
       const m = await Module.findById(module._id);
-      // console.log("m: ", m);
 
-      UserModule.create({
+      await UserModule.create({
         user_id,
         assessment_id,
         module_id: m._id,

@@ -55,8 +55,8 @@
           <input
             type="radio"
             class="form-check-input"
+            id="<%= question._id + '_' + choice._id %>"
             name="<%= question._id %>"
-            id="<%= choice._id %>"
             value="<%= choice._id %>"
           />
 
@@ -86,9 +86,10 @@
   </form>
 </div>
 
-<% user_answers.map(id => { %>
+<!-- Populate previous answers in the form -->
+<% user_answers.map(({question_id, choice}) => { %>
 <script>
-  document.getElementById("<%= id %>").checked = true;
+  document.getElementById("<%= question_id + '_' + choice %>").checked = true;
 </script>
 <% }) %>
 

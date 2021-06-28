@@ -17,17 +17,17 @@ module.exports = new GoogleStrategy(
       if (currentUser) {
         console.log("[Google oauth] user is: ", currentUser);
         return done(null, currentUser);
+      } else {
+        const newUser = await UserProfile.create({
+          name: profile.displayName,
+          img_url: profile.photos[0].value,
+          email: profile.emails[0].value,
+          provider: { name: profile.provider, id: profile.id },
+        });
+
+        console.log("[Google oauth] created user: ", newUser);
+        return done(null, newUser);
       }
-
-      const newUser = UserProfile.create({
-        name: profile.displayName,
-        img_url: profile.photos[0].value,
-        email: profile.emails[0].value,
-        provider: { name: profile.provider, id: profile.id },
-      });
-
-      console.log("[Google oauth] created user: ", newUser);
-      return done(null, newUser);
     } catch (err) {
       done(err);
     }

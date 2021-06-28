@@ -17,8 +17,8 @@ const schema = new Schema({
   module_id: { type: ObjectId, required: true },
   module_key: Number,
   module_name: String,
-  choice_id: { type: ObjectId, required: true },
-  value: String
+  choice: String,
+  value: String,
 });
 
 module.exports = model("UserAnswer", schema);

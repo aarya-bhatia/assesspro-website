@@ -11,10 +11,9 @@ const schema = new Schema({
   image: String,
   choices: [
     {
-      key: String,
+      _id: String, // Choice id is the key, i.e A,B,C,D or E.
       text: String,
       image: String,
-      points: Number,
     },
   ],
 });
