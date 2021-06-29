@@ -132,6 +132,9 @@ module.exports.openReport = async (req, res) => {
 // Upload profile picture
 module.exports.uploadProfilePicture = async (req, res) => {
   console.log("uploaded profile picture");
+  if (!req.file) {
+    throw Error("File Not Found");
+  }
   const { key } = req.file;
   UserProfile.findById(req.user._id).then((found) => {
     found.img_url = `/users/images/${key}`;
