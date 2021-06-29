@@ -72,13 +72,11 @@ module.exports.formatTime = (date) => {
 module.exports.formatTimeSpent = (milli) => {
   let sec = Math.round((milli / 1000) % 60);
   let min = Math.round(milli / 1000 / 60);
-  if (sec < 10) {
-    sec = `0${sec}`;
+  if (min > 0) {
+    return `${min}m ${sec}s`;
+  } else {
+    return sec + "s";
   }
-  if (min < 10) {
-    min = `0${min}`;
-  }
-  return `${min} min ${sec} sec`;
 };
 
 module.exports.getYearSuffix = (date) => {

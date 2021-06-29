@@ -15,80 +15,84 @@
 
   <div class="p"><%= description %></div>
 
-  <div class="row g-2 my-4">
-    <script>
-      let index,module_id,value;
-      let formatTimeSpent = <%- formatTimeSpent %>;
-    </script>
+  <br />
 
-    <% user_modules.map((module, index)=> { %>
+  <script>
+    let index, module_id, value;
+    let formatTimeSpent = <%- formatTimeSpent %>;
+  </script>
 
-    <div class="col-sm-12 col-md-6 col-lg-4">
-      <div class="card bg-light p-2">
-        <div class="card-body">
-          <div class="card-title">
-            <span class="h4"> <%= module.module_name %> </span>
+  <% user_modules.map((module, index)=> { %>
+
+  <div class="card shadow-sm p-2 mb-4 bg-body rounded">
+    <div class="card-body">
+      <div class="card-text">
+        <div class="row g-2">
+          <!-- Title -->
+          <div class="col-md-4">
+            <div class="fw-bold"><%= module.module_name %></div>
           </div>
-          <div class="card-text">
-            <div class="mb-2">
-              <span class="text-muted"> Status: </span>
-              <span
-                class="
-                  fw-bold
-                  <%-
-                  module.status
-                  ===
-                  'Pending'
-                  ?
-                  'text-danger'
-                  :
-                  'text-primary'
-                  %>
-                "
-              >
-                <%= module.status %>
-              </span>
+
+          <!-- Total Questions -->
+          <div class="col-xs-6 col-sm-4 col-md-2">
+            <div class="text-muted">Questions</div>
+            <div><%= module.no_questions %></div>
+          </div>
+
+          <!-- Questions Attempted -->
+          <div class="col-xs-6 col-sm-4 col-md-2">
+            <div class="text-muted">Attempted</div>
+            <div><%= module.no_attempted %></div>
+          </div>
+
+          <!-- Time Spent -->
+          <div class="col-xs-6 col-sm-4 col-md-2">
+            <div class="text-muted">Time Spent</div>
+            <div class='small' id="moduleTimerDisplay_<%= index %>">
+              <%= formatTimeSpent(module.time_spent || 0) %>
             </div>
+          </div>
 
-            <div class="mb-2">
-              <span class="text-muted"> Questions Attempted: </span>
-              <span class="fw-bold">
-                <%= module.no_attempted %> of <%= module.no_questions %>
-              </span>
-            </div>
+          <!-- Status -->
+          <div class="col-xs-6 col-sm-4 col-md-2">
+            <% if(module.status === 'Pending') { %>
+            <div class="badge rounded-pill bg-light text-dark p-2"><%= module.status %></div>
+            <% } else { %>
+            <div class="badge rounded-pill bg-dark text-light p-2"><%= module.status %></div>
+            <% } %>
+          </div>
 
-            <div class="mb-2">
-              <span class="text-muted"> Time Spent: </span>
-              <span class="fw-bold" id="moduleTimerDisplay_<%= index %>">
-                <%= formatTimeSpent(module.time_spent || 0) %>
-              </span>
-            </div>
-
-            <script>
-              module_id = "<%= module._id %>";
-              index = "<%= index %>";
-              if (localStorage.getItem(module_id)) {
-                value = Number(localStorage.getItem(module_id));
-                document.getElementById(
-                  "moduleTimerDisplay_" + index
-                ).innerText = formatTimeSpent(value);
-              }
-            </script>
-
-            <!-- actions -->
+          <!-- Action -->
+          <div class="col-xs-6 col-sm-4 col-md-2">
             <a
               href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
               class="btn btn-dark"
               >Open</a
             >
           </div>
-        </div>
-      </div>
-    </div>
-    <% }) %>
 
-    <!-- end row -->
+          <!-- End Row -->
+        </div>
+
+        <!-- End card-text -->
+      </div>
+
+      <!-- End card-body -->
+    </div>
+
+    <script>
+      module_id = "<%= module._id %>";
+      index = "<%= index %>";
+      if (localStorage.getItem(module_id)) {
+        value = Number(localStorage.getItem(module_id));
+        document.getElementById("moduleTimerDisplay_" + index).innerText =
+          formatTimeSpent(value);
+      }
+    </script>
+
+    <!-- End card -->
   </div>
+  <% }) %>
 
   <!-- submit assessment -->
   <form name="myForm" action="/forms/<%= assessment_id %>/score" method="POST">
@@ -104,32 +108,28 @@
       Please attempt all modules in this assessment before you submit.
     </p>
 
-    <button class="btn btn-primary" onclick="handleSubmit()">
-      Submit All
-    </button>
+    <button class="btn btn-primary" onclick="handleSubmit()">Submit All</button>
   </form>
 
   <!-- container end -->
 </div>
 
 <script>
-
-  const user_module_ids = <%- JSON.stringify(user_modules.map(user_module => user_module._id)) %>
-
-  console.log(user_module_ids)
+  const user_module_ids = <%- JSON.stringify(user_modules.map(user_module => user_module._id)) %>;
+  // console.log(user_module_ids);
 
   function handleSubmit() {
     if (confirm("Are you sure you wish to submit the test? Make sure you have completed all the modules.")) {
 
       // clear local timers
-      for(const key of user_module_ids) {
-        if(localStorage.getItem(key)) {
+      for (const key of user_module_ids) {
+        if (localStorage.getItem(key)) {
           localStorage.removeItem(key);
         }
       }
 
       document.myForm.submit();
-    } 
+    }
     else {
       console.log("Not submitting form.");
     }

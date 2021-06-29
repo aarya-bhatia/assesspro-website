@@ -104,9 +104,11 @@ app.use((err, req, res, next) => {
     "=================================================================="
   );
   console.log(err);
-  res
-    .status(err.status || 500)
-    .json({ ...err, message: err.message || "There was an error!" });
+
+  res.render("error/index", {
+    loggedIn: res.locals.loggedIn,
+    message: err.message || "There was an error!",
+  });
 });
 
 // start listening on port

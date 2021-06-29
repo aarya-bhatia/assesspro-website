@@ -17,7 +17,7 @@ router.get("/:id", async (req, res) => {
       assessment_id: id,
     });
   } else {
-    res.render("error/FileNotFound", {
+    res.render("error/index", {
       loggedIn: res.locals.loggedIn,
       message: "Sorry, this assessment is not currently available!",
     });
