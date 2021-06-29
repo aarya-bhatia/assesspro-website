@@ -35,20 +35,20 @@
 
           <!-- Total Questions -->
           <div class="col-xs-6 col-sm-4 col-md-2">
-            <div class="text-muted">Questions</div>
+            <div class="small text-muted">Questions</div>
             <div><%= module.no_questions %></div>
           </div>
 
           <!-- Questions Attempted -->
           <div class="col-xs-6 col-sm-4 col-md-2">
-            <div class="text-muted">Attempted</div>
+            <div class="small text-muted">Attempted</div>
             <div><%= module.no_attempted %></div>
           </div>
 
           <!-- Time Spent -->
           <div class="col-xs-6 col-sm-4 col-md-2">
-            <div class="text-muted">Time Spent</div>
-            <div class='small' id="moduleTimerDisplay_<%= index %>">
+            <div class="small text-muted">Time Spent</div>
+            <div class="small" id="moduleTimerDisplay_<%= index %>">
               <%= formatTimeSpent(module.time_spent || 0) %>
             </div>
           </div>
@@ -56,9 +56,13 @@
           <!-- Status -->
           <div class="col-xs-6 col-sm-4 col-md-2">
             <% if(module.status === 'Pending') { %>
-            <div class="badge rounded-pill bg-light text-dark p-2"><%= module.status %></div>
+            <div class="badge rounded-pill bg-light text-dark p-2">
+              <%= module.status %>
+            </div>
             <% } else { %>
-            <div class="badge rounded-pill bg-dark text-light p-2"><%= module.status %></div>
+            <div class="badge rounded-pill bg-dark text-light p-2">
+              <%= module.status %>
+            </div>
             <% } %>
           </div>
 
@@ -66,7 +70,7 @@
           <div class="col-xs-6 col-sm-4 col-md-2">
             <a
               href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
-              class="btn btn-dark"
+              class="btn btn-sm btn-outline-dark"
               >Open</a
             >
           </div>
