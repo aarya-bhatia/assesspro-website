@@ -32,7 +32,15 @@ async function requestPasswordReset(email) {
       createdAt: Date.now(),
     });
 
-    const link = `/auth/passwordReset?token=${resetToken}&id=${user_id}`;
+    let clientURL = "";
+
+    if (process.env.NODE_ENV === "production") {
+      clientURL = process.env.DEV_CLIENT_URL;
+    } else {
+      clientURL = process.env.PROD_CLIENT_URL;
+    }
+
+    const link = `${clientURL}/auth/passwordReset?token=${resetToken}&id=${user_id}`;
 
     await sendEmail(
       user.email,
