@@ -19,10 +19,12 @@
           console.log('Chart completed')
           const link = document.getElementById('save_<%= scoreIndex %>')
           const canvas = document.getElementById('<%= userScore._id %>')
-          link.onclick = () => {
-            canvas.toBlob(blob => {
-              saveAs(blob, "<%= userScore.assessment_key + '_' + (Date.now()) + '.png' %>")
-            })
+          if(link) {
+            link.onclick = () => {
+              canvas.toBlob(blob => {
+                saveAs(blob, "<%= userScore.assessment_key + '_' + (Date.now()) + '.png' %>")
+              })
+            }
           }
         }
       },

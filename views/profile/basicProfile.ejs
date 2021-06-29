@@ -1,20 +1,12 @@
 <div class="container text-center">
-  <!-- Start -->
-
   <!-- Profile picture -->
-  <div class="my-2 mx-auto">
-    <%- include('./thumbnail.ejs', { img_url: user.img_url, name: user.name })
-    %>
-  </div>
+  <%- include('./thumbnail.ejs', { img_url: user.img_url, name: user.name }) %>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <!-- Name -->
-      <h1 class="display-4"><%= user.name %></h1>
-      <!-- Email -->
-      <p><%= user.email %></p>
-    </div>
-  </div>
+  <!-- Name -->
+  <h1 class="display-4"><%= user.name %></h1>
+
+  <!-- Email -->
+  <p><%= user.email %></p>
 
   <!-- Bio -->
   <% if(user.bio) { %>
@@ -27,6 +19,4 @@
     <%= user.address.city %> <% } %> <% if(user.address.state) { %> , <%=
     user.address.state %> <% } %>
   </p>
-
-  <!-- End -->
 </div>

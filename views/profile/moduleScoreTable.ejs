@@ -1,17 +1,13 @@
-<table class="table table-striped table-hover">
+<table class="table table-bordered table-hover">
 <thead>
 <tr>
-<th>#</th>
 <th>Module</th>
 <th>Score</th>
 </thead>
 </tr>
 <tbody>
-<% userScore.module_scores.map((moduleScore, i)=> { %>
+<% userScore.module_scores.map(moduleScore => { %>
 <tr>
-    <td>
-    <%= i+1 %>
-    </td>
     <td>
     <%= moduleScore.name %>
     </td>

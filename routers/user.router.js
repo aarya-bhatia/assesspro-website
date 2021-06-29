@@ -7,7 +7,6 @@ const {
   openReport,
   uploadProfilePicture,
   downloadProfilePicture,
-  listUserAssessments,
   deleteUserScore,
   DeleteAccount,
 } = require("../controller/user.profile.js");
@@ -46,9 +45,6 @@ router.post("/upload", uploadImage.single("fileUpload"), uploadProfilePicture);
 
 // Download profile image from s3 bucket
 router.get("/images/:key", downloadProfilePicture);
-
-// List user assessments
-router.get("/assessments", listUserAssessments);
 
 // Enroll user in assessment
 router.get(

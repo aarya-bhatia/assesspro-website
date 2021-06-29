@@ -1,0 +1,66 @@
+<div class="container mt-2">
+  <div class="display-6 text-center">My Assessments</div>
+
+  <% if(assessments.length === 0) { %>
+  <p>
+    You do not have any assessments. Click <a href="/">here</a> to find one...
+  </p>
+  <% } else { %> <% assessments.map(({ assessment_id, assessment_name,
+  date_purchased, completed, attempts })=> { %>
+
+  <div class="card shadow-sm p-2 my-4 rounded bg-body">
+    <div class="card-body">
+      <div class="card-text">
+        <div class="row g-2">
+          <div class="col-md-6">
+            <div class=""><%= assessment_name %></div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="text-muted small">Start Date</div>
+            <div><%= formatDateString(date_purchased) %></div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="text-muted small">Status</div>
+            <% if(completed) { %>
+            <div class="badge badge-pill bg-light text-dark">Complete</div>
+            <% } else { %>
+            <div class="badge badge-pill bg-dark text-light">Pending</div>
+            <% } %>
+          </div>
+
+          <div class="col-md-2">
+            <div class="text-muted">Attempts</div>
+            <div><%= attempts %></div>
+          </div>
+
+          <div class="col-md-12">
+            <a href="/forms/<%= assessment_id %>" class="btn btn-outline-dark"
+              >Open</a
+            >
+            <a
+              href="/users/unenroll/<%= assessment_id %>"
+              class="btn btn-outline-danger"
+              >Remove</a
+            >
+          </div>
+
+          <!-- end row -->
+        </div>
+
+        <!-- end card-text -->
+      </div>
+
+      <!-- end card-body -->
+    </div>
+
+    <!-- end card -->
+  </div>
+  <% }) %>
+
+  <!-- end else -->
+  <% } %>
+
+  <!-- end container -->
+</div>

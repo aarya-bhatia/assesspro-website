@@ -40,6 +40,9 @@ module.exports.getUserProfile = async (req, res) => {
     .sort("-date")
     .exec();
 
+  const user_id = req.user._id;
+  const assessments = await UserAssessment.find({ user_id });
+
   res.render("profile/profile", {
     loggedIn: true,
     user: req.user,
@@ -47,6 +50,7 @@ module.exports.getUserProfile = async (req, res) => {
     formatTime,
     formatDateString,
     getChartData,
+    assessments,
   });
 };
 
@@ -146,16 +150,6 @@ module.exports.downloadProfilePicture = async (req, res) => {
   const { key } = req.params;
   const readStream = downloadImage(key);
   readStream.pipe(res);
-};
-
-module.exports.listUserAssessments = async (req, res) => {
-  const user_id = req.user._id;
-  const assessments = await UserAssessment.find({ user_id });
-  res.render("forms/assessmentList", {
-    loggedIn: true,
-    assessments,
-    formatDateString,
-  });
 };
 
 module.exports.deleteUserScore = async (req, res) => {

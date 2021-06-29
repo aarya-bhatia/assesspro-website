@@ -2,41 +2,44 @@
 locals: {
   user,
   loggedIn,
-  userScores
+  userScores,
+  assessments
 }
 -->
 
-<%- include('./profileHeader.ejs', { loggedIn }) %>
-<%- include('./basicProfile', { user }) %> 
-<%- include('./profileNav', { user }) %>
+<%- include('./profileHeader.ejs', { loggedIn }) %> <%-
+include('./basicProfile', { user }) %> <%- include('./profileNav', { user }) %>
+<%- include('./assessmentList', { assessments }) %>
 
 <!-- SCORES -->
 <!-- left col of row has table, and right has the chart -->
 <div class="container mt-2">
-  <% userScores.map((userScore, scoreIndex)=> { %> 
-  <%- include('./userScoreHeader.ejs', { userScore, formatDateString, formatTime }) %>
+  <% userScores.map((userScore, scoreIndex)=> { %> <%-
+  include('./userScoreHeader.ejs', { userScore, formatDateString, formatTime })
+  %>
   <div class="row">
     <div class="col-lg-6 mb-3">
-      <%- include('./moduleScoreTable.ejs', { userScore }) %> 
-      <%- include('./userScoreActions.ejs', { userScore }) %>
+      <%- include('./moduleScoreTable.ejs', { userScore }) %> <%-
+      include('./userScoreActions.ejs', { userScore }) %>
     </div>
     <div class="col-lg-6 mb-3">
       <canvas id="<%= userScore._id %>"></canvas>
       <div class="d-flex justify-content-center">
-        <button class="btn btn-primary" id="save_<%= scoreIndex %>">Save as image</button>
+        <button class="btn btn-primary" id="save_<%= scoreIndex %>">
+          Save as image
+        </button>
       </div>
     </div>
 
-    <% if(userScore.plot_type == 'hbar') { %>
-    <%- include('./scripts/createBarChart.ejs', { userScore, scoreIndex, getChartData }) %>
-    <% } else { %> 
-    <%- include('./scripts/createScoreChart.ejs', { userScore, scoreIndex, getChartData }) %>
-    <% } %>
-    
-    <script>
-      console.log("<%= userScore.plot_type %>")
-    </script>
+    <% if(userScore.plot_type == 'hbar') { %> <%-
+    include('./scripts/createBarChart.ejs', { userScore, scoreIndex,
+    getChartData }) %> <% } else { %> <%-
+    include('./scripts/createScoreChart.ejs', { userScore, scoreIndex,
+    getChartData }) %> <% } %>
 
+    <script>
+      console.log("<%= userScore.plot_type %>");
+    </script>
   </div>
   <% }) %>
 </div>

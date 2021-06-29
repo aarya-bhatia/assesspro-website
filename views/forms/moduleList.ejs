@@ -13,7 +13,7 @@
 <div class="container">
   <div class="display-5 text-center my-2"><%= title %></div>
 
-  <div class="p"><%= description %></div>
+  <div class="lead"><%= description %></div>
 
   <br />
 
@@ -27,7 +27,7 @@
   <div class="card shadow-sm p-2 mb-4 bg-body rounded">
     <div class="card-body">
       <div class="card-text">
-        <div class="row g-2">
+        <div class="row g-2 align-items-stretch justify-content-between align-content-around">
           <!-- Title -->
           <div class="col-md-4">
             <div class="fw-bold"><%= module.module_name %></div>
@@ -112,7 +112,7 @@
       Please attempt all modules in this assessment before you submit.
     </p>
 
-    <button class="btn btn-primary" onclick="handleSubmit()">Submit All</button>
+    <button class="btn btn-outline-primary" onclick="handleSubmit()">Submit All</button>
   </form>
 
   <!-- container end -->
