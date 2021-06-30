@@ -128,3 +128,24 @@ module.exports.getChartData = function (userScore) {
 module.exports.shuffleOrder = function () {
   return 0.5 - Math.random();
 };
+
+module.exports.getOrSetRedisCache = function (CLIENT, key, callback) {
+  return new Promise(function (resolve, reject) {
+    CLIENT.get(key, async function (error, data) {
+      if (error) {
+        return reject(error);
+      }
+      if (data) {
+        return resolve(JSON.parse(data));
+      } else {
+        const newData = await callback();
+        CLIENT.setex(
+          key,
+          process.env.DEFAULT_EXPIRATION,
+          JSON.stringify(newData)
+        );
+        resolve(newData);
+      }
+    });
+  });
+};

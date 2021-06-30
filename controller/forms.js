@@ -1,5 +1,10 @@
-const { formatTimeSpent, shuffleOrder } = require("../controller/util");
+const {
+  formatTimeSpent,
+  shuffleOrder,
+  getOrSetRedisCache,
+} = require("../controller/util");
 const { Question, UserAnswer, UserModule } = require("../models");
+const RedisClient = require("../config/redis.config");
 
 module.exports = {
   getModuleList,
@@ -36,10 +41,19 @@ async function getModuleForm(req, res) {
   const user_module = await UserModule.findById(user_module_id);
   const { module_id, module_name } = user_module;
 
-  const questions = await Question.find({ module_id });
+  const questions = await getOrSetRedisCache(
+    RedisClient,
+    `questions?module_id=${module_id}`,
+    async () => {
+      return await Question.find({ module_id });
+    }
+  );
 
-  // console.log("QUESTIONS", questions);
+  // console.log(questions);
+
   questions.sort(shuffleOrder);
+
+  console.log("Num questions: ", questions.length);
 
   const user_answers = await UserAnswer.find({
     user_id: req.user._id,
