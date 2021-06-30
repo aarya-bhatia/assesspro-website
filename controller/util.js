@@ -124,3 +124,7 @@ module.exports.getChartData = function (userScore) {
   };
   return JSON.stringify(data);
 };
+
+module.exports.shuffleOrder = function () {
+  return 0.5 - Math.random();
+};

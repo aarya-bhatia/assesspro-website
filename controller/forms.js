@@ -1,4 +1,4 @@
-const { formatTimeSpent } = require("../controller/util");
+const { formatTimeSpent, shuffleOrder } = require("../controller/util");
 const { Question, UserAnswer, UserModule } = require("../models");
 
 module.exports = {
@@ -39,6 +39,7 @@ async function getModuleForm(req, res) {
   const questions = await Question.find({ module_id });
 
   // console.log("QUESTIONS", questions);
+  questions.sort(shuffleOrder);
 
   const user_answers = await UserAnswer.find({
     user_id: req.user._id,
