@@ -1,0 +1,53 @@
+<%- include("partials/header.ejs", { loggedIn }); %>
+
+<div class="container text-center">
+  <div class="display-4 mb-4">Contact Us</div>
+  <div class="mb-4">
+    <span class="bi bi-envelope"></span>
+    <span class="lead text-muted">suchitra.marwah@aspireimpact.in</span>
+  </div>
+
+  <div class="mb-4">
+    <span class="bi bi-geo-alt"></span>
+    <span class="lead text-muted"
+      >2, Akashneem Marg DLF City Phase 2, Gurgaon</span
+    >
+  </div>
+
+  <form action="/contact-us" method="POST" class="w-75 mx-auto">
+    <% if(success) { %>
+    <div class="alert alert-success">Message sent successfully.</div>
+    <% } %> <% if(error) { %>
+    <div class="alert alert-danger">Error...</div>
+    <% } %>
+
+    <input
+      name="name"
+      type="text"
+      placeholder="Name"
+      class="form-control mb-4 p-2"
+      required
+    />
+
+    <input
+      type="email"
+      name="email"
+      placeholder="Email"
+      class="form-control mb-4 p-2"
+      required
+    />
+
+    <textarea
+      name="message"
+      id="message"
+      rows="5"
+      placeholder="Message"
+      class="form-control p-2 mb-4"
+      required
+    ></textarea>
+
+    <input type="submit" class="btn btn-primary px-4 py-2" value="Send" />
+  </form>
+</div>
+
+<%- include("partials/footer.ejs", { loggedIn }); %>

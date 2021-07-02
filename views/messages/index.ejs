@@ -1,0 +1,22 @@
+<%- include('../partials/header', { loggedIn }) %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 h4">Contacts</div>
+    <div class="col-md-8 h4">Messages</div>
+  </div>
+
+  <div class="list-group">
+    <% contacts.forEach(contact=> { %>
+    <div class="list-group item">
+      <div class="row">
+        <div class="col-md-4"><%= contact.name %></div>
+
+        <div class="col-md-8"></div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('../partials/footer', { loggedIn }) %>

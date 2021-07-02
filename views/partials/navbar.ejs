@@ -1,13 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
     <a href="/" class="navbar-brand">
-      <img src="/images/aspire_logo.png" class="img-fluid" alt="logo" width="100" />
+      <img
+        src="/images/aspire_logo.png"
+        class="img-fluid"
+        alt="logo"
+        width="100"
+      />
     </a>
     <a href="/" class="navbar-brand">
-      <img src="/images/aspire_impact_logo.png" class="img-fluid" alt="logo" width="100" />
+      <img
+        src="/images/aspire_impact_logo.png"
+        class="img-fluid"
+        alt="logo"
+        width="100"
+      />
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
-      aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar"
+      aria-controls="navbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -18,25 +35,35 @@
         </li>
 
         <li class="nav-item">
+          <a href="/contact-us" class="nav-link">Contact</a>
+        </li>
+
+        <li class="nav-item">
           <a href="/users/profile" class="nav-link">Profile</a>
         </li>
 
         <!-- user not logged in -->
         <% if(!loggedIn) { %>
-          <li class="nav-item">
-            <a href="/auth/login" class="nav-link">Login</a>
-          </li>
+        <li class="nav-item">
+          <a href="/auth/login" class="nav-link">Login</a>
+        </li>
 
-          <li class="nav-item">
-            <a href="/auth/signup" class="nav-link">Register</a>
-          </li>
+        <li class="nav-item">
+          <a href="/auth/signup" class="nav-link">Register</a>
+        </li>
 
-          <!-- user is logged in -->
-          <% } else { %>
-            <li class="nav-item">
-              <a href="/auth/logout" class="nav-link">Logout</a>
-            </li>
-            <% } %>
+        <!-- user is logged in -->
+        <% } else { %>
+
+        <li class="nav-item">
+          <a href="/messages" class="nav-link">Messages</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/auth/logout" class="nav-link">Logout</a>
+        </li>
+
+        <% } %>
       </ul>
     </div>
   </div>

@@ -30,6 +30,7 @@ require("./config/db.config.js").connect();
 require("./config/passport.config.js");
 
 // middleware
+app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
@@ -39,33 +40,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(isLoggedIn);
 
-// static assets
-app.use(express.static("public"));
-app.use("/css", express.static(path.join(__dirname, "public/css")));
-app.use("/js", express.static(path.join(__dirname, "public/js")));
-app.use("/images", express.static(path.join(__dirname, "public/images")));
-app.use(
-  "/favicon_io",
-  express.static(path.join(__dirname, "public/favicon_io"))
-);
-
-// Auth Router
+// Routers
 app.use("/auth", require("./routers/auth.router"));
-
-// Assessment Router
 app.use("/assessments", require("./routers/assessment.router"));
-
-// User Router
 app.use("/users", isAuth, require("./routers/user.router"));
-
-// Forms Router
 app.use(
   "/forms/:assessment_id",
   [isAuth, checkUserEnrolled],
   require("./routers/forms.router")
 );
-
-// Root route
+app.use("/messages", require("./routers/message.router"));
 app.use(require("./routers/index.router"));
 
 // start listening on port
