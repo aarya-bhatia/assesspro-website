@@ -1,13 +1,7 @@
 <div class="container text-center">
-  <!-- Profile picture -->
-  <%- include('./thumbnail.ejs', { img_url: user.img_url, name: user.name }) %>
-
-  <!-- Name -->
-  <h1 class="display-4"><%= user.name %></h1>
-
-  <!-- Email -->
-  <p><%= user.email %></p>
-
+  <%- include('./thumbnail', { img_url: user.img_url }) %>
+  <h5 class="mt-2"><%= user.name %></h5>
+  <p class=""><%= user.email %></p>
   <!-- Bio -->
   <% if(user.bio) { %>
   <p><%= user.bio %></p>
