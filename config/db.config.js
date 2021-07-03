@@ -19,6 +19,7 @@ const options = {
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true,
+  autoIndex: true,
 };
 
 // OPEN CONNECTION TO DATABASE

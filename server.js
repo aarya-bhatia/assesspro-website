@@ -30,7 +30,7 @@ require("./config/db.config.js").connect();
 require("./config/passport.config.js");
 
 // middleware
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require("cors")());
@@ -43,13 +43,18 @@ app.use(isLoggedIn);
 // Routers
 app.use("/auth", require("./routers/auth.router"));
 app.use("/assessments", require("./routers/assessment.router"));
+
 app.use("/users", isAuth, require("./routers/user.router"));
+app.use("/contacts", isAuth, require("./routers/contacts.router"));
+app.use("/chats", isAuth, require("./routers/chat.router"));
+
 app.use(
   "/forms/:assessment_id",
   [isAuth, checkUserEnrolled],
   require("./routers/forms.router")
 );
-app.use("/messages", require("./routers/message.router"));
+
+app.use(require("./routers/help.router"));
 app.use(require("./routers/index.router"));
 
 // start listening on port

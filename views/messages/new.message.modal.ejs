@@ -1,0 +1,51 @@
+<div
+  id="new-message-modal"
+  class="modal fade"
+  tabindex="-1"
+  aria-labelledby="new message modal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Compose New Message</div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <input
+            type="text"
+            class="form-control w-100 p-2"
+            placeholder="Search contacts..."
+          />
+        </form>
+        <div class="list-group overflow-scroll">
+          <% users.forEach(profile => { %>
+          <a href="/chats?user_id=<%= profile._id %>" class="btn">
+            <div
+              class="list-group-item"
+              onclick="openChatWithUser('<%= profile._id %>')"
+            >
+              <div>
+                <img
+                  src="<%= profile.img_url %>"
+                  alt="profile picture"
+                  class="img-fluid rounded-circle mb-2"
+                  width="64"
+                />
+              </div>
+              <div class="h5"><%= profile.name %></div>
+              <div class="small text-muted"><%= profile.email %></div>
+            </div>
+          </a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

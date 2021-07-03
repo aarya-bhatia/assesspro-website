@@ -7,9 +7,11 @@ const schema = new Schema({
   contact_id: ObjectId,
   contact_name: String,
   contact_img_url: String,
+  contact_email: String,
   status: {
     type: String,
     enum: ["Pending", "Blocked", "Active"],
+    default: "Pending",
   },
 });
 

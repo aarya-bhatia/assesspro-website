@@ -1,0 +1,68 @@
+<form onsubmit="return handleSubmit(event)">
+  <p class="form-text">Filter contacts using the options below.</p>
+  <div class="d-flex justify-space-between">
+    <select name="filterType" class="form-select w-25">
+      <option value="email">Email</option>
+      <option value="text">Text</option>
+    </select>
+    <input
+      class="form-control p-2 w-75 mx-4 bg-light"
+      name="search"
+      type="text"
+      placeholder="Search..."
+    />
+    <input type="submit" class="btn btn-outline-success px-2" value="Search" />
+  </div>
+</form>
+
+<div id="alert-messages">
+  <template data-alert-message class="alert alert-success"></template>
+</div>
+
+<div class="list-group mt-4">
+  <% users.map(user_profile => { %>
+  <div class="list-group-item">
+    <div class="d-flex p-2">
+      <img
+        src="<%= user_profile.img_url %>"
+        alt="user profile picture"
+        class="img-fluid img-thumbnail"
+        width="128"
+      />
+      <div class="ms-4">
+        <div class="h4"><%= user_profile.name %></div>
+        <div><%= user_profile.email %></div>
+        <button
+          class="mt-2 btn btn-outline-primary"
+          onclick="return addContact('<%= user_profile._id %>')"
+        >
+          ADD
+        </button>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
+
+<script type="text/javascript">
+  const users = (<%- JSON.stringify(users) %>)
+
+    const searchInput = document.querySelector("input[name='search']");
+    const alertMessages = document.querySelector("#alert-messages");
+    const alertMessageTemplate = document.querySelector('[data-alert-message]')
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const value = searchInput.value;
+      console.log(value);
+    }
+
+    function addContact(contact_id) {
+      const child = alertMessageTemplate.content.cloneNode(true)
+      const contact = users.find((user) => user._id == contact_id);
+      child.textContent = "Adding contact: " + contact.name;
+
+      console.log(child)
+      alertMessages.appendChild(child)
+    }
+</script>

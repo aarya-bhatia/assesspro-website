@@ -12,6 +12,7 @@ module.exports = {
   UserCart: require("./UserCart"),
   Feedback: require("./feedback.js"),
   Token: require("./token"),
+  Chat: require("./chat"),
   Message: require("./message"),
   Contact: require("./contact"),
 };

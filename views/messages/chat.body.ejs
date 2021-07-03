@@ -1,0 +1,13 @@
+<div style="height: 500px; overflow-y: scroll">
+  <% chat.messages.forEach(message => { %>
+  <div class="d-flex justify-content-between text-muted small mb-2">
+    <span> <%= message.sent_at.toLocaleDateString() %> </span>
+    <span> <%= message.sent_at.toLocaleTimeString() %> </span>
+  </div>
+  <div class="small h5"><%= message.author_name %></div>
+  <% if(message.author_id.toString() == user_id.toString()) { %>
+  <div class="bg-alpha p-4 mb-3 rounded"><%= message.content %></div>
+  <% } else { %>
+  <div class="bg-beta p-4 mb-3 rounded"><%= message.content %></div>
+  <% } %> <% }) %>
+</div>

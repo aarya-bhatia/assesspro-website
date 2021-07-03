@@ -1,22 +1,48 @@
 <%- include('../partials/header', { loggedIn }) %>
 
+<!-- locals { loggedIn, user, chats }-->
+
 <div class="container">
-  <div class="row">
-    <div class="col-md-4 h4">Contacts</div>
-    <div class="col-md-8 h4">Messages</div>
+  <%- include('./new.message.modal.ejs', { users }) %>
+
+  <div class="row my-4">
+    <div class="col-md-4">
+      <button
+        class="btn btn-outline-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#new-message-modal"
+      >
+        <span class="bi bi-chat-square"></span> Message
+      </button>
+    </div>
+    <div class="col-md-4">
+      <h4>INBOX</h4>
+    </div>
   </div>
 
-  <div class="list-group">
-    <% contacts.forEach(contact=> { %>
-    <div class="list-group item">
-      <div class="row">
-        <div class="col-md-4"><%= contact.name %></div>
+  <hr />
 
-        <div class="col-md-8"></div>
-      </div>
+  <div class="row">
+    <div class="col-md-4 border-end border-2">
+      <%- include('./contacts', { chats }) %>
     </div>
-    <% }) %>
+
+    <div class="col-md-8">
+      <% chats.forEach(chat => { %> <%- include('./chat.header.ejs', { chat })
+      %> <%- include('./chat.body.ejs', { user_id: user._id, chat }) %> <%-
+      include('./chat.footer.ejs', { chat }) %> <% }) %>
+    </div>
   </div>
 </div>
+
+<script>
+  function openChatWithUser(contact_id) {
+    console.log(contact_id);
+  }
+
+  function selectChat(chat_id) {
+    console.log("Chat selected: ", chat_id);
+  }
+</script>
 
 <%- include('../partials/footer', { loggedIn }) %>

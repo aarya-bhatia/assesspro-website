@@ -1,0 +1,44 @@
+<% chats.forEach(chat => { %>
+<div
+  class="mb-3"
+  style="cursor: pointer"
+  onclick="selectChat('<%= chat._id %>')"
+>
+  <div class="d-flex justify-content-around mb-2 flex-wrap">
+    <div class="">
+      <img
+        src="<%= chat.contact_img_url %>"
+        alt="contact picture"
+        class="img-fluid rounded-circle"
+        width="64"
+      />
+    </div>
+
+    <div class="ms-2 justify-content-around overflow-hidden">
+      <div class="d-flex">
+        <div class="h5 me-2"><%= chat.contact_name %></div>
+
+        <% if(chat.messages.length > 0) { %> <% const message =
+        chat.messages[chat.messages.length - 1]; %>
+
+        <div class="text-muted">
+          <%= message.sent_at.toLocaleDateString() %>
+        </div>
+      </div>
+
+      <div>
+        <span class="text-muted text-truncate">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa iure
+          perferendis nobis id animi. <%= message.content %>
+        </span>
+        <span class="badge rounded-pill bg-secondary p-2">
+          <%- chat.messages.reduce((count, message) => !message.read ? (count +
+          1) : count, 0); %>
+        </span>
+      </div>
+
+      <% } %>
+    </div>
+  </div>
+</div>
+<% }) %>
