@@ -1,17 +1,16 @@
 /**
- * This migration will fill the list of modules for each assessment
+ * This migration will create all modules.
  */
 const { processCSV, initColumns } = require(".");
-const { connect, dropCollections } = require("../config/db.config");
+const { connect, dropCollections, connection } = require("../config/db.config");
 const mongoose = require("mongoose");
-const { Assessment, Module } = require("../models");
-const FILE = "resources/csv/ModuleList.csv";
+const { Module } = require("../models");
+const FILE = "resources/csv/Modules.csv";
 
 const columns = initColumns(
   Array.from([
-    "assessment_key",
-    "name",
     "_id",
+    "name",
     "type",
     "scale_factor",
     "time_limit",
@@ -22,24 +21,11 @@ const columns = initColumns(
 
 const processRow = async function (row) {
   const data = {};
-
   for (const [key, value] of Object.entries(columns)) {
     data[key] = row[value];
   }
-
   const module = await Module.create(data);
-
-  await Assessment.updateOne(
-    { key: module.assessment_key },
-    {
-      $addToSet: {
-        modules: {
-          _id: module._id,
-          name: module.name,
-        },
-      },
-    }
-  );
+  console.log("Created module... [id]", module._id);
 };
 
 async function up() {
@@ -58,7 +44,7 @@ async function down() {
 
 connect();
 
-mongoose.connection.once("open", async () => {
+connection.once("open", async () => {
   try {
     console.log("Deleting modules...");
     await down();

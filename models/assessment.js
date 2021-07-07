@@ -16,10 +16,6 @@ const schema = new mongoose.Schema(
       enum: ["hbar", "bar", "spider", "line"],
       required: true,
     },
-    public: {
-      type: Boolean,
-      default: true,
-    },
     modules: [
       {
         _id: Number,

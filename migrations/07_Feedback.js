@@ -53,9 +53,6 @@ connection.once("open", async () => {
     console.log("Destroying tables");
     await down();
 
-    console.log("Initializing...");
-    await init();
-
     console.log("Creating tables");
     await up();
   } catch (err) {

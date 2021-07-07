@@ -35,7 +35,7 @@ function getChoicesArray(row) {
     const choiceKey = "choice" + suffix;
     const pointKey = "points" + suffix;
 
-    if (!row[Columns[choiceKey]] || row[Columns[pointsKey]].length <= 0) {
+    if (!row[Columns[choiceKey]] || row[Columns[pointKey]].length <= 0) {
       break;
     }
 
