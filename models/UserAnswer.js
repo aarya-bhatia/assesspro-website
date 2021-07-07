@@ -14,8 +14,7 @@ const ObjectId = Schema.Types.ObjectId;
 const schema = new Schema({
   user_id: { type: ObjectId, required: true },
   question_id: { type: ObjectId, required: true },
-  module_id: { type: ObjectId, required: true },
-  module_key: Number,
+  module_id: { type: Number, required: true },
   module_name: String,
   choice: String,
   value: String,

@@ -3,11 +3,16 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const schema = new mongoose.Schema(
   {
-    category_key: Number,
-    category_name: String,
+    _id: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
     name: String,
     key: String,
     description: String,
+    category_id: Number,
+    category_name: String,
     plot_type: {
       type: String,
       enum: ["hbar", "bar", "spider", "line"],
@@ -17,13 +22,9 @@ const schema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    show_average: {
-      type: Boolean,
-      default: false,
-    },
     modules: [
       {
-        _id: ObjectId,
+        _id: Number,
         key: Number,
         name: String,
       },

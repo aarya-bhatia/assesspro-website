@@ -21,8 +21,7 @@ const schema = new Schema({
   },
   module_scores: [
     {
-      module_key: Number,
-      module_id: ObjectId,
+      id: Number,
       name: String,
       score: Number,
     },

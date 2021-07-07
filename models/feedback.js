@@ -6,8 +6,7 @@ const ObjectId = Schema.Types.ObjectId;
 const schema = new Schema({
   assessment_id: ObjectId,
   assessment_key: String,
-  module_key: Number,
-  module_id: ObjectId,
+  module_id: Number,
   min_value: Number,
   max_value: Number,
   feedback: String,

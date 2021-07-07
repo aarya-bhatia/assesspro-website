@@ -7,9 +7,9 @@ const schema = new Schema({
   user_id: ObjectId,
   assessments: [
     {
-      name: String,
+      _id: Number,
       key: String,
-      id: ObjectId,
+      name: String,
       price: Number,
     },
   ],

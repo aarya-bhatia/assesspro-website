@@ -12,7 +12,7 @@ const schema = mongoose.Schema({
     required: true,
   },
   assessment_id: {
-    type: ObjectId,
+    type: Number,
     required: true,
   },
   assessment_key: {
@@ -24,10 +24,6 @@ const schema = mongoose.Schema({
     required: true,
   },
   module_id: {
-    type: ObjectId,
-    required: true,
-  },
-  module_key: {
     type: Number,
     required: true,
   },

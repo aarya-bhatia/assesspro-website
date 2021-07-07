@@ -3,8 +3,12 @@ const Schema = mongoose.Schema;
 const model = mongoose.model;
 
 const schema = new Schema({
+  _id: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
   name: { type: String, required: true },
-  key: Number,
   type: {
     type: String,
     enum: ["Objective", "Subjective"],

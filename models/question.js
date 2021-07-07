@@ -1,12 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const model = mongoose.model;
-const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
   module_name: String,
-  module_id: ObjectId,
-  module_key: Number,
+  module_id: Number,
   content: String,
   image: String,
   choices: [
