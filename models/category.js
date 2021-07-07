@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 
-const schema = new mongoose.Schema({
-  _id: {
-    type: Number,
-    required: true,
-    unique: true,
+const schema = new mongoose.Schema(
+  {
+    _id: {
+      type: Number,
+    },
+    name: String,
+    description: String,
   },
-  name: String,
-  description: String,
-});
+  { _id: false }
+);
 
 module.exports = mongoose.model("Category", schema);

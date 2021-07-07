@@ -5,8 +5,6 @@ const schema = new mongoose.Schema(
   {
     _id: {
       type: Number,
-      required: true,
-      unique: true,
     },
     name: String,
     key: String,
@@ -33,8 +31,12 @@ const schema = new mongoose.Schema(
       type: String,
       default: "usd",
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
-  { timestamps: true }
+  { _id: false }
 );
 
 module.exports = mongoose.model("Assessment", schema);

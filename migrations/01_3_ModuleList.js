@@ -30,7 +30,7 @@ const processRow = async function (row) {
   const module = await Module.create(data);
 
   await Assessment.updateOne(
-    { key: assessment_key },
+    { key: module.assessment_key },
     {
       $addToSet: {
         modules: {

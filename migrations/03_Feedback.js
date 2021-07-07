@@ -1,9 +1,8 @@
 require("dotenv").config();
 
 const { processCSV } = require(".");
-const { connect, dropCollections } = require("../config/db.config");
-const mongoose = require("mongoose");
-const { Feedback, Assessment, Module } = require("../models");
+const { connect, dropCollections, connection } = require("../config/db.config");
+const { Feedback } = require("../models");
 const collections = ["feedbacks"];
 const FILE = "resources/csv/NEST_Feedback.csv";
 
@@ -16,38 +15,18 @@ const columns = {
 };
 
 const assessment_key = "NEST";
-let assessment_id = null;
-
-async function init() {
-  const assessment = await Assessment.findOne({ key: assessment_key });
-  assessment_id = assessment._id;
-}
-
-const moduleIds = [];
+const assessment_id = 1;
 
 async function processRow(row) {
-  const module_key = row[columns.module_key];
-  const module_name = row[columns.module_name];
-  const min_value = row[columns.min_value];
-  const max_value = row[columns.max_value];
-  const feedback = row[columns.feedback];
-
-  if (!moduleIds[module_key]) {
-    const module = await Module.findOne({ key: module_key });
-    moduleIds[module_key] = module._id;
+  const data = {};
+  for (const [key, value] of Object.entries(columns)) {
+    data[key] = row[value];
   }
 
-  const module_id = moduleIds[module_key];
-
   const doc = await Feedback.create({
-    assessment_id,
+    ...data,
     assessment_key,
-    module_key,
-    module_name,
-    module_id,
-    min_value,
-    max_value,
-    feedback,
+    assessment_id,
   });
 
   console.log("Process row [feedback id]: ", doc._id);
@@ -69,7 +48,7 @@ async function up() {
 
 connect();
 
-mongoose.connection.once("open", async () => {
+connection.once("open", async () => {
   try {
     console.log("Destroying tables");
     await down();
