@@ -41,15 +41,13 @@ async function getModuleForm(req, res) {
   const user_module = await UserModule.findById(user_module_id);
   const { module_id, module_name } = user_module;
 
-  // const questions = await getOrSetRedisCache(
-  //   RedisClient,
-  //   `questions?module_id=${module_id}`,
-  //   async () => {
-  //     return await Question.find({ module_id });
-  //   }
-  // );
-
-  const questions = await Question.find({ module_id });
+  const questions = await getOrSetRedisCache(
+    RedisClient,
+    `questions?module_id=${module_id}`,
+    async () => {
+      return await Question.find({ module_id });
+    }
+  );
 
   // console.log(questions);
 

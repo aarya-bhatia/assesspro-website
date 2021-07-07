@@ -1,8 +1,10 @@
 require("dotenv").config();
 
 const { processCSV } = require(".");
-const { connect, connection } = require("../config/db.config");
+const { connect, dropCollections } = require("../config/db.config");
+const mongoose = require("mongoose");
 const { Feedback, Assessment, Module } = require("../models");
+const collections = ["feedbacks"];
 const FILE = "resources/csv/NEST_Feedback.csv";
 
 const columns = {
@@ -51,15 +53,38 @@ async function processRow(row) {
   console.log("Process row [feedback id]: ", doc._id);
 }
 
+async function down() {
+  return new Promise(async (res) => {
+    await dropCollections(collections);
+    res();
+  });
+}
+
+async function up() {
+  return new Promise(async (res) => {
+    await processCSV(FILE, processRow);
+    res();
+  });
+}
+
 connect();
 
-connection.once("open", async () => {
+mongoose.connection.once("open", async () => {
   try {
+    console.log("Destroying tables");
+    await down();
+
     console.log("Initializing...");
     await init();
+
     console.log("Creating tables");
-    await processCSV(FILE, processRow);
+    await up();
   } catch (err) {
     console.log("ERROR RUNNING MIGRATIONS...", err);
   }
 });
+
+module.exports = {
+  up,
+  down,
+};

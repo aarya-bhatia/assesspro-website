@@ -1,7 +1,7 @@
-const { connect, dropCollections, connection } = require("../config/db.config");
+const { connect, dropCollections } = require("../config/db.config");
 
 connect();
 
-connection.once("open", async () => {
+require("mongoose").connection.once("open", async () => {
   await dropCollections(["useranswers", "userassessments", "usermodules"]);
 });

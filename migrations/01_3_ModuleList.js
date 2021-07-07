@@ -2,7 +2,8 @@
  * This migration will fill the list of modules for each assessment
  */
 const { processCSV, initColumns } = require(".");
-const { connect, connection } = require("../config/db.config");
+const { connect, dropCollections } = require("../config/db.config");
+const mongoose = require("mongoose");
 const { Assessment, Module } = require("../models");
 const FILE = "resources/csv/ModuleList.csv";
 
@@ -53,13 +54,34 @@ const processRow = async function (row) {
   );
 };
 
+async function up() {
+  return new Promise(async (res) => {
+    await processCSV(FILE, processRow);
+    res();
+  });
+}
+
+async function down() {
+  return new Promise(async (res) => {
+    await dropCollections(["modules"]);
+    res();
+  });
+}
+
 connect();
 
-connection.once("open", async () => {
+mongoose.connection.once("open", async () => {
   try {
+    console.log("Deleting modules...");
+    await down();
     console.log("Adding modules...");
-    await processCSV(FILE, processRow);
+    await up();
   } catch (err) {
     console.log("ERROR RUNNING MIGRATIONS...", err);
   }
 });
+
+module.exports = {
+  up,
+  down,
+};

@@ -55,9 +55,6 @@ app.use("/auth", require("./routers/auth.router"));
 // Assessment Router
 app.use("/assessments", require("./routers/assessment.router"));
 
-// Creativity assessments router
-app.use("/creativity", require("./routers/creativity.assessment.router"));
-
 // User Router
 app.use("/users", isAuth, require("./routers/user.router"));
 

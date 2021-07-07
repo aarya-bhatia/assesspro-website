@@ -41,8 +41,6 @@ process.on("SIGINT", function () {
   });
 });
 
-module.exports.connection = mongoose.connection;
-
 // Accepts an array of collection names
 // This function drops collections with those names if they exist
 module.exports.dropCollections = (collections) => {
