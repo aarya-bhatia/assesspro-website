@@ -4,11 +4,14 @@ const mongoose = require("mongoose");
 const FILE = "resources/csv/Categories.csv";
 const { Category } = require("../models");
 
+const columns = { _id: 0, name: 1, description: 2 };
+
 async function processRow(row) {
-  const key = row[0];
-  const name = row[1];
-  const description = row[2];
-  const category = await Category.create({ key, name, description });
+  const data = {};
+  for (const [key, value] of Object.entries(columns)) {
+    data[key] = row[value];
+  }
+  const category = await Category.create(data);
   console.log("Processed row [category id]: ", category._id);
 }
 

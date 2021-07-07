@@ -25,7 +25,6 @@ const schema = new mongoose.Schema(
     modules: [
       {
         _id: Number,
-        key: Number,
         name: String,
       },
     ],

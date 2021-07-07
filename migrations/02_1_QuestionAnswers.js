@@ -5,15 +5,12 @@ const { processCSV, initColumns } = require(".");
 const { connect, dropCollections } = require("../config/db.config");
 const mongoose = require("mongoose");
 const { capitalize } = require("../controller/util");
-const { Module, Question, Answer } = require("../models");
+const { Question, Answer } = require("../models");
 const FILE = "resources/csv/QuestionBank.csv";
-
-let ModuleCache = {};
 
 const Columns = initColumns(
   Array.from([
-    "sr_no",
-    "module_key",
+    "module_id",
     "module_name",
     "content",
     "choiceA",
@@ -26,7 +23,6 @@ const Columns = initColumns(
     "pointsC",
     "pointsD",
     "pointsE",
-    "answer",
   ])
 );
 
@@ -39,15 +35,15 @@ function getChoicesArray(row) {
     const choiceKey = "choice" + suffix;
     const pointKey = "points" + suffix;
 
-    const choiceText = capitalize(row[Columns[choiceKey]]);
-    const choicePoints = parseInt(row[Columns[pointKey]]);
-
-    if (!choiceText || choiceText.length <= 0) {
+    if (!row[Columns[choiceKey]] || row[Columns[pointsKey]].length <= 0) {
       break;
     }
 
+    const choiceText = capitalize(row[Columns[choiceKey]]);
+    const choicePoints = parseInt(row[Columns[pointKey]]);
+
     choices.push({
-      key: suffix,
+      _id: suffix,
       text: choiceText,
       points: choicePoints,
     });
@@ -56,53 +52,29 @@ function getChoicesArray(row) {
   return choices;
 }
 
-async function getModuleId(key) {
-  if (!ModuleCache[key]) {
-    const { _id } = await Module.findOne({ key });
-    ModuleCache[key] = _id;
-  }
-
-  return ModuleCache[key];
-}
-
 const processRow = async (row) => {
   // Create question
-
-  const module_key = parseInt(row[Columns.module_key]);
+  const module_id = parseInt(row[Columns.module_id]);
   const module_name = row[Columns.module_name];
   const content = row[Columns.content];
-  const module_id = await getModuleId(module_key);
   const choices = getChoicesArray(row);
 
   const question = await Question.create({
     module_id,
     module_name,
-    module_key,
     content,
-
-    // Get the id and text for each choice
-    choices: choices.map((choice) => {
-      return {
-        _id: choice.key,
-        text: choice.text,
-      };
-    }),
+    choices,
   });
 
-  console.log("Added question...[id]", question._id);
+  console.log("Added question [id]", question._id);
 
   // Create answers for each choice
-
-  const question_id = question._id;
-
   for (const choice of choices) {
-    const answer = await Answer.create({
-      question_id,
-      choice: choice.key,
+    await Answer.create({
+      question_id: question._id,
+      choice: choice._id,
       points: choice.points,
     });
-
-    // console.log("Added answer...[id]", answer._id);
   }
 };
 

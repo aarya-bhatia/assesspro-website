@@ -10,35 +10,24 @@ const FILE = "resources/csv/ModuleList.csv";
 const columns = initColumns(
   Array.from([
     "assessment_key",
-    "module_name",
-    "module_key",
-    "module_type",
+    "name",
+    "_id",
+    "type",
     "scale_factor",
     "time_limit",
-    "module_description",
+    "description",
     "feedback_description",
   ])
 );
 
 const processRow = async function (row) {
-  const assessment_key = row[columns.assessment_key];
-  const module_name = row[columns.module_name];
-  const module_key = row[columns.module_key];
-  const module_type = row[columns.module_type];
-  const scale_factor = row[columns.scale_factor];
-  const time_limit = row[columns.time_limit];
-  const module_description = row[columns.module_description];
-  const feedback_description = row[columns.feedback_description];
+  const data = {};
 
-  const module = await Module.create({
-    name: module_name,
-    key: module_key,
-    type: module_type,
-    scale_factor,
-    time_limit,
-    feedback_description,
-    description: module_description,
-  });
+  for (const [key, value] of Object.entries(columns)) {
+    data[key] = row[value];
+  }
+
+  const module = await Module.create(data);
 
   await Assessment.updateOne(
     { key: assessment_key },
@@ -46,7 +35,6 @@ const processRow = async function (row) {
       $addToSet: {
         modules: {
           _id: module._id,
-          key: module.key,
           name: module.name,
         },
       },

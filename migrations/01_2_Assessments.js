@@ -11,62 +11,26 @@ const { Assessment } = require("../models");
 
 const Columns = initColumns(
   Array.from([
-    "srNo",
-    "category_key",
+    "_id",
+    "key",
+    "category_id",
     "category_name",
     "name",
-    "key",
     "plot_type",
     "price",
-    "public",
     "description",
   ])
 );
 
-const assessment_keys = [
-  {
-    key: "category_key",
-    type: Number,
-  },
-  {
-    key: "category_name",
-    type: String,
-  },
-  {
-    key: "name",
-    type: String,
-  },
-  {
-    key: "key",
-    type: String,
-  },
-  {
-    key: "plot_type",
-    type: String,
-  },
-  {
-    key: "price",
-    type: Number,
-  },
-  {
-    key: "public",
-    type: Boolean,
-  },
-  {
-    key: "description",
-    type: String,
-  },
-];
-
 const processRow = async function (row) {
   const data = {};
 
-  assessment_keys.map(({ key, type }) => {
-    data[key] = type(row[Columns[key]]);
-  });
+  for (const [key, value] of Object.entries(Columns)) {
+    data[key] = row[value];
+  }
 
-  const doc = await Assessment.create(data);
-  console.log("Created assessment: ", doc);
+  const assessment = await Assessment.create(data);
+  console.log("Created assessment [id] ", assessment._id);
 };
 
 async function down() {
