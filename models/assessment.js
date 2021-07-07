@@ -13,10 +13,6 @@ const schema = new mongoose.Schema(
       enum: ["hbar", "bar", "spider", "line"],
       required: true,
     },
-    public: {
-      type: Boolean,
-      default: true,
-    },
     show_average: {
       type: Boolean,
       default: false,

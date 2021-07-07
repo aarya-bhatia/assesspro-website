@@ -2,8 +2,7 @@
  * This migration will create the questions and answers from the question bank
  */
 const { processCSV, initColumns } = require(".");
-const { connect, dropCollections } = require("../config/db.config");
-const mongoose = require("mongoose");
+const { connect, connection } = require("../config/db.config");
 const { capitalize } = require("../controller/util");
 const { Module, Question, Answer } = require("../models");
 const FILE = "resources/csv/QuestionBank.csv";
@@ -96,44 +95,27 @@ const processRow = async (row) => {
   const question_id = question._id;
 
   for (const choice of choices) {
-    const answer = await Answer.create({
+    await Answer.create({
       question_id,
       choice: choice.key,
       points: choice.points,
     });
-
-    // console.log("Added answer...[id]", answer._id);
   }
 };
 
-async function down() {
-  return new Promise(async (res) => {
-    await dropCollections(["questions", "answers"]);
-    res();
-  });
-}
-
 async function up() {
   return new Promise(async (res) => {
-    await processCSV(FILE, processRow);
     res();
   });
 }
 
 connect();
 
-mongoose.connection.once("open", async () => {
+connection.once("open", async () => {
   try {
-    console.log("Destroying tables");
-    await down();
     console.log("Creating tables");
-    await up();
+    await processCSV(FILE, processRow);
   } catch (err) {
     console.log("ERROR RUNNING MIGRATIONS...", err);
   }
 });
-
-module.exports = {
-  up,
-  down,
-};

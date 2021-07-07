@@ -1,6 +1,5 @@
 const { processCSV } = require(".");
-const { connect, dropCollections } = require("../config/db.config");
-const mongoose = require("mongoose");
+const { connect, connection } = require("../config/db.config");
 const FILE = "resources/csv/Categories.csv";
 const { Category } = require("../models");
 
@@ -12,26 +11,11 @@ async function processRow(row) {
   console.log("Processed row [category id]: ", category._id);
 }
 
-async function down() {
-  return new Promise(async (res) => {
-    await dropCollections(["categories"]);
-    res();
-  });
-}
-
-async function up() {
-  return new Promise(async (res) => {
-    await processCSV(FILE, processRow);
-    res();
-  });
-}
-
 connect();
 
-mongoose.connection.once("open", async () => {
+connection.once("open", async () => {
   try {
-    await down();
-    await up();
+    await processCSV(FILE, processRow);
   } catch (err) {
     console.log(err);
   }
