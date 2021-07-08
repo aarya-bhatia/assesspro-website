@@ -1,6 +1,7 @@
 const { fetchModuleById } = require("./assessments");
 
 const {
+  userProfile,
   UserAssessment,
   UserModule,
   UserScore,
@@ -8,6 +9,10 @@ const {
 } = require("../../models");
 
 module.exports = {
+  async createUserProfile(name, email, password) {
+    return await UserProfile.create({ name, email, password });
+  },
+
   async createUserModule(user_id, assessment_id, module) {
     await UserModule.create({
       user_id,
@@ -87,6 +92,23 @@ module.exports = {
     });
   },
 
+  async updateUserModuleOnSubmit(umid, no_attempted, status, time_spent) {
+    await UserModule.updateOne(
+      {
+        _id: umid,
+      },
+      {
+        $set: {
+          no_attempted,
+          status,
+        },
+        $inc: {
+          time_spent,
+        },
+      }
+    );
+  },
+
   async getUserAssessment(uid, aid) {
     return await UserAssessment.findOne({
       user_id: uid,
@@ -101,8 +123,25 @@ module.exports = {
     });
   },
 
+  async updateOrCreateAnswer(user_module, question_id, choice, value) {
+    const { module_id, module_name } = user_module;
+
+    await UserAnswer.updateOne(
+      {
+        user_id,
+        question_id,
+        module_id,
+        module_name,
+      },
+      {
+        choice,
+        value,
+      },
+      { upsert: true }
+    );
+  },
+
   async unenrollUserFromAssessment(user_id, assessment_id) {
-    const assessment_id = assessment._id;
     const modules = assessment.modules.map((module) => module._id);
     await UserAssessment.deleteOne({ user_id, assessment_id });
     await UserModule.deleteMany({ user_id, assessment_id });

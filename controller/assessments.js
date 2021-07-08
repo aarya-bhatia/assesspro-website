@@ -1,5 +1,7 @@
-const { fetchAssessmentsInCategory } = require("./api/assessments");
-const { fetchCategories } = require("./api/categories");
+const {
+  fetchAssessmentsInCategory,
+  fetchCategories,
+} = require("./api/assessments");
 
 module.exports = {
   getAllAssessments,

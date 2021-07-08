@@ -1,6 +1,5 @@
-const { UserAssessment, UserProfile } = require("../models");
-const bcrypt = require("bcrypt");
-const { capitalize } = require("../controller/util");
+const { capitalize, buildSignupErrorObject } = require("../controller/util");
+const { getUserAssessment, createUserProfile } = require("./api/user");
 
 /*
  * Middleware to check if user is logged in
@@ -14,7 +13,7 @@ module.exports.isAuth = (req, res, next) => {
 };
 
 module.exports.isLoggedIn = (req, res, next) => {
-  res.locals.loggedIn = req.user ? true : false;
+  res.locals.loggedIn = req.isAuthenticated();
   next();
 };
 
@@ -26,20 +25,17 @@ module.exports.checkUserEnrolled = async (req, res, next) => {
 
   res.locals.assessment_id = assessment_id;
 
-  const found = await UserAssessment.findOne({
-    user_id: req.user._id,
-    assessment_id,
-  });
+  const found = await getUserAssessment(req.user._id, assessment_id);
 
-  if (found) {
-    res.locals.user_assessment = found;
-    next();
-  } else {
-    next({
+  if (!found) {
+    return next({
       status: 400,
       message: "Access Denied. User is not enrolled in this assessment.",
     });
   }
+
+  res.locals.user_assessment = found;
+  next();
 };
 
 /*
@@ -47,41 +43,18 @@ module.exports.checkUserEnrolled = async (req, res, next) => {
  */
 module.exports.CreateUser = async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
-
   const name = [capitalize(firstname), capitalize(lastname)].join(" ");
 
-  let user = new UserProfile({ name, email, password });
-
-  console.log(req.body);
-  console.log(name);
-
   try {
-    user = await user.save();
-    console.log("Saved user.");
+    const user = await createUserProfile(name, email, password);
+    console.log("User created [id]", user._id);
     res.redirect("/auth/login");
   } catch (err) {
-    const error = {};
-
-    if (err.name === "ValidationError") {
-      const { errors } = err;
-      if (errors.name) {
-        error.name = errors.name.message;
-      }
-      if (errors.email) {
-        error.email = errors.email.message;
-      }
-      if (errors.password) {
-        error.password = errors.password.message;
-      }
-    }
-
-    error.other = err.message;
-
     console.log(error);
 
     res.render("auth/signup", {
       loggedIn: res.locals.loggedIn,
-      error,
+      error: buildSignupErrorObject(err),
     });
   }
 };

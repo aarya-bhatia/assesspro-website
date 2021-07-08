@@ -1,21 +1,23 @@
-const { Question, UserAnswer, UserModule } = require("../models");
+const { fetchQuestionsForModule } = require("./api/answers");
+const {
+  fetchUserModuleById,
+  updateOrCreateAnswer,
+  updateUserModuleOnSubmit,
+} = require("./api/user");
 
 /*
  * Input names in the module form should be set to the question ids.
- * Input values in the module form should be set to the choice key.
+ * Input values in the module form should be set to the choice id.
  */
 module.exports.saveAnswers = async function (req, res) {
-  const user_id = req.user._id;
+  console.log("Saving answers...", req.body);
 
   const { assessment_id } = res.locals;
-
   const { user_module_id } = req.params;
 
-  const user_module = await UserModule.findById(user_module_id);
-
-  const { module_id, module_name, module_key } = user_module;
-
-  const questions = await Question.find({ module_id });
+  const user_module = await fetchUserModuleById(user_module_id);
+  const { module_id } = user_module;
+  const questions = await fetchQuestionsForModule(module_id);
 
   let attempted = 0;
 
@@ -31,36 +33,20 @@ module.exports.saveAnswers = async function (req, res) {
       // Find the value of the selected choice
       const { text } = choices.find(({ _id }) => _id == choice);
 
-      if (text) {
-        // Update or create answer for current question
-        await UserAnswer.updateOne(
-          {
-            user_id,
-            question_id: _id,
-            module_id,
-            module_key,
-            module_name,
-          },
-          {
-            choice,
-            value: text,
-          },
-          { upsert: true }
-        );
-      }
+      await updateOrCreateAnswer(user_module, _id, choice, text);
     }
   });
 
-  user_module.no_attempted = attempted;
-  user_module.time_spent += parseInt(req.body.time_spent) || 0;
+  const time_spent = parseInt(req.body.time_spent) || 0;
+  const status =
+    attempted == user_module.no_questions ? "Completed" : "Pending";
 
-  if (attempted === user_module.no_questions) {
-    user_module.status = "Completed";
-  } else {
-    user_module.status = "Pending";
-  }
-
-  await user_module.save();
+  await updateUserModuleOnSubmit(
+    user_module._id,
+    attempted,
+    status,
+    time_spent
+  );
 
   res.redirect("/forms/" + assessment_id);
 };
