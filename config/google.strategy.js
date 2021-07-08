@@ -15,7 +15,7 @@ module.exports = new GoogleStrategy(
       });
 
       if (currentUser) {
-        console.log("[Google oauth] user is: ", currentUser);
+        console.log("[google oauth2] found user: ", currentUser);
         return done(null, currentUser);
       } else {
         const newUser = await UserProfile.create({
@@ -25,7 +25,7 @@ module.exports = new GoogleStrategy(
           provider: { name: profile.provider, id: profile.id },
         });
 
-        console.log("[Google oauth] created user: ", newUser);
+        console.log("[google oauth2] created user: ", newUser);
         return done(null, newUser);
       }
     } catch (err) {

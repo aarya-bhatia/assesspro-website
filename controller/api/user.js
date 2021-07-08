@@ -1,7 +1,7 @@
 const { fetchModuleById } = require("./assessments");
 
 const {
-  userProfile,
+  UserProfile,
   UserAssessment,
   UserModule,
   UserScore,

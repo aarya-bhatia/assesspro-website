@@ -8,185 +8,225 @@
 <!-- Header -->
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
-  <!-- profile update page -->
+<!-- profile update page -->
 
-  <div class="container">
-    <h1>Update Profile</h1>
+<div class="container">
+  <h1>Update Profile</h1>
 
-    <!-- introduction -->
+  <!-- introduction -->
+  <div class="col-md-12">
+    <p class="form-text">
+      Please update your details below and submit the form.
+    </p>
+  </div>
+
+  <% if(error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <!-- IMAGE UPLOAD FORM -->
+  <form
+    action="/users/upload"
+    method="POST"
+    class="row g-3 mb-3"
+    enctype="multipart/form-data"
+  >
+    <div class="h4">Profile Picture</div>
+
+    <!-- profile image -->
+    <div class="col-md-12">
+      <%- include('./thumbnail.ejs', { img_url: user.img_url }) %>
+    </div>
+
+    <div class="col-md-6">
+      <input
+        name="fileUpload"
+        id="fileUpload"
+        class="form-control"
+        type="file"
+        accept="image/png|image/jpg"
+      />
+    </div>
+
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary">Upload</button>
+    </div>
+  </form>
+
+  <!-- BEGIN FORM -->
+  <form action="/users/profile/update" method="POST" class="row g-3">
+    <!-- GENERAL SECTION -->
+    <div class="h4">General</div>
+
+    <!-- name -->
+    <div class="col-md-12">
+      <label for="inputName" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputName"
+        name="name"
+        placeholder="Name"
+        value="<%= user.name ? user.name : '' %>"
+        required
+      />
+    </div>
+
+    <!-- user bio -->
+    <div class="col-md-12">
+      <label for="bio" class="form-label">Bio</label>
+      <textarea
+        name="bio"
+        id="bio"
+        rows="5"
+        placeholder="Write a short paragraph about yourself..."
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <div class="h4">Address</div>
+
+    <!-- city input -->
+    <div class="col-md-6">
+      <label for="city" class="form-label">City</label>
+      <input
+        type="text"
+        class="form-control"
+        id="city"
+        name="city"
+        placeholder="City"
+      />
+    </div>
+
+    <!-- state input -->
+    <div class="col-md-4">
+      <label for="state" class="form-label">State</label>
+      <select name="state" id="state" class="form-select">
+        <option value="">State</option>
+        <% states.map(state=> { %>
+        <option value="<%= state.key %>"><%= state.value %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <!-- zip input -->
+    <div class="col-md-2">
+      <label for="zip" class="form-label">Zip</label>
+      <input
+        type="text"
+        class="form-control"
+        id="zip"
+        name="zip"
+        placeholder="Zip"
+      />
+    </div>
+
     <div class="col-md-12">
       <p class="form-text">
-        Please update your details below and submit the form.
+        Please enter the day, month and year of your birth below.
       </p>
     </div>
 
-    <!-- IMAGE UPLOAD FORM -->
-    <form action="/users/upload" method="POST" class="row g-3 mb-3" enctype="multipart/form-data">
+    <!-- DATE OF BIRTH SECTION -->
+    <div class="h4">Date of Birth</div>
 
-      <div class="h4">Profile Picture</div>
-
-      <!-- profile image -->
-      <div class="col-md-12">
-        <%- include('./thumbnail.ejs', { img_url: user.img_url }) %>
-      </div>
-
-      <div class="col-md-6">
-        <input name='fileUpload' id='fileUpload' class="form-control" type="file" accept="image/png|image/jpg">
-      </div>
-
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-primary">Upload</button>
-      </div>
-
-    </form>
-
-    <!-- BEGIN FORM -->
-    <form action="/users/profile/update" method="POST" class="row g-3">
-
-
-      <!-- GENERAL SECTION -->
-      <div class="h4">General</div>
-
-      <!-- name -->
-      <div class="col-md-12">
-        <label for="inputName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="inputName" name="name" placeholder="Name"
-          value="<%= user.name ? user.name : '' %>" required />
-      </div>
-
-      <!-- user bio -->
-      <div class="col-md-12">
-        <label for="bio" class="form-label">Bio</label>
-        <textarea name="bio" id="bio" rows="5" placeholder="Write a short paragraph about yourself..."
-          class="form-control"></textarea>
-      </div>
-
-      <div class="h4">Address</div>
-
-      <!-- city input -->
-      <div class="col-md-6">
-        <label for="city" class="form-label">City</label>
-        <input type="text" class="form-control" id="city" name="city" placeholder="City" />
-      </div>
-
-      <!-- state input -->
-      <div class="col-md-4">
-        <label for="state" class="form-label">State</label>
-        <select name="state" id="state" class="form-select">
-          <option value="">State</option>
-          <% states.map(state=> { %>
-            <option value="<%= state.key %>">
-              <%= state.value %>
-            </option>
-            <% }) %>
-        </select>
-      </div>
-
-      <!-- zip input -->
-      <div class="col-md-2">
-        <label for="zip" class="form-label">Zip</label>
-        <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip" />
-      </div>
-
-      <div class="col-md-12">
-        <p class="form-text">
-          Please enter the day, month and year of your birth below.
-        </p>
-      </div>
-
-      <!-- DATE OF BIRTH SECTION -->
-      <div class="h4">Date of Birth</div>
-
-      <!-- dob day -->
-      <div class="col-md-4">
-        <select name="day" class="form-select" id="day">
-          <option value="">Day</option>
-          <% days.map(day=> { %>
-            <option value="<%= day %>">
-              <%= day %>
-            </option>
-            <% }) %>
-        </select>
-      </div>
-
-      <!-- dob month -->
-      <div class="col-md-4">
-        <select name="month" class="form-select" id="month">
-          <option value="">Month</option>
-          <% months.map(month=> { %>
-            <option value="<%= month.value %>">
-              <%= month.name %>
-            </option>
-            <% }) %>
-        </select>
-      </div>
-
-      <!-- dob year -->
-      <div class="col-md-4">
-        <select name="year" class="form-select" id="year">
-          <option value="">Year</option>
-          <% years.map(year=> { %>
-            <option value="<%= year %>">
-              <%= year %>
-            </option>
-            <% }) %>
-        </select>
-      </div>
-
-      <!-- PRIVACY SECTION -->
-      <div class="h4">Privacy</div>
-      <p class="form-text">
-        Your status will determine if your assessment scores are visible to
-        others.
-      </p>
-
-      <!-- status switch -->
-      <div class="col-md-12">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="status" name="status" checked />
-          <label class="form-check-label" for="status">Public </label>
-        </div>
-      </div>
-
-      <!-- EDUCATIONAL QUALIFICATIONS SECTION -->
-      <div class="h4">Educational Qualifications</div>
-
-      <!-- start loop -->
-      <% qualificationKeys.map(level=> { %>
-
-        <!-- qualification name -->
-        <div class="col-md-4">
-          <p>
-            <%= level.title %>
-          </p>
-        </div>
-
-        <!-- qualification subject -->
-        <div class="col-md-4">
-          <input type="text" placeholder="Subject" class="form-control" name="<%= level.subjectKey %>"
-            id="<%= level.subjectKey %>" />
-        </div>
-
-        <!-- qualification institution -->
-        <div class="col-md-4">
-          <input type="text" placeholder="Institution" class="form-control" name="<%= level.institutionKey %>"
-            id="<%= level.institutionKey %>" />
-        </div>
-
-        <!-- end loop -->
+    <!-- dob day -->
+    <div class="col-md-4">
+      <select name="day" class="form-select" id="day">
+        <option value="">Day</option>
+        <% days.map(day=> { %>
+        <option value="<%= day %>"><%= day %></option>
         <% }) %>
+      </select>
+    </div>
 
-          <!-- submit button -->
-          <div class="col-md-12">
-            <button class="btn btn-primary" type="submit">Save Changes</button>
-            <button class="btn btn-secondary ms-2" type="button" onclick="window.history.back()">Back</button>
-          </div>
+    <!-- dob month -->
+    <div class="col-md-4">
+      <select name="month" class="form-select" id="month">
+        <option value="">Month</option>
+        <% months.map(month=> { %>
+        <option value="<%= month.value %>"><%= month.name %></option>
+        <% }) %>
+      </select>
+    </div>
 
-    </form>
-  </div>
+    <!-- dob year -->
+    <div class="col-md-4">
+      <select name="year" class="form-select" id="year">
+        <option value="">Year</option>
+        <% years.map(year=> { %>
+        <option value="<%= year %>"><%= year %></option>
+        <% }) %>
+      </select>
+    </div>
 
-  <!-- script -->
-  <%- include('./scripts/setFieldValues.ejs', { user }) %>
+    <!-- PRIVACY SECTION -->
+    <div class="h4">Privacy</div>
+    <p class="form-text">
+      Your status will determine if your assessment scores are visible to
+      others.
+    </p>
 
-    <!-- Footer -->
-    <%- include('../partials/footer.ejs') %>
+    <!-- status switch -->
+    <div class="col-md-12">
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="status"
+          name="status"
+          checked
+        />
+        <label class="form-check-label" for="status">Public </label>
+      </div>
+    </div>
+
+    <!-- EDUCATIONAL QUALIFICATIONS SECTION -->
+    <div class="h4">Educational Qualifications</div>
+
+    <!-- start loop -->
+    <% qualificationKeys.map(level=> { %>
+
+    <!-- qualification name -->
+    <div class="col-md-4">
+      <p><%= level.title %></p>
+    </div>
+
+    <!-- qualification subject -->
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Subject"
+        class="form-control"
+        name="<%= level.subjectKey %>"
+        id="<%= level.subjectKey %>"
+      />
+    </div>
+
+    <!-- qualification institution -->
+    <div class="col-md-4">
+      <input
+        type="text"
+        placeholder="Institution"
+        class="form-control"
+        name="<%= level.institutionKey %>"
+        id="<%= level.institutionKey %>"
+      />
+    </div>
+
+    <!-- end loop -->
+    <% }) %>
+
+    <!-- submit button -->
+    <div class="col-md-12">
+      <button class="btn btn-primary" type="submit">Save Changes</button>
+      <a class="btn btn-secondary ms-2" href="/users/profile"> Back </a>
+    </div>
+  </form>
+</div>
+
+<!-- script -->
+<%- include('./scripts/setFieldValues.ejs', { user }) %>
+
+<!-- Footer -->
+<%- include('../partials/footer.ejs') %>

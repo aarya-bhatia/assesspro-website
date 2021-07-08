@@ -27,6 +27,7 @@ module.exports.getProfileUpdateForm = (req, res) => {
     months: getFormMonths(),
     days: getFormDays(),
     years: getFormYears(),
+    error: req.query.error,
   });
 };
 
@@ -110,7 +111,10 @@ module.exports.openReport = async (req, res) => {
 module.exports.uploadProfilePicture = async (req, res) => {
   console.log("uploaded profile picture");
   if (!req.file) {
-    throw Error("File Not Found");
+    // throw Error("File Not Found");
+    return res.redirect(
+      "/users/profile/update?error=Please select an image to upload"
+    );
   }
   const { key } = req.file;
   img_url = `/users/images/${key}`;

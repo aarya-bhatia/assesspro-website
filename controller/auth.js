@@ -50,8 +50,7 @@ module.exports.CreateUser = async (req, res) => {
     console.log("User created [id]", user._id);
     res.redirect("/auth/login");
   } catch (err) {
-    console.log(error);
-
+    console.log(err);
     res.render("auth/signup", {
       loggedIn: res.locals.loggedIn,
       error: buildSignupErrorObject(err),
