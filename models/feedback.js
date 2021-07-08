@@ -4,7 +4,6 @@ const model = mongoose.model;
 
 const schema = new Schema({
   assessment_id: Number,
-  assessment_key: String,
   module_id: Number,
   min_value: Number,
   max_value: Number,

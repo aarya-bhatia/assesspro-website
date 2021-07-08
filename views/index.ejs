@@ -1,40 +1,44 @@
-<%- include("partials/header.ejs", { loggedIn }); %> 
-<%#- include('partials/banner.ejs') %>
+<%- include("partials/header.ejs", { loggedIn }); %> <%#-
+include('partials/banner.ejs') %>
 
 <div class="container p-2">
   <% data.forEach(item => { %>
 
-    <div class="display-6"><%= item.category_name %></div>
-    <p><%= item.category_description %></p>
+  <div class="display-6"><%= item.category_name %></div>
+  <p><%= item.category_description %></p>
 
-    <div class="mb-3 row align-items-stretch flex-wrap">
+  <div class="mb-3 row align-items-stretch flex-wrap">
+    <% item.assessments.forEach(assessment => { %>
 
-      <% item.assessments.forEach(assessment => { %> 
-
-        <div class="card col-md-4 p-2 m-2">
-
-              <div class="card-body">
-                <div class="card-title">
-                  <span class="h4"> <%= assessment.name %> </span>
-                </div>
-
-                <div class="card-text">
-
-                  <div class="text-muted mb-3" style="position: absolute; top: 5px; right: 15px;">
-                    $<%= assessment.price %>
-                  </div>
-
-                  <div class="mb-3 text-muted"><%= assessment.modules.length %> Modules</div>
-
-                  <a href="/assessments/<%= assessment._id %>" class="btn btn-outline-primary">Open</a>
-
-                </div>
-              </div>
+    <div class="card col-md-4 p-2 m-2">
+      <div class="card-body">
+        <div class="card-title">
+          <span class="h4"> <%= assessment.name %> </span>
         </div>
 
-      <% }) %> 
+        <div class="card-text">
+          <div
+            class="text-muted mb-3"
+            style="position: absolute; top: 5px; right: 15px"
+          >
+            $<%= assessment.price %>
+          </div>
 
+          <div class="mb-3 text-muted">
+            <%= assessment.modules.length %> Modules
+          </div>
+
+          <a
+            href="/assessments/<%= assessment._id %>"
+            class="btn btn-outline-primary"
+            >Open</a
+          >
+        </div>
+      </div>
     </div>
+
+    <% }) %>
+  </div>
 
   <% }) %>
 </div>

@@ -81,23 +81,25 @@ module.exports.listUsers = async (req, res) => {
 
 module.exports.openReport = async (req, res) => {
   const userScore = await UserScore.findById(req.params.user_score_id);
-  const { assessment_key } = userScore;
+  const { assessment_key, assessment_id } = userScore;
   const user_feedbacks = [];
 
   if (assessment_key == "NEST") {
     for (const module_score of userScore.module_scores) {
       const { _id, name, score } = module_score;
       const feedback_description = await getModuleFeedbackDescription(_id);
-      const module_feedback = await getModuleScoreFeedback(_id, score);
+      const module_feedback = await getModuleScoreFeedback(
+        assessment_id,
+        _id,
+        score
+      );
 
-      if (feedback) {
-        user_feedbacks.push({
-          module_name: name,
-          module_score: score,
-          module_feedback,
-          feedback_description,
-        });
-      }
+      user_feedbacks.push({
+        module_name: name,
+        module_score: score,
+        module_feedback,
+        feedback_description,
+      });
     }
   }
 

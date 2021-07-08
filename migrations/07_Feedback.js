@@ -7,14 +7,13 @@ const collections = ["feedbacks"];
 const FILE = "resources/csv/NEST_Feedback.csv";
 
 const columns = {
-  module_key: 0,
+  module_id: 0,
   module_name: 1,
   min_value: 2,
   max_value: 3,
   feedback: 4,
 };
 
-const assessment_key = "NEST";
 const assessment_id = 1;
 
 async function processRow(row) {
@@ -25,7 +24,6 @@ async function processRow(row) {
 
   const doc = await Feedback.create({
     ...data,
-    assessment_key,
     assessment_id,
   });
 
