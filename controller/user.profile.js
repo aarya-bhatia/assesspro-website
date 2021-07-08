@@ -1,14 +1,6 @@
 const qualificationKeys = require("../resources/json/qualification.keys.json");
 const statesList = require("../resources/json/india.states.json");
-const {
-  UserScore,
-  UserProfile,
-  UserAssessment,
-  UserModule,
-  UserAnswer,
-  Feedback,
-  Module,
-} = require("../models");
+const { UserScore, UserProfile, UserAssessment } = require("../models");
 const { downloadImage } = require("../config/s3.config");
 
 const {
@@ -19,6 +11,11 @@ const {
   getFormYears,
   getChartData,
 } = require("./util");
+const { deleteUserAccount } = require("./api/user");
+const {
+  getModuleFeedbackDescription,
+  getModuleScoreFeedback,
+} = require("./api/assessments");
 
 // Get profile update page
 module.exports.getProfileUpdateForm = (req, res) => {
@@ -80,39 +77,19 @@ module.exports.listUsers = async (req, res) => {
 module.exports.openReport = async (req, res) => {
   const userScore = await UserScore.findById(req.params.user_score_id);
   const { assessment_key } = userScore;
-
   const user_feedbacks = [];
-
-  const moduleIds = {};
 
   if (assessment_key == "NEST") {
     for (const module_score of userScore.module_scores) {
-      if (!moduleIds[module_score.name]) {
-        const module = await Module.findOne({ name: module_score.name });
-
-        moduleIds[module_score.name] = {
-          module_id: module._id,
-          feedback_description: module.feedback_description,
-        };
-      }
-
-      const module_id = moduleIds[module_score.name].module_id;
-      const feedback_description =
-        moduleIds[module_score.name].feedback_description;
-
-      const module_feedbacks = await Feedback.find({ module_id });
-
-      const feedback = module_feedbacks.find(
-        (module_feedback) =>
-          module_score.score >= module_feedback.min_value &&
-          module_score.score <= module_feedback.max_value
-      );
+      const { _id, name, score } = module_score;
+      const feedback_description = await getModuleFeedbackDescription(_id);
+      const module_feedback = await getModuleScoreFeedback(_id, score);
 
       if (feedback) {
         user_feedbacks.push({
-          module_name: module_score.name,
-          module_score: module_score.score,
-          module_feedback: feedback.feedback,
+          module_name: name,
+          module_score: score,
+          module_feedback,
           feedback_description,
         });
       }
@@ -136,9 +113,11 @@ module.exports.uploadProfilePicture = async (req, res) => {
     throw Error("File Not Found");
   }
   const { key } = req.file;
+  img_url = `/users/images/${key}`;
+
   UserProfile.findById(req.user._id).then((found) => {
-    found.img_url = `/users/images/${key}`;
-    console.log("img url: ", found.img_url);
+    found.img_url = img_url;
+
     found.save().then((user) => {
       req.logIn(user, (err) => {
         if (!err) {
@@ -218,11 +197,6 @@ module.exports.updateUserProfile = async (req, res) => {
 module.exports.DeleteAccount = async (req, res) => {
   const user_id = req.user._id;
   req.logout();
-  console.log("Deleting profile...");
-  await UserProfile.findByIdAndRemove(user_id);
-  console.log("Deleting modules...");
-  await UserModule.deleteMany({ user_id });
-  console.log("Deleting User answers...");
-  await UserAnswer.deleteMany({ user_id });
+  await deleteUserAccount(user_id);
   res.redirect("/");
 };
