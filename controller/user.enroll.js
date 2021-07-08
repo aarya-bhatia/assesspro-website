@@ -7,16 +7,15 @@ const {
 } = require("./api/user");
 
 module.exports = {
+  /* middleware to check whether user is enrolled in assessment */
   async CheckUserEnrolled(req, res, next) {
     const { assessment_id } = res.locals;
-
     let user_assessment = await getUserAssessment(req.user._id, assessment_id);
 
     if (user_assessment) {
       console.log("User is enrolled, redirecting to assessment");
       return res.redirect("/forms/" + assessment_id);
     }
-
     next();
   },
 
@@ -33,21 +32,23 @@ module.exports = {
     await createUserAssessment(user, assessment);
     console.log("Created user assessment");
 
+    const user_id = user._id;
     await createUserModules(user_id, assessment).then(() => {
       res.redirect("/forms/" + assessment_id);
     });
   },
 
+  /* unenroll user from assessment */
   async UnenrollUser(req, res) {
+    const user_id = req.user._id;
+    const { assessment_id } = req.params;
+    const assessment = await fetchAssessmentById(assessment_id);
+
     const msg = `Unenrolling [user] ${req.user.name} from assessment:${assessment.key}`;
     console.log(msg);
 
-    const user_id = req.user._id;
-    const { assessment_id } = req.params;
-
-    const assessment = await fetchAssessmentById(assessment_id);
     await unenrollUserFromAssessment(user_id, assessment);
 
-    res.redirect("/users/assessments");
+    res.redirect("/users/profile");
   },
 };

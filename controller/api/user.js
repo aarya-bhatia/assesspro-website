@@ -8,40 +8,39 @@ const {
   UserAnswer,
 } = require("../../models");
 
+async function createUserModule(user_id, assessment_id, module) {
+  await UserModule.create({
+    user_id,
+    assessment_id,
+    module_id: module._id,
+    module_name: module.name,
+    module_key: module.key,
+    module_type: module.type,
+    module_description: module.description,
+    no_questions: module.no_questions,
+    no_attempted: 0,
+    time_spent: 0,
+    time_limit: module.time_limit,
+    scale_factor: module.scale_factor,
+    status: "Pending",
+  });
+}
+
 module.exports = {
   async createUserProfile(name, email, password) {
     return await UserProfile.create({ name, email, password });
   },
 
-  async createUserModule(user_id, assessment_id, module) {
-    await UserModule.create({
-      user_id,
-      assessment_id,
-      module_id: module._id,
-      module_name: module.name,
-      module_key: module.key,
-      module_type: module.type,
-      module_description: module.description,
-      no_questions: module.no_questions,
-      no_attempted: 0,
-      time_spent: 0,
-      time_limit: module.time_limit,
-      scale_factor: module.scale_factor,
-      status: "Pending",
-    });
-  },
-
   async createUserModules(user_id, assessment) {
-    const msg = `Initialising ${modules.length} modules for user [id] ${user_id}...`;
-    console.log(msg);
-
-    const assessment_id = assessment._id;
-    const modules = assessment.modules;
-
     return new Promise(async function (res) {
+      const assessment_id = assessment._id;
+      const modules = assessment.modules;
+      const msg = `Initialising ${modules.length} modules for user [id] ${user_id}...`;
+      console.log(msg);
+
       for (const _module of modules) {
         const module = await fetchModuleById(_module._id);
-        await this.createUserModule(user_id, assessment_id, module);
+        await createUserModule(user_id, assessment_id, module);
       }
       res();
     });
@@ -124,7 +123,7 @@ module.exports = {
   },
 
   async updateOrCreateAnswer(user_module, question_id, choice, value) {
-    const { module_id, module_name } = user_module;
+    const { user_id, module_id, module_name } = user_module;
 
     await UserAnswer.updateOne(
       {
@@ -141,7 +140,8 @@ module.exports = {
     );
   },
 
-  async unenrollUserFromAssessment(user_id, assessment_id) {
+  async unenrollUserFromAssessment(user_id, assessment) {
+    const assessment_id = assessment._id;
     const modules = assessment.modules.map((module) => module._id);
     await UserAssessment.deleteOne({ user_id, assessment_id });
     await UserModule.deleteMany({ user_id, assessment_id });
@@ -175,5 +175,22 @@ module.exports = {
     await UserModule.deleteMany({ user_id });
     console.log("Deleting User answers...");
     await UserAnswer.deleteMany({ user_id });
+  },
+
+  async updateUserModulesOnRetake(user_id, assessment_id) {
+    const doc = await UserModule.updateMany(
+      {
+        user_id,
+        assessment_id,
+      },
+      {
+        $set: {
+          time_spent: 0,
+          status: "Pending",
+          no_attempted: 0,
+        },
+      }
+    );
+    console.log(doc);
   },
 };

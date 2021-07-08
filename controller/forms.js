@@ -30,9 +30,9 @@ module.exports = {
   async getModuleForm(req, res) {
     const { assessment_id } = res.locals;
     const { user_module_id } = req.params;
-    const { module_id, module_name } = await fetchUserModuleById(
-      user_module_id
-    );
+    const user_module = await fetchUserModuleById(user_module_id);
+
+    const { module_id, module_name, module_description } = user_module;
 
     // UNCOMMENT THIS TO USE REDIS.
     // const questions = await getOrSetRedisCache(
@@ -52,7 +52,7 @@ module.exports = {
     res.render("forms/moduleForm.ejs", {
       loggedIn: true,
       title: "Module: " + module_name,
-      description: user_module.module_description || "",
+      description: module_description || "",
       assessment_id,
       questions,
       user_answers,

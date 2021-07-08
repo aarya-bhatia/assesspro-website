@@ -9,6 +9,10 @@ const {
   downloadProfilePicture,
   deleteUserScore,
   DeleteAccount,
+  getSettings,
+  RetakeAssessment,
+  DeleteScores,
+  DeleteAnswers,
 } = require("../controller/user.profile.js");
 
 const {
@@ -18,7 +22,6 @@ const {
 } = require("../controller/user.enroll.js");
 
 const { uploadImage } = require("../config/s3.config");
-const { UserScore, UserAnswer, UserModule } = require("../models/index.js");
 
 // Router
 const router = require("express").Router();
@@ -60,54 +63,22 @@ router.get("/unenroll/:assessment_id", UnenrollUser);
 router.get("/scores/delete/:score_id", deleteUserScore);
 
 // Settings page
-router.get("/settings", (req, res) => {
-  res.render("profile/settings", { loggedIn: true });
-});
+router.get("/settings", getSettings);
 
-router.get("/retake/:assessment_id", async (req, res) => {
-  const { assessment_id } = req.params;
-
-  // Reeset user modules
-
-  const doc = await UserModule.updateMany(
-    {
-      user_id: req.user._id,
-      assessment_id,
-    },
-    {
-      $set: {
-        time_spent: 0,
-        status: "Pending",
-        no_attempted: 0,
-      },
-    }
-  );
-
-  console.log(doc);
-
-  res.redirect("/forms/" + assessment_id);
-});
+router.get("/retake/:assessment_id", RetakeAssessment);
 
 // Delete all answers
-router.get("/delete/answers", async (req, res) => {
-  const doc = await UserAnswer.deleteMany({ user_id: req.user._id });
-  console.log(doc);
-  res.redirect("/");
-});
+router.get("/delete/answers", DeleteAnswers);
 
 // Delete all scores
-router.get("/delete/scores", async (req, res) => {
-  const doc = await UserScore.deleteMany({ user_id: req.user._id });
-  console.log(doc);
-  res.redirect("/");
-});
+router.get("/delete/scores", DeleteScores);
 
 // Delete account
 router.get("/delete/account", DeleteAccount);
-
-module.exports = router;
 
 function setLocals(req, res, next) {
   res.locals.assessment_id = req.params.assessment_id;
   next();
 }
+
+module.exports = router;

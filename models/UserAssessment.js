@@ -12,7 +12,7 @@ const ObjectId = Schema.Types.ObjectId;
 const schema = new Schema({
   user_id: ObjectId,
   user_name: String,
-  assessment_id: ObjectId,
+  assessment_id: Number,
   assessment_key: String,
   assessment_name: String,
   assessment_category: String,

@@ -13,7 +13,7 @@ const ObjectId = Schema.Types.ObjectId;
 const schema = new Schema({
   user_id: ObjectId,
   assessment_name: String,
-  assessment_id: ObjectId,
+  assessment_id: Number,
   assessment_key: String,
   plot_type: {
     type: String,

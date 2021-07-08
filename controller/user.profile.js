@@ -11,7 +11,11 @@ const {
   getFormYears,
   getChartData,
 } = require("./util");
-const { deleteUserAccount } = require("./api/user");
+const {
+  deleteUserAccount,
+  updateUserAssessmentOnRetake,
+  updateUserModulesOnRetake,
+} = require("./api/user");
 const {
   getModuleFeedbackDescription,
   getModuleScoreFeedback,
@@ -202,5 +206,29 @@ module.exports.DeleteAccount = async (req, res) => {
   const user_id = req.user._id;
   req.logout();
   await deleteUserAccount(user_id);
+  res.redirect("/");
+};
+
+module.exports.getSettings = (req, res) => {
+  res.render("profile/settings", { loggedIn: true });
+};
+
+module.exports.RetakeAssessment = async (req, res) => {
+  const user_id = req.user._id;
+  const { assessment_id } = req.params;
+  await updateUserAssessmentOnRetake(user_id, assessment_id);
+  await updateUserModulesOnRetake(user_id, assessment_id);
+  res.redirect("/forms/" + assessment_id);
+};
+
+module.exports.DeleteScores = async (req, res) => {
+  const doc = await UserScore.deleteMany({ user_id: req.user._id });
+  console.log(doc);
+  res.redirect("/");
+};
+
+module.exports.DeleteAnswers = async (req, res) => {
+  const doc = await UserAnswer.deleteMany({ user_id: req.user._id });
+  console.log(doc);
   res.redirect("/");
 };
