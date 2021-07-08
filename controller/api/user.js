@@ -1,3 +1,5 @@
+const { fetchModuleById } = require("./assessments");
+
 const {
   UserAssessment,
   UserModule,
@@ -21,6 +23,22 @@ module.exports = {
       time_limit: module.time_limit,
       scale_factor: module.scale_factor,
       status: "Pending",
+    });
+  },
+
+  async createUserModules(user_id, assessment) {
+    const msg = `Initialising ${modules.length} modules for user [id] ${user_id}...`;
+    console.log(msg);
+
+    const assessment_id = assessment._id;
+    const modules = assessment.modules;
+
+    return new Promise(async function (res) {
+      for (const _module of modules) {
+        const module = await fetchModuleById(_module._id);
+        await this.createUserModule(user_id, assessment_id, module);
+      }
+      res();
     });
   },
 
@@ -57,6 +75,11 @@ module.exports = {
       user_id,
     });
   },
+
+  async fetchUserModuleById(umid) {
+    return await UserModule.findById(umid);
+  },
+
   async getUserModules(uid, aid) {
     return await UserModule.find({
       user_id: uid,
@@ -106,15 +129,12 @@ module.exports = {
     await user_assessment.save();
   },
 
-  async DeleteAccount(req, res) {
-    const user_id = req.user._id;
-    req.logout();
+  async deleteUserAccount(user_id) {
     console.log("Deleting profile...");
     await UserProfile.findByIdAndRemove(user_id);
     console.log("Deleting modules...");
     await UserModule.deleteMany({ user_id });
     console.log("Deleting User answers...");
     await UserAnswer.deleteMany({ user_id });
-    res.redirect("/");
   },
 };
