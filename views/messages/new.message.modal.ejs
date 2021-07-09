@@ -24,25 +24,29 @@
             placeholder="Search contacts..."
           />
         </form>
-        <div class="list-group overflow-scroll">
+        <div class="overflow-scroll">
           <% users.forEach(profile => { %>
-          <a href="/chats?user_id=<%= profile._id %>" class="btn">
-            <div
-              class="list-group-item"
-              onclick="openChatWithUser('<%= profile._id %>')"
-            >
+          <div class="p-4">
+            <div class="d-flex align-items-start">
               <div>
                 <img
                   src="<%= profile.img_url %>"
                   alt="profile picture"
-                  class="img-fluid rounded-circle mb-2"
-                  width="64"
+                  class="img-fluid img-thumbnail"
+                  width="128"
                 />
               </div>
-              <div class="h5"><%= profile.name %></div>
-              <div class="small text-muted"><%= profile.email %></div>
+              <div class="ms-2">
+                <div class="h5"><%= profile.name %></div>
+                <div class="small text-muted"><%= profile.email %></div>
+                <a
+                  href="/chats?user_id=<%= profile._id %>"
+                  class="btn btn-outline-primary mt-2"
+                  >Message</a
+                >
+              </div>
             </div>
-          </a>
+          </div>
           <% }) %>
         </div>
       </div>
