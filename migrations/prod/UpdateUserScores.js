@@ -1,24 +1,53 @@
 require("dotenv").config();
-require("../../config/db.config").connect();
+const { connect, connection } = require("../../config/db.config");
+const { UserScore, Assessment } = require("../../models");
+const mongoose = require("mongoose");
 
-const { UserScore, Assessment, Module } = require("../../models");
-
-require("mongoose").connection.once("open", async () => {
+async function start() {
   const scores = await UserScore.find({});
 
   for (const score of scores) {
-    const { assessment_key } = score;
+    const {
+      user_id,
+      status,
+      plot_type,
+      date,
+      assessment_name,
+      assessment_key,
+    } = score;
+
     const assessment = await Assessment.findOne({ key: assessment_key });
-    score.assessment_id = assessment._id;
 
-    for (const module_score of score.module_scores) {
-      const { name } = module_score;
-      const module = await Module.findOne({ name });
-      module_score.module_key = module.key;
-      module_score.module_id = module._id;
-    }
+    const newScore = {
+      user_id,
+      assessment_name,
+      assessment_id: assessment._id,
+      assessment_key,
+      plot_type,
+      date,
+      status,
+    };
 
-    await score.save();
-    console.log("Processed row.");
+    newScore.module_scores = score.module_scores.map((module_score) => {
+      const ms = module_score.toObject();
+      const doc = {
+        _id: ms.module_key,
+        name: ms.name,
+        score: ms.score,
+      };
+      console.log(doc);
+      return doc;
+    });
+
+    await UserScore.create(newScore).then((doc) => {
+      console.log("created new score");
+    });
+
+    await score.deleteOne().then((doc) => {
+      console.log("Deleted old score");
+    });
   }
-});
+}
+
+connect();
+connection.once("open", start);
