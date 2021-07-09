@@ -9,6 +9,8 @@ module.exports = new GoogleStrategy(
   },
   async function (accessToken, refreshToken, profile, done) {
     try {
+      const email = profile.emails[0].value;
+
       const currentUser = await UserProfile.findOne({
         "provider.id": profile.id,
         "provider.name": profile.provider,
@@ -17,11 +19,22 @@ module.exports = new GoogleStrategy(
       if (currentUser) {
         console.log("[google oauth2] found user: ", currentUser);
         return done(null, currentUser);
+      }
+      const duplicateEmail = await UserProfile.findOne({ email });
+      if (duplicateEmail) {
+        // Merge email and google account?
+        duplicateEmail.provider = { name: profile.provider, id: profile.id };
+        await duplicateEmail.save();
+        console.log(
+          "[found account with existing gmail address]",
+          duplicateEmail
+        );
+        return done(null, duplicateEmail);
       } else {
         const newUser = await UserProfile.create({
           name: profile.displayName,
           img_url: profile.photos[0].value,
-          email: profile.emails[0].value,
+          email,
           provider: { name: profile.provider, id: profile.id },
         });
 
