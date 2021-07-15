@@ -1,0 +1,87 @@
+<!--
+    Locals: {
+        loggedIn,
+        title,
+        description,
+        assessment_id,
+        questions,
+        user_module
+    }
+-->
+
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+<input type="text" id="user_module_id" value="<%= user_module._id %>" hidden />
+
+<div class="container">
+  <div class="display-4"><%= title %></div>
+  <div class="lead">
+    Given below are a number of scales. For each scale, there are 6 points. You
+    have to circle only one number in each scale. If you agree very strongly
+    with the statement to the left of the scale, circle 1; if you agree with it
+    strongly, circle 2; if you agree moderately, circle 3; if you agree very
+    strongly with the statement to the right of the scale, circle 6; if you
+    agree with it strongly, circle 5; if you agree moderately, circle 5.
+    Remember only one number is to be circled in each scale.
+  </div>
+
+  <div class="alert alert-success">
+    Time spent:
+    <span id="timer_display"></span>
+  </div>
+
+  <form
+    action="/forms/<%= assessment_id %>/submit/<%= user_module._id %>"
+    method="POST"
+    name="moduleForm"
+  >
+    <% questions.map((question, num) => { %>
+
+    <div class="row shadow-sm rounded p-2 my-4 bg-light">
+      <p><%= num+1 %>.</p>
+      <p><strong>Left: </strong><%= question.left %></p>
+      <p><strong>Right: </strong><%= question.right %></p>
+
+      <div class="container">
+        <% [1,2,3,4,5,6].map(choice => { %>
+        <div class="form-check">
+          <input
+            type="radio"
+            class="form-check-input"
+            id="<%= question._id + '_' + choice %>"
+            name="<%= question._id %>"
+            value="<%= choice %>"
+          />
+          <label for="<%= choice %>"><%= choice %></label>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <% }) %>
+
+    <!-- Time spent since page load -->
+    <input type="number" value="0" id="time_spent" name="time_spent" hidden />
+
+    <input type="submit" class="btn btn-primary" value="Submit" />
+
+    <a href="/forms/<%= assessment_id %>" class="btn btn-secondary">Back</a>
+  </form>
+</div>
+
+<!-- Populate previous answers in the form -->
+<script>
+  let _id, value;
+</script>
+<% user_answers.map(({_id, value}) => { %>
+<script>
+  _id = "<%= _id %>";
+  value = "<%= value %>";
+  console.log(`question[${_id}] & choice[${value}]`);
+  document.getElementById(_id + "_" + value).checked = true;
+</script>
+<% }) %>
+
+<script src="/js/module.timer.js"></script>
+
+<%- include('../partials/footer.ejs') %>

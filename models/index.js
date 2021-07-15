@@ -15,4 +15,6 @@ module.exports = {
   Chat: require("./chat"),
   Message: require("./message"),
   Contact: require("./contact"),
+  CPQuestion: require("./cp.question"),
+  CPUserAnswer: require("./cp.user.answer"),
 };

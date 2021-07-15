@@ -1,83 +1,83 @@
-﻿Question ID,Module Key,Module Name,Left Statement,Right Statement
-1,19,Hunger for knowing," I do not have an unhealthy curiosity and I don’t like to show my ignorance by asking questions.
+﻿Module Id,Module Name,Left Statement,Right Statement
+19,Hunger for knowing," I do not have an unhealthy curiosity and I don’t like to show my ignorance by asking questions.
 ","My curiosity is insatiable; I want to know about everything and I am constantly asking questions.
 "
-2,19,Hunger for knowing,"I find subjects like philosophy quite boring.
+19,Hunger for knowing,"I find subjects like philosophy quite boring.
 ","I have a strong interest in stimulating ideas, theories, and philosophies.
 "
-3,19,Hunger for knowing,"Who cares about the ‘why’ of things? I am only interested in the ‘how’ of things that I have to do.
+19,Hunger for knowing,"Who cares about the ‘why’ of things? I am only interested in the ‘how’ of things that I have to do.
 "," I am always trying to find out the ‘why’ of things.
 "
-4,19,Hunger for knowing," I do not like to poke my nose into others affairs.
+19,Hunger for knowing," I do not like to poke my nose into others affairs.
 ","I am very interested in studying people and their motives and behaviour.
 "
-5,20,Sensitivity,"I really enjoy food, clothing, ‘action’ films or competitive sports more than anything else.
+20,Sensitivity,"I really enjoy food, clothing, ‘action’ films or competitive sports more than anything else.
 ","I enjoy most many of the delicate and fine things of life, such as literature, music, art, flowers, interior decoration, etc.
 "
-6,20,Sensitivity,"I feel quite uncomfortable without company.
+20,Sensitivity,"I feel quite uncomfortable without company.
 ","I don’t usually crave for company but I enjoy meeting interesting and sensitive people.
 "
-7,20,Sensitivity,"One can’t care for every one. I care mainly for my family members and friends.
+20,Sensitivity,"One can’t care for every one. I care mainly for my family members and friends.
 ","I am often touched deeply by the misery of strangers.
 "
-8,20,Sensitivity,"I am primarily interested in the usefulness of things.
+20,Sensitivity,"I am primarily interested in the usefulness of things.
 ","Beauty and elegance of things move me even more deeply than their usefulness.
 "
-9,21,Complexity,"I tend to solve problems by systematic, step-by-step logic and analysis.
+21,Complexity,"I tend to solve problems by systematic, step-by-step logic and analysis.
 ","I tend to skip steps and leap intuitively to correct solutions.
 
 "
-10,21,Complexity,"I don’t waste time in visions and dreams; I believe in being down to earth.
+21,Complexity,"I don’t waste time in visions and dreams; I believe in being down to earth.
 ","I often have visions about the kind of society we should have, the kind of work people should be doing, my own role, etc.
 "
-11,21,Complexity,"I am a solid person and hold only very respectable ideas.
+21,Complexity,"I am a solid person and hold only very respectable ideas.
 ","Some people think I am crazy because my ideas are so strange.
 
 "
-12,21,Complexity,"I have a pretty balanced temperament.
+21,Complexity,"I have a pretty balanced temperament.
 ","I am a moody person and I have my highs and lows, elations and depressions.
 "
-13,22,Venturing,"I tend to be rather cautious in risky situations.
+22,Venturing,"I tend to be rather cautious in risky situations.
 ",I love to take calculated risks 
-14,22,Venturing,"I prefer to work on ventures or projects led by solid, dependable persons.
+22,Venturing,"I prefer to work on ventures or projects led by solid, dependable persons.
 ","I prefer to start ventures and projects of my own.
 "
-15,22,Venturing,"I am a realist; I pursue only those goals I can attain soon and successfully.
+22,Venturing,"I am a realist; I pursue only those goals I can attain soon and successfully.
 ","I know I may never reach some of my goals but I still pursue them.
 "
-16,22,Venturing,I like to go along with others. ,I rather like striking out on my own.
-17,23,Independence and Courage,"I seldom ever question whatever is well-established.
+22,Venturing,I like to go along with others. ,I rather like striking out on my own.
+23,Independence and Courage,"I seldom ever question whatever is well-established.
 ","I do have a strong tendency to question the established order of things.
 "
-18,23,Independence and Courage,"I don’t really stick rigidly to any core convictions or values.
+23,Independence and Courage,"I don’t really stick rigidly to any core convictions or values.
 ","I stick to a few core convictions and values, come what may.
 "
-19,23,Independence and Courage,"One can’t know everything; I mostly rely on experts’ opinions.
+23,Independence and Courage,"One can’t know everything; I mostly rely on experts’ opinions.
 ","I may hear out what an expert has to say but I make up my own mind and have my own ideas.
 "
-20,23,Independence and Courage,"There is much virtue in being cautious when it comes to expressing one’s views and feelings.
+23,Independence and Courage,"There is much virtue in being cautious when it comes to expressing one’s views and feelings.
 ","I make no bones about where I stand; I assert my viewpoint and feelings clearly and forcefully.
 "
-21,24,Reality Contact,"It is upto my superiors to tell me the restrictions within which I have to work.
+24,Reality Contact,"It is upto my superiors to tell me the restrictions within which I have to work.
 ","I take the initiative to identify clearly the restrictions within which I am expected to work.
 "
-22,24,Reality Contact,"I feel pretty upset in crisis situations and this badly affects my functioning.
+24,Reality Contact,"I feel pretty upset in crisis situations and this badly affects my functioning.
 ","I feel pretty confident that I can manage any crisis.
 "
-23,24,Reality Contact,"I have a hard time coping with change of any sort.
+24,Reality Contact,"I have a hard time coping with change of any sort.
 ","I can adjust very quickly to new challenges, problems, and information.
 "
-24,24,Reality Contact,"I hate to live in a world of fantasies and wishful thinking.
+24,Reality Contact,"I hate to live in a world of fantasies and wishful thinking.
 ","I really enjoy having fantasies but I don’t lose my grip over reality.
 "
-25,25,Self-sufficiency,"I do not shirk work but it certainly is not my whole life.
+25,Self-sufficiency,"I do not shirk work but it certainly is not my whole life.
 ","I get wholly preoccupied with challenging tasks.
 "
-26,25,Self-sufficiency,"There is always so much one doesn’t know; I often feel quite diffident in unfamiliar situations.
+25,Self-sufficiency,"There is always so much one doesn’t know; I often feel quite diffident in unfamiliar situations.
 ","I am quite confident of my abilities even in unfamiliar situations.
 "
-27,25,Self-sufficiency,"I know my limitations—I take on only those tasks I can achieve comfortably.
+25,Self-sufficiency,"I know my limitations—I take on only those tasks I can achieve comfortably.
 ","I have a tendency to take on really difficult tasks most would avoid. 
 "
-28,25,Self-sufficiency,"I tend to avoid ventures that demand too much commitment of my time and energy.
+25,Self-sufficiency,"I tend to avoid ventures that demand too much commitment of my time and energy.
 ",I tend to persist in my ventures to the point that others think I am obsessed. 

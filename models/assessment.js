@@ -7,7 +7,10 @@ const schema = new mongoose.Schema(
       type: Number,
     },
     name: String,
-    key: String,
+    key: {
+      type: String,
+      unique: true,
+    },
     description: String,
     category_id: Number,
     category_name: String,

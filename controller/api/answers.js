@@ -1,4 +1,4 @@
-const { Answer, Question } = require("../../models");
+const { Answer, Question, CPQuestion } = require("../../models");
 
 module.exports = {
   async getPointsForAnswerChoice(question_id, choice) {
@@ -17,5 +17,9 @@ module.exports = {
 
   async fetchQuestionsForModule(module_id) {
     return await Question.find({ module_id });
+  },
+
+  async fetchCPQuestionsForModule(module_id) {
+    return await CPQuestion.find({ module_id });
   },
 };

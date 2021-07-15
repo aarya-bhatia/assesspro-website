@@ -17,6 +17,10 @@ module.exports = {
     return await Assessment.findById(id);
   },
 
+  async fetchAssessmentByKey(key) {
+    return await Assessment.findOne({ key });
+  },
+
   async fetchModuleById(id) {
     return await Module.findById(id);
   },

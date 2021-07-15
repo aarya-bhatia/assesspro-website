@@ -32,6 +32,7 @@
     "validator": "^13.6.0"
   },
   "devDependencies": {
-    "csv-reader": "^1.0.8"
+    "csv-reader": "^1.0.8",
+    "eslint": "^7.30.0"
   }
 }

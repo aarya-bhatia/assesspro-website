@@ -125,6 +125,15 @@ module.exports = {
   async updateOrCreateAnswer(user_module, question_id, choice, value) {
     const { user_id, module_id, module_name } = user_module;
 
+    const update = {};
+
+    if (choice) {
+      update.choice = choice;
+    }
+    if (value) {
+      update.value = value;
+    }
+
     await UserAnswer.updateOne(
       {
         user_id,
@@ -132,10 +141,7 @@ module.exports = {
         module_id,
         module_name,
       },
-      {
-        choice,
-        value,
-      },
+      update,
       { upsert: true }
     );
   },

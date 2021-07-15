@@ -17,6 +17,12 @@ const schema = new Schema({
     default: Date.now,
     expires: 3600,
   },
+  type: {
+    type: String,
+    enum: ["PASSWORD_RESET", "EMAIL_CONFIRMATION"],
+    default: "PASSWORD_RESET",
+    required: true,
+  },
 });
 
 const model = mongoose.model("Token", schema);
