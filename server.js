@@ -54,6 +54,8 @@ app.use(
   require("./routers/forms.router")
 );
 
+app.use("/creativity", isAuth, require("./routers/creativity.router"));
+
 app.use(require("./routers/help.router"));
 app.use(require("./routers/index.router"));
 

@@ -1,0 +1,10 @@
+<% for(const question of questions) { %>
+<div><%= question.statement %></div>
+<% for(const option of question.options) { %>
+<div class="row">
+  <div class="col-md-10"><%= option.content %></div>
+  <div class="col-md-2">
+    <input type="number" min="0" max="30" class="" />
+  </div>
+</div>
+<% } %> <% } %>

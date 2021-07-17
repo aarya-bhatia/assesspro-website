@@ -22,6 +22,9 @@ const {
 } = require("../controller/user.enroll.js");
 
 const { uploadImage } = require("../config/s3.config");
+const { UserAssessment } = require("../models/index.js");
+const { createUserAssessment } = require("../controller/api/user.js");
+const { fetchAssessmentByKey } = require("../controller/api/assessments.js");
 
 // Router
 const router = require("express").Router();
@@ -55,6 +58,22 @@ router.get(
   [setLocals, CheckUserEnrolled],
   EnrollUser
 );
+
+// Enroll in creativity motivation
+router.get("/enroll-CM", async (req, res) => {
+  const assessment = await fetchAssessmentByKey("CM");
+  const userAssessmentFound = await UserAssessment.findOne({
+    user_id: req.user._id,
+    assessment_id: assessment._id,
+  });
+  if (!userAssessmentFound) {
+    const userAssessment = await createUserAssessment(req.user, assessment);
+    console.log("User enrolled in CM: ", userAssessment);
+  } else {
+    console.log("User is Enrolled...");
+  }
+  return res.redirect("creativity/CM/questions");
+});
 
 // Delete user assessment
 router.get("/unenroll/:assessment_id", UnenrollUser);

@@ -1,11 +1,11 @@
 const { formatTimeSpent, shuffleOrder } = require("../controller/util");
-const { CPUserAnswer } = require("../models");
+const { CPUserAnswer, CMQuestion } = require("../models");
 
 const {
   fetchQuestionsForModule,
   fetchCPQuestionsForModule,
 } = require("./api/answers");
-const { fetchAssessmentByKey } = require("./api/assessments");
+
 const {
   getUserAnswersForModule,
   getUserModules,
@@ -19,6 +19,7 @@ module.exports = {
   async getModuleList(req, res) {
     const { assessment_id, user_assessment } = res.locals;
     const { assessment_description, assessment_name } = user_assessment;
+
     const user_id = req.user._id;
 
     const user_modules = await getUserModules(user_id, assessment_id);
@@ -37,10 +38,9 @@ module.exports = {
   async getModuleForm(req, res) {
     const { assessment_id } = res.locals;
 
-    if (assessment_id == (await getCPAssessmentId())) {
+    if (assessment_id == "CP") {
       return getCPQuestionForm(req, res);
     }
-
     const { user_module_id } = req.params;
     const user_module = await fetchUserModuleById(user_module_id);
     const { module_id, module_name, module_description } = user_module;

@@ -24,6 +24,6 @@ schema.pre("save", async function (next) {
   }
 });
 
-const model = mongoose.model("CMQuestion", schema);
+const model = mongoose.model("CMUserAnswer", schema);
 
 module.exports = model;

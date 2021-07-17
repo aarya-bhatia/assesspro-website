@@ -1,9 +1,13 @@
 const router = require("express").Router();
+const { CMQuestion } = require("../models");
 
 async function scoreCM(req, res) {}
 
 router.get("/:key/questions", async (req, res) => {
   const { key } = req.params;
+
+  // fetch questions
+  const questions = await CMQuestion.find({});
 
   switch (key) {
     case CM:
