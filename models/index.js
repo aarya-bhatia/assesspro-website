@@ -16,5 +16,7 @@ module.exports = {
   Message: require("./message"),
   Contact: require("./contact"),
   CPQuestion: require("./cp.question"),
+  CMQuestion: require("./cm.question"),
   CPUserAnswer: require("./cp.user.answer"),
+  CMUserAnswer: require("./cm.user.answer"),
 };
