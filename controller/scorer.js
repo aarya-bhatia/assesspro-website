@@ -2,7 +2,7 @@ module.exports = {
   scoreAssessment,
 };
 
-const { getCPAssessmentId } = require("../config/globals");
+const { getAssessmentId, CP_Key } = require("./assessment.keys");
 const { CPUserAnswer } = require("../models");
 const { getPointsForAnswerChoice } = require("./api/answers");
 
@@ -30,7 +30,7 @@ async function scoreAssessment(req, res) {
 
   let module_scores = [];
 
-  if (assessment_id == (await getCPAssessmentId())) {
+  if (assessment_id == (await getAssessmentId(CP_Key))) {
     module_scores = await scoreCP(user_id, assessment_id);
   } else {
     module_scores = await score(user_id, assessment_id);

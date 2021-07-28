@@ -12,7 +12,7 @@ const {
   fetchUserModuleById,
 } = require("./api/user");
 
-const { getCPAssessmentId } = require("../config/globals");
+const { getAssessmentId, CP_Key } = require("./assessment.keys");
 
 module.exports = {
   // Get the module list page for an assessment
@@ -90,7 +90,7 @@ async function getCPQuestionForm(req, res) {
   res.render("forms/cp.moduleForm.ejs", {
     ...res.locals,
     title: "Module: " + module_name,
-    assessment_id: await getCPAssessmentId(),
+    assessment_id: await getAssessmentId(CP_Key),
     questions,
     user_answers,
     user_module,

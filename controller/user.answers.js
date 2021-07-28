@@ -1,4 +1,4 @@
-const { getCPAssessmentId } = require("../config/globals");
+const { getAssessmentId, CP_Key } = require("./assessment.keys");
 const { CPUserAnswer } = require("../models");
 const {
   fetchQuestionsForModule,
@@ -11,7 +11,7 @@ const {
 } = require("./api/user");
 
 async function saveCPAnswers(req, res) {
-  const assessment_id = await getCPAssessmentId();
+  const assessment_id = await getAssessmentId(CP_Key);
   const { user_module_id } = req.params;
   const user_module = await fetchUserModuleById(user_module_id);
   const { module_id } = user_module;
@@ -72,7 +72,7 @@ module.exports.saveAnswers = async function (req, res) {
 
   const { assessment_id } = res.locals;
 
-  if (assessment_id == (await getCPAssessmentId())) {
+  if (assessment_id == (await getAssessmentId(CP_Key))) {
     return saveCPAnswers(req, res);
   }
 
