@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <a href="/" class="navbar-brand">
+    <!-- <a href="/" class="navbar-brand">
       <img
         src="/images/aspire_logo.png"
         class="img-fluid"
         alt="logo"
         width="100"
       />
-    </a>
+    </a> -->
     <a href="/" class="navbar-brand">
       <img
         src="/images/aspire_impact_logo.png"
@@ -31,17 +31,12 @@
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav text-center">
         <li class="nav-item">
-          <a href="/" class="nav-link">Home</a>
-        </li>
-
-        <li class="nav-item">
-          <a href="/contact-us" class="nav-link">Contact</a>
-        </li>
-
-        <li class="nav-item">
           <a href="/users/profile" class="nav-link">Profile</a>
         </li>
 
+        <li class="nav-item">
+          <a href="/contact-us" class="nav-link">Contact Us</a>
+        </li>
         <!-- user not logged in -->
         <% if(!loggedIn) { %>
         <li class="nav-item">
