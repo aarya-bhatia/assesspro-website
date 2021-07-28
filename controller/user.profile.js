@@ -154,7 +154,7 @@ module.exports.updateUserProfile = async (req, res) => {
   const user = req.user;
 
   /* update name, email and bio */
-  ["name", "email", "bio"].map((key) => {
+  ["name", "email", "bio", "mobile"].map((key) => {
     if (req.body[key]) {
       user[key] = req.body[key];
     }

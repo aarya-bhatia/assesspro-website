@@ -1,16 +1,18 @@
 <div class="container text-center">
   <%- include('./thumbnail', { img_url: user.img_url }) %>
   <h5 class="mt-2"><%= user.name %></h5>
-  <p class=""><%= user.email %></p>
-  <!-- Bio -->
-  <% if(user.bio) { %>
-  <p><%= user.bio %></p>
-  <% } %>
+  <p>Email: <%= user.email %></p>
+  <p>Mobile: <%= user.mobile %></p>
 
   <!-- Address -->
   <% if(user.address.city) { %>
-  <p class="fw-bold">
-    <%= user.address.city %> <% } %> <% if(user.address.state) { %> , <%=
-    user.address.state %> <% } %>
+  <p>
+    Location: <%= user.address.city %> <% } %> <% if(user.address.state) { %> ,
+    <%= user.address.state %> <% } %>
   </p>
+
+  <!-- Bio -->
+  <% if(user.bio) { %>
+  <p>Bio: <%= user.bio %></p>
+  <% } %>
 </div>

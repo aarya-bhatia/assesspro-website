@@ -19,6 +19,9 @@ const schema = new Schema(
       lowercase: true,
       validate: [isEmail, "Please enter a valid email"],
     },
+    mobile: {
+      type: String,
+    },
     role: { type: String, enum: ["admin", "basic"], default: "basic" },
     password: {
       type: String,
