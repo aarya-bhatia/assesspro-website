@@ -1,18 +1,50 @@
-<div class="container text-center">
+<div class="container">
   <%- include('./thumbnail', { img_url: user.img_url }) %>
-  <h5 class="mt-2"><%= user.name %></h5>
-  <p>Email: <%= user.email %></p>
-  <p>Mobile: <%= user.mobile %></p>
 
-  <!-- Address -->
-  <% if(user.address.city) { %>
+  <h4 class="my-4"><%= user.name %></h4>
+  <p><strong>Email: </strong><%= user.email %></p>
+  <p><strong>Mobile: </strong><%= user.mobile %></p>
   <p>
-    Location: <%= user.address.city %> <% } %> <% if(user.address.state) { %> ,
-    <%= user.address.state %> <% } %>
+    <strong>Location: </strong><%= user.address.city %>, <%= user.address.state
+    %>
+  </p>
+  <p><strong>Bio: </strong><%= user.bio %></p>
+  <p>
+    <strong>Date of Birth: </strong><%= user.dob.day %>-<%= user.dob.month
+    %>-<%= user.dob.year %>
   </p>
 
-  <!-- Bio -->
-  <% if(user.bio) { %>
-  <p>Bio: <%= user.bio %></p>
-  <% } %>
+  <!-- qualifications -->
+  <table class="table table-hover">
+    <tr>
+      <th>Qualification</th>
+      <th>Institution</th>
+      <th>Subject</th>
+    </tr>
+    <tr>
+      <td>Grade 10</td>
+      <td><%= user.qualifications.grade10.institution %></td>
+      <td><%= user.qualifications.grade10.subject %></td>
+    </tr>
+    <tr>
+      <td>Grade 12</td>
+      <td><%= user.qualifications.grade12.institution %></td>
+      <td><%= user.qualifications.grade12.subject %></td>
+    </tr>
+    <tr>
+      <td>Bachelors</td>
+      <td><%= user.qualifications.bachelors.institution %></td>
+      <td><%= user.qualifications.bachelors.subject %></td>
+    </tr>
+    <tr>
+      <td>Masters</td>
+      <td><%= user.qualifications.masters.institution %></td>
+      <td><%= user.qualifications.masters.subject %></td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td><%= user.qualifications.other.institution %></td>
+      <td><%= user.qualifications.other.subject %></td>
+    </tr>
+  </table>
 </div>
