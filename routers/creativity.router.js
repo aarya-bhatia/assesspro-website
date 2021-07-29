@@ -31,7 +31,7 @@ router.get("/enroll/:key", async (req, res) => {
   return res.redirect("/creativity/" + key + "/questions");
 });
 
-router.get("/personality/questions", async (req, res) => {
+router.get("/CP/questions", async (req, res) => {
   const questions = await CPQuestion.find({});
 
   res.render("questions/creativity.personality.ejs", {
@@ -41,10 +41,10 @@ router.get("/personality/questions", async (req, res) => {
   });
 });
 
-router.get("/motivation/questions", async (req, res) => {
+router.get("/CM/questions", async (req, res) => {
   const questions = await CMQuestion.find({});
 
-  res.render("questions/creativity.personality.ejs", {
+  res.render("questions/creativity.motivation.ejs", {
     ...res.locals,
     user: req.user,
     questions,
@@ -52,9 +52,9 @@ router.get("/motivation/questions", async (req, res) => {
   });
 });
 
-router.get("/temperament/questions", async (req, res) => {});
+router.get("/CT/questions", async (req, res) => {});
 
-router.post("/personality/submit", async (req, res) => {
+router.post("/CP/submit", async (req, res) => {
   console.log(req.body);
   const questions = await CPQuestion.find({});
   console.log(questions.splice(1, 5));
@@ -136,7 +136,7 @@ router.post("/personality/submit", async (req, res) => {
   res.redirect("/users/profile");
 });
 
-router.post("/motivation/submit", async (req, res) => {});
+router.post("/CM/submit", async (req, res) => {});
 
-router.post("/temperament/submit", async (req, res) => {});
+router.post("/CT/submit", async (req, res) => {});
 module.exports = router;

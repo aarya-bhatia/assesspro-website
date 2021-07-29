@@ -1,0 +1,75 @@
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+<div class="container">
+  <div class="display-4">Creativity Motivation Assessment</div>
+  <div class="lead">
+    <ul>
+      <li>
+        Given below are a number of situations, and 6 alternatives in each
+        situation. How would you respond in each situation if you had to choose
+        only from amongst the given alternatives.
+      </li>
+      <li>
+        In each situation, you have 30 points to allocate between the six
+        alternatives. Consider each alternative carefully, and bearing in mind
+        the other given alternatives, give it the points that reflects its
+        priority to you.
+      </li>
+      <li>
+        You should allocate points to the alternatives subject to the following
+        rules.
+        <ol>
+          <li>The points must sum to 30.</li>
+          <li>
+            The maximum points you can give an alternative is 15; the minimum is
+            1.
+          </li>
+          <li>No decimals are permitted.</li>
+        </ol>
+      </li>
+      <li>
+        Please put down your points for each alternative in the space provided
+        to the right of the alternative. After you have put down the points for
+        all the alternatives in a situation, total them up and make sure that
+        they sum to 30.
+      </li>
+      <li>
+        For each question, first read through all the alternatives. Next,
+        identify the ones that appeal to you the most, and give them the
+        appropriate points. Finally, give appropriate points to the remaining
+        alternatives.
+      </li>
+    </ul>
+  </div>
+
+  <form action="/creativity/CM/submit" method="POST">
+    <% questions.map((question, num) => { %>
+
+    <!-- <div class="row shadow-sm rounded p-2 my-4 bg-light">
+      <p><%= num+1 %>.</p>
+      <p><strong>Left: </strong><%= question.left %></p>
+      <p><strong>Right: </strong><%= question.right %></p>
+
+      <div class="container d-flex justify-space-between">
+        <% [1,2,3,4,5,6].map(choice => { %>
+        <div class="form-check me-2">
+          <input
+            type="radio"
+            class="form-check-input"
+            id="<%= question._id + '_' + choice %>"
+            name="<%= question._id %>"
+            value="<%= choice %>"
+          />
+          <label for="<%= question._id + '_' + choice %>"><%= choice %></label>
+        </div>
+        <% }) %>
+      </div>
+    </div> -->
+
+    <% }) %>
+
+    <input type="submit" class="btn btn-primary" value="Submit" />
+  </form>
+</div>
+
+<%- include('../partials/footer.ejs') %>

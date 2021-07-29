@@ -220,7 +220,7 @@ module.exports.RetakeAssessment = async (req, res) => {
   const { assessment_id } = req.params;
   await updateUserAssessmentOnRetake(user_id, assessment_id);
   await updateUserModulesOnRetake(user_id, assessment_id);
-  res.redirect("/forms/" + assessment_id);
+  res.redirect("/assessments/" + assessment_id);
 };
 
 module.exports.DeleteScores = async (req, res) => {
