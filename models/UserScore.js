@@ -26,7 +26,10 @@ const schema = new Schema({
       score: Number,
     },
   ],
-  date: Date,
+  date: {
+    type: Date,
+    default: Date.now,
+  },
   status: {
     type: String,
     enum: ["private", "public"],

@@ -8,7 +8,14 @@ locals: {
 -->
 
 <%- include('./profileHeader.ejs', { loggedIn }) %> <%-
-include('./basicProfile', { user }) %> <%- include('./profileNav', { user }) %>
+include('./basicProfile', { user }) %>
+
+<div class="container">
+  <a href="/users/profile/update" class="btn btn-outline-primary"
+    >Update Profile</a
+  >
+</div>
+
 <%- include('./assessmentList', { assessments }) %>
 
 <!-- SCORES -->
