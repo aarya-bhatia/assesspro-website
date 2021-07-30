@@ -15,24 +15,27 @@ module.exports = {
 
     const scale = {
       1: 0,
-      2: 0.2,
-      3: 0.4,
-      4: 0.6,
-      5: 0.8,
-      6: 1,
+      2: 20,
+      3: 40,
+      4: 60,
+      5: 80,
+      6: 100,
     };
 
     const module_scores = {};
 
     for (const question of questions) {
+      console.log(module_scores);
+
       const id = question._id;
       const module_id = question.module_id;
       const module_name = question.module_name;
 
       if (req.body[id]) {
-        const answer = parseInt(req.body[id]);
-        const scale_factor = scale[answer] || 0;
-        const points = answer * scale_factor;
+        const answer = req.body[id];
+        const points = scale[answer] || 0;
+
+        console.log("Points: ", points);
 
         if (module_scores[module_id]) {
           module_scores[module_id].score += points;
@@ -51,11 +54,9 @@ module.exports = {
     const module_score_array = [];
 
     for (const key of Object.keys(module_scores)) {
-      let score = module_scores[key];
-      score = score / 4;
-      score = score * 100;
-      score = Math.round(score);
-      module_scores[key] = score;
+      let score = module_scores[key].score;
+      score = Math.round(score / 4);
+      module_scores[key].score = score;
       module_score_array.push({ ...module_scores[key] });
     }
 
@@ -63,6 +64,8 @@ module.exports = {
 
     const user_id = req.user._id;
     const assessment = await Assessment.findOne({ key: "CP" });
+
+    return res.json(module_score_array);
 
     const userScore = await UserScore.create({
       user_id,
