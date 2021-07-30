@@ -65,8 +65,6 @@ module.exports = {
     const user_id = req.user._id;
     const assessment = await Assessment.findOne({ key: "CP" });
 
-    return res.json(module_score_array);
-
     const userScore = await UserScore.create({
       user_id,
       assessment_name: assessment.name,
