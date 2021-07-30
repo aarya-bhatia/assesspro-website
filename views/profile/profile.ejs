@@ -14,6 +14,9 @@ include('./basicProfile', { user }) %>
   <a href="/users/profile/update" class="btn btn-outline-primary"
     >Update Profile</a
   >
+  <% if(user.role == 'admin') { %>
+  <a href="/users/" class="btn btn-outline-dark">View All Users</a>
+  <% } %>
 </div>
 
 <%- include('./assessmentList', { assessments }) %>
