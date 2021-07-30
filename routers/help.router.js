@@ -13,7 +13,7 @@ router.post("/contact-us", async (req, res) => {
   const { name, email, message } = req.body;
   console.log(req.body);
   try {
-    await sendEmail(
+    sendEmail(
       process.env.CONTACT_US_EMAIL,
       "Someone sent a message!",
       {
@@ -24,11 +24,12 @@ router.post("/contact-us", async (req, res) => {
       "./template/contact.us.ejs"
     ).then(() => {
       console.log("email sent.");
-      res.render("contact.us.ejs", {
-        loggedIn: res.locals.loggedIn,
-        success: "Message sent successfully...",
-        error: null,
-      });
+    });
+
+    res.render("contact.us.ejs", {
+      loggedIn: res.locals.loggedIn,
+      success: "Message sent successfully...",
+      error: null,
     });
   } catch (err) {
     console.log(err);
