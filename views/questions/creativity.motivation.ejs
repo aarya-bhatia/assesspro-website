@@ -45,9 +45,14 @@
   <form action="/creativity/CM/submit" method="POST">
     <% questions.map((question, num) => { %>
 
-    <div class="shadow-sm rounded p-2 my-4 bg-light">
+    <div
+      class="shadow-sm rounded p-2 my-4 bg-light"
+      data-question-container
+      data-question-id="<%= question._id %>"
+    >
       <!-- Question begins -->
       <div class="p"><%= question.statement %>...</div>
+      <hr />
 
       <!-- options begin -->
       <% question.options.map(option => { %>
@@ -60,6 +65,9 @@
             class="form-control"
             min="1"
             max="15"
+            data-input-field
+            data-option-id="<%= option._id %>"
+            data-question-id="<%= question._id %>"
           />
         </div>
       </div>
@@ -69,11 +77,20 @@
       <button
         type="button"
         class="btn btn-outline-secondary my-2"
-        onclick="console.log('Question: <%= question._id %>')"
+        data-calculate-button
+        data-question-id="<%= question._id %>"
       >
         Calculate Total
       </button>
-      <div>Total: <span class="total">0</span></div>
+      <div>
+        Total:
+        <span
+          class="total"
+          data-total-span
+          data-question-id="<%= question._id %>"
+          >0</span
+        >
+      </div>
 
       <!-- Question ends -->
     </div>
@@ -84,6 +101,6 @@
   </form>
 </div>
 
-<script src="./creativity.motivation.js"></script>
+<script src="/js/creativity.motivation.js"></script>
 
 <%- include('../partials/footer.ejs') %>
