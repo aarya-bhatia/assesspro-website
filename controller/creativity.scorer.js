@@ -4,6 +4,7 @@ const {
   CMQuestion,
   UserScore,
   Assessment,
+  Module,
 } = require("../models/index.js");
 
 module.exports = {
@@ -91,45 +92,65 @@ module.exports = {
   },
 
   async submitCMForm(req, res) {
-    const modules = [
-      "Safety Motive",
-      "Competence Motive",
-      "Status Motive",
-      "Pioneering-Innovating Motive",
-      "Altruistic Motive",
-      "Self-actualization Motive",
-    ];
+    Assessment.findOne({ key: "CM" }).then(async (assessment) => {
+      const module_scores = [];
+      let index = 0;
 
-    const module_scores = {};
+      for (const module of assessment.modules) {
+        module_scores[index++] = {
+          _id: module._id,
+          name: module.name,
+          score: 0,
+        };
+      }
 
-    const A = "A".charCodeAt(0);
+      const A = "A".charCodeAt(0);
 
-    for (let i = 1; i <= 10; i++) {
-      for (let j = 0; j <= 6; j++) {
-        const q = `${i}${String.fromCharCode(A + j)}`;
-        console.log(q);
-        if (req.body[q]) {
-          const points = parseInt(req.body[q]) || 0;
-          const module = modules[j];
-          if (module_scores[module]) {
-            module_scores[module] += points;
-          } else {
-            module_scores[module] = points;
+      for (let i = 1; i <= 10; i++) {
+        for (let j = 0; j <= 6; j++) {
+          const code = `${i}${String.fromCharCode(A + j)}`;
+          if (req.body[code]) {
+            const points = parseInt(req.body[code]) || 0;
+            module_scores[j].score += points;
           }
         }
       }
-    }
 
-    console.log(module_scores);
+      console.log(module_scores);
 
-    for (const module of Object.keys(module_scores)) {
-      module_scores[module] -= 10;
-      module_scores[module] /= 3;
-      module_scores[module] = Math.round(module_scores[module]);
-    }
+      for (const module_score of module_scores) {
+        let score = module_score.score;
+        score -= 10;
+        score /= 3;
+        score = Math.round(score);
+        module_score.score = score;
+      }
 
-    res.json({
-      module_scores,
+      const userScore = await UserScore.create({
+        user_id: req.user._id,
+        assessment_name: assessment.name,
+        assessment_id: assessment._id,
+        assessment_key: assessment.key,
+        plot_type: assessment.plot_type,
+        module_scores,
+      });
+
+      await UserAssessment.updateOne(
+        {
+          user_id: req.user._id,
+          assessment_id: assessment._id,
+        },
+        {
+          $set: {
+            completed: true,
+          },
+          $inc: {
+            attempts: 1,
+          },
+        }
+      );
+
+      res.redirect("/users/profile");
     });
   },
 };
