@@ -1,4 +1,5 @@
 const { capitalize, buildSignupErrorObject } = require("../controller/util");
+const { UserAssessment, Assessment } = require("../models");
 const { getUserAssessment, createUserProfile } = require("./api/user");
 
 /*
@@ -35,6 +36,37 @@ module.exports.checkUserEnrolled = async (req, res, next) => {
   }
 
   res.locals.user_assessment = found;
+  next();
+};
+
+module.exports.checkUserEnrolledByKey = async (req, res, next) => {
+  const { key } = req.params;
+  res.locals.key = key;
+
+  console.log("KEY: ", key);
+  console.log(req.url);
+
+  if (req.url.split("/")[1] == "enroll") {
+    // console.log("skipping middleware...");
+    return next();
+  }
+
+  const found = await UserAssessment.findOne({
+    user_id: req.user._id,
+    assessment_key: key,
+  });
+
+  if (!found) {
+    console.log("Error");
+
+    return res.status(400).render("error/index", {
+      message: "Access Denied. User is not enrolled in this assessment.",
+      ...res.locals,
+    });
+  }
+
+  res.locals.user_assessment = found;
+  // console.log("success...");
   next();
 };
 

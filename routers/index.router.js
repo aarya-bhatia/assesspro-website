@@ -14,7 +14,7 @@ router.use((err, req, res, next) => {
   console.log(
     "=================================================================="
   );
-  console.log(err);
+  console.log(JSON.stringify(err));
 
   res.render("error/index", {
     message: err.message || "There was an error!",

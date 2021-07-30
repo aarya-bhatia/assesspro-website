@@ -21,7 +21,12 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // auth middleware
-const { isAuth, checkUserEnrolled, isLoggedIn } = require("./controller/auth");
+const {
+  isAuth,
+  checkUserEnrolled,
+  isLoggedIn,
+  checkUserEnrolledByKey,
+} = require("./controller/auth");
 
 // connect to mongodb
 require("./config/db.config.js").connect();
@@ -54,7 +59,11 @@ app.use(
   require("./routers/forms.router")
 );
 
-app.use("/creativity", [isAuth], require("./routers/creativity.router"));
+app.use(
+  "/creativity/:key",
+  [isAuth, checkUserEnrolledByKey],
+  require("./routers/creativity.router")
+);
 
 app.use(require("./routers/help.router"));
 app.use(require("./routers/index.router"));
