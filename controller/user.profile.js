@@ -2,6 +2,8 @@ const qualificationKeys = require("../resources/json/qualification.keys.json");
 const statesList = require("../resources/json/india.states.json");
 const { UserScore, UserProfile, UserAssessment } = require("../models");
 const { downloadImage } = require("../config/s3.config");
+const fs = require("fs");
+const path = require("path");
 
 const {
   formatTime,
@@ -84,33 +86,46 @@ module.exports.openReport = async (req, res) => {
   const { assessment_key, assessment_id } = userScore;
   const user_feedbacks = [];
 
-  if (assessment_key == "NEST") {
-    for (const module_score of userScore.module_scores) {
-      const { _id, name, score } = module_score;
-      const feedback_description = await getModuleFeedbackDescription(_id);
-      const module_feedback = await getModuleScoreFeedback(
-        assessment_id,
-        _id,
-        score
-      );
+  const file = path.join(
+    __dirname,
+    "..",
+    "views",
+    "reports",
+    assessment_key + ".ejs"
+  );
 
-      user_feedbacks.push({
-        module_name: name,
-        module_score: score,
-        module_feedback,
-        feedback_description,
-      });
+  if (fs.existsSync(file)) {
+    if (assessment_key == "NEST") {
+      for (const module_score of userScore.module_scores) {
+        const { _id, name, score } = module_score;
+        const feedback_description = await getModuleFeedbackDescription(_id);
+        const module_feedback = await getModuleScoreFeedback(
+          assessment_id,
+          _id,
+          score
+        );
+
+        user_feedbacks.push({
+          module_name: name,
+          module_score: score,
+          module_feedback,
+          feedback_description,
+        });
+      }
     }
+
+    res.render("reports/" + assessment_key, {
+      ...res.locals,
+      userScore,
+      getChartData,
+      user_feedbacks,
+    });
+  } else {
+    res.render("error/index", {
+      ...res.locals,
+      message: "Sorry, this report is not currently available!",
+    });
   }
-
-  // console.log("user feedbacks", user_feedbacks);
-
-  res.render("reports/" + assessment_key, {
-    loggedIn: true,
-    userScore,
-    getChartData,
-    user_feedbacks,
-  });
 };
 
 // Upload profile picture
