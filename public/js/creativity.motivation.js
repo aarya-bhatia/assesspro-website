@@ -17,6 +17,7 @@ for (const question of questionContainers) {
     calculateButton: null,
     inputFields: [],
     totalSpan: null,
+    total: 0,
   };
 
   for (const calcBtn of calculateButtons) {
@@ -39,13 +40,9 @@ for (const question of questionContainers) {
     }
   }
 
-  questions[id].calculateButton.addEventListener("click", () => {
-    let total = 0;
-    for (const inputField of questions[id].inputFields) {
-      total += parseInt(inputField.value) || 0;
-    }
-    questions[id].totalSpan.innerHTML = total;
-  });
+  questions[id].calculateButton.addEventListener("click", () =>
+    calculateTotal(id)
+  );
 
   for (const inputField of questions[id].inputFields) {
     inputField.addEventListener("change", () => {
@@ -57,6 +54,25 @@ for (const question of questionContainers) {
   }
 }
 
+function calculateTotal(id) {
+  let total = 0;
+
+  if (!questions[id]) {
+    return;
+  }
+  for (const inputField of questions[id].inputFields) {
+    total += parseInt(inputField.value) || 0;
+  }
+  questions[id].totalSpan.innerHTML = total;
+  questions[id].total = total;
+}
+
+function populateTotals() {
+  for (const id of Object.keys(questions)) {
+    calculateTotal(id);
+  }
+}
+
 const A = "A".charCodeAt(0);
 
 //populate previous values
@@ -65,6 +81,7 @@ for (let i = 1; i <= 10; i++) {
     const optionId = String.fromCharCode(A + j);
     const key = "cm_" + i + optionId;
     if (localStorage.getItem(key)) {
+      console.log("Found answer");
       const inputFields = questions[i].inputFields;
       for (const inputField of inputFields) {
         if (inputField.dataset.optionId == optionId) {
@@ -75,3 +92,23 @@ for (let i = 1; i <= 10; i++) {
     }
   }
 }
+
+function handleSubmit() {
+  for (const id of Object.keys(questions)) {
+    const question = questions[id];
+    calculateTotal(id);
+    if (question.total > 0 && question.total != 30) {
+      return alert(
+        "Please make sure that for all statements the total comes on to excatly 30 points."
+      );
+    }
+  }
+
+  document.myForm.submit();
+}
+
+document.myForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
+populateTotals();

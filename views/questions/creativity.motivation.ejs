@@ -42,7 +42,7 @@
     </ul>
   </div>
 
-  <form action="/creativity/CM/submit" method="POST">
+  <form action="/creativity/CM/submit" method="POST" name="myForm">
     <% questions.map((question, num) => { %>
 
     <div
@@ -97,7 +97,12 @@
 
     <% }) %>
 
-    <input type="submit" class="btn btn-primary" value="Submit" />
+    <input
+      type="submit"
+      class="btn btn-primary"
+      value="Submit"
+      onclick="handleSubmit();"
+    />
   </form>
 </div>
 
