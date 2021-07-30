@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="display-4">Creativity Motivation Assessment</div>
-  <div class="lead">
+  <div class="p">
     <ul>
       <li>
         Given below are a number of situations, and 6 alternatives in each
@@ -45,31 +45,45 @@
   <form action="/creativity/CM/submit" method="POST">
     <% questions.map((question, num) => { %>
 
-    <!-- <div class="row shadow-sm rounded p-2 my-4 bg-light">
-      <p><%= num+1 %>.</p>
-      <p><strong>Left: </strong><%= question.left %></p>
-      <p><strong>Right: </strong><%= question.right %></p>
+    <div class="shadow-sm rounded p-2 my-4 bg-light">
+      <!-- Question begins -->
+      <div class="p"><%= question.statement %>...</div>
 
-      <div class="container d-flex justify-space-between">
-        <% [1,2,3,4,5,6].map(choice => { %>
-        <div class="form-check me-2">
+      <!-- options begin -->
+      <% question.options.map(option => { %>
+      <div class="row my-2">
+        <div class="col-md-10"><%= option.content %></div>
+        <div class="col-md-2">
           <input
-            type="radio"
-            class="form-check-input"
-            id="<%= question._id + '_' + choice %>"
-            name="<%= question._id %>"
-            value="<%= choice %>"
+            type="number"
+            name="<%= question._id %><%= option._id %>"
+            class="form-control"
+            min="1"
+            max="15"
           />
-          <label for="<%= question._id + '_' + choice %>"><%= choice %></label>
         </div>
-        <% }) %>
       </div>
-    </div> -->
+      <% }) %>
+      <!-- options end -->
+
+      <button
+        type="button"
+        class="btn btn-outline-secondary my-2"
+        onclick="console.log('Question: <%= question._id %>')"
+      >
+        Calculate Total
+      </button>
+      <div>Total: <span class="total">0</span></div>
+
+      <!-- Question ends -->
+    </div>
 
     <% }) %>
 
     <input type="submit" class="btn btn-primary" value="Submit" />
   </form>
 </div>
+
+<script src="./creativity.motivation.js"></script>
 
 <%- include('../partials/footer.ejs') %>

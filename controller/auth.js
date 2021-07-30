@@ -43,8 +43,8 @@ module.exports.checkUserEnrolledByKey = async (req, res, next) => {
   const { key } = req.params;
   res.locals.key = key;
 
-  console.log("KEY: ", key);
-  console.log(req.url);
+  // console.log("KEY: ", key);
+  // console.log(req.url);
 
   if (req.url.split("/")[1] == "enroll") {
     // console.log("skipping middleware...");

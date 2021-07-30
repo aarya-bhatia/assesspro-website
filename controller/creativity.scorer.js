@@ -90,5 +90,46 @@ module.exports = {
     res.redirect("/users/profile");
   },
 
-  async submitCMForm(req, res) {},
+  async submitCMForm(req, res) {
+    const modules = [
+      "Safety Motive",
+      "Competence Motive",
+      "Status Motive",
+      "Pioneering-Innovating Motive",
+      "Altruistic Motive",
+      "Self-actualization Motive",
+    ];
+
+    const module_scores = {};
+
+    const A = "A".charCodeAt(0);
+
+    for (let i = 1; i <= 10; i++) {
+      for (let j = 0; j <= 6; j++) {
+        const q = `${i}${String.fromCharCode(A + j)}`;
+        console.log(q);
+        if (req.body[q]) {
+          const points = parseInt(req.body[q]) || 0;
+          const module = modules[j];
+          if (module_scores[module]) {
+            module_scores[module] += points;
+          } else {
+            module_scores[module] = points;
+          }
+        }
+      }
+    }
+
+    console.log(module_scores);
+
+    for (const module of Object.keys(module_scores)) {
+      module_scores[module] -= 10;
+      module_scores[module] /= 3;
+      module_scores[module] = Math.round(module_scores[module]);
+    }
+
+    res.json({
+      module_scores,
+    });
+  },
 };

@@ -39,6 +39,8 @@ async function getCPQuestions(req, res) {
 async function getCMQuestions(req, res) {
   const questions = await CMQuestion.find({});
 
+  questions.shift();
+
   res.render("questions/creativity.motivation.ejs", {
     ...res.locals,
     user: req.user,
@@ -62,7 +64,7 @@ router.get("/questions", async (req, res) => {
   }
 });
 
-router.post("submit", async (req, res) => {
+router.post("/submit", async (req, res) => {
   const key = res.locals.key;
 
   switch (key) {
