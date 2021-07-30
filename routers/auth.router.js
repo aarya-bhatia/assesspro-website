@@ -55,12 +55,15 @@ router.get("/passwordResetRequest", (req, res) => {
 router.post("/passwordResetRequest", async (req, res) => {
   const email = req.body.email;
 
-  await requestPasswordReset(email).then(() => {
-    res.render("auth/reset.password.ejs", {
-      loggedIn: res.locals.loggedIn,
-      error: null,
-      message: "Please check your email info for further instructions.",
-    });
+  requestPasswordReset(email).then(() => {
+    console.log("Email sent...");
+  });
+
+  res.render("auth/reset.password.ejs", {
+    loggedIn: res.locals.loggedIn,
+    error: null,
+    message:
+      "Please wait for a moment and check your email info for further instructions...",
   });
 });
 
