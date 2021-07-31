@@ -7,21 +7,31 @@
     appropriate number to indicate your opinion on each statement. Since this is
     a feedback instrument, be as truthful as you can.
   </p>
-  <ul>
-    <li>6 = Fully Agree</li>
-    <li>5 = Great Extent</li>
-    <li>4 = Substantial Extent</li>
-    <li>3 = Modest Extent</li>
-    <li>2 = Marginally</li>
-    <li>1 = Does Not Apply</li>
-  </ul>
 
   <form action="/creativity/CT/submit" method="POST" name="myForm">
     <% questions.map(question => { %>
     <div class="shadow-sm rounded p-2 my-4 bg-light">
       <!-- Question begins -->
-      <div class="p"><%= question.statement %></div>
-      <hr />
+      <div class="p mb-2"><%= question.statement %></div>
+
+      <% options.map((option, index) => { %>
+      <div class="form-check me-2">
+        <input
+          type="radio"
+          class="form-check-input"
+          name="<%= question._id %>"
+          id="<%= question._id %>_<%= index+1 %>"
+          value="<%= index+1 %>"
+        />
+        <label
+          for="<%= question._id %>_<%= index+1 %>"
+          class="form-check-label"
+        >
+          <%= option %>
+        </label>
+      </div>
+      <% }) %>
+
       <!-- Question ends -->
     </div>
     <% }) %>

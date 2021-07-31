@@ -1,8 +1,12 @@
 const router = require("express").Router();
-const { UserAssessment, CPQuestion } = require("../models/index.js");
+const {
+  UserAssessment,
+  CPQuestion,
+  CMQuestion,
+  CTQuestion,
+} = require("../models");
 const { createUserAssessment } = require("../controller/api/user.js");
 const { fetchAssessmentByKey } = require("../controller/api/assessments.js");
-const { CMQuestion } = require("../models");
 const {
   submitCPForm,
   submitCMForm,
@@ -50,12 +54,21 @@ async function getCMQuestions(req, res) {
 }
 
 async function getCTQuestions(req, res) {
-  const questions = []; //await CTQuestion.find({});
+  const questions = await CTQuestion.find({});
+  const options = [
+    "Does Not Apply",
+    "Marginally",
+    "Modest Extent",
+    "Substantial",
+    "Great Extent",
+    "Fully Agree",
+  ];
 
   res.render("questions/creativity.temperament.ejs", {
     ...res.locals,
     user: req.user,
     questions,
+    options,
   });
 }
 
