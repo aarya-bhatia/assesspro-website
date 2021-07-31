@@ -88,6 +88,7 @@ module.exports.listUsers = async (req, res) => {
 
 async function getNESTReport(req, res) {
   const { userScore } = res.locals;
+  const user_feedbacks = [];
 
   for (const module of userScore.module_scores) {
     const module_id = module._id;
@@ -96,8 +97,8 @@ async function getNESTReport(req, res) {
 
     const module_feedback = await NESTFeedback.findOne({
       module_id,
-      min_value: { lte: module_score },
-      max_value: { gte: module_score },
+      min_value: { $lte: module_score },
+      max_value: { $gte: module_score },
     });
 
     user_feedbacks.push({
@@ -107,7 +108,7 @@ async function getNESTReport(req, res) {
     });
   }
 
-  res.render("reports/" + assessment_key, {
+  res.render("reports/" + userScore.assessment_key, {
     ...res.locals,
     userScore,
     getChartData,
