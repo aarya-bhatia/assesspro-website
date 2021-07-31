@@ -76,7 +76,6 @@ module.exports = {
 
   async submitCPForm(req, res) {
     const questions = await CPQuestion.find({});
-    console.log(req.body);
 
     let attempted = 0;
 
