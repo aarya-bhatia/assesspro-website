@@ -49,6 +49,16 @@ async function getCMQuestions(req, res) {
   });
 }
 
+async function getCTQuestions(req, res) {
+  const questions = []; //await CTQuestion.find({});
+
+  res.render("questions/creativity.temperament.ejs", {
+    ...res.locals,
+    user: req.user,
+    questions,
+  });
+}
+
 router.get("/questions", async (req, res) => {
   const key = res.locals.key;
 
@@ -58,7 +68,7 @@ router.get("/questions", async (req, res) => {
     case "CM":
       return await getCMQuestions(req, res);
     case "CT":
-      return await res.send("Todo");
+      return await getCTQuestions(req, res);
     default:
       throw new Error("Assessment not found...");
   }

@@ -19,4 +19,5 @@ module.exports = {
   CMQuestion: require("./cm.question"),
   CPUserAnswer: require("./cp.user.answer"),
   CMUserAnswer: require("./cm.user.answer"),
+  CTQuestion: require("./ct.question"),
 };
