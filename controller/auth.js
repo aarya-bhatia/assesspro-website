@@ -29,8 +29,8 @@ module.exports.checkUserEnrolled = async (req, res, next) => {
   const found = await getUserAssessment(req.user._id, assessment_id);
 
   if (!found) {
-    return next({
-      status: 400,
+    return res.render("error/index", {
+      ...res.locals,
       message: "Access Denied. User is not enrolled in this assessment.",
     });
   }

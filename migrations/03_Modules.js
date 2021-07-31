@@ -46,7 +46,7 @@ const processRowModuleList = async function (row) {
 
 connect();
 
-function writeJsonFile() {
+async function writeJsonFile() {
   const content = await Module.find({});
   const file =
     "/Users/aarya/Desktop/AssessProWebsite/migrations/json/modules.json";

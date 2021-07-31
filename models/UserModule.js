@@ -13,7 +13,6 @@ const schema = new Schema({
   no_questions: Number,
   no_attempted: Number,
   time_spent: Number,
-  time_limit: Number,
   scale_factor: Number,
   status: {
     type: String,

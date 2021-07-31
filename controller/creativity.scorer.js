@@ -7,6 +7,7 @@ const {
   Module,
   CTQuestion,
   CTUserAnswer,
+  CPUserAnswer,
 } = require("../models/index.js");
 
 async function createScore(user_id, assessment, module_scores) {
@@ -46,8 +47,36 @@ async function updateAssessment(user_id, assessment, completed) {
 }
 
 module.exports = {
+  async saveCPForm(req, res) {
+    const user_id = req.user._id;
+    let c = 0;
+
+    for (const question of req.body) {
+      const question_id = question.question_id;
+      const value = question.value;
+      c++;
+      await CPUserAnswer.updateOne(
+        {
+          user_id,
+          question_id,
+        },
+        {
+          value,
+        },
+        {
+          upsert: true,
+        }
+      );
+    }
+
+    console.log(c + " answers saved...");
+
+    res.send();
+  },
+
   async submitCPForm(req, res) {
     const questions = await CPQuestion.find({});
+    console.log(req.body);
 
     let attempted = 0;
 
@@ -63,17 +92,26 @@ module.exports = {
     const module_scores = {};
 
     for (const question of questions) {
-      console.log(module_scores);
-
       const id = question._id;
       const module_id = question.module_id;
       const module_name = question.module_name;
 
       if (req.body[id]) {
-        const answer = req.body[id];
+        const answer = parseInt(req.body[id]);
         const points = scale[answer] || 0;
 
-        console.log("Points: ", points);
+        await CPUserAnswer.updateOne(
+          {
+            user_id: req.user._id,
+            question_id: id,
+          },
+          {
+            value: answer,
+          },
+          {
+            upsert: true,
+          }
+        );
 
         if (module_scores[module_id]) {
           module_scores[module_id].score += points;

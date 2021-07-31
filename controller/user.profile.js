@@ -23,10 +23,6 @@ const {
   updateUserAssessmentOnRetake,
   updateUserModulesOnRetake,
 } = require("./api/user");
-const {
-  getModuleFeedbackDescription,
-  getModuleScoreFeedback,
-} = require("./api/assessments");
 
 // Get profile update page
 module.exports.getProfileUpdateForm = (req, res) => {

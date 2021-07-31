@@ -12,7 +12,7 @@
     Remember only one number is to be selected in each scale.
   </div>
 
-  <form action="/creativity/CP/submit" method="POST">
+  <form action="/creativity/CP/submit" method="POST" name="myForm">
     <% questions.map((question, num) => { %>
 
     <div class="row shadow-sm rounded p-2 my-4 bg-light">
@@ -39,8 +39,60 @@
     <% }) %>
 
     <!-- Time spent since page load -->
-    <input type="submit" class="btn btn-primary" value="Submit" />
+    <input
+      type="submit"
+      class="btn btn-outline-primary"
+      value="Submit"
+      onclick="handleSubmit(); "
+    />
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      onclick="handleSave();"
+    >
+      Save
+    </button>
   </form>
 </div>
+
+<% for(const answer of user_answers){ %>
+<script>
+  document.getElementById(
+    "<%= answer.question_id %>_<%= answer.value %>"
+  ).checked = true;
+</script>
+<% } %>
+
+<script>
+  function handleSubmit() {
+    if (confirm("Are you sure you want to submit the assessment?")) {
+      document.myForm.submit();
+    }
+  }
+
+  document.myForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+  });
+
+  const questions = <%-JSON.stringify(questions)%>;
+  function handleSave() {
+    const inputs = document.querySelectorAll(`input[type='radio']:checked`);
+    const data = [];
+    for(const input of inputs) {
+      data.push({
+        question_id: input.name,
+        value: input.value
+      })
+    }
+
+    fetch('/creativity/CP/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then(() => {
+      alert('Answers saved');
+    });
+  }
+</script>
 
 <%- include('../partials/footer.ejs') %>
