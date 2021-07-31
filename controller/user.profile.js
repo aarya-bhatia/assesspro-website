@@ -1,6 +1,11 @@
 const qualificationKeys = require("../resources/json/qualification.keys.json");
 const statesList = require("../resources/json/india.states.json");
-const { UserScore, UserProfile, UserAssessment } = require("../models");
+const {
+  UserScore,
+  UserProfile,
+  UserAssessment,
+  NESTFeedback,
+} = require("../models");
 const { downloadImage } = require("../config/s3.config");
 const fs = require("fs");
 const path = require("path");
@@ -81,51 +86,63 @@ module.exports.listUsers = async (req, res) => {
   });
 };
 
+async function getNESTReport(req, res) {
+  const { userScore } = res.locals;
+
+  for (const module of userScore.module_scores) {
+    const module_id = module._id;
+    const module_name = module.name;
+    const module_score = module.score;
+
+    const module_feedback = await NESTFeedback.findOne({
+      module_id,
+      min_value: { lte: module_score },
+      max_value: { gte: module_score },
+    });
+
+    user_feedbacks.push({
+      module_name,
+      module_score,
+      module_feedback,
+    });
+  }
+
+  res.render("reports/" + assessment_key, {
+    ...res.locals,
+    userScore,
+    getChartData,
+    user_feedbacks,
+  });
+}
+
 module.exports.openReport = async (req, res) => {
   const userScore = await UserScore.findById(req.params.user_score_id);
-  const { assessment_key, assessment_id } = userScore;
-  const user_feedbacks = [];
+  res.locals.userScore = userScore;
+
+  if (userScore.assessment_key == "NEST") {
+    return getNESTReport(req, res);
+  }
 
   const file = path.join(
     __dirname,
     "..",
     "views",
     "reports",
-    assessment_key + ".ejs"
+    userScore.assessment_key + ".ejs"
   );
 
-  if (fs.existsSync(file)) {
-    if (assessment_key == "NEST") {
-      for (const module_score of userScore.module_scores) {
-        const { _id, name, score } = module_score;
-        const feedback_description = await getModuleFeedbackDescription(_id);
-        const module_feedback = await getModuleScoreFeedback(
-          assessment_id,
-          _id,
-          score
-        );
-
-        user_feedbacks.push({
-          module_name: name,
-          module_score: score,
-          module_feedback,
-          feedback_description,
-        });
-      }
-    }
-
-    res.render("reports/" + assessment_key, {
-      ...res.locals,
-      userScore,
-      getChartData,
-      user_feedbacks,
-    });
-  } else {
-    res.render("error/index", {
+  if (!fs.existsSync(file)) {
+    return res.render("error/index", {
       ...res.locals,
       message: "Sorry, this report is not currently available!",
     });
   }
+
+  return res.render("reports/" + userScore.assessment_key, {
+    ...res.locals,
+    userScore,
+    getChartData,
+  });
 };
 
 // Upload profile picture

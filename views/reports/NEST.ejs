@@ -1,7 +1,3 @@
-<!--
-    locals { loggedIn, userScore, getChartData }
--->
-
 <%- include('../partials/header', { loggedIn }) %>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
@@ -16,46 +12,42 @@
   <div class="display-4">NEST Report</div>
 
   <p class="lead">
-      Thank you for taking Aspire’s National Employability Skills Test (NEST™). Please review each score for detailed insight with respect to specific areas of strength and development for enhancing your employability and a better potential job fit
+    Thank you for taking Aspire’s National Employability Skills Test (NEST™).
+    Please review each score for detailed insight with respect to specific areas
+    of strength and development for enhancing your employability and a better
+    potential job fit
   </p>
 
-    <canvas id="<%= userScore._id %>"></canvas>
+  <canvas id="<%= userScore._id %>"></canvas>
 
-    <button class="btn btn-primary" id="save_0">Save as Image</button>
+  <button class="btn btn-primary" id="save_0">Save as Image</button>
 
-    <%- include('../profile/scripts/createScoreChart.ejs', {
-        userScore,
-        getChartData,
-        scoreIndex: 0
-    }) %>
+  <%- include('../profile/scripts/createScoreChart.ejs', { userScore,
+  getChartData, scoreIndex: 0 }) %>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Module</th>
-                <th>Score</th>
-                <th>Description</th>
-                <th>Feedback</th>
-            </tr>
-        </thead>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>Score</th>
+        <th>Description</th>
+        <th>Feedback</th>
+      </tr>
+    </thead>
 
-        <tbody>
+    <tbody>
+      <% user_feedbacks.map(row => { %>
 
-            <% user_feedbacks.map(row => { %> 
+      <tr>
+        <td><%= row.module_name %></td>
+        <td><%= row.module_score %></td>
+        <td><%= row.module_feedback.description %></td>
+        <td><%= row.module_feedback.feedback %></td>
+      </tr>
 
-                <tr>
-                    <td><%= row.module_name %></td>
-                    <td><%= row.module_score %></td>
-                    <td><%= row.feedback_description %></td>
-                    <td><%= row.module_feedback %></td>
-                </tr>
-            
-            <% }) %>
-
-        </tbody>
-    </table>
-
-
+      <% }) %>
+    </tbody>
+  </table>
 </div>
 
 <%- include('../partials/footer', { loggedIn }) %>
