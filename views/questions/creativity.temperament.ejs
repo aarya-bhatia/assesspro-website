@@ -46,6 +46,17 @@
 </div>
 
 <script>
+  let inputID = null;
+</script>
+<% for(const user_answer of user_answers) { %>
+<script>
+  inputID = "<%= user_answer.question_id %>_<%= user_answer.value %>";
+  console.log(inputID);
+  document.getElementById(inputID).checked = true;
+</script>
+<% } %>
+
+<script>
   function handleSubmit() {
     if (confirm("Are you sure you want to submit the assessment?")) {
       document.myForm.submit();

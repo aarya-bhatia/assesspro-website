@@ -4,12 +4,14 @@ const {
   CPQuestion,
   CMQuestion,
   CTQuestion,
+  CTUserAnswer,
 } = require("../models");
 const { createUserAssessment } = require("../controller/api/user.js");
 const { fetchAssessmentByKey } = require("../controller/api/assessments.js");
 const {
   submitCPForm,
   submitCMForm,
+  submitCTForm,
 } = require("../controller/creativity.scorer");
 
 router.get("/enroll", async (req, res) => {
@@ -64,11 +66,14 @@ async function getCTQuestions(req, res) {
     "Fully Agree",
   ];
 
+  const user_answers = await CTUserAnswer.find({ user_id: req.user._id });
+
   res.render("questions/creativity.temperament.ejs", {
     ...res.locals,
     user: req.user,
     questions,
     options,
+    user_answers,
   });
 }
 
@@ -96,7 +101,7 @@ router.post("/submit", async (req, res) => {
     case "CM":
       return await submitCMForm(req, res);
     case "CT":
-      return await res.send("Todo");
+      return await submitCTForm(req, res);
     default:
       throw new Error("Assessment not found...");
   }

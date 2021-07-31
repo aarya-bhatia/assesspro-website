@@ -5,6 +5,8 @@ const {
   UserScore,
   Assessment,
   Module,
+  CTQuestion,
+  CTUserAnswer,
 } = require("../models/index.js");
 
 module.exports = {
@@ -153,5 +155,59 @@ module.exports = {
 
       res.redirect("/users/profile");
     });
+  },
+
+  async submitCTForm(req, res) {
+    const questions = await CTQuestion.find({});
+    console.log(req.body);
+
+    const module_scores = {};
+
+    for (const question of questions) {
+      const _id = question._id;
+      const module_id = question.module_id;
+      const module_name = question.module_name;
+
+      if (req.body[_id]) {
+        const value = parseInt(req.body[_id]);
+
+        await CTUserAnswer.updateOne(
+          { user_id: req.user._id, question_id: _id, module_id },
+          { value },
+          { upsert: true }
+        );
+
+        if (module_scores[module_id]) {
+          module_scores[module_id].score += value;
+        } else {
+          module_scores[module_id] = {
+            module_id,
+            module_name,
+            score: value,
+          };
+        }
+      }
+    }
+
+    const module_score_array = [];
+
+    for (const key of Object.keys(module_scores)) {
+      module_score_array.push({
+        _id: module_scores[key].module_id,
+        name: module_scores[key].module_name,
+        score: module_scores[key].score,
+      });
+    }
+
+    for (const module_score of module_score_array) {
+      let score = module_score.score;
+      score /= 5;
+      score -= 1;
+      score *= 20;
+      score = Math.round(score);
+      module_score.score = score;
+    }
+
+    res.json(module_score_array);
   },
 };
