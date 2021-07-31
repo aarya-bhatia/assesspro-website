@@ -9,6 +9,42 @@ const {
   CTUserAnswer,
 } = require("../models/index.js");
 
+async function createScore(user_id, assessment, module_scores) {
+  return new Promise(async (res) => {
+    const userScore = await UserScore.create({
+      user_id,
+      assessment_name: assessment.name,
+      assessment_id: assessment._id,
+      assessment_key: assessment.key,
+      plot_type: assessment.plot_type,
+      module_scores,
+    });
+
+    res();
+  });
+}
+
+async function updateAssessment(user_id, assessment, completed) {
+  return new Promise(async (res) => {
+    await UserAssessment.updateOne(
+      {
+        user_id,
+        assessment_id: assessment._id,
+      },
+      {
+        $set: {
+          completed,
+        },
+        $inc: {
+          attempts: 1,
+        },
+      }
+    );
+
+    res();
+  });
+}
+
 module.exports = {
   async submitCPForm(req, res) {
     const questions = await CPQuestion.find({});
@@ -121,12 +157,18 @@ module.exports = {
 
       console.log(module_scores);
 
+      let total = 0;
+
       for (const module_score of module_scores) {
         let score = module_score.score;
         score -= 10;
         score /= 3;
-        score = Math.round(score);
+        total += score;
         module_score.score = score;
+      }
+
+      for (const module_score of module_scores) {
+        module_score.score = Math.round((module_score.score * 100) / total);
       }
 
       const userScore = await UserScore.create({
@@ -157,29 +199,33 @@ module.exports = {
     });
   },
 
+  //
+  // CREATIVITY TEMPERAMENT SCORING
+  //
   async submitCTForm(req, res) {
     const questions = await CTQuestion.find({});
-    console.log(req.body);
-
     const module_scores = {};
+    let attempted = 0;
 
     for (const question of questions) {
-      const _id = question._id;
-      const module_id = question.module_id;
-      const module_name = question.module_name;
+      const { _id, module_id, module_name } = question;
 
       if (req.body[_id]) {
+        attempted++;
         const value = parseInt(req.body[_id]);
 
+        // save answer
         await CTUserAnswer.updateOne(
           { user_id: req.user._id, question_id: _id, module_id },
           { value },
           { upsert: true }
         );
 
+        // update points for module
         if (module_scores[module_id]) {
           module_scores[module_id].score += value;
         } else {
+          // create module score object
           module_scores[module_id] = {
             module_id,
             module_name,
@@ -191,6 +237,7 @@ module.exports = {
 
     const module_score_array = [];
 
+    // convert scores to array
     for (const key of Object.keys(module_scores)) {
       module_score_array.push({
         _id: module_scores[key].module_id,
@@ -199,15 +246,33 @@ module.exports = {
       });
     }
 
+    let total = 0;
+
+    // scaling and get total
     for (const module_score of module_score_array) {
       let score = module_score.score;
       score /= 5;
       score -= 1;
       score *= 20;
-      score = Math.round(score);
+      total += score;
       module_score.score = score;
     }
 
-    res.json(module_score_array);
+    // conversion to %
+    for (const module_score of module_score_array) {
+      module_score.score = Math.round((100 * module_score.score) / total);
+    }
+
+    const assessment = await Assessment.findOne({ key: "CT" });
+    const completed = attempted == questions.length;
+
+    // create score, update assessment
+    await createScore(req.user._id, assessment, module_score_array).then(
+      async () => {
+        await updateAssessment(req.user._id, assessment, completed).then(() => {
+          res.redirect("/users/profile");
+        });
+      }
+    );
   },
 };
