@@ -41,9 +41,13 @@ include('./basicProfile', { user }) %>
       </div>
     </div>
 
-    <% if(userScore.plot_type == 'hbar') { %> <%-
+    <% if(userScore.assessment_key == 'CM') { %> <%-
+    include('./scripts/createVerticalBarChart.ejs', { userScore, scoreIndex,
+    getChartData }) %> <% } else if(userScore.plot_type == 'hbar') { %> <%-
     include('./scripts/createBarChart.ejs', { userScore, scoreIndex,
-    getChartData }) %> <% } else { %> <%-
+    getChartData }) %> <% } else if(userScore.plot_type == 'vbar') { %> <%-
+    include('./scripts/createVerticalBarChart.ejs', { userScore, scoreIndex,
+    getChartData }) %> <% }else { %> <%-
     include('./scripts/createScoreChart.ejs', { userScore, scoreIndex,
     getChartData }) %> <% } %>
 
