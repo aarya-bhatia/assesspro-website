@@ -1,0 +1,228 @@
+[
+    {
+        "currency": "usd",
+        "_id": 1,
+        "key": "NEST",
+        "category_id": 1,
+        "category_name": "Psychometric Assessments",
+        "name": "National Employability Skills Test",
+        "plot_type": "spider",
+        "price": 1,
+        "description": "The National Employability Skills Test (N.E.S.T.™) contains 92 questions divided into the following two sections: SECTION 1 contains 40 questions and seeks to assess aspects of your personality which are relevant to the workplace and would help build a successful career. SECTION 2 contains 52 questions designed to assess your aptitude and skills related to language and the industry: Accuracy in English, English Comprehension, Verbal Reasoning, Abstract Reasoning, Logical Reasoning and Numerical Reasoning. All questions carry equal marks. There is no negative marking. Duration of the test is for 60 minute",
+        "modules": [
+            {
+                "_id": 1,
+                "name": "Accuracy In English"
+            },
+            {
+                "_id": 2,
+                "name": "English Comprehension"
+            },
+            {
+                "_id": 3,
+                "name": "Verbal Reasoning"
+            },
+            {
+                "_id": 4,
+                "name": "Abstract Reasoning"
+            },
+            {
+                "_id": 5,
+                "name": "Logical Reasoning"
+            },
+            {
+                "_id": 6,
+                "name": "Numerical Reasoning"
+            },
+            {
+                "_id": 7,
+                "name": "Social Skills"
+            },
+            {
+                "_id": 8,
+                "name": "Team Work"
+            },
+            {
+                "_id": 9,
+                "name": "Emotional Intelligence"
+            },
+            {
+                "_id": 10,
+                "name": "Self Management"
+            }
+        ],
+        "createdAt": "2021-07-31T07:48:43.443Z",
+        "__v": 0
+    },
+    {
+        "currency": "usd",
+        "_id": 2,
+        "key": "CPT",
+        "category_id": 1,
+        "category_name": "Psychometric Assessments",
+        "name": "Career Preference Test",
+        "plot_type": "hbar",
+        "price": 1,
+        "description": "The Career Preference Test has 104 questions: Examine each question and indicate the degree to which it applies to you. Try to be as honest as possible, as answering truthfully will enhance the quality of your results. Use the option 3 rarely; use it only when neither of the other options seems to be right for you. Do not skip any question.",
+        "modules": [
+            {
+                "_id": 11,
+                "name": "Verbal Linguistic"
+            },
+            {
+                "_id": 12,
+                "name": "Logical Mathematical"
+            },
+            {
+                "_id": 13,
+                "name": "Visual Spatial"
+            },
+            {
+                "_id": 14,
+                "name": "Musical"
+            },
+            {
+                "_id": 15,
+                "name": "Bodily Kinesthetic"
+            },
+            {
+                "_id": 16,
+                "name": "Interpersonal"
+            },
+            {
+                "_id": 17,
+                "name": "Intrapersonal"
+            },
+            {
+                "_id": 18,
+                "name": "Naturalist"
+            }
+        ],
+        "createdAt": "2021-07-31T07:48:43.585Z",
+        "__v": 0
+    },
+    {
+        "currency": "usd",
+        "_id": 3,
+        "key": "LR",
+        "category_id": 2,
+        "category_name": "Aptitude Assessments",
+        "name": "Logical Reasoning",
+        "plot_type": "hbar",
+        "price": 1,
+        "description": "",
+        "modules": [],
+        "createdAt": "2021-07-31T07:48:43.587Z",
+        "__v": 0
+    },
+    {
+        "currency": "usd",
+        "_id": 4,
+        "key": "VR",
+        "category_id": 2,
+        "category_name": "Aptitude Assessments",
+        "name": "Verbal Reasoning",
+        "plot_type": "hbar",
+        "price": 1,
+        "description": "",
+        "modules": [],
+        "createdAt": "2021-07-31T07:48:43.590Z",
+        "__v": 0
+    },
+    {
+        "currency": "usd",
+        "_id": 5,
+        "key": "CP",
+        "category_id": 3,
+        "category_name": "Creativity Assessments",
+        "name": "Creativity Personality",
+        "plot_type": "hbar",
+        "price": 1,
+        "description": "",
+        "modules": [
+            {
+                "_id": 19,
+                "name": "Hunger for knowing"
+            },
+            {
+                "_id": 20,
+                "name": "Sensitivity"
+            },
+            {
+                "_id": 21,
+                "name": "Complexity"
+            },
+            {
+                "_id": 22,
+                "name": "Venturing"
+            },
+            {
+                "_id": 23,
+                "name": "Independence and Courage"
+            },
+            {
+                "_id": 24,
+                "name": "Reality Contact"
+            },
+            {
+                "_id": 25,
+                "name": "Self-sufficiency"
+            }
+        ],
+        "createdAt": "2021-07-31T07:48:43.592Z",
+        "__v": 0
+    },
+    {
+        "currency": "usd",
+        "_id": 6,
+        "key": "CM",
+        "category_id": 3,
+        "category_name": "Creativity Assessments",
+        "name": "Creativity Motivation",
+        "plot_type": "vbar",
+        "price": 1,
+        "description": "",
+        "modules": [
+            {
+                "_id": 26,
+                "name": "Saftey Motive"
+            },
+            {
+                "_id": 27,
+                "name": "Competence Motive"
+            },
+            {
+                "_id": 28,
+                "name": "Status Motive"
+            },
+            {
+                "_id": 29,
+                "name": "Pioneering-Innovative Motive"
+            },
+            {
+                "_id": 30,
+                "name": "Altruistic Motive"
+            },
+            {
+                "_id": 31,
+                "name": "Self-actualization Motive"
+            }
+        ],
+        "createdAt": "2021-07-31T07:48:43.594Z",
+        "__v": 0
+    },
+    {
+        "currency": "usd",
+        "_id": 7,
+        "key": "CT",
+        "category_id": 3,
+        "category_name": "Creativity Assessments",
+        "name": "Creativity Temperament",
+        "plot_type": "vbar",
+        "price": 1,
+        "description": "",
+        "modules": [],
+        "createdAt": "2021-07-31T07:48:43.596Z",
+        "__v": 0
+    }
+]

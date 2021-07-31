@@ -16,7 +16,7 @@ const schema = new mongoose.Schema(
     category_name: String,
     plot_type: {
       type: String,
-      enum: ["hbar", "bar", "spider", "line"],
+      enum: ["hbar", "vbar", "spider", "line", "pie"],
       required: true,
     },
     modules: [

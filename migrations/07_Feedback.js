@@ -2,8 +2,8 @@ require("dotenv").config();
 
 const { processCSV } = require(".");
 const { connect, dropCollections, connection } = require("../config/db.config");
-const { Feedback } = require("../models");
-const collections = ["feedbacks"];
+const { NESTFeedback } = require("../models");
+const collections = ["nestfeedbacks"];
 const FILE = "resources/csv/NEST_Feedback.csv";
 
 const columns = {
@@ -12,9 +12,10 @@ const columns = {
   min_value: 2,
   max_value: 3,
   feedback: 4,
+  description: 5,
 };
 
-const assessment_id = 1;
+const descriptions = {};
 
 async function processRow(row) {
   const data = {};
@@ -22,9 +23,14 @@ async function processRow(row) {
     data[key] = row[value];
   }
 
-  const doc = await Feedback.create({
+  if (data.description) {
+    descriptions[data.module_id] = data.description;
+  } else {
+    data.description = descriptions[data.module_id];
+  }
+
+  const doc = await NESTFeedback.create({
     ...data,
-    assessment_id,
   });
 
   console.log("Process row [feedback id]: ", doc._id);

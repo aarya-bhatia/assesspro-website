@@ -1,0 +1,362 @@
+[
+    {
+        "_id": "60e6b76070fbb5e95392411f",
+        "module_id": 1,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Speak grammatically correct English.  Have the ability to translate thoughts and intent into its articulation with the correct use of grammar, spelling and punctuation. Can produce clear, well‐structured, detailed text on complex subjects, showing controlled use of organisational patterns, connectors and cohesive devices.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924120",
+        "module_id": 1,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Speak good urban Indian English. Have good expressive and receptive language skills. Can express self fluently and spontaneously without much obvious searching for expressions. Under stress may show minor errors in expression. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924121",
+        "module_id": 1,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Can express self in English but sometimes with incorrect word order. Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type. May display  grammar errors in a conversation which do not interfere with meaning. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924122",
+        "module_id": 1,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Although can speak sentences, may not be able to make a conversation in English.  Can communicate in simple and routine tasks requiring a simple and direct exchange of information on familiar and routine matters. Able to answer simple questions.  ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924123",
+        "module_id": 2,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Can comprehend complex language exchanges and make inferential conclusions. Are able to express ideas in English in a good flow and sequence even for unfamiliar topics. Can express self spontaneously, fluently and precisely, differentiating finer shades of meaning even in complex situations.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924124",
+        "module_id": 2,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Can comprehend spontaneous conversation to contribute meaningfully. Are able to express ideas in English in a good flow and sequence on familiar topics. Can understand the main ideas on both concrete and abstract topics, including technical discussions in the field of specialisation.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924125",
+        "module_id": 2,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Can understand simple English especially on familiar topics. Can understand the main points of clear standard input on familiar matters regularly encountered in work, study, leisure, etc. May experience some difficulty expressing in English.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924126",
+        "module_id": 2,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Can understand sentences and frequently used expressions related to areas of most immediate relevance. Understand English in short sentences, mainly as Questions and Answers . May not able to express ideas completely in English. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924127",
+        "module_id": 3,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Can communicate effectively and have the ability for complex reasoning with words. Understand the relationship between words and ideas. Have ability to abstract or generalize and to think constructively rather than simple fluency or vocabulary.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924128",
+        "module_id": 3,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Have ease in understanding the relationship between words and ideas and can communicate effectively and fluently. Can understand concepts framed in words.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924129",
+        "module_id": 3,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Have some degree of comfort in communicating and reasoning with words however may face difficulty to abstract or generalize with them.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e95392412a",
+        "module_id": 3,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Can comprehend simple concepts framed in words. However may face difficulty in performing complex reasoning with words.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e95392412b",
+        "module_id": 4,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Have the ability to deal with complex data or concepts; develop new strategies or policies, to perform a high degree of problem solving, and/or; performing non-routine tasks where initiative is required.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e95392412c",
+        "module_id": 4,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Can deal with data or concepts in abstract form for problem solving and are able to perceive analogies and relationships thereby understanding higher levels of abstraction.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e95392412d",
+        "module_id": 4,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Can work on basic concepts of abstract thinking for problem solving. Along with identifying the underlying logic of a pattern and then determining the solution.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e95392412e",
+        "module_id": 4,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Can work on concrete concepts. However, may face difficulty in working out new concepts and complex abstract ideas.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e95392412f",
+        "module_id": 5,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Have the ability to make logical decisions and  to recognize when insufficient data has been provided for a definitive answer to be reached; as would be the case in many real-life situations. Logical ways of thinking are mainly induction, deduction, analysis and synthesis, from abstract to the concrete. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924130",
+        "module_id": 5,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Have the ability to make logical decisions based on basic abstract concepts, judgment and reasoning as basic forms of thinking, such as analysis, synthesis, generalization.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924131",
+        "module_id": 5,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Can make simple judgments, reasoning and conclusions based on logical thought processes.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924132",
+        "module_id": 5,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Tendency towards thinking based on emotions. May experience difficulty in making judgments, reasoning, and other forms of dynamic thinking to reflect the objective reality of some rational knowledge .",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924133",
+        "module_id": 6,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Can perform higher order reasoning with numbers and numerical concepts. Have ability to reason with numbers, to manipulate numerical relationships and to deal intelligently with quantitative materials. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76070fbb5e953924134",
+        "module_id": 6,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Can understand numerical relationships and have facility in handling numerical concepts which are not very complex.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924135",
+        "module_id": 6,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Can understand numerical concepts and relationships however have difficulty in performing higher order calculations and manipulations with numbers.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924136",
+        "module_id": 6,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Can perform basic logical interpretation of numerical and statistical information.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924137",
+        "module_id": 7,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Have good understanding of self and others, relate well to people, are assertive and easily adapt to and cope with the immediate surroundings to be more successful in dealing with environmental demands. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924138",
+        "module_id": 7,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Are socially confident and outgoing. Have the ability to sense, understand, and react to others' emotions while comprehending social networks.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924139",
+        "module_id": 7,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Are generally at ease and comfortable with people in familiar social situations. Socially reserved and can be self-conscious or shy in unfamiliar social situations.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e95392413a",
+        "module_id": 7,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Are socially reserved and may experience discomfort in social situations. Hesitate in initiating social contact, asserting self and may be intimidated by authority. Prefer to be on your own and may not stand up for your point of view. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e95392413b",
+        "module_id": 8,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Are a team player that can communicate, problem solve, and negotiate with other team members. Are flexible, adaptable, and able to work together to further your companies' goals to succeed and stay competitive. Have Leadership capabilities and the ability to inspire, influence, and develop others while managing conflict. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e95392413c",
+        "module_id": 8,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Have a positive influence on others and are responsible for own work as well as team goals. Work well on your own as well as in a group. Can identify team strengths and apply team work skills to a range of situations.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e95392413d",
+        "module_id": 8,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Recognize team goals and accept these goals by working cooperatively with other team members. Practice followership by taking direction and responding appropriately to feedback.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e95392413e",
+        "module_id": 8,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Prefer individual orientation towards choosing behaviors that lead both toward the accomplishment of work tasks as well as  supporting relationships between team members. May hesitate to trust team members. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e95392413f",
+        "module_id": 9,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Are capable of reflective regulation of emotions to promote emotional and intellectual growth. Have accuracy at perceiving and understanding emotional state in the self and in others and is effective in regulating, controlling and using these emotions in order to achieve goals. Can manage your own feelings and those of others. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924140",
+        "module_id": 9,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Can understand and analyze emotions and employ emotional knowledge productively. Are aware off and have the ability to manage emotions in a healthy and productive manner. Can understand how best to motivate self.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924141",
+        "module_id": 9,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Are capable of simple abilities of perceiving and expressing emotion. Emotional mood swings change your perspective from optimistic to pessimistic, encouraging consideration of multiple points of view. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924142",
+        "module_id": 9,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "Prioritize emotional thinking by directing attention to important information. May experience difficulty on how best to motivate self to overcome obstacles and reach your goals. Hesitate in dealing with own emotions and those of others. May find social interactions difficult at times, for several reasons.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924143",
+        "module_id": 10,
+        "min_value": 90,
+        "max_value": 100,
+        "feedback": "Are conscientious, adaptable and  show initiative and drive to succeed. Have the  ability to use time productively; which involves staying organized, working smarter rather than faster,  avoiding potential time-wasters. Also have the ability to control one's emotions and impulses and adapt to changing circumstances.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924144",
+        "module_id": 10,
+        "min_value": 59,
+        "max_value": 90,
+        "feedback": "Can coordinate tasks for yourself and others. Collect, organize and analyze information for forward planning.  Have self awareness of own strengths and challenges. Use prioritization and time management skills to effectively and efficiently accomplish tasks. ",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924145",
+        "module_id": 10,
+        "min_value": 30,
+        "max_value": 59,
+        "feedback": "Can manage time and priorities however you may hesitate to take on responsibility. Would prefer working in a low-pressure environment. With encouragement can detect, diagnose, and resolve problems.",
+        "assessment_id": 1,
+        "__v": 0
+    },
+    {
+        "_id": "60e6b76170fbb5e953924146",
+        "module_id": 10,
+        "min_value": 0,
+        "max_value": 29,
+        "feedback": "May experience some difficulty in displaying the necessary skills for maximizing time usage productively.  For effective performance you would prefer to work under supervision and would prefer not take on responsibility. ",
+        "assessment_id": 1,
+        "__v": 0
+    }
+]
