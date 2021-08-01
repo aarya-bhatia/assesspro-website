@@ -54,7 +54,6 @@ module.exports.capitalize = (str) => {
 module.exports.formatTime = (date) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  console.log(hours, minutes);
   const ampm = hours >= 12 ? "PM" : "AM";
 
   let h = hours > 12 ? hours - 12 : hours;
@@ -88,6 +87,7 @@ module.exports.getYearSuffix = (date) => {
 module.exports.formatDateString = (date) => {
   const day = String(date.getDate());
   const month = months[parseInt(date.getMonth()) % 12];
+  const year = date.getFullYear();
   let str = "";
 
   if (day.endsWith(0)) {
@@ -100,7 +100,7 @@ module.exports.formatDateString = (date) => {
     str = "st";
   }
 
-  return day + str + " " + month;
+  return day + str + " " + month + " " + year;
 };
 
 function getLabels(moduleScores) {
