@@ -56,7 +56,6 @@ module.exports = {
       assessment_category: assessment.category,
       assessment_plot_type: assessment.plot_type,
       assessment_description: assessment.description,
-      date_purchased: new Date(),
       attempts: 0,
       completed: false,
     });
