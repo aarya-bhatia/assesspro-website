@@ -5,19 +5,10 @@ const { processCSV, initColumns } = require(".");
 const { connect, dropCollections, connection } = require("../config/db.config");
 const { Module, Assessment } = require("../models");
 const FILE = "resources/csv/Modules.csv";
-const MODULE_LIST_FILE = "resources/csv/ModuleList.csv";
 const fs = require("fs");
 
 const columns = initColumns(
-  Array.from([
-    "_id",
-    "name",
-    "type",
-    "scale_factor",
-    "time_limit",
-    "description",
-    "feedback_description",
-  ])
+  Array.from(["_id", "name", "type", "scale_factor", "description"])
 );
 
 const processRow = async function (row) {
