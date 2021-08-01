@@ -54,9 +54,11 @@ module.exports.capitalize = (str) => {
 module.exports.formatTime = (date) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
+  console.log(hours, minutes);
   const ampm = hours >= 12 ? "PM" : "AM";
 
-  let h = hours % 12;
+  let h = hours > 12 ? hours - 12 : hours;
+
   if (h < 10) {
     h = `0${h}`;
   }
