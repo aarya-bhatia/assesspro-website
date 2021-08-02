@@ -69,7 +69,6 @@ module.exports = {
       assessment_key: user_assessment.assessment_key,
       plot_type: user_assessment.assessment_plot_type,
       module_scores: module_scores,
-      date: new Date(),
     });
   },
 
