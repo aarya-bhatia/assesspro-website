@@ -21,4 +21,6 @@ module.exports = {
   CMUserAnswer: require("./cm.user.answer"),
   CTQuestion: require("./ct.question"),
   CTUserAnswer: require("./ct.user.answer"),
+  DivergentResponse: require("./divergent.response"),
+  DivergentScore: require("./divergent.score"),
 };

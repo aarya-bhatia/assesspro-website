@@ -6,6 +6,7 @@
  */
 
 const mongoose = require("mongoose");
+const timezone = require("mongoose-timezone");
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 const ObjectId = Schema.Types.ObjectId;
@@ -36,5 +37,7 @@ const schema = new Schema({
     default: "public",
   },
 });
+
+schema.plugin(timezone, { paths: ["date"] });
 
 module.exports = model("UserScore", schema);

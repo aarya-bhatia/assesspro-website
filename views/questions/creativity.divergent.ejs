@@ -1,0 +1,48 @@
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+<div class="container">
+  <div class="display-4">Divergent Thinking Assessment</div>
+  <div class="p">List as many things as you can within the time limit.</div>
+  <br />
+
+  <%- include('partials/divergent.pagination.ejs', { id }) %>
+
+  <div class="alert alert-warning">
+    Time Remaining: <span id="timer"><%= time_spent %></span>
+  </div>
+
+  <div><%= question.content %></div>
+  <input type="text" id="cdt_key" value="cdt_<%= id %>_<%= user_id %>" hidden />
+
+  <% for(const value of responses) { %>
+  <form action="/creativity/Divergent/remove" method="POST">
+    <div class="d-flex my-2">
+      <input type="text" name="id" value="<%= value._id %>" hidden />
+      <input type="text" name="page" value="<%= id %>" hidden />
+      <input
+        type="text"
+        class="form-control w-50 me-2"
+        value="<%= value.content %>"
+        disabled
+      />
+      <input type="submit" class="btn btn-outline-danger" value="Remove" />
+    </div>
+  </form>
+  <% } %>
+
+  <form action="/creativity/Divergent/add?page=<%= id %>" method="POST">
+    <div class="d-flex my-2">
+      <input
+        type="text"
+        placeholder="Type here..."
+        name="content"
+        class="form-control w-50 me-2"
+      />
+      <input type="submit" class="btn btn-outline-primary" value="Add" />
+    </div>
+  </form>
+</div>
+
+<script src="/js/creativity.divergent.js"></script>
+
+<%- include('../partials/footer.ejs') %>
