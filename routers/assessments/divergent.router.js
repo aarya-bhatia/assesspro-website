@@ -240,16 +240,23 @@ router.get("/publish/:user_id", isAdmin, async (req, res) => {
   });
 
   for (const o of scoreArray) {
-    o.score = scoreArray.approved;
+    o.score = o.approved;
   }
+
+  console.log(scoreArray);
 
   const score = await DivergentScore.create({
     user_id: req.params.user_id,
     scores: scoreArray,
   });
 
+  await DivergentResponse.updateMany(
+    { user_id: req.params.user_id },
+    { $set: { status: "published" } }
+  );
+
   console.log(score);
-  res.json(score);
+  res.redirect("/divergent/responses");
 });
 
 router;

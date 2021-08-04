@@ -10,7 +10,7 @@ const schema = new Schema(
     content: { type: String, required: true, trim: true },
     status: {
       type: String,
-      enum: ["pending", "approved", "rejected"],
+      enum: ["pending", "approved", "rejected", "published"],
       default: "pending",
     },
   },

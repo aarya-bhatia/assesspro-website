@@ -5,6 +5,7 @@ const {
   UserProfile,
   UserAssessment,
   NESTFeedback,
+  DivergentScore,
 } = require("../models");
 const { downloadImage } = require("../config/s3.config");
 const fs = require("fs");
@@ -45,6 +46,8 @@ module.exports.getUserProfile = async (req, res) => {
     .sort("-date")
     .exec();
 
+  const divergentScores = await DivergentScore.find({ user_id: req.user._id });
+
   const user_id = req.user._id;
   const assessments = await UserAssessment.find({ user_id });
 
@@ -52,6 +55,7 @@ module.exports.getUserProfile = async (req, res) => {
     loggedIn: true,
     user: req.user,
     userScores,
+    divergentScores,
     formatTime,
     formatDateString,
     getChartData,
@@ -63,11 +67,13 @@ module.exports.peekProfile = async (req, res) => {
   const user_id = req.params.id;
   const user = await UserProfile.findById(user_id);
   const userScores = await UserScore.find({ user_id }).sort("-date").exec();
+  const divergentScores = await DivergentScore.find({ user_id: req.user._id });
 
   res.render("profile/peekProfile", {
     loggedIn: true,
     user,
     userScores,
+    divergentScores,
     formatTime,
     formatDateString,
     getChartData,

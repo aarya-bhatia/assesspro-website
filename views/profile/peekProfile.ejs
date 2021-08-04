@@ -16,9 +16,13 @@
 <% } else { %> <%- include('./basicProfile', { user }) %>
 <!-- SCORES -->
 <div class="container mt-2">
-  <% userScores.map((userScore, scoreIndex)=> { %> <%-
-  include('./userScoreHeader.ejs', { userScore, formatDateString, formatTime })
-  %>
+  <% userScores.map((userScore, scoreIndex)=> { %>
+  <div class="display-6"><%= userScore.assessment_name %></div>
+  <div class="lead">
+    <span><%= formatDateString(userScore.date) %>, </span>
+    <span><%= formatTime(userScore.date) %> </span>
+  </div>
+
   <div class="row">
     <div class="col-lg-6 mb-3">
       <%- include('./moduleScoreTable.ejs', { userScore }) %>
@@ -34,5 +38,27 @@
     getChartData }) %> <% } %>
   </div>
   <% }) %>
+
+  <!-- Divergent thinking scores -->
+
+  <% for(const divScore of divergentScores) { %>
+  <div class="display-6">Divergent Thinking</div>
+  <div class="lead">
+    <span><%= formatDateString(divScore.createdAt) %>, </span>
+    <span><%= formatTime(divScore.createdAt) %> </span>
+  </div>
+  <table class="table table-bordered table-hover">
+    <tr>
+      <th>Question</th>
+      <th>Score</th>
+    </tr>
+    <% for(const score of divScore.scores) { %>
+    <tr>
+      <td><%= score._id %></td>
+      <td><%= score.score %></td>
+    </tr>
+    <% } %>
+  </table>
+  <% } %>
 </div>
 <% } %> <%- include('../partials/footer.ejs') %>
