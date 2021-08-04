@@ -1,0 +1,105 @@
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+<style>
+  .my-custom-scrollbar {
+    position: relative;
+    max-height: 300px;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+  }
+</style>
+
+<div class="container">
+  <!-- Pending answers -->
+  <div class="h1">Pending</div>
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered table-hover mb-4">
+      <tr>
+        <th>Name</th>
+        <th>Question</th>
+        <th>Response</th>
+        <th>Action</th>
+      </tr>
+
+      <% for(const response of responses.pending) { %>
+      <tr>
+        <td><%= response.user_name %></td>
+        <td><%= getQuestion(response.question_id) %></td>
+        <td><%= response.content %></td>
+        <td>
+          <a
+            href="/divergent/reject/<%= response._id %>"
+            class="btn btn-outline-danger"
+            >Reject</a
+          >
+          <a
+            href="/divergent/approve/<%= response._id %>"
+            class="btn btn-outline-success"
+            >Approve</a
+          >
+        </td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+
+  <!-- approved answers -->
+  <div class="h1">Approved</div>
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered table-hover mb-4">
+      <tr>
+        <th>Name</th>
+        <th>Question</th>
+        <th>Response</th>
+        <th>Action</th>
+      </tr>
+
+      <% for(const response of responses.approved) { %>
+      <tr>
+        <td><%= response.user_name %></td>
+        <td><%= getQuestion(response.question_id) %></td>
+        <td><%= response.content %></td>
+        <td>
+          <a
+            href="/divergent/reject/<%= response._id %>"
+            class="btn btn-outline-danger"
+            >Reject</a
+          >
+        </td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+
+  <!-- rejected answers -->
+  <div class="h1">Rejected</div>
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered table-hover mb-4">
+      <tr>
+        <th>Name</th>
+        <th>Question</th>
+        <th>Response</th>
+        <th>Action</th>
+      </tr>
+
+      <% for(const response of responses.rejected) { %>
+      <tr>
+        <td><%= response.user_name %></td>
+        <td><%= getQuestion(response.question_id) %></td>
+        <td><%= response.content %></td>
+        <td>
+          <a
+            href="/divergent/approve/<%= response._id %>"
+            class="btn btn-outline-success"
+            >Approve</a
+          >
+        </td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer.ejs', { loggedIn }) %>

@@ -2,27 +2,50 @@
 
 <div class="container">
   <div class="display-4">Divergent Thinking Assessment</div>
-  <div class="p">List as many things as you can within the time limit.</div>
+  <h4>Instructions</h4>
+  <ul>
+    <li>List as many things as you can within the time limit.</li>
+    <li>There are 4 questions of 3 minutes each.</li>
+    <li>
+      To add a word, type it into the input field and click the Add button.
+    </li>
+    <li>To remove a word, click on the Remove button next to it.</li>
+    <li>Click on the Next or Prev page to continue when you are done.</li>
+    <li>Please answer the questions on all pages.</li>
+    <li>
+      When you are done, you may close this window. Your answers will be saved
+      as you take the test.
+    </li>
+    <li>The more words you answer, the greater will be your score.</li>
+  </ul>
   <br />
 
-  <%- include('partials/divergent.pagination.ejs', { id }) %>
+  <%- include('partials/divergent.pagination.ejs', { id: question._id }) %>
 
   <div class="alert alert-warning">
-    Time Remaining: <span id="timer"><%= time_spent %></span>
+    Time Remaining: <span id="timer">0</span>
   </div>
 
-  <div><%= question.content %></div>
-  <input type="text" id="cdt_key" value="cdt_<%= id %>_<%= user_id %>" hidden />
+  <div class="alert alert-success">
+    <div class="lead"><%= page %>. <%= question.content %></div>
+  </div>
 
-  <% for(const value of responses) { %>
-  <form action="/creativity/Divergent/remove" method="POST">
+  <input
+    type="text"
+    id="cdt_key"
+    value="cdt_<%= question._id %>_<%= user_id %>"
+    hidden
+  />
+
+  <% for(const response of responses) { %>
+  <form action="/divergent/remove/<%= response._id %>" method="GET">
+    <input type="hidden" name="page" value="<%= page %>" />
+
     <div class="d-flex my-2">
-      <input type="text" name="id" value="<%= value._id %>" hidden />
-      <input type="text" name="page" value="<%= id %>" hidden />
       <input
         type="text"
         class="form-control w-50 me-2"
-        value="<%= value.content %>"
+        value="<%= response.content %>"
         disabled
       />
       <input type="submit" class="btn btn-outline-danger" value="Remove" />
@@ -30,7 +53,10 @@
   </form>
   <% } %>
 
-  <form action="/creativity/Divergent/add?page=<%= id %>" method="POST">
+  <form
+    action="/divergent/add/<%= question._id %>/?page=<%= page %>"
+    method="POST"
+  >
     <div class="d-flex my-2">
       <input
         type="text"

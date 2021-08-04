@@ -65,6 +65,12 @@ app.use(
   require("./routers/creativity.router")
 );
 
+app.use(
+  "/divergent",
+  isAuth,
+  require("./routers/assessments/divergent.router")
+);
+
 app.use(require("./routers/help.router"));
 app.use(require("./routers/index.router"));
 

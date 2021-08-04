@@ -15,7 +15,8 @@ function setTimerDisplay() {
 
 function updateTimer() {
   if (timeLeft <= 0) {
-    alert("Time's up");
+    // alert("Time's up");
+    console.log("Time's up");
     clearInterval(timer);
     return;
   }
