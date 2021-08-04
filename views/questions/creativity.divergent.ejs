@@ -56,6 +56,7 @@
   <form
     action="/divergent/add/<%= question._id %>/?page=<%= page %>"
     method="POST"
+    name="addForm"
   >
     <div class="d-flex my-2">
       <input
@@ -64,7 +65,12 @@
         name="content"
         class="form-control w-50 me-2"
       />
-      <input type="submit" class="btn btn-outline-primary" value="Add" />
+      <input
+        type="submit"
+        class="btn btn-outline-primary"
+        value="Add"
+        onclick="handleSubmit()"
+      />
     </div>
   </form>
 </div>

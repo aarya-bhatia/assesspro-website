@@ -1,3 +1,4 @@
+const { createUserAssessment } = require("../../controller/api/user");
 const {
   UserAssessment,
   DivergentResponse,
@@ -111,13 +112,10 @@ router.post("/add/:question_id", isEnrolled, async (req, res) => {
     status: "pending",
   });
 
-  console.log(req.query);
-
   res.redirect("/divergent/questions?page=" + (req.query.page || 1));
 });
 
 router.get("/remove/:response_id", isEnrolled, async (req, res) => {
-  console.log(req.query);
   await DivergentResponse.deleteOne({
     _id: req.params.response_id,
   });

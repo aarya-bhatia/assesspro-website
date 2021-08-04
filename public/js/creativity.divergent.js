@@ -48,4 +48,16 @@ window.onunload = function () {
   clearInterval(timer);
 };
 
-console.log("key", getKey());
+// console.log("key", getKey());
+
+function handleSubmit() {
+  if (timeLeft <= 0) {
+    return alert("Sorry, time is up.");
+  } else {
+    document.addForm.submit();
+  }
+}
+
+document.addForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
