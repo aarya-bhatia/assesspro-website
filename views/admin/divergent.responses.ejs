@@ -100,6 +100,35 @@
       <% } %>
     </table>
   </div>
+
+  <!-- candidates -->
+  <div class="h1">Candidates</div>
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered table-hover mb-4">
+      <tr>
+        <th>Name</th>
+        <th># Pending</th>
+        <th># Approved</th>
+        <th># Rejected</th>
+        <th>Action</th>
+      </tr>
+      <% for(const candidate of candidates) { %>
+      <tr>
+        <td><%= candidate.name %></td>
+        <td><%= candidate.pending %></td>
+        <td><%= candidate.approved %></td>
+        <td><%= candidate.rejected %></td>
+        <td>
+          <a
+            href="/divergent/publish/<%= candidate.user_id %>"
+            class="btn btn-outline-primary"
+            >Publish</a
+          >
+        </td>
+      </tr>
+      <% } %>
+    </table>
+  </div>
 </div>
 
 <%- include('../partials/footer.ejs', { loggedIn }) %>

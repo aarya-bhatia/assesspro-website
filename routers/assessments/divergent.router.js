@@ -134,12 +134,56 @@ router.get("/responses", isAdmin, async (req, res) => {
   const approved = await DivergentResponse.find({ status: "approved" });
   const rejected = await DivergentResponse.find({ status: "rejected" });
 
+  const candidates = {};
+
+  for (const response of pending) {
+    if (!candidates[response.user_id]) {
+      candidates[response.user_id] = {
+        name: response.user_name,
+        user_id: response.user_id,
+        pending: 0,
+        approved: 0,
+        rejected: 0,
+      };
+    }
+    candidates[response.user_id].pending++;
+  }
+
+  for (const response of approved) {
+    if (!candidates[response.user_id]) {
+      candidates[response.user_id] = {
+        name: response.user_name,
+        user_id: response.user_id,
+        pending: 0,
+        approved: 0,
+        rejected: 0,
+      };
+    }
+    candidates[response.user_id].approved++;
+  }
+
+  for (const response of rejected) {
+    if (!candidates[response.user_id]) {
+      candidates[response.user_id] = {
+        name: response.user_name,
+        user_id: response.user_id,
+        pending: 0,
+        approved: 0,
+        rejected: 0,
+      };
+    }
+    candidates[response.user_id].rejected++;
+  }
+
   const responses = { pending, approved, rejected };
 
   res.render("admin/divergent.responses.ejs", {
     ...res.locals,
     responses,
     getQuestion: (id) => getQuestion(id),
+    candidates: Object.keys(candidates).map((key) => {
+      return { ...candidates[key] };
+    }),
   });
 });
 
@@ -161,7 +205,52 @@ router.get("/reject/:response_id", isAdmin, async (req, res) => {
   res.redirect("/divergent/responses");
 });
 
-router.get("/publish", isAdmin, async (req, res) => {});
+router.get("/publish/:user_id", isAdmin, async (req, res) => {
+  const responses = await DivergentResponse.find({
+    user_id: req.params.user_id,
+  });
+
+  const scores = {};
+
+  for (const response of responses) {
+    if (!scores[response.question_id]) {
+      scores[response.question_id] = {
+        _id: response.question_id,
+        name: getQuestion(response.question_id),
+        approved: 0,
+        rejected: 0,
+        score: 0,
+      };
+    }
+
+    if (response.status == "approved") {
+      scores[response.question_id].approved++;
+    } else if (response.status == "rejected") {
+      scores[response.question_id].rejected++;
+    } else {
+      return res.render("error/index", {
+        ...res.locals,
+        message:
+          "Please make sure to grade all the responses before publishing the result.",
+      });
+    }
+  }
+  const scoreArray = Object.keys(scores).map((key) => {
+    return { ...scores[key] };
+  });
+
+  for (const o of scoreArray) {
+    o.score = scoreArray.approved;
+  }
+
+  const score = await DivergentScore.create({
+    user_id: req.params.user_id,
+    scores: scoreArray,
+  });
+
+  console.log(score);
+  res.json(score);
+});
 
 router;
 

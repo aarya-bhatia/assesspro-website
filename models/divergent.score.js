@@ -10,6 +10,8 @@ const schema = new Schema(
         _id: Number,
         name: String,
         score: Number,
+        approved: Number,
+        rejected: Number,
       },
     ],
   },
