@@ -18,35 +18,34 @@
     potential job fit
   </p>
 
-  <canvas id="<%= userScore._id %>"></canvas>
-
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <canvas id="<%= userScore._id %>"></canvas>
+      <%- include('../profile/scripts/createScoreChart.ejs', { userScore,
+      getChartData, scoreIndex: 0 }) %>
+    </div>
+  </div>
   <button class="btn btn-primary" id="save_0">Save as Image</button>
+  <hr />
 
-  <%- include('../profile/scripts/createScoreChart.ejs', { userScore,
-  getChartData, scoreIndex: 0 }) %>
+  <table class="table table-hover">
+    <tr>
+      <th>Module</th>
+      <th>Score</th>
+      <th>Description</th>
+      <th>Feedback</th>
+    </tr>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Module</th>
-        <th>Score</th>
-        <th>Description</th>
-        <th>Feedback</th>
-      </tr>
-    </thead>
+    <% user_feedbacks.map(row => { %>
 
-    <tbody>
-      <% user_feedbacks.map(row => { %>
+    <tr>
+      <td><%= row.module_name %></td>
+      <td><%= row.module_score %></td>
+      <td><%= row.module_feedback.description %></td>
+      <td><%= row.module_feedback.feedback %></td>
+    </tr>
 
-      <tr>
-        <td><%= row.module_name %></td>
-        <td><%= row.module_score %></td>
-        <td><%= row.module_feedback.description %></td>
-        <td><%= row.module_feedback.feedback %></td>
-      </tr>
-
-      <% }) %>
-    </tbody>
+    <% }) %>
   </table>
 </div>
 

@@ -12,9 +12,10 @@ const {
 module.exports.saveAnswers = async function (req, res) {
   const { assessment_id } = res.locals;
   const { user_module_id } = req.params;
-  const { module_id } = user_module;
 
   const user_module = await fetchUserModuleById(user_module_id);
+  const { module_id } = user_module;
+
   const questions = await fetchQuestionsForModule(module_id);
 
   let attempted = 0;
