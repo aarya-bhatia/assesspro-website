@@ -31,6 +31,7 @@ const schema = new mongoose.Schema(
       default: "usd",
     },
     shortPara: String,
+    enrollURL: String,
     redirectURL: String,
   },
   { _id: false, timestamps: true }
