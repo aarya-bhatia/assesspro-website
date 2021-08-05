@@ -8,11 +8,9 @@ const schema = new Schema({
   assessment_id: Number,
   module_id: Number,
   module_name: String,
-  module_type: String,
   no_questions: Number,
   no_attempted: Number,
   time_spent: Number,
-  scale_factor: Number,
   status: {
     type: String,
     enum: ["Pending", "Completed"],

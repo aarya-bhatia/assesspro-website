@@ -1,0 +1,26 @@
+﻿Module ID,Module Name,Type,Scale Factor
+1,Accuracy In English,Objective,1
+2,English Comprehension,Objective,1
+3,Verbal Reasoning,Objective,1
+4,Abstract Reasoning,Objective,1
+5,Logical Reasoning,Objective,1
+6,Numerical Reasoning,Objective,1
+7,Social Skills,Subjective,5
+8,Team Work,Subjective,5
+9,Emotional Intelligence,Subjective,5
+10,Self Management,Subjective,5
+11,Verbal Linguistic,Subjective,5
+12,Logical Mathematical,Subjective,5
+13,Visual Spatial,Subjective,5
+14,Musical,Subjective,5
+15,Bodily Kinesthetic,Subjective,5
+16,Interpersonal,Subjective,5
+17,Intrapersonal,Subjective,5
+18,Naturalist,Subjective,5
+19,Hunger for knowing,Subjective,6
+20,Sensitivity,Subjective,6
+21,Complexity,Subjective,6
+22,Venturing,Subjective,6
+23,Independence and Courage,Subjective,6
+24,Reality Contact,Subjective,6
+25,Self-sufficiency,Subjective,6

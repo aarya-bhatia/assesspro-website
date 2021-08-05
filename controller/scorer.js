@@ -2,6 +2,7 @@ module.exports = {
   scoreAssessment,
 };
 
+const { ModuleScale } = require("../models");
 const { getPointsForAnswerChoice } = require("./api/answers");
 
 const {
@@ -11,7 +12,8 @@ const {
   updateUserAssessmentOnCompletion,
 } = require("./api/user");
 
-function scaleModuleScore(score, { no_questions, scale_factor }) {
+async function scaleModuleScore(score, { module_id, no_questions }) {
+  const { scale_factor } = await ModuleScale.findById(module_id);
   const maxScore = no_questions * scale_factor;
 
   if (maxScore === 0) {
@@ -59,7 +61,7 @@ async function score(user_id, assessment_id) {
         score += await getPointsForAnswerChoice(question_id, choice);
       }
 
-      const scaled_score = scaleModuleScore(score, userModule);
+      const scaled_score = await scaleModuleScore(score, userModule);
       console.log(`Scaled Score from ${score} to ${scaled_score}`);
 
       score = scaled_score;

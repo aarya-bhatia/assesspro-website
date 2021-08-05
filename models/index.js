@@ -2,6 +2,7 @@ module.exports = {
   Category: require("./category"),
   Assessment: require("./assessment"),
   Module: require("./module"),
+  ModuleScale: require("./module.scale"),
   Question: require("./question"),
   Answer: require("./answer"),
   UserAnswer: require("./UserAnswer"),

@@ -14,7 +14,6 @@ async function createUserModule(user_id, assessment_id, module) {
     assessment_id,
     module_id: module._id,
     module_name: module.name,
-    module_type: module.type,
     no_questions: module.no_questions,
     no_attempted: 0,
     time_spent: 0,
@@ -52,7 +51,6 @@ module.exports = {
       assessment_name: assessment.name,
       assessment_category: assessment.category,
       assessment_plot_type: assessment.plot_type,
-      assessment_description: assessment.description,
       attempts: 0,
       completed: false,
     });
@@ -170,11 +168,8 @@ module.exports = {
   },
 
   async deleteUserAccount(user_id) {
-    console.log("Deleting profile...");
     await UserProfile.findByIdAndRemove(user_id);
-    console.log("Deleting modules...");
     await UserModule.deleteMany({ user_id });
-    console.log("Deleting User answers...");
     await UserAnswer.deleteMany({ user_id });
   },
 

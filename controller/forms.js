@@ -1,18 +1,13 @@
 const { formatTimeSpent, shuffleOrder } = require("../controller/util");
-const { CPUserAnswer, CMQuestion, Assessment, Module } = require("../models");
+const { Module } = require("../models");
 
-const {
-  fetchQuestionsForModule,
-  fetchCPQuestionsForModule,
-} = require("./api/answers");
+const { fetchQuestionsForModule } = require("./api/answers");
 
 const {
   getUserAnswersForModule,
   getUserModules,
   fetchUserModuleById,
 } = require("./api/user");
-
-const { getAssessmentId, CP_Key } = require("./assessment.keys");
 
 module.exports = {
   // Get the module list page for an assessment
@@ -81,28 +76,3 @@ module.exports = {
 //     return await Question.find({ module_id });
 //   }
 // );
-
-async function getCPQuestionForm(req, res) {
-  const { user_module_id } = req.params;
-  const user_module = await fetchUserModuleById(user_module_id);
-  const { module_id, module_name } = user_module;
-  const questions = await fetchCPQuestionsForModule(module_id);
-  console.log("Num questions: ", questions.length);
-
-  const user_answers = await CPUserAnswer.find({
-    user_id: req.user._id,
-    module_id,
-  });
-
-  // console.log(user_answers);
-
-  res.render("forms/cp.moduleForm.ejs", {
-    ...res.locals,
-    title: "Module: " + module_name,
-    assessment_id: await getAssessmentId(CP_Key),
-    questions,
-    user_answers,
-    user_module,
-    formatTimeSpent,
-  });
-}

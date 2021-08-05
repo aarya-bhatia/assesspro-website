@@ -3,61 +3,32 @@
  */
 const { processCSV, initColumns } = require(".");
 const { connect, dropCollections, connection } = require("../config/db.config");
-const { Module, Assessment } = require("../models");
+const { Module } = require("../models");
 const FILE = "resources/csv/Modules.csv";
-const fs = require("fs");
-
-const columns = initColumns(
-  Array.from([
-    "_id",
-    "name",
-    "type",
-    "scale_factor",
-    "description",
-    "instructions",
-  ])
-);
 
 const processRow = async function (row) {
-  const data = {};
-  for (const [key, value] of Object.entries(columns)) {
-    data[key] = row[value];
-  }
-  const module = await Module.create(data);
+  const _id = row[0];
+  const name = row[1];
+  const description = row[2];
+  const instructions = row[3];
+
+  const module = await Module.create({ _id, name, description, instructions });
   console.log("Created module... [id]", module._id);
 };
 
-const processRowModuleList = async function (row) {
-  await Assessment.updateOne(
-    { key: row[0] },
-    {
-      $addToSet: {
-        modules: {
-          _id: row[1],
-          name: row[2],
-        },
-      },
-    }
-  );
-  console.log("Processed row...");
-};
+async function down() {
+  return new Promise((res) => {
+    dropCollections(["modules"]).then(() => {
+      res();
+    });
+  });
+}
 
 connect();
 
-async function writeJsonFile() {
-  const content = await Module.find({});
-  const file =
-    "/Users/aarya/Desktop/AssessProWebsite/migrations/json/modules.json";
-  const jsonData = JSON.stringify(content);
-  fs.writeFileSync(file, jsonData);
-  console.log("done");
-}
-
 connection.once("open", async () => {
   try {
-    console.log("Dropping modules...");
-    await dropCollections(["modules"]);
-    console.log("Adding modules...");
+    await down();
     await processCSV(FILE, processRow);
   } catch (err) {
     console.log("ERROR RUNNING MIGRATIONS...", err);

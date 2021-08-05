@@ -19,7 +19,7 @@ module.exports = {
     return await Question.find({ module_id });
   },
 
-  async fetchCPQuestionsForModule(module_id) {
-    return await CPQuestion.find({ module_id });
-  },
+  // async fetchCPQuestionsForModule(module_id) {
+  //   return await CPQuestion.find({ module_id });
+  // },
 };

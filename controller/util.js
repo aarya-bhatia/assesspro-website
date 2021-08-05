@@ -88,18 +88,6 @@ module.exports.formatDateString = (date) => {
   const day = String(date.getDate());
   const month = months[parseInt(date.getMonth()) % 12];
   const year = date.getFullYear();
-
-  // let str = "";
-  // if (day.endsWith(0)) {
-  //   str = "th";
-  // } else if (day.endsWith(2)) {
-  //   str = "nd";
-  // } else if (day.endsWith(3)) {
-  //   str = "rd";
-  // } else {
-  //   str = "st";
-  // }
-
   return day + " " + month + " " + year;
 };
 

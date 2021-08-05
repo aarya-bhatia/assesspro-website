@@ -8,15 +8,9 @@ const schema = new Schema(
       type: Number,
     },
     name: { type: String, required: true },
-    type: {
-      type: String,
-      enum: ["Objective", "Subjective"],
-      required: true,
-    },
-    description: String,
-    instructions: String,
+    description: { type: String, trim: true },
+    instructions: { type: String, trim: true, required: false },
     no_questions: Number,
-    scale_factor: Number,
   },
   { _id: false }
 );
