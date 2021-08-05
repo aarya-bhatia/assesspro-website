@@ -2,6 +2,7 @@ const {
   updateUserProfile,
   getProfileUpdateForm,
   getUserProfile,
+  getUserScores,
   peekProfile,
   listUsers,
   openReport,
@@ -40,6 +41,9 @@ router.get("/", listUsers);
 
 // Get current user profile
 router.get("/profile", getUserProfile);
+
+// Get user scores
+router.get("/scores", getUserScores);
 
 router.get("/reports/:user_score_id", openReport);
 

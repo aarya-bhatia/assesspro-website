@@ -41,6 +41,20 @@ module.exports.getProfileUpdateForm = (req, res) => {
 
 // Get signed in user's profile page
 module.exports.getUserProfile = async (req, res) => {
+  const user_id = req.user._id;
+  const assessments = await UserAssessment.find({ user_id });
+
+  res.render("profile/profile", {
+    loggedIn: true,
+    user: req.user,
+    formatTime,
+    formatDateString,
+    getChartData,
+    assessments,
+  });
+};
+
+module.exports.getUserScores = async (req, res) => {
   // Get assessment scores
   const userScores = await UserScore.find({ user_id: req.user._id })
     .sort("-date")
@@ -48,10 +62,7 @@ module.exports.getUserProfile = async (req, res) => {
 
   const divergentScores = await DivergentScore.find({ user_id: req.user._id });
 
-  const user_id = req.user._id;
-  const assessments = await UserAssessment.find({ user_id });
-
-  res.render("profile/profile", {
+  res.render("profile/scores", {
     loggedIn: true,
     user: req.user,
     userScores,
@@ -59,7 +70,6 @@ module.exports.getUserProfile = async (req, res) => {
     formatTime,
     formatDateString,
     getChartData,
-    assessments,
   });
 };
 

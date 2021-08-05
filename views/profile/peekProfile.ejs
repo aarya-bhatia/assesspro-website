@@ -1,15 +1,20 @@
-<!--
-    Locals: {
-        user,
-        loggedIn,
-        userScores 
-    }
--->
-
 <!-- See Profile of another user -->
 
-<%- include('./profileHeader.ejs', { loggedIn }) %> <% if(user.status !=
-'public') { %>
+<%- include('../partials/header.ejs', { loggedIn }) %>
+<script>
+  let ctx = null,
+    config = null;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/javascript-canvas-to-blob/3.28.0/js/canvas-to-blob.js"
+  integrity="sha512-QinObFNs7mVBtipyw8BEERLHKQ1P2n5Wbxd8Kt+G9ST/lp99qZKlJUUsNSZYSPf/yGL7eNN0UCcDaMiZjXMtGg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+<% if(user.status !='public' ) { %>
 <div class="container">
   <div class="alert alert-danger">Cannot view profile as it is private.</div>
 </div>
@@ -19,19 +24,30 @@
   <% userScores.map((userScore, scoreIndex)=> { %>
   <div class="display-6"><%= userScore.assessment_name %></div>
   <div class="lead">
-    <span><%= formatDateString(userScore.date) %>, </span>
-    <span><%= formatTime(userScore.date) %> </span>
+    <span> <%= formatDateString(userScore.date) %>, </span>
+    <span> <%= formatTime(userScore.date) %> </span>
   </div>
 
   <div class="row">
     <div class="col-lg-6 mb-3">
-      <%- include('./moduleScoreTable.ejs', { userScore }) %>
+      <table class="table table-hover">
+        <tr>
+          <th>Module</th>
+          <th>Score</th>
+        </tr>
+        <% userScore.module_scores.map(moduleScore=> { %>
+        <tr>
+          <td><%= moduleScore.name %></td>
+          <td><%= moduleScore.score %></td>
+        </tr>
+        <% }) %>
+      </table>
     </div>
     <div class="col-lg-6 mb-3">
       <canvas id="<%= userScore._id %>"></canvas>
     </div>
 
-    <% if(userScore.plot_type == 'hbar') { %> <%-
+    <% if(userScore.plot_type=='hbar' ) { %> <%-
     include('./scripts/createBarChart.ejs', { userScore, scoreIndex,
     getChartData }) %> <% } else { %> <%-
     include('./scripts/createScoreChart.ejs', { userScore, scoreIndex,
@@ -44,10 +60,10 @@
   <% for(const divScore of divergentScores) { %>
   <div class="display-6">Divergent Thinking</div>
   <div class="lead">
-    <span><%= formatDateString(divScore.createdAt) %>, </span>
-    <span><%= formatTime(divScore.createdAt) %> </span>
+    <span> <%= formatDateString(divScore.createdAt) %>, </span>
+    <span> <%= formatTime(divScore.createdAt) %> </span>
   </div>
-  <table class="table table-bordered table-hover">
+  <table class="table table-hover">
     <tr>
       <th>Question</th>
       <th>Score</th>
