@@ -28,6 +28,12 @@ include('partials/banner.ejs') %>
             <%= assessment.modules.length %> Modules
           </div>
 
+          <% if(assessment.shortPara) { %>
+          <p><%= assessment.shortPara %></p>
+          <% } else if(assessment.description) { %>
+          <p><%= assessment.description %></p>
+          <% } %>
+
           <a
             href="/assessments/<%= assessment._id %>"
             class="btn btn-outline-primary"
