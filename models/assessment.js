@@ -30,12 +30,10 @@ const schema = new mongoose.Schema(
       type: String,
       default: "usd",
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
+    shortPara: String,
+    redirectURL: String,
   },
-  { _id: false }
+  { _id: false, timestamps: true }
 );
 
 module.exports = mongoose.model("Assessment", schema);

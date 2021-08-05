@@ -11,12 +11,16 @@
 
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
-<input type='text' id='user_module_id' value='<%= user_module._id %>'
-  hidden />
+<input type="text" id="user_module_id" value="<%= user_module._id %>" hidden />
 
 <div class="container">
   <div class="display-4"><%= title %></div>
   <div class="lead"><%= description %></div>
+
+  <% if(instructions) { %>
+  <h2>Instructions</h2>
+  <p><%= instructions %></p>
+  <% } %>
 
   <div class="alert alert-success">
     Time spent:
@@ -66,7 +70,12 @@
 
           <% } %> <% if(choice.image) { %>
 
-          <img src="<%= choice.image %>" alt="Option Image" class="img-fluid" width="100" />
+          <img
+            src="<%= choice.image %>"
+            alt="Option Image"
+            class="img-fluid"
+            width="100"
+          />
 
           <% } %>
         </div>

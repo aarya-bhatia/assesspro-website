@@ -8,7 +8,14 @@ const FILE = "resources/csv/Modules.csv";
 const fs = require("fs");
 
 const columns = initColumns(
-  Array.from(["_id", "name", "type", "scale_factor", "description"])
+  Array.from([
+    "_id",
+    "name",
+    "type",
+    "scale_factor",
+    "description",
+    "instructions",
+  ])
 );
 
 const processRow = async function (row) {

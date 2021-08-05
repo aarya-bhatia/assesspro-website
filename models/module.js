@@ -14,6 +14,7 @@ const schema = new Schema(
       required: true,
     },
     description: String,
+    instructions: String,
     no_questions: Number,
     scale_factor: Number,
   },
