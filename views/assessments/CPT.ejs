@@ -1,91 +1,76 @@
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
 <div class="container mt-2">
-  <!-- introduction -->
-  <section>
-    <div class="display-4">Career Preference Test</div>
-    <hr />
-    <p>
-      Career Preference Test (based on the Theory of Multiple Intelligences
-      propounded by developmental psychologist Dr. Howard Gardner) profiles
-      individuals on eight distinct mental abilities. Certain innate abilities
-      lend themselves more easily to certain careers. The Career Preference Test
-      (CPT) places emphasis on identifying your strengths so that you can use
-      this information as the basis for career choices.
-    </p>
-  </section>
+  <div class="display-4">Career Preference Test</div>
+  <p>
+    Career Preference Test (based on the Theory of Multiple Intelligences
+    propounded by developmental psychologist Dr. Howard Gardner) profiles
+    individuals on eight distinct mental abilities. Certain innate abilities
+    lend themselves more easily to certain careers. The Career Preference Test
+    (CPT) places emphasis on identifying your strengths so that you can use this
+    information as the basis for career choices.
+  </p>
+  <h2>Highlights</h2>
+  <ul>
+    <li>
+      8 intelligence preferences surveyed (Logical-Mathematical, Spatial,
+      Musical, Interpersonal, Intrapersonal, Naturalist, Linguistic,
+      Bodily-Kinesthetic)
+    </li>
+    <li>Developed by experienced Psychologists</li>
+    <li>Tested across students from 9 schools</li>
+  </ul>
+  <h2>Features</h2>
+  <ul>
+    <li>Multiple-choice survey questions</li>
+    <li>Most individuals take 20-40 minutes to complete the survey</li>
+    <li>Graphical representation of Dominant Intelligences</li>
+    <li>
+      Each individual’s intelligence descriptions, typical preferences and
+      careers and preferred learning style highlight
+    </li>
+    <li>Instantaneous results Benefits</li>
+    <li>
+      Identification of each individual’s dominant and non-dominant
+      intelligences
+    </li>
+    <li>
+      Informed choice of higher education and careers based on a person’s
+      dominant intelligence
+    </li>
+    <li>
+      Experience a more positive and rewarding educational experience due to a
+      considered choice after evaluating multiple options, including many not
+      considered due to lack of exposure
+    </li>
+    <li>
+      Opportunity to address non-dominant intelligences and develop those traits
+      in a non-threatening environment
+    </li>
+  </ul>
+  <h2>Benefits</h2>
+  <ul>
+    <li>
+      Identification of each individual’s dominant and non-dominant
+      intelligences
+    </li>
+    <li>
+      Informed choice of higher education and careers based on a person’s
+      dominant intelligence
+    </li>
+    <li>
+      Experience a more positive and rewarding educational experience due to a
+      considered choice after evaluating multiple options, including many not
+      considered due to lack of exposure
+    </li>
+    <li>
+      Opportunity to address non-dominant intelligences and develop those traits
+      in a non-threatening environment
+    </li>
+    <li>Analysis highlights uniqueness of each individual</li>
+  </ul>
 
-  <hr>
-
-  <div class="d-flex align-items-start">
-    <div class="nav nav-pills flex-column me-3" id="v-pills-tab" role="tablist">
-      <button
-        class="btn nav-link active"
-        data-bs-toggle="pill"
-        data-bs-target="#highlights"
-      >
-        Highlights
-      </button>
-
-      <button
-        class="btn nav-link"
-        data-bs-toggle="pill"
-        data-bs-target="#features"
-      >
-        Features
-      </button>
-    </div>
-
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="highlights">
-        <h2>Highlights</h2>
-        <ul>
-          <li>
-            8 intelligence preferences surveyed (Logical-Mathematical, Spatial,
-            Musical, Interpersonal, Intrapersonal, Naturalist, Linguistic,
-            Bodily-Kinesthetic)
-          </li>
-          <li>Developed by experienced Psychologists</li>
-          <li>Tested across students from 9 schools</li>
-        </ul>
-      </div>
-      <div class="tab-pane fade show" id="features">
-        <h2>Features</h2>
-        <ul>
-          <li>Multiple-choice survey questions</li>
-          <li>Most individuals take 20-40 minutes to complete the survey</li>
-          <li>Graphical representation of Dominant Intelligences</li>
-          <li>
-            Each individual’s intelligence descriptions, typical preferences and
-            careers and preferred learning style highlight
-          </li>
-          <li>Instantaneous results Benefits</li>
-          <li>
-            Identification of each individual’s dominant and non-dominant
-            intelligences
-          </li>
-          <li>
-            Informed choice of higher education and careers based on a person’s
-            dominant intelligence
-          </li>
-          <li>
-            Experience a more positive and rewarding educational experience due
-            to a considered choice after evaluating multiple options, including
-            many not considered due to lack of exposure
-          </li>
-          <li>
-            Opportunity to address non-dominant intelligences and develop those
-            traits in a non-threatening environment
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- enroll -->
-  <div class="container text-center py-3 my-3">
+  <div class="text-center py-3 my-3">
     <a href="/users/enroll/<%= assessment_id %>" class="btn btn-primary"
       >START</a
     >
