@@ -41,27 +41,33 @@ module.exports = {
     if (assessment_id == "CP") {
       return getCPQuestionForm(req, res);
     }
+
     const { user_module_id } = req.params;
+
     const user_module = await fetchUserModuleById(user_module_id);
-    const { module_id, module_name, module_description } = user_module;
+
+    const { module_id } = user_module;
 
     const module = await Module.findById(module_id);
 
     const questions = await fetchQuestionsForModule(module_id);
     questions.sort(shuffleOrder);
-    console.log("Num questions: ", questions.length);
+
+    // console.log("Num questions: ", questions.length);
 
     const user_answers = await getUserAnswersForModule(req.user._id, module_id);
 
+    const title = "Module: " + module.name;
+
     res.render("forms/moduleForm.ejs", {
       ...res.locals,
-      title: "Module: " + module_name,
+      title,
       description: module.description,
       instructions: module.instructions,
       assessment_id,
       questions,
       user_answers,
-      user_module: user_module,
+      user_module,
       formatTimeSpent,
     });
   },

@@ -14,13 +14,10 @@ async function createUserModule(user_id, assessment_id, module) {
     assessment_id,
     module_id: module._id,
     module_name: module.name,
-    module_key: module.key,
     module_type: module.type,
-    module_description: module.description,
     no_questions: module.no_questions,
     no_attempted: 0,
     time_spent: 0,
-    time_limit: module.time_limit,
     scale_factor: module.scale_factor,
     status: "Pending",
   });

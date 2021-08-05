@@ -2,8 +2,6 @@ module.exports = {
   scoreAssessment,
 };
 
-const { getAssessmentId, CP_Key } = require("./assessment.keys");
-const { CPUserAnswer } = require("../models");
 const { getPointsForAnswerChoice } = require("./api/answers");
 
 const {
@@ -30,11 +28,7 @@ async function scoreAssessment(req, res) {
 
   let module_scores = [];
 
-  if (assessment_id == (await getAssessmentId(CP_Key))) {
-    module_scores = await scoreCP(user_id, assessment_id);
-  } else {
-    module_scores = await score(user_id, assessment_id);
-  }
+  module_scores = await score(user_id, assessment_id);
 
   console.log("Assessment Result ", module_scores);
 
@@ -63,45 +57,6 @@ async function score(user_id, assessment_id) {
       // Sum up total points for module answers.
       for (const { question_id, choice } of userAnswers) {
         score += await getPointsForAnswerChoice(question_id, choice);
-      }
-
-      const scaled_score = scaleModuleScore(score, userModule);
-      console.log(`Scaled Score from ${score} to ${scaled_score}`);
-
-      score = scaled_score;
-
-      // update module scores
-      result.push({
-        _id: module_id,
-        name: module_name,
-        score,
-      });
-    }
-
-    resolve(result);
-  });
-}
-
-// Scores the assessment and returns the module scores array
-async function scoreCP(user_id, assessment_id) {
-  return new Promise(async (resolve) => {
-    console.log("Scoring CP...");
-    let result = [];
-
-    // Get user modules
-    const userModules = await getUserModules(user_id, assessment_id);
-
-    for (const userModule of userModules) {
-      const { module_id, module_name } = userModule;
-
-      let score = 0;
-
-      // Get user answers for current module
-      const userAnswers = await CPUserAnswer.find({ user_id, module_id });
-
-      // Sum up total points for module answers.
-      for (const { value } of userAnswers) {
-        score += value;
       }
 
       const scaled_score = scaleModuleScore(score, userModule);

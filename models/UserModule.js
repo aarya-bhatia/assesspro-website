@@ -8,7 +8,6 @@ const schema = new Schema({
   assessment_id: Number,
   module_id: Number,
   module_name: String,
-  module_description: String,
   module_type: String,
   no_questions: Number,
   no_attempted: Number,
