@@ -1,5 +1,5 @@
 const { formatTimeSpent, shuffleOrder } = require("../controller/util");
-const { CPUserAnswer, CMQuestion } = require("../models");
+const { CPUserAnswer, CMQuestion, Assessment, Module } = require("../models");
 
 const {
   fetchQuestionsForModule,
@@ -45,6 +45,8 @@ module.exports = {
     const user_module = await fetchUserModuleById(user_module_id);
     const { module_id, module_name, module_description } = user_module;
 
+    const module = await Module.findById(module_id);
+
     const questions = await fetchQuestionsForModule(module_id);
     questions.sort(shuffleOrder);
     console.log("Num questions: ", questions.length);
@@ -54,7 +56,8 @@ module.exports = {
     res.render("forms/moduleForm.ejs", {
       ...res.locals,
       title: "Module: " + module_name,
-      description: module_description || "",
+      description: module.description,
+      instructions: module.instructions,
       assessment_id,
       questions,
       user_answers,
