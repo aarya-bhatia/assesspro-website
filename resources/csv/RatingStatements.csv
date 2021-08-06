@@ -1,0 +1,86 @@
+﻿ID,Assessment Key,Category Name,Category ID,Statement
+1,SL,Change Agent Capabilities,1,I keep in touch with major developments in my field and with opportunities for innovation in my organisation/ project/ system
+2,SL,Change Agent Capabilities,1,I like to come up with innovative solutions to difficult problems
+3,SL,Change Agent Capabilities,1,"When faced with tough work-related problems, instead of turning to stock solutions and tried and trusted methods, I seek novel or off beat solutions"
+4,SL,Change Agent Capabilities,1,I feel impatient with traditional or conventional solutions to work related problems
+5,SL,Change Agent Capabilities,1,I have a fine sense of timing when it comes to introducing innovations/ changes
+6,SL,Sensing the Power Structure,2,I can quickly identify the power structure of the organisation or system and learn what powerful people in the system want or don't want
+7,SL,Sensing the Power Structure,2,I am good at roping in influential people to support my ideas
+8,SL,Sensing the Power Structure,2,I can quickly identify the do's and don'ts'  of the organisation or system
+9,SL,Sensing the Power Structure,2,I keep in touch with a wide variety of people and consciously develop a large number of informative and influential contacts
+10,SL,Sensing the Power Structure,2,"In getting jobs done, I have a knack for doing the right thing at the right time"
+11,SL,Capacity to face upto Stress,3,I am not intimidated or overawed by big people and big bosses
+12,SL,Capacity to face upto Stress,3,I take work related criticism or failure positively
+13,SL,Capacity to face upto Stress,3,I remain cool even during a big occasion
+14,SL,Capacity to face upto Stress,3,"I do not get disheartened in a tight  corner, and quickly try to find a way out of it"
+15,SL,Capacity to face upto Stress,3,I do not get unnerved even if hard choices have to be made
+16,SL,"Analytical, Convergent ,Creative divergent thinking",4,I generally think up first many and varied alternatives before evaluating any of them
+17,SL,"Analytical, Convergent ,Creative divergent thinking",4,I think through several alternative courses of action before deciding
+18,SL,"Analytical, Convergent ,Creative divergent thinking",4,I can bring order even to the most messy work situation by systematic analysis
+19,SL,"Analytical, Convergent ,Creative divergent thinking",4,I carefully map out all the steps of a solution or course of action
+20,SL,"Analytical, Convergent ,Creative divergent thinking",4,I can mobilize necessary resources for a task even when resources are scarce
+21,SL,Project Management,5,I am quick at spotting projects that are beneficial to the organization
+22,SL,Project Management,5,I have a knack for building an effective team for implementing a new project/ activity
+23,SL,Project Management,5,While implementing a project I give credit liberally to those making a positive contribution
+24,SL,Project Management,5,I get new projects going easily and quickly
+25,SL,Project Management,5,I have a knack for making persuasive presentations for proposals for new projects/activities
+26,SL,Achievement Orientation,6,I can be counted upon to play my part in getting a job done
+27,SL,Achievement Orientation,6,"I  set demanding work related goals or targets, and strict deadlines for meeting the goals or target"
+28,SL,Achievement Orientation,6,I seek and accept personal responsibility for getting a job done
+29,SL,Achievement Orientation,6,I follow up on tasks and get them efficiently executed
+30,SL,Achievement Orientation,6,I put out best and expect to come out way ahead of others
+31,SL,Capacity to Bond and Empathies,7,I quite easily put myself into the shoes of others and sense their feelings and moods
+32,SL,Capacity to Bond and Empathies,7,Others at work turn to me in their moments of emotional distress
+33,SL,Capacity to Bond and Empathies,7,I am a patient listener and rarely judge others without fully understanding what they are trying to say
+34,SL,Capacity to Bond and Empathies,7,I generally give to others a correct picture of my thoughts and feelings to put them at ease
+35,SL,Capacity to Bond and Empathies,7,I encourage colleagues to express their feelings and voice their objections to proposals
+36,SL,Leadership,8,I am at ease with most people and enjoy close working relationships
+37,SL,Leadership,8,I get colleagues and subordinates to participate in decision making
+38,SL,Leadership,8,I can inspire others and infuse them with enthusiasm for a difficult task
+39,SL,Leadership,8,I can visualize big goals and get people excited for a difficult task
+40,SL,Leadership,8,I am good at building a high performance team for pursuing challenging goals
+41,SL,"Moral, Altruistic orientation",9,I am quite aware of ethical issues in any problematic situations
+42,SL,"Moral, Altruistic orientation",9,I stick to my core ethical principles when I have to make a difficult choice
+43,SL,"Moral, Altruistic orientation",9,I try hard to balance my self-interest with the interest of others
+44,SL,"Moral, Altruistic orientation",9,I do have a sense of mission in life
+45,SL,"Moral, Altruistic orientation",9,I try hard to get my organisation to pursue social responsibility
+46,CT,Fear of ambiguity,10, I dislike unfamiliar situations.
+47,CT,Fear of ambiguity,10," If you don’t plan your holidays in detail, you just end up wasting time and money."
+48,CT,Fear of ambiguity,10,I prefer a boss who tells me precisely what I am supposed to do.
+49,CT,Fear of ambiguity,10, Giving in to the pleasures of the body detracts from high thinking.
+50,CT,Fear of ambiguity,10, I hate confusion.
+51,CT,Fear of social disapproval,11, There is a great danger in giving up our old customs and traditions.
+52,CT,Fear of social disapproval,11,Parents know best what occupations their children should pursue.
+53,CT,Fear of social disapproval,11, Women should not dress like men and vice versa.
+54,CT,Fear of social disapproval,11, Premarital sex is immoral.
+55,CT,Fear of social disapproval,11, One must fulfil one’s social obligations at any cost.
+56,CT,Fear of Failure,12, I prefer to give up when I hear that a task is too difficult.
+57,CT,Fear of Failure,12, I don’t like to compete with strong opponents.
+58,CT,Fear of Failure,12, I dislike being compared to others.
+59,CT,Fear of Failure,12, I hate to lose at games.
+60,CT,Fear of Failure,12," In a meeting, I don’t speak up unless I am an expert on a point."
+61,CT,"Fear of Humiliation, Rejection",13, I like to make friends mostly with those who appreciate me.
+62,CT,"Fear of Humiliation, Rejection",13,I really dislike any criticism levelled against me.
+63,CT,"Fear of Humiliation, Rejection",13, I dislike subordinates trying to be familiar with me.
+64,CT,"Fear of Humiliation, Rejection",13, I feel tense communicating with persons who have greater authority than I.
+65,CT,"Fear of Humiliation, Rejection",13,  I don’t like being contradicted in the presence of others.
+66,CT,Resource Myopia,14, I don’t think I have any very distinctive skills outside my area of specialization.
+67,CT,Resource Myopia,14," At work or studies, I generally don’t share problems with colleagues to seek their guidance."
+68,CT,Resource Myopia,14, I don’t think Third World countries have the resources to catch up with the First.
+69,CT,Resource Myopia,14, I don’t think I can do well in a job or occupation very different from my present one.
+70,CT,Resource Myopia,14, One can accomplish little without the support of the authorities.
+71,CT,Rigidity,15,  I can predict the behaviour of a person if I know his social background.
+72,CT,Rigidity,15, You can make out what people are like by noticing the way they dress.
+73,CT,Rigidity,15, I am more comfortable after I have classified a person.
+74,CT,Rigidity,15, Necessities must always have priority over artistic matters.
+75,CT,Rigidity,15, People in the same profession have similar personalities.
+76,CT,Starved Sensibilities,16, You can’t be called mature unless you can really control your emotions.
+77,CT,Starved Sensibilities,16, I resist expressing tenderness towards others.
+78,CT,Starved Sensibilities,16, I rather dislike sad movies.
+79,CT,Starved Sensibilities,16, I have very little interest in flower arrangements and the like.
+80,CT,Starved Sensibilities,16," No matter what choice of food I have in a restaurant, I like to order the same old favourites."
+81,CT,Starved Sensibilities,16, I can’t stand meetings without a clear prior agenda.
+82,CT,Starved Sensibilities,16, I have never bothered myself with modern art.
+83,CT,Starved Sensibilities,16, I can’t be bothered with questions such as “What would happen if birds had brains like humans and humans had wings like birds?”.
+84,CT,Starved Sensibilities,16, A pound of imagination is not worth an ounce of facts.
+85,CT,Starved Sensibilities,16, I don’t like to see serious plays or movies

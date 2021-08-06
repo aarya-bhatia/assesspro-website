@@ -25,4 +25,5 @@ module.exports = {
   DivergentResponse: require("./divergent.response"),
   DivergentScore: require("./divergent.score"),
   LeftRightStatement: require("./left.right.statements"),
+  RatingStatement: require("./rating.statements"),
 };
