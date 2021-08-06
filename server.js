@@ -23,6 +23,7 @@ app.set("views", path.join(__dirname, "views"));
 // auth middleware
 const {
   isAuth,
+  isAdmin,
   checkUserEnrolled,
   isLoggedIn,
   checkUserEnrolledByKey,
@@ -69,6 +70,12 @@ app.use(
   "/divergent",
   isAuth,
   require("./routers/assessments/divergent.router")
+);
+
+app.use(
+  "/manager/assessments",
+  [isAuth, isAdmin],
+  require("./routers/assessment.manager.router")
 );
 
 app.use(require("./routers/help.router"));

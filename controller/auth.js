@@ -89,3 +89,14 @@ module.exports.CreateUser = async (req, res) => {
     });
   }
 };
+
+module.exports.isAdmin = async (req, res, next) => {
+  if (req.user.role == "admin") {
+    return next();
+  } else {
+    res.render("error/index", {
+      ...res.locals,
+      message: "Admin access is required.",
+    });
+  }
+};
