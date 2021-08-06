@@ -24,4 +24,5 @@ module.exports = {
   CTUserAnswer: require("./ct.user.answer"),
   DivergentResponse: require("./divergent.response"),
   DivergentScore: require("./divergent.score"),
+  LeftRightStatement: require("./left.right.statements"),
 };

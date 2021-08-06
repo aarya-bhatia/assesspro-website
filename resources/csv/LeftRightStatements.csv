@@ -1,0 +1,133 @@
+﻿Statement ID,Assessment Key,Cateogry ID,Category Name,Left Statement,Right Statement
+1,CP,1,Hunger for knowing," I do not have an unhealthy curiosity and I don’t like to show my ignorance by asking questions.
+","My curiosity is insatiable; I want to know about everything and I am constantly asking questions.
+"
+2,CP,1,Hunger for knowing,"I find subjects like philosophy quite boring.
+","I have a strong interest in stimulating ideas, theories, and philosophies.
+"
+3,CP,1,Hunger for knowing,"Who cares about the ‘why’ of things? I am only interested in the ‘how’ of things that I have to do.
+"," I am always trying to find out the ‘why’ of things.
+"
+4,CP,1,Hunger for knowing," I do not like to poke my nose into others affairs.
+","I am very interested in studying people and their motives and behaviour.
+"
+5,CP,2,Sensitivity,"I really enjoy food, clothing, ‘action’ films or competitive sports more than anything else.
+","I enjoy most many of the delicate and fine things of life, such as literature, music, art, flowers, interior decoration, etc.
+"
+6,CP,2,Sensitivity,"I feel quite uncomfortable without company.
+","I don’t usually crave for company but I enjoy meeting interesting and sensitive people.
+"
+7,CP,2,Sensitivity,"One can’t care for every one. I care mainly for my family members and friends.
+","I am often touched deeply by the misery of strangers.
+"
+8,CP,2,Sensitivity,"I am primarily interested in the usefulness of things.
+","Beauty and elegance of things move me even more deeply than their usefulness.
+"
+9,CP,3,Complexity,"I tend to solve problems by systematic, step-by-step logic and analysis.
+","I tend to skip steps and leap intuitively to correct solutions.
+
+"
+10,CP,3,Complexity,"I don’t waste time in visions and dreams; I believe in being down to earth.
+","I often have visions about the kind of society we should have, the kind of work people should be doing, my own role, etc.
+"
+11,CP,3,Complexity,"I am a solid person and hold only very respectable ideas.
+","Some people think I am crazy because my ideas are so strange.
+
+"
+12,CP,3,Complexity,"I have a pretty balanced temperament.
+","I am a moody person and I have my highs and lows, elations and depressions.
+"
+13,CP,4,Venturing,"I tend to be rather cautious in risky situations.
+",I love to take calculated risks 
+14,CP,4,Venturing,"I prefer to work on ventures or projects led by solid, dependable persons.
+","I prefer to start ventures and projects of my own.
+"
+15,CP,4,Venturing,"I am a realist; I pursue only those goals I can attain soon and successfully.
+","I know I may never reach some of my goals but I still pursue them.
+"
+16,CP,4,Venturing,I like to go along with others. ,I rather like striking out on my own.
+17,CP,5,Independence and Courage,"I seldom ever question whatever is well-established.
+","I do have a strong tendency to question the established order of things.
+"
+18,CP,5,Independence and Courage,"I don’t really stick rigidly to any core convictions or values.
+","I stick to a few core convictions and values, come what may.
+"
+19,CP,5,Independence and Courage,"One can’t know everything; I mostly rely on experts’ opinions.
+","I may hear out what an expert has to say but I make up my own mind and have my own ideas.
+"
+20,CP,5,Independence and Courage,"There is much virtue in being cautious when it comes to expressing one’s views and feelings.
+","I make no bones about where I stand; I assert my viewpoint and feelings clearly and forcefully.
+"
+21,CP,6,Reality Contact,"It is upto my superiors to tell me the restrictions within which I have to work.
+","I take the initiative to identify clearly the restrictions within which I am expected to work.
+"
+22,CP,6,Reality Contact,"I feel pretty upset in crisis situations and this badly affects my functioning.
+","I feel pretty confident that I can manage any crisis.
+"
+23,CP,6,Reality Contact,"I have a hard time coping with change of any sort.
+","I can adjust very quickly to new challenges, problems, and information.
+"
+24,CP,6,Reality Contact,"I hate to live in a world of fantasies and wishful thinking.
+","I really enjoy having fantasies but I don’t lose my grip over reality.
+"
+25,CP,7,Self-sufficiency,"I do not shirk work but it certainly is not my whole life.
+","I get wholly preoccupied with challenging tasks.
+"
+26,CP,7,Self-sufficiency,"There is always so much one doesn’t know; I often feel quite diffident in unfamiliar situations.
+","I am quite confident of my abilities even in unfamiliar situations.
+"
+27,CP,7,Self-sufficiency,"I know my limitations—I take on only those tasks I can achieve comfortably.
+","I have a tendency to take on really difficult tasks most would avoid. 
+"
+28,CP,7,Self-sufficiency,"I tend to avoid ventures that demand too much commitment of my time and energy.
+",I tend to persist in my ventures to the point that others think I am obsessed. 
+29,CE,8,Your Childhood at Home,Very monotonous; nothing particularly interesting to do,"Very stimulating; constantly playing
+new games, making new friends,
+visiting new places, meeting interesting persons, getting to learn new
+things, etc."
+30,CE,8,Your Childhood at Home,Nobody took any interest in any of my creative efforts; pretty much left alone to my own devices,Was handsomely rewarded or praised and encouraged for being innovative or for having creative idea
+31,CE,8,Your Childhood at Home,I was immediately criticized or punished severely for doing or saying anything new or controversial.,No personal criticism for doing or saying anything novel or controversial; disagreements if any were expressed after a patient hearing
+32,CE,8,Your Childhood at Home,Family members or other elders never discussed my creative efforts with me in any detail.,"Family members or other elders gave
+detailed constructive feedback on my
+creations and tried to clarify to me
+underlying principles."
+33,CE,8,Your Childhood at Home,I had no opportunity to learn know-how and techniques relevant to my hobbies or interests from anyone.,"I was given full opportunity to learn
+know-how and techniques relevant to
+my hobbies or interests from capable
+and innovative experts."
+34,CE,8,Your Childhood at Home,"At home, everybody expressed just one common point of view or believed in just one religious or political ideology.","At home, people expressed many different points of view and were encouraged to hold differing positions."
+35,CE,8,Your Childhood at Home,Nobody bothered even if I performed badly in activities that interested me.,Freedom was given to me to pursue my interests but no excuses were tolerated for shabby performance.
+36,CE,8,Your Childhood at Home,"At home, pious or moralistic figures were most respected.","At home, the most respected figures were innovators, pioneers, reformers, and creators."
+37,CE,8,Your Childhood at Home,I had virtually no physical or other facilities to pursue my hobbies and interests.,I was provided with reasonable physical and other facilities to pursue my hobbies and interests.
+38,CE,8,Your Childhood at Home,My parents/elders were quite conformist and in this they expected me to follow in their footsteps.,"My parents/elders were strongly committed to creativity and innovation, and inspired me to become an innovator or a pioneer."
+39,CE,9,Your Schooling,Very monotonous and boring,"Highly stimulating and interesting; many interesting activities, much diverse and exciting learning; interesting interactions with teachers, interesting visitors to school, fellow students, etc."
+40,CE,9,Your Schooling,Teachers took very little interest in any of my creative actions or ideas.,"I was handsomely praised, encouraged, or rewarded for being innovative or for having creative ideas."
+41,CE,9,Your Schooling,I was immediately called names or punished by teachers or fellow students for doing or saying anything new or controversial.,No personal criticism for my doing or saying anything novel or controversial; criticism if any was offered after patient hearing
+42,CE,9,Your Schooling,Teachers or senior students never discussed with me my creative efforts in any detail nor provided me with a detailed feedback.,Teachers or senior students usually gave a constructive and detailed feedback on my creations or innovations and tried to clarify underlying principles
+43,CE,9,Your Schooling,I had no opportunity at school to learn techniques and know-how relevant to my hobbies or interests,The school provided full opportunity to learn techniques and know-how relevant to my hobbies or interests from creative teachers.
+44,CE,9,Your Schooling,"At school, just one ‘correct’ point of view was emphasized. There was no encouragement to divergent views.","At school, there was a conscious effort to expose students to various points of view on issues and there were many exciting debates on issues."
+45,CE,9,Your Schooling,Nobody bothered even if I performed badly in activities that interested me.,Freedom was given to me to pursue my interests but no excuses were tolerated for shabby performance.
+46,CE,9,Your Schooling,"At school, moralistic or pious figures were most respected and were held up as examples to emulate.","At school, the most respected figures were innovators, pioneers, reformers, and creators in various walks of life."
+47,CE,9,Your Schooling,"At school, there were virtually no facilities to pursue my hobbies and interests.","At school, there were reasonable facilities to pursue almost any hobby or interest."
+48,CE,9,Your Schooling,The teachers were mostly rather conformist and expected me to uphold their values,"The teachers were mostly strongly committed to creativity and innovation, and inspired me to become an innovator or a pioneer."
+49,CE,10,Your Current Social Environment,Very monotonous; nothing particularly interesting occuring,"Very stimulating; constant stream of new activities, interesting new friends, new ideas, etc."
+50,CE,10,Your Current Social Environment,Nobody cares a damn about any of my creative act,Very strong encouragement and praise for being innovative or for having creative ideas
+51,CE,10,Your Current Social Environment,I am immediately criticized or called names for doing or saying anything novel or controversial.,No personal criticism is made for doing or saying anything novel or controversial; criticism if any is offered after a patient hearing by people close to me.
+52,CE,10,Your Current Social Environment,There is nobody to discuss with me in detail any creative effort of mine.,I can count on a number of friends or relations to discuss with me in detail any creative effort of mine.
+53,CE,10,Your Current Social Environment,My circumstances do not permit me to learn techniques and know-how relevant to my hobbies or interests.,"My circumstances afford me nearly unlimited opportunities to learn techniques and know-how relevant to my hobbies or interests, and that too from creative experts."
+54,CE,10,Your Current Social Environment,People I know intimately by and large all hold similar views on most issues.,Most of the people I know intimately have quite divergent views on many issues and they express them with a lot of conviction.
+55,CE,10,Your Current Social Environment,Nobody close to me cares even if I perform badly in activities that interest me.,"While nobody comes in my way in pursuing my interests, people close to me take me to task if I turn in a shabby performance."
+56,CE,10,Your Current Social Environment,"In my social circle, pious or moralistic individuals are held in the highest esteem.","In my social circle, pioneers, innovators, reformers, and creators are held in the highest esteem."
+57,CE,10,Your Current Social Environment,I really have no access to physical or financial facilities to pursue my hobbies or interests.,I have access to reasonable physical and financial facilities to pursue any and all of my hobbies and interests.
+58,CE,10,Your Current Social Environment,Prominent figures in my social circle are quite conformist in their outlook and expect me to conform to their values and norms.,"Prominent figures in my social circle are mostly committed to creativity and innovation, and inspire me to be an innovator or a pioneer."
+59,CE,11,Your Work Study Environment,Very monotonous; nothing particularly interesting to do,"Very stimulating; constantly getting interesting assignments, meeting interesting people, coming across new ideas, etc."
+60,CE,11,Your Work Study Environment,Nobody takes any interest in any of my creative efforts.,I am greatly encouraged and rewarded for being innovative or creative.
+61,CE,11,Your Work Study Environment,I am likely to be immediately criticized or punished in some way for saying or doing anything novel or controversial.,"There is never any personal criticism; criticism if any is always after a patient hearing to my novel, off-beat, or innovative ideas."
+62,CE,11,Your Work Study Environment,Nobody here would bother to give (or could give) me constructive and detailed feedback on any innovative effort of mine.," Here I can certainly expect wellinformed constructive and detailed feedback on my innovative efforts from
+knowledgeable persons."
+63,CE,11,Your Work Study Environment,Here I have no opportunity to learn techniques and know-how relevant to the assignments or tasks of interest to me.,I have nearly unlimited opportunity to learn all the techniques and know-how relevant to my work/study from innovative instructors/trainers/staff
+64,CE,11,Your Work Study Environment,Here there is no freedom to hold beliefs or positions different from the official line or philosophy of the bosses.,Here people hold strong and diverse positions on various issues and articulate them forcefully
+65,CE,11,Your Work Study Environment,Nobody here bothers even if I perform badly on various tasks of interest to me,Here I have freedom to pursue my work-related interests but no excuses for shabby performance are tolerated.
+66,CE,11,Your Work Study Environment,"Here the greatest respect is given to moralistic, obedient or dutiful persons.","Here the greatest respect is given to persons who are successful pioneers, innovators, change agents, or creators."
+67,CE,11,Your Work Study Environment,Here I have no access to physical and financial facilities to pursue any workrelated interests or to develop ‘wild’ ideas.,There are reasonable physical and financial facilities here to pursue my work-related interests or ‘wild’ ideas.
+68,CE,11,Your Work Study Environment,"The boss figures here are quite conformist and expect me also to conform strictly to the organization’s rules, norms and procedures.",The boss figures here are strongly committed to creativity and innovation and inspire me to be creative and innovative.
