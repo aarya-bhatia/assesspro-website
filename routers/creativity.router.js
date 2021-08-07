@@ -2,7 +2,6 @@ const router = require("express").Router();
 
 const { createUserAssessment } = require("../controller/api/user.js");
 const { fetchAssessmentByKey } = require("../controller/api/assessments.js");
-const { redirect } = require("../config/local.strategy.js");
 
 router.get("/enroll/:key", async (req, res) => {
   const assessment = await fetchAssessmentByKey(req.params.key);
@@ -31,8 +30,13 @@ async function isEnrolled(key) {
     });
 
     if (!userAssessment) {
-      return res.redirect("/creativity/enroll/" + key);
+      return res.status(400).render("error/index", {
+        ...res.locals,
+        message: "Access Denied. User is not enrolled in this assessment.",
+      });
     }
+
+    res.locals.userAssessment = userAssessment;
 
     next();
   };

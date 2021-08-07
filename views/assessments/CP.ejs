@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs', { loggedIn }) %>
 <div class="container">
   <div class="display-5">Creativity Personality Assessment</div>
-  <a href="/creativity/CP/enroll" class="btn btn-outline-primary">START</a>
+  <%- include('./enroll.button.ejs', { assessment }) %>
 </div>
 <%- include('../partials/footer.ejs', { loggedIn }) %>

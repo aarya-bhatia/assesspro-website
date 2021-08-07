@@ -70,10 +70,6 @@
     <li>Analysis highlights uniqueness of each individual</li>
   </ul>
 
-  <div class="text-center py-3 my-3">
-    <a href="/users/enroll/<%= assessment_id %>" class="btn btn-primary"
-      >START</a
-    >
-  </div>
+  <%- include('./enroll.button.ejs', { assessment }) %>
 </div>
 <%- include('../partials/footer.ejs') %>

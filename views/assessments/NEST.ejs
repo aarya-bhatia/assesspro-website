@@ -70,8 +70,5 @@
   </ul>
 </div>
 
-<div class="container text-center py-3 my-3">
-  <a href="/users/enroll/<%= assessment_id %>" class="btn btn-primary">START</a>
-</div>
-
-<%- include('../partials/footer.ejs') %>
+<%- include('./enroll.button.ejs', { assessment }) %> <%-
+include('../partials/footer.ejs') %>
