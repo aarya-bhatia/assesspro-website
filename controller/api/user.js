@@ -23,6 +23,8 @@ async function createUserModule(user_id, assessment_id, module) {
 }
 
 module.exports = {
+  createUserModule,
+
   async createUserProfile(name, email, password) {
     return await UserProfile.create({ name, email, password });
   },

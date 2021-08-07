@@ -10,6 +10,7 @@ router.get("/enroll/:key", async (req, res) => {
 
   if (!userAssessment) {
     userAssessment = await createUserAssessment(req.user, assessment);
+
     console.log("Enrolled user in assessment: " + assessment.key);
   }
 

@@ -8,7 +8,7 @@ const FILE = "resources/csv/Modules.csv";
 
 const processRow = async function (row) {
   const module = await Module.create({
-    assessment__id: row[0],
+    assessment_id: row[0],
     assessment_key: row[1],
     _id: row[2],
     name: row[3],
