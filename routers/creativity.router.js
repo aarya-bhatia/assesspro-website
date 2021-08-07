@@ -1,129 +1,83 @@
 const router = require("express").Router();
-const {
-  UserAssessment,
-  CPQuestion,
-  CMQuestion,
-  CTQuestion,
-  CTUserAnswer,
-  CPUserAnswer,
-} = require("../models");
+
 const { createUserAssessment } = require("../controller/api/user.js");
 const { fetchAssessmentByKey } = require("../controller/api/assessments.js");
-const {
-  submitCPForm,
-  submitCMForm,
-  submitCTForm,
-  saveCPForm,
-} = require("../controller/creativity.scorer");
+const { redirect } = require("../config/local.strategy.js");
 
-router.get("/enroll", async (req, res) => {
-  const key = res.locals.key;
-  const assessment = await fetchAssessmentByKey(key);
-  const user_id = req.user._id;
+router.get("/enroll/:key", async (req, res) => {
+  const assessment = await fetchAssessmentByKey(req.params.key);
 
   let userAssessment = await UserAssessment.findOne({
-    user_id,
+    user_id: req.user._id,
     assessment_id: assessment._id,
   });
 
   if (!userAssessment) {
     userAssessment = await createUserAssessment(req.user, assessment);
-    console.log("User is enrolled in " + assessment.key);
+    console.log("Enrolled user in assessment: " + assessment.key);
   }
 
-  return res.redirect("/creativity/" + key + "/questions");
+  console.log("Redirecting to assessment start page: ", assessment.redirectURL);
+  return res.redirect(
+    assessment.redirectURL || "/creativity/" + assessment.key + "/questions"
+  );
 });
 
-async function getCPQuestions(req, res) {
-  const questions = await CPQuestion.find({});
-  const user_answers = await CPUserAnswer.find({ user_id: req.user._id });
+async function isEnrolled(key) {
+  return function (req, res, next) {
+    const userAssessment = await UserAssessment.findOne({
+      user_id: req.user._id,
+      assessment_key: key,
+    });
 
-  res.render("questions/creativity.personality.ejs", {
-    ...res.locals,
-    user: req.user,
-    questions,
-    user_answers,
-  });
+    if (!userAssessment) {
+      return res.redirect("/creativity/enroll/" + key);
+    }
+
+    next();
+  };
 }
 
-async function getCMQuestions(req, res) {
-  const questions = await CMQuestion.find({});
+router.use(
+  "/convergent",
+  () => isEnrolled("CCT"),
+  require("./assessments/creativity/convergent.router")
+);
 
-  questions.shift();
+router.use(
+  "/environment",
+  () => isEnrolled("CE"),
+  require("./assessments/creativity/environment.router")
+);
 
-  res.render("questions/creativity.motivation.ejs", {
-    ...res.locals,
-    user: req.user,
-    questions,
-    user_answers: [],
-  });
-}
+router.use(
+  "/motivation",
+  () => isEnrolled("CM"),
+  require("./assessments/creativity/motivation.router")
+);
 
-async function getCTQuestions(req, res) {
-  const questions = await CTQuestion.find({});
-  const options = [
-    "Does Not Apply",
-    "Marginally",
-    "Modest Extent",
-    "Substantial",
-    "Great Extent",
-    "Fully Agree",
-  ];
+router.use(
+  "/personality",
+  () => isEnrolled("CP"),
+  require("./assessments/creativity/personality.router")
+);
 
-  const user_answers = await CTUserAnswer.find({ user_id: req.user._id });
+router.use(
+  "/temperament",
+  () => isEnrolled("CT"),
+  require("./assessments/creativity/temperament.router")
+);
 
-  res.render("questions/creativity.temperament.ejs", {
-    ...res.locals,
-    user: req.user,
-    questions,
-    options,
-    user_answers,
-  });
-}
+router.use(
+  "/social-leadership",
+  () => isEnrolled("SL"),
+  require("./assessments/creativity/social.leadership.router")
+);
 
-router.get("/questions", async (req, res) => {
-  const key = res.locals.key;
-
-  switch (key) {
-    case "CP":
-      return await getCPQuestions(req, res);
-    case "CM":
-      return await getCMQuestions(req, res);
-    case "CT":
-      return await getCTQuestions(req, res);
-    case "Convergent":
-    case "SL":
-    default:
-      throw new Error("Assessment not found...");
-  }
-});
-
-router.post("/submit", async (req, res) => {
-  const key = res.locals.key;
-
-  switch (key) {
-    case "CP":
-      return await submitCPForm(req, res);
-    case "CM":
-      return await submitCMForm(req, res);
-    case "CT":
-      return await submitCTForm(req, res);
-    case "Convergent":
-    case "SL":
-    default:
-      throw new Error("Assessment not found...");
-  }
-});
-
-router.post("/save", async (req, res) => {
-  const key = res.locals.key;
-
-  switch (key) {
-    case "CP":
-      return await saveCPForm(req, res);
-    default:
-      res.send("Unavailable");
-  }
-});
+router.use(
+  "/divergent",
+  () => isEnrolled("CDT"),
+  require("./assessments/creativity/divergent.router")
+);
 
 module.exports = router;

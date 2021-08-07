@@ -60,11 +60,7 @@ app.use(
   require("./routers/forms.router")
 );
 
-app.use(
-  "/creativity/:key",
-  [isAuth, checkUserEnrolledByKey],
-  require("./routers/creativity.router")
-);
+app.use("/creativity", isAuth, require("./routers/creativity.router"));
 
 app.use(
   "/divergent",
