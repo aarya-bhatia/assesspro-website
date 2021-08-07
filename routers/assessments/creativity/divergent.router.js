@@ -49,6 +49,7 @@ router.get("/questions", async (req, res) => {
     page,
     question,
     responses,
+    baseURL,
   });
 });
 
@@ -127,6 +128,7 @@ router.get("/responses", isAdmin, async (req, res) => {
   res.render("admin/divergent.responses.ejs", {
     ...res.locals,
     responses,
+    baseURL,
     getQuestion: (id) => getQuestion(id),
     candidates: Object.keys(candidates).map((key) => {
       return { ...candidates[key] };

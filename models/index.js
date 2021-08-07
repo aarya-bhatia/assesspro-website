@@ -16,11 +16,10 @@ module.exports = {
   Message: require("./message"),
   Contact: require("./contact"),
   CMQuestion: require("./cm.question"),
-  CPUserAnswer: require("./cp.user.answer"),
   CMUserAnswer: require("./cm.user.answer"),
-  CTUserAnswer: require("./ct.user.answer"),
   DivergentResponse: require("./divergent.response"),
   DivergentScore: require("./divergent.score"),
   LeftRightStatement: require("./left.right.statements"),
   RatingStatement: require("./rating.statements"),
+  UserResponse: require("./user.response"),
 };
