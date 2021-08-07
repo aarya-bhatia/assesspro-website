@@ -1,39 +1,19 @@
-﻿Module ID,Name,Description,Instructions
-1,Accuracy In English,"Tests an individual’s command over English language skills, grammar, sentence construction and ability to express ideas in English.",
-2,English Comprehension,"Tests a person’s ability to comprehend a conversation meaningfully and draw out the summary of complex discussions in English. It tests an individual’s strength and command over English reading, writing and comprehension.","How long do short-term memories last? They disappear very rapidly. However, you can prolong a memory by silently repeating it, a process called maintenance rehearsal. You have probably briefly remembered an address or telephone number this way. The more times a short-term memory is rehearsed, the greater its chances of being stored in LTM. In a sense, rehearsing information allows you to ""see"" it many times, not just once. What if rehearsal is prevented, so a memory can't be recycled? Without maintenance rehearsal, STM is incredibly short. In one experiment, people heard meaningless syllables like XAR followed by a number like 67. After they heard the number, subjects began counting backward by threes (so they couldn't repeat the syllable).After only 18 seconds of delay, their memory scores fell to zero. After 18 seconds without rehearsal, the short - term memories were gone forever! Keep this in mind when you get only one chance to hear important information.For example, if you are introduced to someone and the name slips out of STM, it's gone forever. Of course, you could try saying something like, ""I'm curious, how do you spell your name ? "" Unfortunately, the response is often an icy reply like, ""B - O - B S - M - I - T - H, it's really not too difficult."" To avoid embarrassment, pay careful attention to the name, repeat it to yourself several times, and try to use it in the next sentence or two-before you lose it. Elaborative rehearsal, which makes information more meaningful, is a far better way to form lasting memories.Elaborative rehearsal links new information to memories that are already in LTM.When you are studying, you will remember more if you elaborate, extend, and think about information.As you read, try to frequently ask yourself ""why"" questions, such as, ""Why would that be true?"" Also, try to relate new ideas to your own experiences and knowledge."
-3,Verbal Reasoning, Tests an individual’s ability to identify the relationship between words and ideas and communicate effectively in English,
-4,Abstract Reasoning,Tests the ability of an individual to deal with data and concepts in abstract form and his ability to solve problems using limited data. It also tests mental perception levels and ability to understand higher levels of abstraction.,
-5,Logical Reasoning,Tests the individual’s logical thought process and his ability to make decisions based on logical analysis of the given data. ,
-6,Numerical Reasoning,Tests the individual’s ability in dealing with numbers. It tests mathematical and calculation ability and how adept they are in handling numerical data and understanding numerical relationships.,
-7,Social Skills,Tests the ability of an individual to adjust to diverse social settings. It also helps determine if an individual would fit into a particular culture and how adaptable they are,
-8,Team Work,This test measures a person’s ability to be a team player. It tests how well an individual can adapt to a team and contribute well while ensuring that the team dynamics are always maintained. It also tests an individual’s ability to connect with every team member and thus boost overall team performance.,
-9,Emotional Intelligence,This test helps individual identify their emotional quotient and their ability to connect with others on a deeper level. It also tests the ability of an individual to cope with emotionally charged situations and handle emotions effectively.,
-10,Self Management,"This tests how organized an individual is and his ability to manage his/her own self – in terms of thoughts, emotions and habits. It indicates where an individual stands in the area of self management which is a very important leadership quality and is thus a useful indicator of a potential leader. ",
-11,Verbal Linguistic,,
-12,Logical Mathematical,,
-13,Visual Spatial,,
-14,Musical,,
-15,Bodily Kinesthetic,,
-16,Interpersonal,,
-17,Intrapersonal,,
-18,Naturalist,,
-19,Hunger for knowing,,
-20,Sensitivity,,
-21,Complexity,,
-22,Venturing,,
-23,Independence and Courage,,
-24,Reality Contact,,
-25,Self-sufficiency,,
-26,Saftey Motive,,
-27,Competence Motive,,
-28,Status Motive,,
-29,Pioneering-Innovative Motive,,
-30,Altruistic Motive,,
-31,Self-actualization Motive,,
-32,"Fear of allergy to ambiguity, uncertainty",,
-33,Fear of social disapproval,,
-34,Fear of Failure,,
-35,"Fear of Humiliation, Rejection",,
-36,Resource Myopia,,
-37,Rigidity,,
-38,Starved Sensibilities,,
+﻿Assessment ID,Assessment Key,Module ID,Name,Description,Instructions,Type,Scale Factor
+1,NEST,1,Accuracy In English,"Tests an individual’s command over English language skills, grammar, sentence construction and ability to express ideas in English.",,Objective,1
+1,NEST,2,English Comprehension,"Tests a person’s ability to comprehend a conversation meaningfully and draw out the summary of complex discussions in English. It tests an individual’s strength and command over English reading, writing and comprehension.","How long do short-term memories last? They disappear very rapidly. However, you can prolong a memory by silently repeating it, a process called maintenance rehearsal. You have probably briefly remembered an address or telephone number this way. The more times a short-term memory is rehearsed, the greater its chances of being stored in LTM. In a sense, rehearsing information allows you to ""see"" it many times, not just once. What if rehearsal is prevented, so a memory can't be recycled? Without maintenance rehearsal, STM is incredibly short. In one experiment, people heard meaningless syllables like XAR followed by a number like 67. After they heard the number, subjects began counting backward by threes (so they couldn't repeat the syllable).After only 18 seconds of delay, their memory scores fell to zero. After 18 seconds without rehearsal, the short - term memories were gone forever! Keep this in mind when you get only one chance to hear important information.For example, if you are introduced to someone and the name slips out of STM, it's gone forever. Of course, you could try saying something like, ""I'm curious, how do you spell your name ? "" Unfortunately, the response is often an icy reply like, ""B - O - B S - M - I - T - H, it's really not too difficult."" To avoid embarrassment, pay careful attention to the name, repeat it to yourself several times, and try to use it in the next sentence or two-before you lose it. Elaborative rehearsal, which makes information more meaningful, is a far better way to form lasting memories.Elaborative rehearsal links new information to memories that are already in LTM.When you are studying, you will remember more if you elaborate, extend, and think about information.As you read, try to frequently ask yourself ""why"" questions, such as, ""Why would that be true?"" Also, try to relate new ideas to your own experiences and knowledge.",Objective,1
+1,NEST,3,Verbal Reasoning, Tests an individual’s ability to identify the relationship between words and ideas and communicate effectively in English,,Objective,1
+1,NEST,4,Abstract Reasoning,Tests the ability of an individual to deal with data and concepts in abstract form and his ability to solve problems using limited data. It also tests mental perception levels and ability to understand higher levels of abstraction.,,Objective,1
+1,NEST,5,Logical Reasoning,Tests the individual’s logical thought process and his ability to make decisions based on logical analysis of the given data. ,,Objective,1
+1,NEST,6,Numerical Reasoning,Tests the individual’s ability in dealing with numbers. It tests mathematical and calculation ability and how adept they are in handling numerical data and understanding numerical relationships.,,Objective,1
+1,NEST,7,Social Skills,Tests the ability of an individual to adjust to diverse social settings. It also helps determine if an individual would fit into a particular culture and how adaptable they are,,Subjective,5
+1,NEST,8,Team Work,This test measures a person’s ability to be a team player. It tests how well an individual can adapt to a team and contribute well while ensuring that the team dynamics are always maintained. It also tests an individual’s ability to connect with every team member and thus boost overall team performance.,,Subjective,5
+1,NEST,9,Emotional Intelligence,This test helps individual identify their emotional quotient and their ability to connect with others on a deeper level. It also tests the ability of an individual to cope with emotionally charged situations and handle emotions effectively.,,Subjective,5
+1,NEST,10,Self Management,"This tests how organized an individual is and his ability to manage his/her own self – in terms of thoughts, emotions and habits. It indicates where an individual stands in the area of self management which is a very important leadership quality and is thus a useful indicator of a potential leader. ",,Subjective,5
+2,CPT,11,Verbal Linguistic,,,Subjective,5
+2,CPT,12,Logical Mathematical,,,Subjective,5
+2,CPT,13,Visual Spatial,,,Subjective,5
+2,CPT,14,Musical,,,Subjective,5
+2,CPT,15,Bodily Kinesthetic,,,Subjective,5
+2,CPT,16,Interpersonal,,,Subjective,5
+2,CPT,17,Intrapersonal,,,Subjective,5
+2,CPT,18,Naturalist,,,Subjective,5
