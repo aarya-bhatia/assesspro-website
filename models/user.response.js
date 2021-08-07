@@ -5,7 +5,8 @@ const schema = new mongoose.Schema({
   user_id: ObjectId,
   question_id: Number,
   value: Number,
-  module_id: Number,
+  category_id: Number,
+  category_name: String,
 });
 
 const model = mongoose.model("UserResponse", schema);

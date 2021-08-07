@@ -18,6 +18,7 @@ const schema = new Schema(
     assessment_name: String,
     assessment_category: String,
     assessment_plot_type: String,
+    redirectURL: String,
     date_purchased: {
       type: Date,
       default: Date.now,

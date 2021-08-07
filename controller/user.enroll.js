@@ -1,54 +1,107 @@
-const { fetchAssessmentById } = require("./api/assessments");
-const {
-  getUserAssessment,
-  createUserAssessment,
-  createUserModules,
-  unenrollUserFromAssessment,
-} = require("./api/user");
+async function createUserAssessment(user, assessment) {
+  return await UserAssessment.create({
+    user_id: user._id,
+    user_name: user.name,
+    assessment_id: assessment._id,
+    assessment_key: assessment.key,
+    assessment_name: assessment.name,
+    assessment_category: assessment.category,
+    assessment_plot_type: assessment.plot_type,
+    redirectURL: assessment.redirectURL,
+    attempts: 0,
+    completed: false,
+  });
+}
 
-module.exports = {
-  /* middleware to check whether user is enrolled in assessment */
-  async CheckUserEnrolled(req, res, next) {
-    const { assessment_id } = res.locals;
-    let user_assessment = await getUserAssessment(req.user._id, assessment_id);
+async function createUserModule(user_id, assessment_id, module) {
+  await UserModule.create({
+    user_id,
+    assessment_id,
+    module_id: module._id,
+    module_name: module.name,
+    no_questions: module.no_questions,
+    no_attempted: 0,
+    time_spent: 0,
+    scale_factor: module.scale_factor,
+    status: "Pending",
+  });
+}
 
-    if (user_assessment) {
-      console.log("User is enrolled, redirecting to assessment");
-      return res.redirect("/forms/" + assessment_id);
-    }
-    next();
-  },
+module.exports.isEnrolled = async (req, res, next) => {
+  const key = req.params.key;
+  const user_assessment = await UserAssessment.findOne({
+    user_id: req.user._id,
+    assessment_key: key,
+  });
 
-  /*
-   * This function will enroll the user in an assessment.
-   * It should be set as a callback on success of payment gateway. (TODO)
-   */
-  async EnrollUser(req, res) {
-    console.log("User is not enrolled, enrolling user...");
-    const { user } = req;
-    const { assessment_id } = req.params;
+  res.locals.user_assessment = user_assessment;
 
-    const assessment = await fetchAssessmentById(assessment_id);
-    await createUserAssessment(user, assessment);
-    console.log("Created user assessment");
+  if (user_assessment) {
+    console.log("User is enrolled, redirecting to assessment");
+    return res.redirect(user_assessment.redirectURL);
+  }
 
-    const user_id = user._id;
-    await createUserModules(user_id, assessment).then(() => {
-      res.redirect("/forms/" + assessment_id);
+  return next();
+};
+
+module.exports.EnrollUser = async (req, res) => {
+  const user = req.user;
+  const key = req.params.key;
+
+  console.log("Enrolling user in assessment: " + key);
+
+  const assessment = await Assessment.findOne({ key });
+
+  if (!assessment) {
+    return res.render("error/index", {
+      ...res.locals,
+      message: "Assessment not found with given key:",
+      key,
     });
-  },
+  }
 
-  /* unenroll user from assessment */
-  async UnenrollUser(req, res) {
-    const user_id = req.user._id;
-    const { assessment_id } = req.params;
-    const assessment = await fetchAssessmentById(assessment_id);
+  const user_id = req.user._id;
+  const assessment_id = assessment._id;
 
-    const msg = `Unenrolling [user] ${req.user.name} from assessment:${assessment.key}`;
-    console.log(msg);
+  await createUserAssessment(user, assessment);
 
-    await unenrollUserFromAssessment(user_id, assessment);
+  const modules = await Module.find({ assessment_id });
 
-    res.redirect("/users/profile");
-  },
+  if (modules) {
+    console.log(
+      `Initialising ${modules.length} modules for user [id] ${user_id}...`
+    );
+
+    for (const module of modules) {
+      await createUserModule(user._id, assessment._id, module);
+    }
+  }
+
+  if (!assessment.redirectURL) {
+    return res.render("error/index", {
+      ...res.locals,
+      message: "Assessment unavailable at this time...",
+    });
+  }
+
+  console.log("Redirecting to assessment start page: ", assessment.redirectURL);
+
+  res.redirect(assessment.redirectURL);
+};
+
+module.exports.UnenrollUser = async (req, res) => {
+  const user_id = req.user._id;
+  const key = req.params.key;
+  const assessment = await Assessment.findOne({ key });
+
+  console.log(
+    `Unenrolling [user] ${req.user.name} from assessment:${assessment.key}`
+  );
+
+  const assessment_id = assessment._id;
+
+  await UserAssessment.deleteOne({ user_id, assessment_id });
+  await UserModule.deleteMany({ user_id, assessment_id });
+
+  res.redirect("/users/profile");
 };

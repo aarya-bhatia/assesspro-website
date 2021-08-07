@@ -1,5 +1,3 @@
-const { fetchModuleById } = require("./assessments");
-
 const {
   UserProfile,
   UserAssessment,
@@ -8,54 +6,9 @@ const {
   UserAnswer,
 } = require("../../models");
 
-async function createUserModule(user_id, assessment_id, module) {
-  await UserModule.create({
-    user_id,
-    assessment_id,
-    module_id: module._id,
-    module_name: module.name,
-    no_questions: module.no_questions,
-    no_attempted: 0,
-    time_spent: 0,
-    scale_factor: module.scale_factor,
-    status: "Pending",
-  });
-}
-
 module.exports = {
-  createUserModule,
-
   async createUserProfile(name, email, password) {
     return await UserProfile.create({ name, email, password });
-  },
-
-  async createUserModules(user_id, assessment) {
-    return new Promise(async function (res) {
-      const assessment_id = assessment._id;
-      const modules = assessment.modules;
-      const msg = `Initialising ${modules.length} modules for user [id] ${user_id}...`;
-      console.log(msg);
-
-      for (const _module of modules) {
-        const module = await fetchModuleById(_module._id);
-        await createUserModule(user_id, assessment_id, module);
-      }
-      res();
-    });
-  },
-
-  async createUserAssessment(user, assessment) {
-    return await UserAssessment.create({
-      user_id: user._id,
-      user_name: user.name,
-      assessment_id: assessment._id,
-      assessment_key: assessment.key,
-      assessment_name: assessment.name,
-      assessment_category: assessment.category,
-      assessment_plot_type: assessment.plot_type,
-      attempts: 0,
-      completed: false,
-    });
   },
 
   async createUserScore(user_id, user_assessment, module_scores) {
@@ -73,10 +26,6 @@ module.exports = {
     return await UserScore.find({
       user_id,
     });
-  },
-
-  async fetchUserModuleById(umid) {
-    return await UserModule.findById(umid);
   },
 
   async getUserModules(uid, aid) {
@@ -103,20 +52,6 @@ module.exports = {
     );
   },
 
-  async getUserAssessment(uid, aid) {
-    return await UserAssessment.findOne({
-      user_id: uid,
-      assessment_id: aid,
-    });
-  },
-
-  async getUserAnswersForModule(uid, mid) {
-    return await UserAnswer.find({
-      user_id: uid,
-      module_id: mid,
-    });
-  },
-
   async updateOrCreateAnswer(user_module, question_id, choice, value) {
     const { user_id, module_id, module_name } = user_module;
 
@@ -139,14 +74,6 @@ module.exports = {
       update,
       { upsert: true }
     );
-  },
-
-  async unenrollUserFromAssessment(user_id, assessment) {
-    const assessment_id = assessment._id;
-    const modules = assessment.modules.map((module) => module._id);
-    await UserAssessment.deleteOne({ user_id, assessment_id });
-    await UserModule.deleteMany({ user_id, assessment_id });
-    await UserAnswer.deleteMany({ user_id, module_id: { $in: modules } });
   },
 
   async updateUserAssessmentOnRetake(user_id, assessment_id) {
