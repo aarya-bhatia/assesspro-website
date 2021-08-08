@@ -11,13 +11,10 @@ function createRouter(key) {
   }
 }
 
-async function init() {
-  const creativityAssessments = await Assessment.find({ category_id: 3 });
-  creativityAssessments.map((assessment) => {
+Assessment.find({ category_id: 3 }).then((assessments) => {
+  assessments.map((assessment) => {
     createRouter(assessment.key);
   });
-}
-
-init();
+});
 
 module.exports = router;

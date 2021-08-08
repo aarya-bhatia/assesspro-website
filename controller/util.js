@@ -139,24 +139,3 @@ module.exports.getOrSetRedisCache = function (CLIENT, key, callback) {
     });
   });
 };
-
-module.exports.buildSignupErrorObject = function (err) {
-  const error = {};
-
-  if (err.name === "ValidationError") {
-    const { errors } = err;
-    if (errors.name) {
-      error.name = errors.name.message;
-    }
-    if (errors.email) {
-      error.email = errors.email.message;
-    }
-    if (errors.password) {
-      error.password = errors.password.message;
-    }
-  }
-
-  error.other = err.message;
-
-  return error;
-};

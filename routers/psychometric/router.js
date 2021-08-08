@@ -1,5 +1,4 @@
-const { Assessment } = require("../../models");
-const { scoreAssessment } = require("../controller/scorer");
+const { scoreAssessment } = require("../controller/psychometric.scorer");
 const { formatTimeSpent, shuffleOrder } = require("../controller/util");
 const { Module, UserModule, Question } = require("../models");
 const {
@@ -15,31 +14,11 @@ const router = require("express").Router({ mergeParams: true });
 
 // Assessment Home Page
 router.get("/", async (req, res) => {
-  const { assessment_id, user_assessment } = res.locals;
-  const { assessment_description, assessment_name } = user_assessment;
   const user_id = req.user._id;
-  let user_modules = await UserModule.find({ user_id, assessment_id });
-
-  if (!user_modules) {
-    console.log("Initializing user modules...");
-    const modules = await Module.find({ assessment_id });
-
-    for (const module of modules) {
-      const usermodule = await UserModule.create({
-        user_id,
-        assessment_id,
-        module_id: module._id,
-        module_name: module.name,
-        no_questions: module.no_questions,
-        no_attempted: 0,
-        time_spent: 0,
-        scale_factor: module.scale_factor,
-        status: "Pending",
-      });
-
-      user_modules.push(usermodule);
-    }
-  }
+  const { user_assessment } = res.locals;
+  const { assessment_id, assessment_description, assessment_name } =
+    user_assessment;
+  const user_modules = await UserModule.find({ user_id, assessment_id });
 
   res.render("psychometric/modules.ejs", {
     ...res.locals,
@@ -61,7 +40,7 @@ router.get("/questions", async (req, res) => {
 
   const user_id = req.user._id;
 
-  const user_module = await UserModule.findById(user_module_id);
+  const user_module = await UserModule.findById(umid);
   const module_id = user_module.module_id;
 
   const module = await Module.findById(module_id);
@@ -90,14 +69,11 @@ router.get("/questions", async (req, res) => {
 });
 
 // Sumbit Module
-/*
- * Input names in the module form should be set to the question ids.
- * Input values in the module form should be set to the choice id.
- */
+// Input names in the module form should be set to the question ids.
+// Input values in the module form should be set to the choice id.
 router.post("/submit", async function (req, res) {
-  const { user_module_id } = req.body;
-
-  const user_module = await UserModule.findById(user_module_id);
+  const { umid } = req.body;
+  const user_module = await UserModule.findById(umid);
   const module_id = user_module.module_id;
 
   const questions = await Question.find({ module_id });
