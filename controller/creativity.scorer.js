@@ -1,10 +1,8 @@
 const {
   UserAssessment,
   CPQuestion,
-  CMQuestion,
   UserScore,
   Assessment,
-  Module,
   CTQuestion,
   CTUserAnswer,
   CPUserAnswer,

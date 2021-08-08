@@ -1,87 +1,23 @@
 const router = require("express").Router();
+const fs = require("fs");
+const { Assessment } = require("../models");
+const { isEnrolled } = require("../controller/user.enroll");
 
-const { createUserAssessment } = require("../controller/api/user.js");
-const { fetchAssessmentByKey } = require("../controller/api/assessments.js");
-
-router.get("/enroll/:key", async (req, res) => {
-  const assessment = await fetchAssessmentByKey(req.params.key);
-
-  let userAssessment = await UserAssessment.findOne({
-    user_id: req.user._id,
-    assessment_id: assessment._id,
-  });
-
-  if (!userAssessment) {
-    userAssessment = await createUserAssessment(req.user, assessment);
-    console.log("Enrolled user in assessment: " + assessment.key);
+function createRouter(key) {
+  const file = `./creativity/${key}.router.js`;
+  if (fs.existsSync(file)) {
+    console.log("Added router for " + key);
+    router.use("/" + key, isEnrolled, require(file));
   }
-
-  console.log("Redirecting to assessment start page: ", assessment.redirectURL);
-  return res.redirect(
-    assessment.redirectURL || "/creativity/" + assessment.key + "/questions"
-  );
-});
-
-async function isEnrolled(key) {
-  return function (req, res, next) {
-    const userAssessment = await UserAssessment.findOne({
-      user_id: req.user._id,
-      assessment_key: key,
-    });
-
-    if (!userAssessment) {
-      return res.status(400).render("error/index", {
-        ...res.locals,
-        message: "Access Denied. User is not enrolled in this assessment.",
-      });
-    }
-
-    res.locals.userAssessment = userAssessment;
-
-    next();
-  };
 }
 
-router.use(
-  "/convergent",
-  () => isEnrolled("CCT"),
-  require("./assessments/creativity/convergent.router")
-);
+async function init() {
+  const creativityAssessments = await Assessment.find({ category_id: 3 });
+  creativityAssessments.map((assessment) => {
+    createRouter(assessment.key);
+  });
+}
 
-router.use(
-  "/environment",
-  () => isEnrolled("CE"),
-  require("./assessments/creativity/environment.router")
-);
-
-router.use(
-  "/motivation",
-  () => isEnrolled("CM"),
-  require("./assessments/creativity/motivation.router")
-);
-
-router.use(
-  "/personality",
-  () => isEnrolled("CP"),
-  require("./assessments/creativity/personality.router")
-);
-
-router.use(
-  "/temperament",
-  () => isEnrolled("CT"),
-  require("./assessments/creativity/temperament.router")
-);
-
-router.use(
-  "/social-leadership",
-  () => isEnrolled("SL"),
-  require("./assessments/creativity/social.leadership.router")
-);
-
-router.use(
-  "/divergent",
-  () => isEnrolled("CDT"),
-  require("./assessments/creativity/divergent.router")
-);
+init();
 
 module.exports = router;

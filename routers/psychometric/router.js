@@ -1,3 +1,4 @@
+const { Assessment } = require("../../models");
 const { scoreAssessment } = require("../controller/scorer");
 const { formatTimeSpent, shuffleOrder } = require("../controller/util");
 const { Module, UserModule, Question } = require("../models");
@@ -6,10 +7,14 @@ const {
   updateUserModuleOnSubmit,
 } = require("./api/user");
 
-const router = require("express").Router();
+const router = require("express").Router({ mergeParams: true });
+
+/**
+ * base url: /psychometric/:key
+ */
 
 // Assessment Home Page
-router.get("/:key", async (req, res) => {
+router.get("/", async (req, res) => {
   const { assessment_id, user_assessment } = res.locals;
   const { assessment_description, assessment_name } = user_assessment;
   const user_id = req.user._id;
@@ -36,7 +41,7 @@ router.get("/:key", async (req, res) => {
     }
   }
 
-  res.render("forms/moduleList.ejs", {
+  res.render("psychometric/modules.ejs", {
     ...res.locals,
     assessment_id,
     user_modules,
@@ -47,9 +52,14 @@ router.get("/:key", async (req, res) => {
 });
 
 // Module Questions
-router.get("/questions/:user_module_id", async (req, res) => {
+router.get("/questions", async (req, res) => {
+  const umid = req.query.umid;
+
+  if (!umid) {
+    return res.redirect("/:key");
+  }
+
   const user_id = req.user._id;
-  const { user_module_id } = req.params;
 
   const user_module = await UserModule.findById(user_module_id);
   const module_id = user_module.module_id;
@@ -66,7 +76,7 @@ router.get("/questions/:user_module_id", async (req, res) => {
 
   questions.sort(shuffleOrder);
 
-  res.render("forms/moduleForm.ejs", {
+  res.render("psychometric/questions.ejs", {
     ...res.locals,
     title,
     description: module.description,
@@ -84,8 +94,8 @@ router.get("/questions/:user_module_id", async (req, res) => {
  * Input names in the module form should be set to the question ids.
  * Input values in the module form should be set to the choice id.
  */
-router.post("/submit/:user_module_id", async function (req, res) {
-  const { user_module_id } = req.params;
+router.post("/submit", async function (req, res) {
+  const { user_module_id } = req.body;
 
   const user_module = await UserModule.findById(user_module_id);
   const module_id = user_module.module_id;
@@ -121,11 +131,13 @@ router.post("/submit/:user_module_id", async function (req, res) {
     time_spent
   );
 
-  res.redirect("/forms/" + assessment_id);
+  const user_assessment = await res.locals.user_assessment;
+
+  res.redirect(user_assessment.redirectURL);
 });
 
 // Submit Assessment
-router.post("/:key/score", scoreAssessment);
+router.post("/score", scoreAssessment);
 
 module.exports = router;
 

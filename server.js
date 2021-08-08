@@ -20,14 +20,19 @@ const PORT = process.env.PORT || 3000;
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// auth middleware
+// middleware
 const {
   isAuth,
   isAdmin,
   checkUserEnrolled,
   isLoggedIn,
-  checkUserEnrolledByKey,
 } = require("./controller/auth");
+
+const {
+  isEnrolled,
+  EnrollUser,
+  UnenrollUser,
+} = require("../controller/user.enroll");
 
 // connect to mongodb
 require("./config/db.config.js").connect();
@@ -50,31 +55,32 @@ app.use(isLoggedIn);
 app.use("/auth", require("./routers/auth.router"));
 app.use("/assessments", require("./routers/assessment.router"));
 
+router.get("/enroll/:key", [isAuth, isEnrolled], EnrollUser);
+router.get("/unenroll/:key", [isAuth, isEnrolled], UnenrollUser);
+
 app.use("/users", isAuth, require("./routers/user.router"));
 app.use("/contacts", isAuth, require("./routers/contacts.router"));
 app.use("/chats", isAuth, require("./routers/chat.router"));
 
 app.use(
-  "/forms/:assessment_id",
-  [isAuth, checkUserEnrolled],
+  "/assessments/:key",
+  [isAuth, isEnrolled],
   require("./routers/forms.router")
 );
 
-app.use("/creativity", isAuth, require("./routers/creativity.router"));
-
 app.use(
-  "/divergent",
-  isAuth,
-  require("./routers/assessments/divergent.router")
+  "/psychometric/:key",
+  [isAuth, isEnrolled],
+  require("./routers/psychometric/router")
 );
+app.use("/creativity", isAuth, require("./routers/creativity.router"));
 
 app.use(
   "/manager/assessments",
   [isAuth, isAdmin],
-  require("./routers/assessment.manager.router")
+  require("./routers/admin/assessment.manager.router")
 );
 
-app.use(require("./routers/help.router"));
 app.use(require("./routers/index.router"));
 
 // start listening on port

@@ -21,7 +21,7 @@ const questions = [
 
 const router = require("express").Router();
 
-const { isAdmin } = require("../../../controller/auth");
+const { isAdmin } = require("../../controller/auth");
 
 const baseURL = "/creativity/divergent";
 

@@ -1,4 +1,4 @@
-const { Assessment } = require("../models");
+const { Assessment } = require("../../models");
 
 const router = require("express").Router();
 

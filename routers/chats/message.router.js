@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Message } = require("../models");
+const { Message } = require("../../models");
 
 // GET /messages/:sender_id
 router.get("/:sender_id", async (req, res) => {
