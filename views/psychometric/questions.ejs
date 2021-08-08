@@ -1,14 +1,3 @@
-<!--
-    Locals: {
-        loggedIn,
-        title,
-        description,
-        assessment_id,
-        questions,
-        user_module
-    }
--->
-
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
 <input type="text" id="user_module_id" value="<%= user_module._id %>" hidden />
@@ -28,10 +17,13 @@
   </div>
 
   <form
-    action="/forms/<%= assessment_id %>/submit/<%= user_module._id %>"
+    action="<%= user_assessment.redirectURL %>/submit/"
     method="POST"
     name="moduleForm"
   >
+    <input type="hidden" name="umid" value="<%= user_module._id %>" id="umid" />
+    <input type="hidden" name="time_spent" value="0" id="time_spent" />
+
     <% questions.map((question, num) => { %>
 
     <div class="row shadow-sm rounded p-2 my-4 bg-light">
@@ -86,12 +78,10 @@
 
     <% }) %>
 
-    <!-- Time spent since page load -->
-    <input type="number" value="0" id="time_spent" name="time_spent" hidden />
-
-    <input type="submit" class="btn btn-primary" value="Submit" />
-
-    <a href="/forms/<%= assessment_id %>" class="btn btn-secondary">Back</a>
+    <input type="submit" class="btn btn-primary" value="Save" />
+    <a href="<%= user_assessment.redirectURL %>/" class="btn btn-secondary"
+      >Back</a
+    >
   </form>
 </div>
 
@@ -102,6 +92,48 @@
 </script>
 <% }) %>
 
-<script src="/js/module.timer.js"></script>
+<script>
+  const timeSpentInput = document.getElementById("time_spent");
+  const timerDisplay = document.getElementById("timer_display");
+  const umid = document.getElementById("umid").value;
+  let prev_time, timer, accum;
+
+  // update client
+  function updateTimerDisplay(elapsedTimeMilli) {
+    let seconds = Math.round((elapsedTimeMilli / 1000) % 60);
+    let minutes = Math.round(elapsedTimeMilli / 1000 / 60);
+    timerDisplay.innerText = `${minutes}m ${seconds}s`;
+    timeSpentInput.value = elapsedTimeMilli;
+  }
+
+  // update timer
+  function handleTimer() {
+    const delta_time = Date.now() - prev_time;
+    accum += delta_time;
+    prev_time += delta_time;
+    updateTimerDisplay(accum);
+  }
+
+  // start timer
+  window.onload = function () {
+    prev_time = Date.now();
+    accum =
+      Number(localStorage.getItem(umid)) ||
+      Number("<%= user_module.time_spent %>") ||
+      0;
+    console.log("total elapsed time milli: ", accum);
+    updateTimerDisplay(accum);
+    timer = setInterval(handleTimer, 1000);
+  };
+
+  // end timer
+  window.onunload = function () {
+    if (timer) {
+      clearInterval(timer);
+    }
+    localStorage.setItem(umid, accum);
+    console.log(localStorage);
+  };
+</script>
 
 <%- include('../partials/footer.ejs') %>

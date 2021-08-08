@@ -1,7 +1,12 @@
-const router = require("express").Router;
+const { LeftRightStatement, UserResponse } = require("../../models");
+
+const router = require("express").Router();
 
 router.get("/questions", async (req, res) => {
-  const questions = await CTQuestion.find({});
+  const user_assessment = res.locals.user_assessment;
+  const questions = await LeftRightStatement.find({
+    assessment_key: user_assessment.assessment_key,
+  });
   const options = [
     "Does Not Apply",
     "Marginally",
@@ -11,7 +16,10 @@ router.get("/questions", async (req, res) => {
     "Fully Agree",
   ];
 
-  const user_answers = await CTUserAnswer.find({ user_id: req.user._id });
+  const user_answers = await UserResponse.find({
+    assessment_key: user_assessment.assessment_key,
+    user_id: req.user._id,
+  });
 
   res.render("questions/creativity.temperament.ejs", {
     ...res.locals,

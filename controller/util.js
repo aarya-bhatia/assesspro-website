@@ -71,8 +71,8 @@ module.exports.formatTime = (date) => {
 };
 
 module.exports.formatTimeSpent = (milli) => {
-  let sec = Math.round((milli / 1000) % 60);
-  let min = Math.round(milli / 1000 / 60);
+  let sec = Math.round((Number(milli) / 1000) % 60);
+  let min = Math.round(Number(milli) / 1000 / 60);
   if (min > 0) {
     return `${min}m ${sec}s`;
   } else {

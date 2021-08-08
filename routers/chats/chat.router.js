@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Message, Chat, UserProfile } = require("../models");
+const { Message, Chat, UserProfile } = require("../../models");
 
 // Get all chats for current user
 // GET /chats

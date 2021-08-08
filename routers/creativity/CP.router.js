@@ -1,16 +1,22 @@
-// Base url: /creativity/personality
-
-const { LeftRightStatement, CPUserAnswer } = require("../../models");
-
-const router = require("express").Router;
-
-const CP_KEY = "CP"; // creativity personality assessment key
+const {
+  LeftRightStatement,
+  UserResponse,
+  UserScore,
+  UserAssessment,
+} = require("../../models");
+const router = require("express").Router();
 
 router.get("/questions", async (req, res) => {
-  const questions = await LeftRightStatement.find({ assessment_key: CP_KEY });
-  const user_answers = await CPUserAnswer.find({ user_id: req.user._id });
+  const user_assessment = res.locals.user_assessment;
+  const questions = await LeftRightStatement.find({
+    assessment_key: user_assessment.assessment_key,
+  });
+  const user_answers = await UserResponse.find({
+    assessment_key: user_assessment.assessment_key,
+    user_id: req.user._id,
+  });
 
-  res.render("questions/cp.ejs", {
+  res.render("questions/CP.ejs", {
     ...res.locals,
     user: req.user,
     questions,
@@ -19,15 +25,20 @@ router.get("/questions", async (req, res) => {
 });
 
 router.post("/save", async (req, res) => {
+  const user_assessment = res.locals.user_assessment;
   const user_id = req.user._id;
+
   let c = 0;
+
+  // req.body: [{ question_id, value }]
 
   for (const question of req.body) {
     const question_id = question.question_id;
     const value = question.value;
     c++;
-    await CPUserAnswer.updateOne(
+    await UserResponse.updateOne(
       {
+        assessment_key: user_assessment.assessment_key,
         user_id,
         question_id,
       },
@@ -46,7 +57,14 @@ router.post("/save", async (req, res) => {
 });
 
 router.post("/submit", async (req, res) => {
-  const questions = await CPQuestion.find({});
+  const user_assessment = res.locals.user_assessment;
+  const {
+    assessment_key,
+    assessment_name,
+    assessment_id,
+    assessment_plot_type,
+  } = user_assessment;
+  const questions = await LeftRightStatement.find({ assessment_key });
 
   let attempted = 0;
 
@@ -59,19 +77,20 @@ router.post("/submit", async (req, res) => {
     6: 100,
   };
 
-  const module_scores = {};
+  const category_scores = {};
 
   for (const question of questions) {
     const id = question._id;
-    const module_id = question.module_id;
-    const module_name = question.module_name;
+    const category_id = question.category_id;
+    const category_name = question.category_name;
 
     if (req.body[id]) {
       const answer = parseInt(req.body[id]);
       const points = scale[answer] || 0;
 
-      await CPUserAnswer.updateOne(
+      await UserResponse.updateOne(
         {
+          assessment_key,
           user_id: req.user._id,
           question_id: id,
         },
@@ -83,47 +102,48 @@ router.post("/submit", async (req, res) => {
         }
       );
 
-      if (module_scores[module_id]) {
-        module_scores[module_id].score += points;
-      } else {
-        module_scores[module_id] = {
-          _id: module_id,
-          name: module_name,
-          score: points,
+      if (!category_scores[category_id]) {
+        category_scores[category_id] = {
+          _id: category_id,
+          name: category_name,
+          score: 0,
         };
       }
+
+      category_scores[category_id].score += points;
 
       attempted++;
     }
   }
 
-  const module_score_array = [];
+  // console.log(category_scores);
 
-  for (const key of Object.keys(module_scores)) {
-    let score = module_scores[key].score;
+  const module_scores = [];
+
+  for (const key of Object.keys(category_scores)) {
+    let { score } = category_scores[key];
     score = Math.round(score / 4);
-    module_scores[key].score = score;
-    module_score_array.push({ ...module_scores[key] });
+    category_scores[key].score = score;
+    module_scores.push({ ...category_scores[key] });
   }
 
   const completed = attempted == questions.length;
 
   const user_id = req.user._id;
-  const assessment = await Assessment.findOne({ key: CP_KEY });
 
   const userScore = await UserScore.create({
     user_id,
-    assessment_name: assessment.name,
-    assessment_id: assessment._id,
-    assessment_key: assessment.key,
-    plot_type: assessment.plot_type,
-    module_scores: module_score_array,
+    module_scores,
+    assessment_name,
+    assessment_id,
+    assessment_key,
+    plot_type: assessment_plot_type,
   });
 
   await UserAssessment.updateOne(
     {
       user_id: req.user._id,
-      assessment_id: assessment._id,
+      assessment_key,
     },
     {
       $set: {
@@ -138,6 +158,6 @@ router.post("/submit", async (req, res) => {
   res.redirect("/users/scores");
 });
 
-router.get("/report/:userscoreid", async (rea, res) => {});
+router.get("/report/:userscoreid", async (req, res) => {});
 
 module.exports = router;

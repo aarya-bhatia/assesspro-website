@@ -1,10 +1,9 @@
-const { scoreAssessment } = require("../controller/psychometric.scorer");
-const { formatTimeSpent, shuffleOrder } = require("../controller/util");
-const { Module, UserModule, Question } = require("../models");
+const { formatTimeSpent, shuffleOrder } = require("../../controller/util");
+const { Module, UserModule, Question, UserAnswer } = require("../../models");
 const {
   updateOrCreateAnswer,
   updateUserModuleOnSubmit,
-} = require("./api/user");
+} = require("../../controller/api/user");
 
 const router = require("express").Router({ mergeParams: true });
 
@@ -22,7 +21,6 @@ router.get("/", async (req, res) => {
 
   res.render("psychometric/modules.ejs", {
     ...res.locals,
-    assessment_id,
     user_modules,
     title: assessment_name,
     description: assessment_description,
@@ -32,10 +30,12 @@ router.get("/", async (req, res) => {
 
 // Module Questions
 router.get("/questions", async (req, res) => {
+  const { user_assessment } = res.locals;
+
   const umid = req.query.umid;
 
   if (!umid) {
-    return res.redirect("/:key");
+    return res.redirect(user_assessment.redirectURL);
   }
 
   const user_id = req.user._id;
@@ -60,7 +60,6 @@ router.get("/questions", async (req, res) => {
     title,
     description: module.description,
     instructions: module.instructions,
-    assessment_id: user_module.assessment_id,
     questions,
     user_answers,
     user_module,
@@ -113,7 +112,7 @@ router.post("/submit", async function (req, res) {
 });
 
 // Submit Assessment
-router.post("/score", scoreAssessment);
+router.get("/score", require("../../controller/psychometric.scorer"));
 
 module.exports = router;
 

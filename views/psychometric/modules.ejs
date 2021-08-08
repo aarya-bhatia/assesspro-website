@@ -1,33 +1,31 @@
-<!--
-    Locals: {
-        user,
-        title,
-        description,
-        assessment_id,
-        user_modules
-    }
--->
-
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
 <div class="container">
-  <div class="display-5 text-center my-2"><%= title %></div>
-
+  <div class="display-5 text-center my-2">
+    <%= user_assessment.assessment_name %>
+  </div>
   <div class="lead"><%= description %></div>
-
   <br />
 
   <script>
-    let index, module_id, value;
+    let umid;
     let formatTimeSpent = <%- formatTimeSpent %>;
   </script>
 
-  <% user_modules.map((module, index)=> { %>
+  <% user_modules.map(module => { %>
 
   <div class="card shadow-sm p-2 mb-4 bg-body rounded">
     <div class="card-body">
       <div class="card-text">
-        <div class="row g-2 align-items-stretch justify-content-between align-content-around">
+        <div
+          class="
+            row
+            g-2
+            align-items-stretch
+            justify-content-between
+            align-content-around
+          "
+        >
           <!-- Title -->
           <div class="col-md-4">
             <div class="fw-bold"><%= module.module_name %></div>
@@ -48,7 +46,7 @@
           <!-- Time Spent -->
           <div class="col-xs-6 col-sm-4 col-md-2">
             <div class="small text-muted">Time Spent</div>
-            <div class="small" id="moduleTimerDisplay_<%= index %>">
+            <div class="small" id="time_spent_<%= module._id %>">
               <%= formatTimeSpent(module.time_spent || 0) %>
             </div>
           </div>
@@ -68,51 +66,47 @@
 
           <!-- Action -->
           <div class="col-xs-6 col-sm-4 col-md-2">
-            <a
-              href="/forms/<%= assessment_id %>/questions/<%= module._id %>"
-              class="btn btn-sm btn-outline-dark"
-              >Open</a
-            >
+            <form action="<%= user_assessment.redirectURL %>/questions/">
+              <input
+                type="hidden"
+                name="umid"
+                id="umid"
+                value="<%= module._id %>"
+              />
+              <button type="submit" class="btn btn-sm btn-outline-dark">
+                Open
+              </button>
+            </form>
           </div>
-
-          <!-- End Row -->
         </div>
-
-        <!-- End card-text -->
       </div>
-
-      <!-- End card-body -->
     </div>
 
     <script>
-      module_id = "<%= module._id %>";
-      index = "<%= index %>";
-      if (localStorage.getItem(module_id)) {
-        value = Number(localStorage.getItem(module_id));
-        document.getElementById("moduleTimerDisplay_" + index).innerText =
-          formatTimeSpent(value);
+      umid = "<%= module._id %>";
+      if (localStorage.getItem(umid)) {
+        const value = localStorage.getItem(umid);
+        const elementId = "time_spent_" + umid;
+        const timeSpent = document.getElementById(elementId);
+        timeSpent.innerText = formatTimeSpent(value);
       }
     </script>
-
-    <!-- End card -->
   </div>
   <% }) %>
 
+  <p class="form-text-muted">
+    Please attempt all modules in this assessment before you submit.
+  </p>
+
   <!-- submit assessment -->
-  <form name="myForm" action="/forms/<%= assessment_id %>/score" method="POST">
-    <!-- assessment id field -->
-    <input
-      type="text"
-      name="assessment_id"
-      value="<%= assessment_id %>"
-      hidden
-    />
-
-    <p class="form-text-muted">
-      Please attempt all modules in this assessment before you submit.
-    </p>
-
-    <button class="btn btn-outline-primary" onclick="handleSubmit()">Submit All</button>
+  <form
+    name="myForm"
+    action="<%= user_assessment.redirectURL %>/score/"
+    method="GET"
+  >
+    <button class="btn btn-outline-primary" onclick="handleSubmit()">
+      Submit All
+    </button>
   </form>
 
   <!-- container end -->
@@ -120,7 +114,6 @@
 
 <script>
   const user_module_ids = <%- JSON.stringify(user_modules.map(user_module => user_module._id)) %>;
-  // console.log(user_module_ids);
 
   function handleSubmit() {
     if (confirm("Are you sure you wish to submit the test? Make sure you have completed all the modules.")) {
@@ -133,9 +126,6 @@
       }
 
       document.myForm.submit();
-    }
-    else {
-      console.log("Not submitting form.");
     }
   }
 

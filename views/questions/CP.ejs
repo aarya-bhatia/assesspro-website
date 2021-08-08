@@ -17,8 +17,8 @@
 
     <div class="row shadow-sm rounded p-2 my-4 bg-light">
       <p><%= num+1 %>.</p>
-      <p><strong>Left: </strong><%= question.left %></p>
-      <p><strong>Right: </strong><%= question.right %></p>
+      <p><strong>Left: </strong><%= question.left_statement %></p>
+      <p><strong>Right: </strong><%= question.right_statement %></p>
 
       <div class="container d-flex justify-space-between">
         <% [1,2,3,4,5,6].map(choice => { %>
@@ -73,9 +73,14 @@
   document.myForm.addEventListener("submit", function (event) {
     event.preventDefault();
   });
-
   const questions = <%-JSON.stringify(questions)%>;
-  function handleSave() {
+  let saving = false;
+
+  async function handleSave() {
+    if(saving) {
+      return;
+    }
+
     const inputs = document.querySelectorAll(`input[type='radio']:checked`);
     const data = [];
     for(const input of inputs) {
@@ -85,13 +90,16 @@
       })
     }
 
-    fetch('/creativity/CP/save', {
+    saving = true;
+
+    await fetch('/creativity/CP/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     }).then(() => {
-      alert('Answers saved');
-    });
+      alert('Save successful')
+      saving = false;
+    })
   }
 </script>
 

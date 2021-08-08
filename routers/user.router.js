@@ -16,12 +16,6 @@ const {
   DeleteAnswers,
 } = require("../controller/user.profile.js");
 
-const {
-  EnrollUser,
-  UnenrollUser,
-  CheckUserEnrolled,
-} = require("../controller/user.enroll.js");
-
 const { uploadImage } = require("../config/s3.config");
 
 // Router
@@ -53,16 +47,6 @@ router.post("/upload", uploadImage.single("fileUpload"), uploadProfilePicture);
 // Download profile image from s3 bucket
 router.get("/images/:key", downloadProfilePicture);
 
-// Enroll user in assessment
-router.get(
-  "/enroll/:assessment_id",
-  [setLocals, CheckUserEnrolled],
-  EnrollUser
-);
-
-// Delete user assessment
-router.get("/unenroll/:assessment_id", UnenrollUser);
-
 // Delete user score
 router.get("/scores/delete/:score_id", deleteUserScore);
 
@@ -79,10 +63,5 @@ router.get("/delete/scores", DeleteScores);
 
 // Delete account
 router.get("/delete/account", DeleteAccount);
-
-function setLocals(req, res, next) {
-  res.locals.assessment_id = req.params.assessment_id;
-  next();
-}
 
 module.exports = router;

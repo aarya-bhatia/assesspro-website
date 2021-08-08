@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Contact, UserProfile } = require("../models");
+const { Contact, UserProfile } = require("../../models");
 
 async function hasContact(user_id, contact_id) {
   const contact = await Contact.findOne({ user_id, contact_id });

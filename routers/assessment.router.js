@@ -1,20 +1,17 @@
-const { Assessment } = require("../models");
 const fs = require("fs");
 const path = require("path");
-
+const { Assessment } = require("../models");
 const router = require("express").Router();
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const assessment = await Assessment.findById(id);
-  const key = assessment.key;
+router.get("/:key", async (req, res) => {
+  const { key } = req.params;
+  const assessment = await Assessment.findOne({ key });
   const file = path.join(__dirname, "..", "views", "assessments", key + ".ejs");
 
   if (fs.existsSync(file)) {
     res.render("assessments/" + key, {
-      loggedId: res.locals.loggedIn,
+      ...res.locals,
       assessment,
-      assessment_id: id,
     });
   } else {
     console.log("Assessment not found: ", key);

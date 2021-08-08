@@ -1,6 +1,3 @@
-module.exports = {
-  scoreAssessment,
-};
 const { getPointsForAnswerChoice } = require("./api/answers");
 const {
   getUserModules,
@@ -9,6 +6,20 @@ const {
   updateUserAssessmentOnCompletion,
 } = require("./api/user");
 
+module.exports = async function (req, res) {
+  const user_id = req.user._id;
+  const { user_assessment } = res.locals;
+  const { assessment_id } = user_assessment;
+
+  const module_scores = await score(user_id, assessment_id);
+  console.log("Assessment Result ", module_scores);
+
+  await createUserScore(user_id, user_assessment, module_scores);
+  await updateUserAssessmentOnCompletion(user_assessment);
+
+  res.redirect("/users/profile");
+};
+
 async function scaleModuleScore(score, { scale_factor, no_questions }) {
   const maxScore = no_questions * scale_factor;
   if (maxScore === 0) {
@@ -16,16 +27,6 @@ async function scaleModuleScore(score, { scale_factor, no_questions }) {
   }
   const scaledScore = (100 * score) / maxScore;
   return Math.floor(scaledScore);
-}
-
-async function scoreAssessment(req, res) {
-  const { assessment_id, user_assessment } = res.locals;
-  const user_id = req.user._id;
-  const module_scores = await score(user_id, assessment_id);
-  console.log("Assessment Result ", module_scores);
-  await createUserScore(user_id, user_assessment, module_scores);
-  await updateUserAssessmentOnCompletion(user_assessment);
-  res.redirect("/users/profile");
 }
 
 // Scores the assessment and returns the module scores array

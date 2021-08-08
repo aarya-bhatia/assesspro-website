@@ -27,7 +27,7 @@ const {
   isEnrolled,
   EnrollUser,
   UnenrollUser,
-} = require("../controller/user.enroll");
+} = require("./controller/user.enroll");
 
 // connect to mongodb
 require("./config/db.config.js").connect();
@@ -48,10 +48,10 @@ app
   .use(isLoggedIn)
   .use("/auth", require("./routers/auth.router"))
   .use("/users", isAuth, require("./routers/user.router"))
-  .use("/contacts", isAuth, require("./routers/contacts.router"))
-  .use("/chats", isAuth, require("./routers/chat.router"))
+  .use("/contacts", isAuth, require("./routers/chats/contacts.router"))
+  .use("/chats", isAuth, require("./routers/chats/chat.router"))
   .use("/assessments", require("./routers/assessment.router"))
-  .get("/enroll/:key", [isAuth, isEnrolled], EnrollUser)
+  .get("/enroll/:key", [isAuth], EnrollUser)
   .get("/unenroll/:key", [isAuth, isEnrolled], UnenrollUser)
   .use(
     "/psychometric/:key",

@@ -1,5 +1,4 @@
-<%- include("partials/header.ejs", { loggedIn }); %> <%#-
-include('partials/banner.ejs') %>
+<%- include("partials/header.ejs", { loggedIn }); %>
 
 <div class="container p-2">
   <% data.forEach(item => { %>
@@ -24,10 +23,6 @@ include('partials/banner.ejs') %>
             $<%= assessment.price %>
           </div>
 
-          <!-- <div class="mb-3 text-muted">
-            <%= assessment.modules.length %> Modules
-          </div> -->
-
           <% if(assessment.shortPara) { %>
           <p><%= assessment.shortPara %></p>
           <% } else if(assessment.description) { %>
@@ -35,7 +30,7 @@ include('partials/banner.ejs') %>
           <% } %>
 
           <a
-            href="/assessments/<%= assessment._id %>"
+            href="/assessments/<%= assessment.key %>"
             class="btn btn-outline-primary"
             >Open</a
           >

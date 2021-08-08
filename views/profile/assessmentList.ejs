@@ -5,8 +5,8 @@
   <p>
     You do not have any assessments. Click <a href="/">here</a> to find one...
   </p>
-  <% } else { %> <% assessments.map(({ assessment_id, assessment_name,
-  date_purchased, completed, attempts })=> { %>
+  <% } else { %> <% assessments.map(({ assessment_id, assessment_key,
+  assessment_name, date_purchased, completed, attempts, redirectURL })=> { %>
 
   <div class="card shadow-sm p-2 my-4 rounded bg-body">
     <div class="card-body">
@@ -36,33 +36,16 @@
           </div>
 
           <div class="col-md-12">
+            <a href="<%= redirectURL %>" class="btn btn-outline-dark">Open</a>
             <a
-              href="/assessments/<%= assessment_id %>"
-              class="btn btn-outline-dark"
-              >Open</a
-            >
-            <a
-              href="/users/unenroll/<%= assessment_id %>"
+              href="/unenroll/<%= assessment_key %>"
               class="btn btn-outline-danger"
               >Remove</a
             >
           </div>
-
-          <!-- end row -->
         </div>
-
-        <!-- end card-text -->
       </div>
-
-      <!-- end card-body -->
     </div>
-
-    <!-- end card -->
   </div>
-  <% }) %>
-
-  <!-- end else -->
-  <% } %>
-
-  <!-- end container -->
+  <% }) %> <% } %>
 </div>
