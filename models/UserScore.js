@@ -16,6 +16,7 @@ const schema = new Schema({
   assessment_name: String,
   assessment_id: Number,
   assessment_key: String,
+  description: String,
   plot_type: {
     type: String,
     default: "spider",

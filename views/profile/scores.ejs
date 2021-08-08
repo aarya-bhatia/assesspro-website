@@ -25,11 +25,15 @@
     <span><%= formatTime(userScore.date) %> </span>
   </div>
 
+  <% if(userScore.description) { %>
+  <p><%= userScore.description %></p>
+  <% } %>
+
   <div class="row">
     <div class="col-lg-6 mb-3">
       <table class="table table-hover">
         <tr>
-          <th>Module</th>
+          <th>Category</th>
           <th>Score</th>
         </tr>
         <% userScore.module_scores.map(moduleScore => { %>
@@ -60,11 +64,13 @@
     </div>
     <div class="col-lg-6 mb-3">
       <canvas id="<%= userScore._id %>"></canvas>
+      <% if(userScore.plot_type != 'none') { %>
       <div class="d-flex justify-content-center">
         <button class="btn btn-primary" id="save_<%= scoreIndex %>">
           Save as image
         </button>
       </div>
+      <% } %>
     </div>
 
     <% if(userScore.plot_type == 'none') { %> No Plots Available <% } else

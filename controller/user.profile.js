@@ -2,8 +2,6 @@ const {
   UserScore,
   UserModule,
   UserAssessment,
-  Assessment,
-  Module,
   UserProfile,
   NESTFeedback,
   DivergentScore,
@@ -188,7 +186,7 @@ module.exports.downloadProfilePicture = async (req, res) => {
 
 module.exports.deleteUserScore = async (req, res) => {
   await UserScore.findOneAndRemove({ _id: req.params.score_id });
-  res.redirect("/users/profile");
+  res.redirect("/users/scores");
 };
 
 /* update user profile */

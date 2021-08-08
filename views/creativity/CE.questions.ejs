@@ -1,0 +1,110 @@
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+<div class="container">
+  <div class="display-4">Creativity Environment Assessment</div>
+  <div class="lead">
+    Please circle the appropriate number from 0 to 10 in each of the following
+    scales. For each scale, if you strongly agree with the statement on the
+    left, you should circle 0. If you agree with this statement, but have
+    reservations, you should circle 2. If you strongly agree with the statement
+    on the right, please circle 10. If you basically agree with it but feel it
+    is too strong, circle 8. If your opinion is midway between the two
+    statements, circle 4 or 6 as per choice. Remember you must circle only one
+    number in each scale..
+  </div>
+
+  <form
+    action="/creativity/<%= user_assessment.assessment_key %>/submit/"
+    method="POST"
+    name="myForm"
+  >
+    <% questions.map((question, num) => { %>
+
+    <div class="row shadow-sm rounded p-2 my-4 bg-light">
+      <p><%= num+1 %>.</p>
+      <p><strong>Left: </strong><%= question.left_statement %></p>
+      <p><strong>Right: </strong><%= question.right_statement %></p>
+
+      <div class="container d-flex justify-space-between">
+        <% [0,2,6,8,10].map(choice => { %>
+        <div class="form-check me-2">
+          <input
+            type="radio"
+            class="form-check-input"
+            id="<%= question._id + '_' + choice %>"
+            name="<%= question._id %>"
+            value="<%= choice %>"
+          />
+          <label for="<%= question._id + '_' + choice %>"><%= choice %></label>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <% }) %>
+
+    <input
+      type="submit"
+      class="btn btn-outline-primary"
+      value="Submit"
+      onclick="handleSubmit(); "
+    />
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      onclick="handleSave();"
+    >
+      Save
+    </button>
+  </form>
+</div>
+
+<% for(const answer of user_answers){ %>
+<script>
+  document.getElementById(
+    "<%= answer.question_id %>_<%= answer.value %>"
+  ).checked = true;
+</script>
+<% } %>
+
+<script>
+  function handleSubmit() {
+    if (confirm("Are you sure you want to submit the assessment?")) {
+      document.myForm.submit();
+    }
+  }
+
+  document.myForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+  });
+  const questions = <%-JSON.stringify(questions)%>;
+  let saving = false;
+
+  async function handleSave() {
+    if(saving) {
+      return;
+    }
+
+    const inputs = document.querySelectorAll(`input[type='radio']:checked`);
+    const data = [];
+    for(const input of inputs) {
+      data.push({
+        question_id: input.name,
+        value: input.value
+      })
+    }
+
+    saving = true;
+
+    await fetch('/creativity/CE/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then(() => {
+      alert('Save successful')
+      saving = false;
+    })
+  }
+</script>
+
+<%- include('../partials/footer.ejs') %>
