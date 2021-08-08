@@ -19,11 +19,6 @@ const {
   getFormYears,
   getChartData,
 } = require("./util");
-const {
-  deleteUserAccount,
-  updateUserAssessmentOnRetake,
-  updateUserModulesOnRetake,
-} = require("./api/user");
 
 // Get profile update page
 module.exports.getProfileUpdateForm = (req, res) => {
@@ -252,7 +247,10 @@ module.exports.updateUserProfile = async (req, res) => {
 module.exports.DeleteAccount = async (req, res) => {
   const user_id = req.user._id;
   req.logout();
-  await deleteUserAccount(user_id);
+
+  await UserProfile.findByIdAndRemove(user_id);
+  await UserModule.deleteMany({ user_id });
+  await UserAnswer.deleteMany({ user_id });
   res.redirect("/");
 };
 
@@ -263,8 +261,33 @@ module.exports.getSettings = (req, res) => {
 module.exports.RetakeAssessment = async (req, res) => {
   const user_id = req.user._id;
   const { assessment_id } = req.params;
-  await updateUserAssessmentOnRetake(user_id, assessment_id);
-  await updateUserModulesOnRetake(user_id, assessment_id);
+
+  await UserAssessment.updateOne(
+    {
+      user_id,
+      assessment_id,
+    },
+    {
+      $set: {
+        completed: false,
+      },
+    }
+  );
+
+  await UserModule.updateMany(
+    {
+      user_id,
+      assessment_id,
+    },
+    {
+      $set: {
+        time_spent: 0,
+        status: "Pending",
+        no_attempted: 0,
+      },
+    }
+  );
+
   res.redirect("/assessments/" + assessment_id);
 };
 

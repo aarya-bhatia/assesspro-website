@@ -8,11 +8,14 @@ const router = require("express").Router();
 
 router.get("/questions", async (req, res) => {
   const user_assessment = res.locals.user_assessment;
+  const { assessment_key } = user_assessment;
+
   const questions = await LeftRightStatement.find({
-    assessment_key: user_assessment.assessment_key,
+    assessment_key,
   });
+
   const user_answers = await UserResponse.find({
-    assessment_key: user_assessment.assessment_key,
+    assessment_key,
     user_id: req.user._id,
   });
 
@@ -26,19 +29,17 @@ router.get("/questions", async (req, res) => {
 
 router.post("/save", async (req, res) => {
   const user_assessment = res.locals.user_assessment;
+  const { assessment_key } = user_assessment;
   const user_id = req.user._id;
 
-  let c = 0;
-
-  // req.body: [{ question_id, value }]
-
+  // [{ question_id, value }]
   for (const question of req.body) {
     const question_id = question.question_id;
     const value = question.value;
-    c++;
+
     await UserResponse.updateOne(
       {
-        assessment_key: user_assessment.assessment_key,
+        assessment_key,
         user_id,
         question_id,
       },
@@ -51,9 +52,7 @@ router.post("/save", async (req, res) => {
     );
   }
 
-  console.log(c + " answers saved...");
-
-  res.redirect("/creativity/personality/questions");
+  res.send();
 });
 
 router.post("/submit", async (req, res) => {
@@ -64,6 +63,7 @@ router.post("/submit", async (req, res) => {
     assessment_id,
     assessment_plot_type,
   } = user_assessment;
+
   const questions = await LeftRightStatement.find({ assessment_key });
 
   let attempted = 0;

@@ -74,6 +74,7 @@ router.post("/submit", async function (req, res) {
   const { umid } = req.body;
   const user_module = await UserModule.findById(umid);
   const module_id = user_module.module_id;
+  const module_name = user_module.module_name;
 
   const questions = await Question.find({ module_id });
 
@@ -91,19 +92,48 @@ router.post("/submit", async function (req, res) {
       // Find the value of the selected choice
       const { text } = choices.find(({ _id }) => _id == choice);
 
-      await updateOrCreateAnswer(user_module, _id, choice, text);
+      const update = {};
+
+      if (choice) {
+        update.choice = choice;
+      }
+      if (text) {
+        update.value = text;
+      }
+
+      await UserAnswer.updateOne(
+        {
+          user_id,
+          question_id: _id,
+          module_id,
+          module_name,
+        },
+        update,
+        { upsert: true }
+      );
     }
   });
-
-  const time_spent = parseInt(req.body.time_spent) || 0;
-  const status =
-    attempted == user_module.no_questions ? "Completed" : "Pending";
 
   await updateUserModuleOnSubmit(
     user_module._id,
     attempted,
     status,
     time_spent
+  );
+
+  await UserModule.updateOne(
+    {
+      _id: user_module._id,
+    },
+    {
+      $set: {
+        no_attempted: attempted,
+        status: attempted == user_module.no_questions ? "Completed" : "Pending",
+      },
+      $inc: {
+        time_spent: Number(req.body.time_spent) || 0,
+      },
+    }
   );
 
   const user_assessment = await res.locals.user_assessment;

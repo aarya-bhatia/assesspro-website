@@ -1,5 +1,5 @@
 const { capitalize } = require("../controller/util");
-const { createUserProfile } = require("./api/user");
+const { UserProfile } = require("../models");
 
 /*
  * Middleware to check if user is logged in
@@ -42,7 +42,7 @@ module.exports.CreateUser = async (req, res) => {
   const name = [capitalize(firstname), capitalize(lastname)].join(" ");
 
   try {
-    const user = await createUserProfile(name, email, password);
+    const user = await UserProfile.create({ name, email, password });
     console.log("User created [id]", user._id);
     res.redirect("/auth/login");
   } catch (err) {
