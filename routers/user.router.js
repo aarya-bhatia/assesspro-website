@@ -53,7 +53,7 @@ router.get("/scores/delete/:score_id", deleteUserScore);
 // Settings page
 router.get("/settings", getSettings);
 
-router.get("/retake/:assessment_id", RetakeAssessment);
+router.get("/retake/:key", RetakeAssessment);
 
 // Delete all answers
 router.get("/delete/answers", DeleteAnswers);

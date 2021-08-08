@@ -1,16 +1,18 @@
-const qualificationKeys = require("../resources/json/qualification.keys.json");
-const statesList = require("../resources/json/india.states.json");
 const {
   UserScore,
-  UserProfile,
+  UserModule,
   UserAssessment,
+  Assessment,
+  Module,
+  UserProfile,
   NESTFeedback,
   DivergentScore,
 } = require("../models");
-const { downloadImage } = require("../config/s3.config");
 const fs = require("fs");
 const path = require("path");
-
+const qualificationKeys = require("../resources/json/qualification.keys.json");
+const statesList = require("../resources/json/india.states.json");
+const { downloadImage } = require("../config/s3.config");
 const {
   formatTime,
   formatDateString,
@@ -260,12 +262,12 @@ module.exports.getSettings = (req, res) => {
 
 module.exports.RetakeAssessment = async (req, res) => {
   const user_id = req.user._id;
-  const { assessment_id } = req.params;
+  const assessment_key = req.params.key;
 
   await UserAssessment.updateOne(
     {
       user_id,
-      assessment_id,
+      assessment_key,
     },
     {
       $set: {
@@ -277,7 +279,7 @@ module.exports.RetakeAssessment = async (req, res) => {
   await UserModule.updateMany(
     {
       user_id,
-      assessment_id,
+      assessment_key,
     },
     {
       $set: {
@@ -288,13 +290,13 @@ module.exports.RetakeAssessment = async (req, res) => {
     }
   );
 
-  res.redirect("/assessments/" + assessment_id);
+  res.redirect("/assessments/" + assessment_key);
 };
 
 module.exports.DeleteScores = async (req, res) => {
   const doc = await UserScore.deleteMany({ user_id: req.user._id });
   console.log(doc);
-  res.redirect("/");
+  res.redirect("/users/scores");
 };
 
 module.exports.DeleteAnswers = async (req, res) => {
