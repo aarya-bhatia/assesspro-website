@@ -1,20 +1,40 @@
-const router = require("express").Router;
+const {
+  KeyValueResponse,
+  UserScore,
+  UserAssessment,
+  Assessment,
+} = require("../../models");
+
+const questions = require("../../resources/json/cm.questions.json");
+
+const router = require("express").Router();
+
+const score_description =
+  "Your preference measures the strength of 6 competing motives, namely, safety motive, achievement/competence motive, status/power/prominence motive, pioneering and innovating motive, altruistic/conscientiousness motive, and self-actualization motive.";
 
 router.get("/questions", async (req, res) => {
-  const questions = await CMQuestion.find({});
+  const user_assessment = res.locals.user_assessment;
+  const { assessment_key } = user_assessment;
+  const user_answers = await KeyValueResponse.find({ assessment_key });
 
-  questions.shift();
-
-  res.render("questions/creativity.motivation.ejs", {
+  res.render("creativity/CM.questions.ejs", {
     ...res.locals,
     user: req.user,
     questions,
-    user_answers: [],
+    user_answers: user_answers.map((answer) => {
+      return {
+        key: answer.key,
+        value: answer.value,
+      };
+    }),
   });
 });
 
 router.post("/submit", async (req, res) => {
-  Assessment.findOne({ key: "CM" }).then(async (assessment) => {
+  const user_assessment = res.locals.user_assessment;
+  const { assessment_key } = user_assessment;
+
+  Assessment.findOne({ key: assessment_key }).then(async (assessment) => {
     const module_scores = [];
     let index = 0;
 
@@ -82,7 +102,22 @@ router.post("/submit", async (req, res) => {
   });
 });
 
-router.post("/save", async (req, res) => {});
+router.post("/save", async (req, res) => {
+  const user_assessment = res.locals.user_assessment;
+  const { assessment_key } = user_assessment;
+  const user_id = req.user._id;
+  console.log(req.body);
+
+  for (const answer of req.body) {
+    await KeyValueResponse.updateOne(
+      { user_id, key: answer.key, assessment_key },
+      { value: answer.value },
+      { upsert: true }
+    );
+  }
+
+  res.send("OK");
+});
 router.get("/report", async (req, res) => {});
 
 module.exports = router;

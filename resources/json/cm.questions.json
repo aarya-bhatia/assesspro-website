@@ -1,0 +1,332 @@
+[
+    {
+        "_id": 0,
+        "statement": "On a holiday, my priority is",
+        "options": [
+            {
+                "_id": "A",
+                "content": "To complete my pending tasks efficiently, even if that leaves little time for entertainment or relaxation "
+            },
+            {
+                "_id": "B",
+                "content": "To meet people who can help me become more prominent, even if family members feel I am neglecting them "
+            },
+            {
+                "_id": "C",
+                "content": "To learn or do something off-beat, even if people crack jokes about it "
+            },
+            {
+                "_id": "D",
+                "content": "To discharge home-related duties conscientiously, even if this leaves little time for fun and games "
+            },
+            {
+                "_id": "E",
+                "content": "To read books or do things that expand my awareness of myself and the world, even if friends call me anti-social "
+            },
+            {
+                "_id": "F",
+                "content": "To study investment alternatives, job opportunities, etc. for increasing my financial security, even by forgoing related activities like going to movies, meeting friends, etc."
+            }
+        ]
+    },
+    {
+        "_id": 1,
+        "statement": "My main aim in life is",
+        "options": [
+            {
+                "_id": "A",
+                "content": "To be financially secure,even if I have to forgo opportunities for jobs involving exciting tasks but risky returns "
+            },
+            {
+                "_id": "B",
+                "content": "To perform outstandingly in my chosen field, even at the cost of neglecting close personal relationships "
+            },
+            {
+                "_id": "C",
+                "content": "To secure a high position despite the compromises with my principles this may require "
+            },
+            {
+                "_id": "D",
+                "content": "To do something unique and distinctive, even if people initially laugh at my efforts or criticize them as impractical "
+            },
+            {
+                "_id": "E",
+                "content": " To fulfil all my family and social obligations, even at the sacrifice of my comforts"
+            },
+            {
+                "_id": "F",
+                "content": "To develop fully all my potentialities, even if this means going against the norms of people I have to live with "
+            }
+        ]
+    },
+    {
+        "_id": 2,
+        "statement": "At work I would very much like to",
+        "options": [
+            {
+                "_id": "A",
+                "content": "Be the person who takes jobs with the maximum learning value, even if these jobs are not very prestigious"
+            },
+            {
+                "_id": "B",
+                "content": "Be in a secure and well paying job, even if my work is uninteresting "
+            },
+            {
+                "_id": "C",
+                "content": "Be an efficient person who consistently performs well despite colleagues branding me a workaholic "
+            },
+            {
+                "_id": "D",
+                "content": "Be a person of great authority, even if this earns me the enmity of jealous rivals"
+            },
+            {
+                "_id": "E",
+                "content": "Be the person with original ideas and solutions, even if colleagues think of me as a crackpot"
+            },
+            {
+                "_id": "F",
+                "content": "Work conscientiously for the good of the organization, even if this overburdens me "
+            }
+        ]
+    },
+    {
+        "_id": 3,
+        "statement": "At home I greatly prefer to",
+        "options": [
+            {
+                "_id": "A",
+                "content": "Serve the elders and nurture the youngsters, even if I have to sacrifice my own comforts and convenience"
+            },
+            {
+                "_id": "B",
+                "content": "Do my own thing, despite accusations of being self-centred"
+            },
+            {
+                "_id": "C",
+                "content": "Live within my means and save for the rainy day, even if this means a rather simple style of living "
+            },
+            {
+                "_id": "D",
+                "content": "Work hard at improving household practices despite resistance from family members "
+            },
+            {
+                "_id": "E",
+                "content": "Be the person of final authority, even if distance thereby creeps into my relations with family membes "
+            },
+            {
+                "_id": "F",
+                "content": "Experiment with new ideas and innovations, even if family members taunt me for being impractical "
+            }
+        ]
+    },
+    {
+        "_id": 4,
+        "statement": "I prefer a career ",
+        "options": [
+            {
+                "_id": "A",
+                "content": "That lets me leave my mark in my field for a unique achievement despite failures and disappointments"
+            },
+            {
+                "_id": "B",
+                "content": " In which I can serve society with devotion, even if it means many material sacrifices"
+            },
+            {
+                "_id": "C",
+                "content": "That lets me develop my innate talents, even if this means lower earnings"
+            },
+            {
+                "_id": "D",
+                "content": "That gives me financial security, even if the work is not very exciting"
+            },
+            {
+                "_id": "E",
+                "content": "In which I can be a top performer, even if this requires exhausting work"
+            },
+            {
+                "_id": "F",
+                "content": "In which I reach a high position, even if this means bitter fights with rivals"
+            }
+        ]
+    },
+    {
+        "_id": 5,
+        "statement": "I am strongly drawn to persons who are",
+        "options": [
+            {
+                "_id": "A",
+                "content": "Highly placed, even if somewhat formal and stern"
+            },
+            {
+                "_id": "B",
+                "content": "Innovators, even if they are odd or reserved"
+            },
+            {
+                "_id": "C",
+                "content": "Very conscientious with respect to their duties and social obligations, even if inclined to preach morals"
+            },
+            {
+                "_id": "D",
+                "content": "Constantly enlarging their skills and awareness through new experiences, even if somewhat self-centred"
+            },
+            {
+                "_id": "E",
+                "content": "Well-to-do, even if otherwise quite ordinary"
+            },
+            {
+                "_id": "F",
+                "content": "Great achievers, even if excessively work-centred"
+            }
+        ]
+    },
+    {
+        "_id": 6,
+        "statement": " Among the following I prefer to read accounts of",
+        "options": [
+            {
+                "_id": "A",
+                "content": "Persons who rose from rags by dint of sheer competence and hard work, even if their family life suffered in the process"
+            },
+            {
+                "_id": "B",
+                "content": "Persons who came to wield great authority and achieved great prominence, even if they died lonely and unloved"
+            },
+            {
+                "_id": "C",
+                "content": "Persons who blazed new trails, even if they came to grief at the hands of vested interests"
+            },
+            {
+                "_id": "D",
+                "content": "Persons who served society with great dedication, even if they died paupers"
+            },
+            {
+                "_id": "E",
+                "content": "Persons who lived every moment to the full, even if they were hounded for breaking social taboos"
+            },
+            {
+                "_id": "F",
+                "content": "Persons who were prudent and solid citizens, and avoided most of the misfortunes of life, even if they never experienced the thrill of adventure"
+            }
+        ]
+    },
+    {
+        "_id": 7,
+        "statement": "If I win $ 100000 in an international lottery, I would",
+        "options": [
+            {
+                "_id": "A",
+                "content": "Invest in very safe government securities to earn interest"
+            },
+            {
+                "_id": "B",
+                "content": "Spend on a course of study or training at the world’s best facility that can greatly increase my level of competence in my area of work"
+            },
+            {
+                "_id": "C",
+                "content": "Become a member in a highly exclusive club where I can meet very important people at a social level"
+            },
+            {
+                "_id": "D",
+                "content": "Spend on research or other efforts that could lead to a pioneering breakthrough in a problem area of my interest"
+            },
+            {
+                "_id": "E",
+                "content": "Spend on the higher education of bright but poor students"
+            },
+            {
+                "_id": "F",
+                "content": "Get training from a great teacher in an art or craft or vocation"
+            }
+        ]
+    },
+    {
+        "_id": 8,
+        "statement": "Whenever I am faced with a tough task, I prefer to",
+        "options": [
+            {
+                "_id": "A",
+                "content": "Adopt the method with the greatest learning value for me, even if it differs from the method recommended by experts"
+            },
+            {
+                "_id": "B",
+                "content": "Follow a time-tested, economical, and safe way of accomplishing it, even if it is tedious and time consuming"
+            },
+            {
+                "_id": "C",
+                "content": "Do a better job than anyone else, even if it leaves very little time for anything or anyone else"
+            },
+            {
+                "_id": "D",
+                "content": "Follow a method that will get me the most credit and recognition, even if I have to cut some corners"
+            },
+            {
+                "_id": "E",
+                "content": "Look for novel and off-beat ways of accomplishing the task, even if others think I am crazy"
+            },
+            {
+                "_id": "F",
+                "content": "Follow the method in the best interests of everyone concerned, even if it means some sacrifice of my own interests"
+            }
+        ]
+    },
+    {
+        "_id": 9,
+        "statement": "One of my greatest ambitions for my child (present or prospective) is that the child should grow up to",
+        "options": [
+            {
+                "_id": "A",
+                "content": "Serve society and family with great devotion to duty, even if this means going without the luxuries of life"
+            },
+            {
+                "_id": "B",
+                "content": "Follow a path of maximum self-development and self-fulfillment, even if this means breaking social conventions"
+            },
+            {
+                "_id": "C",
+                "content": "Be financially very secure, even at the cost of sacrificing exciting careers"
+            },
+            {
+                "_id": "D",
+                "content": "Acquire great competence and expertise in his or her vocation, even if it takes many sacrifices to acquire it"
+            },
+            {
+                "_id": "E",
+                "content": "Be a person of high status and authority, even if the price is unpopularity with some people"
+            },
+            {
+                "_id": "F",
+                "content": "Be a pioneer and path-breaker, even if he or she has to suffer many frustrations, failures, and criticisms"
+            }
+        ]
+    },
+    {
+        "_id": 10,
+        "statement": "I prefer a spouse who is",
+        "options": [
+            {
+                "_id": "A",
+                "content": "Quite original and gifted, even if somewhat moody and unpredictable"
+            },
+            {
+                "_id": "B",
+                "content": "Very obliging and helpful, even to the point of being considered gullible by some people"
+            },
+            {
+                "_id": "C",
+                "content": "Strongly inclined to develop his/her talents, even if this means some neglect of family duties"
+            },
+            {
+                "_id": "D",
+                "content": "Rich, even if somewhat ordinary "
+            },
+            {
+                "_id": "E",
+                "content": "Highly achievement-oriented, even if somewhat aggressively so"
+            },
+            {
+                "_id": "F",
+                "content": "From a prestigious family, even if somewhat snobbish"
+            }
+        ]
+    }
+]

@@ -103,9 +103,17 @@
       value="Submit"
       onclick="handleSubmit();"
     />
+
+    <button class="btn btn-secondary" type="button" onclick="handleSave()">
+      Save
+    </button>
   </form>
 </div>
 
 <script src="/js/creativity.motivation.js"></script>
+
+<script>
+  populateUserAnswers(<%- JSON.stringify(user_answers) %>);
+</script>
 
 <%- include('../partials/footer.ejs') %>

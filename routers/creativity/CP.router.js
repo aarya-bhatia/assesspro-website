@@ -4,7 +4,11 @@ const {
   UserScore,
   UserAssessment,
 } = require("../../models");
+
 const router = require("express").Router();
+
+const score_description =
+  "Having scored yourself on your personality, now identify the traits in which your score falls below 60%. You need to pay particular attention to these traits.";
 
 router.get("/questions", async (req, res) => {
   const user_assessment = res.locals.user_assessment;
@@ -116,8 +120,6 @@ router.post("/submit", async (req, res) => {
     }
   }
 
-  // console.log(category_scores);
-
   const module_scores = [];
 
   for (const key of Object.keys(category_scores)) {
@@ -131,13 +133,14 @@ router.post("/submit", async (req, res) => {
 
   const user_id = req.user._id;
 
-  const userScore = await UserScore.create({
+  await UserScore.create({
     user_id,
     module_scores,
     assessment_name,
     assessment_id,
     assessment_key,
     plot_type: assessment_plot_type,
+    description: score_description,
   });
 
   await UserAssessment.updateOne(

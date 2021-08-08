@@ -92,7 +92,7 @@
 
     saving = true;
 
-    await fetch('/creativity/CP/save', {
+    fetch('/creativity/CP/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),

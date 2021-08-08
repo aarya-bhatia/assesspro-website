@@ -20,7 +20,7 @@ async function isEnrolled(req, res, next) {
   }
 }
 
-["CP", "CT", "CE"].forEach((key) => {
+["CP", "CT", "CE", "CM"].forEach((key) => {
   router.use("/" + key, isEnrolled, require("./creativity/" + key + ".router"));
 });
 
