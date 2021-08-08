@@ -1,29 +1,26 @@
 const { formatTimeSpent, shuffleOrder } = require("../../controller/util");
-const { Module, UserModule, Question, UserAnswer } = require("../../models");
 const {
-  updateOrCreateAnswer,
-  updateUserModuleOnSubmit,
-} = require("../../controller/api/user");
-
+  Module,
+  UserModule,
+  Question,
+  UserAnswer,
+  Assessment,
+} = require("../../models");
 const router = require("express").Router({ mergeParams: true });
-
-/**
- * base url: /psychometric/:key
- */
 
 // Assessment Home Page
 router.get("/", async (req, res) => {
   const user_id = req.user._id;
   const { user_assessment } = res.locals;
-  const { assessment_id, assessment_description, assessment_name } =
-    user_assessment;
+  const { assessment_id, assessment_name } = user_assessment;
+  const assessment = await Assessment.findById(assessment_id);
   const user_modules = await UserModule.find({ user_id, assessment_id });
 
   res.render("psychometric/modules.ejs", {
     ...res.locals,
     user_modules,
     title: assessment_name,
-    description: assessment_description,
+    description: assessment.description,
     formatTimeSpent,
   });
 });
@@ -72,6 +69,7 @@ router.get("/questions", async (req, res) => {
 // Input values in the module form should be set to the choice id.
 router.post("/submit", async function (req, res) {
   const { umid } = req.body;
+  const user_id = req.user._id;
   const user_module = await UserModule.findById(umid);
   const module_id = user_module.module_id;
   const module_name = user_module.module_name;
@@ -113,13 +111,6 @@ router.post("/submit", async function (req, res) {
       );
     }
   });
-
-  await updateUserModuleOnSubmit(
-    user_module._id,
-    attempted,
-    status,
-    time_spent
-  );
 
   await UserModule.updateOne(
     {

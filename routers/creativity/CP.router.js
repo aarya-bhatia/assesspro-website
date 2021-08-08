@@ -19,7 +19,7 @@ router.get("/questions", async (req, res) => {
     user_id: req.user._id,
   });
 
-  res.render("questions/CP.ejs", {
+  res.render("creativity/CP.questions.ejs", {
     ...res.locals,
     user: req.user,
     questions,

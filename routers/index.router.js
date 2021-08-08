@@ -1,5 +1,5 @@
 const { sendEmail } = require("../services/send.email");
-const { Cateogry, Assessment } = require("../models");
+const { Category, Assessment } = require("../models");
 const router = require("express").Router();
 
 // Home page

@@ -1,4 +1,10 @@
-const { UserModule, UserScore } = require("../models");
+const {
+  UserModule,
+  UserScore,
+  UserAnswer,
+  Answer,
+  Module,
+} = require("../models");
 
 module.exports = async function (req, res) {
   const user_id = req.user._id;
@@ -22,16 +28,20 @@ module.exports = async function (req, res) {
 
   await user_assessment.save();
 
-  res.redirect("/users/profile");
+  res.redirect("/users/scores");
 };
 
-async function scaleModuleScore(score, { scale_factor, no_questions }) {
+async function scaleModuleScore(score, userModule) {
+  const { module_id } = userModule;
+  const module = await Module.findById(module_id);
+  const { no_questions, scale_factor } = module;
   const maxScore = no_questions * scale_factor;
+
   if (maxScore === 0) {
     return score;
   }
-  const scaledScore = (100 * score) / maxScore;
-  return Math.floor(scaledScore);
+
+  return Math.round((100 * score) / maxScore);
 }
 
 // Scores the assessment and returns the module scores array
@@ -50,10 +60,16 @@ async function score(user_id, assessment_id) {
       let score = 0;
 
       // Get user answers for current module
-      const userAnswers = await getUserAnswersForModule(user_id, module_id);
+      // const userAnswers = await getUserAnswersForModule(user_id, module_id);
+      const userAnswers = await UserAnswer.find({
+        user_id,
+        module_id,
+      });
 
       // Sum up total points for module answers.
-      for (const { question_id, choice } of userAnswers) {
+      for (const userAnswer of userAnswers) {
+        const { question_id, choice } = userAnswer;
+
         const answer = await Answer.findOne({
           question_id,
           choice,
