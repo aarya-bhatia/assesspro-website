@@ -1,7 +1,11 @@
-const { connect, dropCollections, connection } = require("../config/db.config");
-const { processCSV } = require(".");
+const {
+  connect,
+  dropCollections,
+  connection,
+} = require("../../config/db.config");
+const { processCSV } = require("..");
 const FILE = "resources/csv/LeftRightStatements.csv";
-const { LeftRightStatement } = require("../models");
+const { LeftRightStatement } = require("../../models");
 
 connect();
 
