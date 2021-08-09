@@ -5,15 +5,16 @@ include('./basicProfile', { user }) %>
   <a href="/users/profile/update" class="btn btn-outline-primary"
     >Update Profile</a
   >
+  <br />
   <% if(user.role == 'admin') { %>
-  <ul>
-    <li>
-      <a href="/divergent/responses/" class=""
+  <ul class="nav">
+    <li class="nav-item">
+      <a href="/creativity/CDT/responses/" class="nav-link"
         >See Divergent Thinking Responses</a
       >
     </li>
-    <li>
-      <a href="/users/">View All Users</a>
+    <li class="nav-item">
+      <a href="/users/" class="nav-link">View All Users</a>
     </li>
   </ul>
   <% } %>

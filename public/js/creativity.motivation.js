@@ -5,8 +5,13 @@ const calculateButtons = document.querySelectorAll("[data-calculate-button]");
 const inputFields = document.querySelectorAll("[data-input-field]");
 const totalSpans = document.querySelectorAll("[data-total-span]");
 
+const saveURL = "/creativity/CM/save/";
+
+let saving = false;
+
 const questions = {};
 
+// Initialize questions and add them to map
 for (const question of questionContainers) {
   const id = question.dataset.questionId;
 
@@ -19,6 +24,7 @@ for (const question of questionContainers) {
   };
 }
 
+// Add calculate buttons to the required questions
 for (const calcBtn of calculateButtons) {
   const questionId = calcBtn.dataset.questionId;
   if (questions[questionId]) {
@@ -26,6 +32,7 @@ for (const calcBtn of calculateButtons) {
   }
 }
 
+// Add input fields to the required questions
 for (const inputField of inputFields) {
   const questionId = inputField.dataset.questionId;
   if (questions[questionId]) {
@@ -33,6 +40,7 @@ for (const inputField of inputFields) {
   }
 }
 
+// Add spans to the required questions
 for (const span of totalSpans) {
   const questionId = span.dataset.questionId;
   if (questions[questionId]) {
@@ -40,6 +48,7 @@ for (const span of totalSpans) {
   }
 }
 
+// Register event listener for calculate button and input field
 for (const id of Object.keys(questions)) {
   const question = questions[id];
 
@@ -49,18 +58,18 @@ for (const id of Object.keys(questions)) {
     );
   }
 
+  // Set new key-value in localstorage and update question total
   for (const inputField of question.inputFields) {
     inputField.addEventListener("change", () => {
       const key = getKey(id, inputField.dataset.optionId);
-      console.log("Input changed: ", key, inputField.value);
-
+      console.log(key, inputField.value);
       localStorage.setItem(key, inputField.value);
-
       calculateTotal(id);
     });
   }
 }
 
+// Add values of input fields of question and show in the total span
 function calculateTotal(id) {
   let total = 0;
 
@@ -80,8 +89,6 @@ function populateTotals() {
   }
 }
 
-const A = "A".charCodeAt(0);
-
 function populateValue(question_id, option_id, value) {
   const question = questions[question_id];
   const inputFields = question.inputFields;
@@ -94,9 +101,6 @@ function populateValue(question_id, option_id, value) {
 }
 
 function populateUserAnswers(user_answers) {
-  console.log("HELLO");
-  console.log(user_answers);
-
   for (const answer of user_answers) {
     const key = answer.key;
     const value = answer.value;
@@ -130,16 +134,15 @@ function handleSubmit() {
   document.myForm.submit();
 }
 
-let saving = false;
-
 function handleSave() {
   if (saving) {
     return;
   }
 
+  const A = "A".charCodeAt(0);
   const data = [];
 
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 0; i <= 10; i++) {
     for (let j = 0; j < 6; j++) {
       const optionId = String.fromCharCode(A + j);
       const key = getKey(i, optionId);
@@ -150,7 +153,7 @@ function handleSave() {
     }
   }
 
-  fetch("/creativity/CM/save", {
+  fetch(saveURL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
