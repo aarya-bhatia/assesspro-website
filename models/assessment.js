@@ -19,12 +19,6 @@ const schema = new mongoose.Schema(
       enum: ["hbar", "vbar", "spider", "line", "pie", "none"],
       required: true,
     },
-    // modules: [
-    //   {
-    //     _id: Number,
-    //     name: String,
-    //   },
-    // ],
     price: Number,
     currency: {
       type: String,

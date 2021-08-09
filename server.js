@@ -76,8 +76,8 @@ app.listen(PORT, () => {
     app.settings.env
   );
 
-  FileLogger(
-    `Express server listening on port ${PORT} in ${app.settings.env}, mode`,
-    "test.log"
-  );
+  // FileLogger(
+  //   `Express server listening on port ${PORT} in ${app.settings.env}, mode`,
+  //   "test.log"
+  // );
 });

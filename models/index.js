@@ -9,7 +9,6 @@ module.exports = {
   UserModule: require("./UserModule"),
   UserScore: require("./UserScore"),
   UserProfile: require("./UserProfile"),
-  UserCart: require("./UserCart"),
   NESTFeedback: require("./nest.feedback.js"),
   Token: require("./token"),
   Chat: require("./chat"),
