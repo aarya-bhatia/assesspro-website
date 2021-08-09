@@ -1,38 +1,18 @@
 const { DivergentResponse, DivergentScore } = require("../../models");
-
-const questions = [
-  {
-    _id: 1,
-    content: "red triangular heavy things",
-  },
-  {
-    _id: 2,
-    content: "green, spherical, fragnant things",
-  },
-  {
-    _id: 3,
-    content: "loud, emotional things that can fly",
-  },
-  {
-    _id: 4,
-    content: "intelligent, far away, edible things",
-  },
-];
+const questions = require("../../resources/json/cdt.questions.json");
+const { isAdmin } = require("../../controller/auth");
+const baseURL = "/creativity/CDT";
 
 const router = require("express").Router();
-
-const { isAdmin } = require("../../controller/auth");
-
-const baseURL = "/creativity/divergent";
 
 router.get("/questions", async (req, res) => {
   let page = req.query.page || 1;
 
   if (page < 1) {
-    return res.redirect("/divergent/questions?page=4");
+    return res.redirect(baseURL + "/questions?page=4");
   }
   if (page > 4) {
-    return res.redirect("/divergent/questions?page=1");
+    return res.redirect(baseURL + "/questions?page=1");
   }
 
   const user_id = req.user._id;
@@ -43,26 +23,29 @@ router.get("/questions", async (req, res) => {
     question_id: page,
   });
 
-  res.render("questions/creativity.divergent.ejs", {
+  res.render("creativity/CDT.questions.ejs", {
     ...res.locals,
     user_id,
     page,
     question,
     responses,
-    baseURL,
   });
 });
 
 router.post("/add/:question_id", async (req, res) => {
+  const user = req.user;
+  const { question_id } = req.params;
+  const { content } = req.body;
+
   await DivergentResponse.create({
-    user_name: req.user.name,
-    user_id: req.user._id,
-    question_id: req.params.question_id,
-    content: req.body.content,
+    user_name: user.name,
+    user_id: user._id,
+    question_id,
+    content,
     status: "pending",
   });
 
-  res.redirect("/divergent/questions?page=" + (req.query.page || 1));
+  res.redirect(baseURL + "/questions?page=" + (req.query.page || 1));
 });
 
 router.get("/remove/:response_id", async (req, res) => {
@@ -70,11 +53,12 @@ router.get("/remove/:response_id", async (req, res) => {
     _id: req.params.response_id,
   });
 
-  res.redirect("/divergent/questions?page=" + (req.query.page || 1));
+  res.redirect(baseURL + "/questions?page=" + (req.query.page || 1));
 });
 
 function getQuestion(id) {
-  return questions.find((q) => q._id == id).content;
+  const question = questions.find((q) => q._id == id);
+  return question.content;
 }
 
 router.get("/responses", isAdmin, async (req, res) => {
@@ -128,7 +112,6 @@ router.get("/responses", isAdmin, async (req, res) => {
   res.render("admin/divergent.responses.ejs", {
     ...res.locals,
     responses,
-    baseURL,
     getQuestion: (id) => getQuestion(id),
     candidates: Object.keys(candidates).map((key) => {
       return { ...candidates[key] };
@@ -142,7 +125,7 @@ router.get("/approve/:response_id", isAdmin, async (req, res) => {
     { $set: { status: "approved" } }
   );
 
-  res.redirect("/divergent/responses");
+  res.redirect(baseURL + "/responses");
 });
 
 router.get("/reject/:response_id", isAdmin, async (req, res) => {
@@ -151,7 +134,7 @@ router.get("/reject/:response_id", isAdmin, async (req, res) => {
     { $set: { status: "rejected" } }
   );
 
-  res.redirect("/divergent/responses");
+  res.redirect(baseURL + "/responses");
 });
 
 router.get("/publish/:user_id", isAdmin, async (req, res) => {
@@ -176,7 +159,7 @@ router.get("/publish/:user_id", isAdmin, async (req, res) => {
       scores[response.question_id].approved++;
     } else if (response.status == "rejected") {
       scores[response.question_id].rejected++;
-    } else {
+    } else if (response.status == "pending") {
       return res.render("error/index", {
         ...res.locals,
         message:
@@ -204,10 +187,7 @@ router.get("/publish/:user_id", isAdmin, async (req, res) => {
     { $set: { status: "published" } }
   );
 
-  console.log(score);
-  res.redirect("/divergent/responses");
+  res.redirect(baseURL + "/responses");
 });
-
-router;
 
 module.exports = router;
