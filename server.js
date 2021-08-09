@@ -12,6 +12,8 @@ const path = require("path");
 const passport = require("passport");
 const flash = require("connect-flash");
 
+const FileLogger = require("log-to-file");
+
 // create express app
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -72,5 +74,10 @@ app.listen(PORT, () => {
     "Express server listening on port %d in %s mode",
     PORT,
     app.settings.env
+  );
+
+  FileLogger(
+    `Express server listening on port ${PORT} in ${app.settings.env}, mode`,
+    "test.log"
   );
 });

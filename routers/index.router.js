@@ -1,5 +1,6 @@
 const { sendEmail } = require("../services/send.email");
 const { Category, Assessment } = require("../models");
+const FileLogger = require("log-to-file");
 const router = require("express").Router();
 
 // Home page
@@ -68,6 +69,7 @@ router.post("/contact-us", async (req, res) => {
 
 // 404 Handler
 router.get("*", (req, res) => {
+  FileLogger("Page Not Found...", "error.log");
   res.status(404).render("error/404", { ...res.locals });
 });
 
@@ -77,6 +79,8 @@ router.use((err, req, res, next) => {
     "=================================================================="
   );
   console.log(JSON.stringify(err));
+
+  FileLogger(JSON.stringify(err), "error.log");
 
   res.render("error/index", {
     message: err.message || "There was an error!",
