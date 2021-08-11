@@ -10,6 +10,7 @@ const schema = new mongoose.Schema(
     key: {
       type: String,
       unique: true,
+      index: true,
     },
     description: String,
     category_id: Number,
