@@ -12,16 +12,16 @@
     <div class="card-body">
       <div class="card-text">
         <div class="row g-2">
-          <div class="col-md-6">
+          <div class="col-md-3">
             <div class=""><%= assessment_name %></div>
           </div>
 
-          <div class="col-md-2">
-            <div class="text-muted small">Start Date</div>
-            <div><%= formatDateString(date_purchased) %></div>
+          <div class="col-md-3">
+            <div class="text-muted small">Date</div>
+            <div><%= date_purchased %></div>
           </div>
 
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="text-muted small">Status</div>
             <% if(completed) { %>
             <div class="badge badge-pill bg-light text-dark">Complete</div>
@@ -30,7 +30,7 @@
             <% } %>
           </div>
 
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="text-muted small">Attempts</div>
             <div><%= attempts %></div>
           </div>

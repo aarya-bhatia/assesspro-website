@@ -24,15 +24,14 @@
   <% userScores.map((userScore, scoreIndex)=> { %>
   <div class="display-6"><%= userScore.assessment_name %></div>
   <div class="lead">
-    <span> <%= formatDateString(userScore.date) %>, </span>
-    <span> <%= formatTime(userScore.date) %> </span>
+    <span><%= userScore.date %></span>
   </div>
 
   <div class="row">
     <div class="col-lg-6 mb-3">
       <table class="table table-hover">
         <tr>
-          <th>Module</th>
+          <th>Category</th>
           <th>Score</th>
         </tr>
         <% userScore.module_scores.map(moduleScore=> { %>
@@ -60,8 +59,7 @@
   <% for(const divScore of divergentScores) { %>
   <div class="display-6">Divergent Thinking</div>
   <div class="lead">
-    <span> <%= formatDateString(divScore.createdAt) %>, </span>
-    <span> <%= formatTime(divScore.createdAt) %> </span>
+    <span><%= divScore.createdAt %></span>
   </div>
   <table class="table table-hover">
     <tr>

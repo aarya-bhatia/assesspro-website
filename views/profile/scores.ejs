@@ -21,8 +21,7 @@
 
   <div class="display-6"><%= userScore.assessment_name %></div>
   <div class="lead">
-    <span><%= formatDateString(userScore.date) %>, </span>
-    <span><%= formatTime(userScore.date) %> </span>
+    <span><%= userScore.date %></span>
   </div>
 
   <% if(userScore.description) { %>
@@ -83,31 +82,25 @@
     getChartData }) %> <% } %>
 
     <script>
-      console.log("<%= userScore.plot_type %> chart created");
+      console.log("Chart created for score: <%= userScore._id %>");
     </script>
   </div>
   <% }) %>
 
   <!-- Divergent thinking scores -->
-
   <% for(const divScore of divergentScores) { %>
   <div class="display-6">Divergent Thinking</div>
   <div class="lead">
-    <span><%= formatDateString(divScore.createdAt) %>, </span>
-    <span><%= formatTime(divScore.createdAt) %> </span>
+    <span><%= divScore.createdAt %></span>
   </div>
   <table class="table table-hover">
     <tr>
       <th>Question</th>
-      <th>Approved words</th>
-      <th>Reject words</th>
       <th>Score</th>
     </tr>
     <% for(const score of divScore.scores) { %>
     <tr>
       <td><%= score._id %></td>
-      <td><%= score.approved %></td>
-      <td><%= score.rejected %></td>
       <td><%= score.score %></td>
     </tr>
     <% } %>

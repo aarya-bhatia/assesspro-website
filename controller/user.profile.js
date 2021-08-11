@@ -62,8 +62,6 @@ module.exports.getUserScores = async (req, res) => {
     user: req.user,
     userScores,
     divergentScores,
-    formatTime,
-    formatDateString,
     getChartData,
   });
 };

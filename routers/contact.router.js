@@ -24,9 +24,7 @@ router.post("/", async (req, res) => {
         message,
       },
       "./template/contact.us.ejs"
-    ).then(() => {
-      console.log("email sent.");
-    });
+    );
 
     res.render("contact.us.ejs", {
       loggedIn: res.locals.loggedIn,
