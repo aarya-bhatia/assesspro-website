@@ -3,11 +3,11 @@
  */
 const { processCSV } = require(".");
 const { connect, dropCollections, connection } = require("../config/db.config");
-const { Module } = require("../models");
+const { Module, Question } = require("../models");
 const FILE = "resources/csv/Modules.csv";
 
 const processRow = async function (row) {
-  const module = await Module.create({
+  const module = new Module({
     assessment_id: row[0],
     assessment_key: row[1],
     _id: row[2],
@@ -17,6 +17,11 @@ const processRow = async function (row) {
     type: row[6],
     scale_factor: row[7],
   });
+
+  const questions = await Question.find({ module_id: module._id });
+  module.no_questions = questions.length;
+
+  await module.save();
 
   console.log("processed row", module._id);
 };
@@ -35,7 +40,7 @@ connection.once("open", async () => {
   try {
     await down();
     await processCSV(FILE, processRow);
-    console.log("Donek");
+    console.log("Done");
   } catch (err) {
     console.log("ERROR RUNNING MIGRATIONS...", err);
   }
