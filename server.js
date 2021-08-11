@@ -75,20 +75,20 @@ connection.once("open", function () {
     .then((router) => {
       app.use("/assessments", router);
 
-      // Error handlers
       app.get("*", PageNotFound);
-      app.use(ErrorHandler);
-
-      // start listening on port
-      app.listen(PORT, () => {
-        console.log(
-          "Express server listening on port %d in %s mode",
-          PORT,
-          app.settings.env
-        );
-      });
     })
     .catch((err) => {
       FileLogger(JSON.stringify(err), "error.log");
     });
+});
+
+app.use(ErrorHandler);
+
+// start listening on port
+app.listen(PORT, () => {
+  console.log(
+    "Express server listening on port %d in %s mode",
+    PORT,
+    app.settings.env
+  );
 });
