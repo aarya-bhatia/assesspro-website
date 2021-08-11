@@ -74,17 +74,20 @@
     Thank you for taking Aspire’s National Employability Skills Test (NEST™).
     Please review each score for detailed insight with respect to specific areas
     of strength and development for enhancing your employability and a better
-    potential job fit
+    potential job fit.
   </p>
 
-  <div class="row justify-content-center">
-    <div class="col-6">
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-6">
       <canvas id="<%= userScore._id %>" class="border border-2 p-4"></canvas>
       <%- include('../profile/scripts/createScoreChart.ejs', { userScore,
       getChartData, scoreIndex: 0 }) %>
     </div>
   </div>
-  <button class="btn btn-primary" id="save_0">Save as Image</button>
+
+  <div class="text-center">
+    <button class="btn btn-primary" id="save_0">Save as Image</button>
+  </div>
   <hr />
 
   <table class="table table-hover">
