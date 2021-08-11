@@ -44,6 +44,7 @@ const HomeRouter = require("./routers/home.router");
 const AuthRouter = require("./routers/auth.router");
 const UserRouter = require("./routers/user.router");
 const ContactUsRouter = require("./routers/contact.router");
+const DetailsRouter = require("./routers/details.router");
 
 // Middlewares
 app.use(express.static(path.join(__dirname, "public")));
@@ -61,6 +62,7 @@ app.use("/", HomeRouter);
 app.use("/auth", AuthRouter);
 app.use("/users", isAuth, UserRouter);
 app.use("/contact-us", ContactUsRouter);
+app.use("/details", DetailsRouter);
 
 // Enroll and unenroll routes
 app.get("/enroll/:key", [isAuth], EnrollUser);
