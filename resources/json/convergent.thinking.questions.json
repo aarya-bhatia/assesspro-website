@@ -1,0 +1,136 @@
+{
+    "instructions": "<p>Please enter one answer per input.</p><p>In problems numbered 11 and 12, four clues each are given. Your job is to select the right word from the five given alternatives.</p><p>For problems 12 and 13, four clues are given, but alternatives to choose from are not given. You have to guess the word for which the given words are clues.</p>",
+    "questions": [
+        {
+            "_id": 1,
+            "count": 1,
+            "content": "Write the two missing numbers: 8, 10, 14, 18, _, 34, 50, 66, _",
+            "answers": [
+                "26",
+                "98"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 2,
+            "count": 1,
+            "content": "Write the three letter word that can be prefixed by each of the folllowing letters: N, S, T, M, B, H, F",
+            "answers": [
+                "EAT",
+                "AIL"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 3,
+            "count": 1,
+            "content": "Write the 3 letter word that completes both the word starting with S and ending with K (clue: tie): S _ _ _ K",
+            "answers": [
+                "TIC",
+                "PIN"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 4,
+            "count": 1,
+            "content": "Write the next letter in the series: E, H, L, O, S, _",
+            "answers": [
+                "V"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 5,
+            "count": 1,
+            "content": "<p>Write the word in the bottom line which goes with the three at the top:</p><p>BLOOD, GUARD, WORK</p><p>LIFE, OFFICE, RED, JAIL</p>",
+            "answers": [
+                "LIFE"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 6,
+            "count": 1,
+            "content": "Write which of these cities does not fit the rest: TOKYO, LONDON, NEW YORK, NEW DELHI, MOSCOW",
+            "answers": [
+                "NEW YORK"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 7,
+            "count": 1,
+            "content": "<p>Write the four letter word missing from the brackets:</p><p>WORKER, (ROAM), AMAZE</p><p>TESTER, (_ _ _ _), OMEN</p>",
+            "answers": [
+                "SEEM"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 8,
+            "count": 1,
+            "content": "<p>Write which one of these has been famous but not as a politician:</p><ul><li>NLNIE</li><li>TESNIIEN</li><li>HUNER</li><li>HERCHATT</li><li>UBHS</li></ul>",
+            "answers": [
+                "TESNIIEN",
+                "EINSTEIN"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 9,
+            "content": "<p>Write the next two letters in the series:</p><p>D, T, E, O, G, K, J, H, N, F, _, _",
+            "count": 2,
+            "answers": [
+                "S",
+                "E"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 10,
+            "count": 1,
+            "content": "Write the last number in the following: 2, 9, 3, 28, 4, 85, 5, _",
+            "answers": [
+                "256"
+            ],
+            "marks": 6
+        },
+        {
+            "_id": 11,
+            "count": 1,
+            "content": "<p>Clues:</p><ol><li>FOOT</li><li>HOES</li><li>KICK</li><li>PINCH</li></ol><p>Alternatives:</p><ol><li>Rider</li><li>Shoe</li><li>Ball</li><li>Slipper</li><li>Carriage</li></ol>",
+            "answers": [
+                "SHOE"
+            ],
+            "marks": 8
+        },
+        {
+            "_id": 12,
+            "count": 1,
+            "content": "<p>Clues:</p><ol><li>PHRASE</li><li>POSITION</li><li>INK</li><li>DESCENT</li></ol><p>Alternatives:</p><ol><li>Chain</li><li>Line</li><li>Joint</li><li>Rope</li><li>Ancestor</li></ol>",
+            "answers": [
+                "LINE"
+            ],
+            "marks": 8
+        },
+        {
+            "_id": 13,
+            "count": 1,
+            "content": "<p>Clues:</p><ol><li>NEAR TABLE</li><li>LEADER</li><li>CARPENTER</li><li>SEE HAIR</li></ol><p>Guess the word:</p>",
+            "answers": [
+                "CHAIR"
+            ],
+            "marks": 12
+        },
+        {
+            "_id": 14,
+            "count": 1,
+            "content": "<p>Clues:</p><ol><li>HERE</li><li>GIFT</li><li>INTRODUCE</li><li>EXHIBIT</li></ol><p>Guess the word:</p>",
+            "answers": [
+                "PRESENT"
+            ],
+            "marks": 12
+        }
+    ]
+}
