@@ -40,12 +40,6 @@ require("./config/passport.config.js");
 
 const { PageNotFound, ErrorHandler } = require("./controller/error");
 
-const HomeRouter = require("./routers/home.router");
-const AuthRouter = require("./routers/auth.router");
-const UserRouter = require("./routers/user.router");
-const ContactUsRouter = require("./routers/contact.router");
-const DetailsRouter = require("./routers/details.router");
-
 // Middlewares
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
@@ -57,31 +51,37 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(isLoggedIn);
 
+const HomeRouter = require("./routers/home.router");
+const AuthRouter = require("./routers/auth.router");
+const UserRouter = require("./routers/user.router");
+const ContactUsRouter = require("./routers/contact.router");
+const DetailsRouter = require("./routers/details.router");
+const AssessmentRouter = require("./routers/assessment.router");
+
 // Routers
 app.use("/", HomeRouter);
 app.use("/auth", AuthRouter);
 app.use("/users", isAuth, UserRouter);
 app.use("/contact-us", ContactUsRouter);
 app.use("/details", DetailsRouter);
+app.use("/assessments", AssessmentRouter);
 
 // Enroll and unenroll routes
 app.get("/enroll/:key", [isAuth], EnrollUser);
 app.get("/unenroll/:key", [isAuth, isEnrolled], UnenrollUser);
 
 // Run after connecting with db
-connection.once("open", function () {
-  // create all assessment routers
-  require("./routers/assessment.router")()
-    .then((router) => {
-      app.use("/assessments", router);
+// connection.once("open", function () {
+//   require("./routers/assessment.router")()
+//     .then((router) => {
+//       app.use("/assessments", router);
+//     })
+//     .catch((err) => {
+//       FileLogger(JSON.stringify(err), "error.log");
+//     });
+// });
 
-      app.get("*", PageNotFound);
-    })
-    .catch((err) => {
-      FileLogger(JSON.stringify(err), "error.log");
-    });
-});
-
+app.get("*", PageNotFound);
 app.use(ErrorHandler);
 
 // start listening on port

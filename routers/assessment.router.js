@@ -5,30 +5,53 @@ const { isAuth } = require("../controller/auth");
 const { isEnrolled } = require("../controller/user.enroll");
 const router = require("express").Router();
 
-module.exports = function () {
-  return new Promise(function (resolve, reject) {
-    Assessment.find({})
-      .then((assessments) => {
-        assessments.forEach((assessment) => {
-          const key = assessment.key;
+const assessments = ["CCT", "CDT", "CE", "CM", "CP", "CT", "NEST", "CPT", "SL"];
 
-          let file = `./assessments/${key}.router.js`;
+// module.exports = function () {
+//   return new Promise(function (resolve, reject) {
+//     Assessment.find({})
+//       .then((assessments) => {
+//         assessments.forEach((assessment) => {
+//           const key = assessment.key;
 
-          if (key == "NEST" || key == "CPT") {
-            file = "./assessments/psychometric.router.js";
-          }
+//           console.log(key);
 
-          if (fs.existsSync(path.join(__dirname, file))) {
-            router.use("/" + key, [isAuth, isEnrolled(key)], require(file));
+//           let file = `./assessments/${key}.router.js`;
 
-            console.log(key, " router is initialised");
-          }
-        });
+//           if (key == "NEST" || key == "CPT") {
+//             file = "./assessments/psychometric.router.js";
+//           }
 
-        resolve(router);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-};
+//           if (fs.existsSync(path.join(__dirname, file))) {
+//             router.use("/" + key, [isAuth, isEnrolled(key)], require(file));
+
+//             console.log(key, " router is initialised");
+//           } else {
+//             console.log(key, " could not be initialised");
+//           }
+//         });
+
+//         resolve(router);
+//       })
+//       .catch((err) => {
+//         reject(err);
+//       });
+//   });
+// };
+
+assessments.forEach((key) => {
+  let file = `./assessments/${key}.router.js`;
+
+  if (key == "NEST" || key == "CPT") {
+    file = "./assessments/psychometric.router.js";
+  }
+  if (fs.existsSync(path.join(__dirname, file))) {
+    router.use("/" + key, [isAuth, isEnrolled(key)], require(file));
+
+    console.log(key, " router is initialised");
+  } else {
+    console.log(key, " could not be initialised");
+  }
+});
+
+module.exports = router;
