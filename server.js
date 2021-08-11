@@ -35,6 +35,10 @@ require("./config/db.config.js").connect();
 // set up passport strategy
 require("./config/passport.config.js");
 
+const PsychometricAssessmentRouter = require("./routers/psychometric/router");
+const CreativityAssessmentRouter = require("./routers/creativity.router");
+const LeadershipAssessmentRouter = require("./routers/leadership.router");
+
 // middleware and routers
 app
   .use(express.static(path.join(__dirname, "public")))
@@ -48,22 +52,12 @@ app
   .use(isLoggedIn)
   .use("/auth", require("./routers/auth.router"))
   .use("/users", isAuth, require("./routers/user.router"))
-  .use("/contacts", isAuth, require("./routers/chats/contacts.router"))
-  .use("/chats", isAuth, require("./routers/chats/chat.router"))
   .use("/assessments", require("./routers/assessment.router"))
   .get("/enroll/:key", [isAuth], EnrollUser)
   .get("/unenroll/:key", [isAuth, isEnrolled], UnenrollUser)
-  .use(
-    "/psychometric/:key",
-    [isAuth, isEnrolled],
-    require("./routers/psychometric/router")
-  )
-  .use("/creativity", isAuth, require("./routers/creativity.router"))
-  .use(
-    "/manager/assessments",
-    [isAuth, isAdmin],
-    require("./routers/admin/assessment.manager.router")
-  )
+  .use("/psychometric/:key", [isAuth, isEnrolled], PsychometricAssessmentRouter)
+  .use("/creativity", isAuth, CreativityAssessmentRouter)
+  .use("/leadership", isAuth, LeadershipAssessmentRouter)
   .use(require("./routers/index.router"));
 
 // start listening on port
@@ -73,9 +67,4 @@ app.listen(PORT, () => {
     PORT,
     app.settings.env
   );
-
-  // FileLogger(
-  //   `Express server listening on port ${PORT} in ${app.settings.env}, mode`,
-  //   "test.log"
-  // );
 });
