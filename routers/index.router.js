@@ -5,7 +5,7 @@ const router = require("express").Router();
 
 // Home page
 router.get("/", async (req, res) => {
-  const categories = await Category.find({});
+  const categories = await Category.find({ status: "public" });
 
   const data = [];
 
