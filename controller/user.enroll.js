@@ -9,7 +9,7 @@ async function createUserAssessment(user, assessment) {
     assessment_name: assessment.name,
     assessment_category: assessment.category,
     assessment_plot_type: assessment.plot_type,
-    redirectURL: assessment.redirectURL,
+    assessment_url: assessment.assessment_url,
     attempts: 0,
     completed: false,
   });
@@ -57,8 +57,8 @@ module.exports.EnrollUser = async (req, res) => {
   });
 
   if (user_assessment) {
-    console.log("Redirect to assessment...", user_assessment.redirectURL);
-    return res.redirect(user_assessment.redirectURL);
+    console.log("Redirect to assessment...", user_assessment.assessment_url);
+    return res.redirect(user_assessment.assessment_url);
   }
 
   console.log("Enrolling user in assessment: " + key);
@@ -90,16 +90,19 @@ module.exports.EnrollUser = async (req, res) => {
     }
   }
 
-  if (!assessment.redirectURL) {
+  if (!assessment.assessment_url) {
     return res.render("error/index", {
       ...res.locals,
       message: "Assessment unavailable at this time...",
     });
   }
 
-  console.log("Redirecting to assessment start page: ", assessment.redirectURL);
+  console.log(
+    "Redirecting to assessment start page: ",
+    assessment.assessment_url
+  );
 
-  res.redirect(assessment.redirectURL);
+  res.redirect(assessment.assessment_url);
 };
 
 module.exports.UnenrollUser = async (req, res) => {

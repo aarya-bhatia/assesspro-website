@@ -19,9 +19,8 @@ const Columns = initColumns(
     "plot_type",
     "price",
     "description",
-    "shortPara",
-    "enrollURL",
-    "redirectURL",
+    "short_para",
+    "assessment_url",
   ])
 );
 

@@ -17,7 +17,7 @@
   </div>
 
   <form
-    action="<%= user_assessment.redirectURL %>/submit/"
+    action="<%= user_assessment.assessment_url %>/submit/"
     method="POST"
     name="moduleForm"
   >
@@ -79,7 +79,7 @@
     <% }) %>
 
     <input type="submit" class="btn btn-primary" value="Save" />
-    <a href="<%= user_assessment.redirectURL %>/" class="btn btn-secondary"
+    <a href="<%= user_assessment.assessment_url %>/" class="btn btn-secondary"
       >Back</a
     >
   </form>

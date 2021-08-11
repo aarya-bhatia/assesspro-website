@@ -32,7 +32,7 @@ router.get("/questions", async (req, res) => {
   const umid = req.query.umid;
 
   if (!umid) {
-    return res.redirect(user_assessment.redirectURL);
+    return res.redirect(user_assessment.assessment_url);
   }
 
   const user_id = req.user._id;
@@ -129,7 +129,7 @@ router.post("/submit", async function (req, res) {
 
   const user_assessment = await res.locals.user_assessment;
 
-  res.redirect(user_assessment.redirectURL);
+  res.redirect(user_assessment.assessment_url);
 });
 
 // Submit Assessment

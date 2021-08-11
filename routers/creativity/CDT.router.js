@@ -219,7 +219,7 @@ router.get("/retake", async (req, res) => {
     }
   );
 
-  res.redirect(user_assessment.redirectURL);
+  res.redirect(user_assessment.assessment_url);
 });
 
 router.get("/delete-score/:score_id", async (req, res) => {

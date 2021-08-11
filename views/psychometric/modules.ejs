@@ -66,7 +66,7 @@
 
           <!-- Action -->
           <div class="col-xs-6 col-sm-4 col-md-2">
-            <form action="<%= user_assessment.redirectURL %>/questions/">
+            <form action="<%= user_assessment.assessment_url %>/questions/">
               <input
                 type="hidden"
                 name="umid"
@@ -101,7 +101,7 @@
   <!-- submit assessment -->
   <form
     name="myForm"
-    action="<%= user_assessment.redirectURL %>/score/"
+    action="<%= user_assessment.assessment_url %>/score/"
     method="GET"
   >
     <button class="btn btn-outline-primary" onclick="handleSubmit()">

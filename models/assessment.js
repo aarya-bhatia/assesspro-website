@@ -24,11 +24,10 @@ const schema = new mongoose.Schema(
       type: String,
       default: "usd",
     },
-    shortPara: String,
-    enrollURL: String,
-    redirectURL: String,
+    short_para: String,
+    assessment_url: String,
   },
-  { _id: false, timestamps: true }
+  { _id: false }
 );
 
 module.exports = mongoose.model("Assessment", schema);
