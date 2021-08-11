@@ -1,24 +1,9 @@
-<!--
-  Locals: {
-    loggedIn,
-    user
-  }
--->
-
-<!-- Header -->
 <%- include('../partials/header.ejs', { loggedIn }) %>
-
-<!-- profile update page -->
 
 <div class="container">
   <h1>Update Profile</h1>
 
-  <!-- introduction -->
-  <div class="col-md-12">
-    <p class="form-text">
-      Please update your details below and submit the form.
-    </p>
-  </div>
+  <p class="form-text">Please update your details below and submit the form.</p>
 
   <% if(error) { %>
   <div class="alert alert-danger"><%= error %></div>
@@ -126,11 +111,9 @@
       />
     </div>
 
-    <div class="col-md-12">
-      <p class="form-text">
-        Please enter the day, month and year of your birth below.
-      </p>
-    </div>
+    <p class="form-text">
+      Please enter the day, month and year of your birth below.
+    </p>
 
     <!-- DATE OF BIRTH SECTION -->
     <div class="h4">Date of Birth</div>
@@ -226,6 +209,7 @@
     <div class="h4">Work</div>
 
     <div class="col-md-6">
+      <label for="organization" class="form-label">Organization</label>
       <input
         type="text"
         placeholder="Name of Organization"
@@ -236,6 +220,7 @@
     </div>
 
     <div class="col-md-6">
+      <label for="job_title" class="form-label">Job Title</label>
       <input
         type="text"
         placeholder="Job Title"
@@ -246,6 +231,7 @@
     </div>
 
     <div class="col-md-6">
+      <label for="work_experience" class="form-label">Work Experience</label>
       <input
         type="number"
         placeholder="Years of Work Experience"
@@ -256,6 +242,7 @@
     </div>
 
     <div class="col-md-6">
+      <label for="current_employer" class="form-label">Current Employer</label>
       <input
         type="text"
         placeholder="Name of current employer"
@@ -273,8 +260,68 @@
   </form>
 </div>
 
-<!-- script -->
-<%- include('./scripts/setFieldValues.ejs', { user }) %>
-
 <!-- Footer -->
 <%- include('../partials/footer.ejs') %>
+
+<script type="text/javascript">
+  /* Set the bio */
+  const user_bio = "<%= user.bio %>";
+
+  if (user_bio) {
+    document.getElementById('bio').innerHTML = user_bio
+  }
+
+  const mobile = "<%= user.mobile %>";
+
+  if (mobile) {
+    document.getElementById('mobile').value = mobile;
+  }
+
+  const work_experience = "<%= user.work_experience %>"
+  const organization = "<%= user.organization %>"
+  const job_title = "<%= user.job_title %>"
+  const current_employer = "<%= user.current_employer %>"
+
+  if (work_experience) {
+    document.getElementById("work_experience").value = work_experience
+  }
+
+  if (job_title) {
+    document.getElementById("job_title").value = job_title
+  }
+
+  if (organization) {
+    document.getElementById("organization").value = organization
+  }
+
+  if (current_employer) {
+    document.getElementById("current_employer").value = current_employer
+  }
+
+  /* Set the status */
+  document.getElementById('status').checked = "<%= user.status %>" === 'public';
+
+  /* Set the address and dob fields */
+  Object.entries({ ...<%- user.address %>, ...<%- user.dob %> })
+    .forEach(([key, value]) => {
+      if (key) {
+        document.getElementById(key).value = value
+      }
+    })
+
+  /* Set the qualification fields */
+  const qualifications = <%- user.qualifications %>;
+
+  if (qualifications) {
+    Object.entries(qualifications).forEach(([key, value]) => {
+      if (key && value) {
+        if (value.subject) {
+          document.getElementById(key + '-' + 'subject').value = value.subject;
+        }
+        if (value.institution) {
+          document.getElementById(key + '-' + 'institution').value = value.institution;
+        }
+      }
+    })
+  }
+</script>
