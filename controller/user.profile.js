@@ -117,6 +117,7 @@ async function getNESTReport(req, res) {
 
   res.render("reports/" + userScore.assessment_key, {
     ...res.locals,
+    user: req.user,
     userScore,
     getChartData,
     user_feedbacks,
@@ -148,6 +149,7 @@ module.exports.openReport = async (req, res) => {
 
   return res.render("reports/" + userScore.assessment_key, {
     ...res.locals,
+    user: req.user,
     userScore,
     getChartData,
   });

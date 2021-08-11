@@ -10,6 +10,65 @@
 
 <div class="container">
   <div class="display-4">NEST Report</div>
+  <p><strong>Test Date: </strong><%= userScore.date %></p>
+
+  <div class="my-4">
+    <img
+      src="<%= user.img_url %>"
+      alt="profile image"
+      class="img-fluid img-thumbnail"
+      width="128"
+    />
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="h4">Personal Information</div>
+      <p><strong>Name: </strong><%= user.name %></p>
+      <p><strong>Email: </strong><%= user.email %></p>
+      <p>
+        <strong>Location: </strong><%= user.address.city %>, <%=
+        user.address.state %>
+      </p>
+      <p>
+        <strong>Date of Birth: </strong><%= user.dob.day %>-<%= user.dob.month
+        %>-<%= user.dob.year %>
+      </p>
+    </div>
+
+    <div class="col-md-6">
+      <h4>Educational Qualifications</h4>
+      <table class="table table-hover">
+        <tr>
+          <td>Grade 10</td>
+          <td><%= user.qualifications.grade10.institution %></td>
+          <td><%= user.qualifications.grade10.subject %></td>
+        </tr>
+        <tr>
+          <td>Grade 12</td>
+          <td><%= user.qualifications.grade12.institution %></td>
+          <td><%= user.qualifications.grade12.subject %></td>
+        </tr>
+        <tr>
+          <td>Bachelors</td>
+          <td><%= user.qualifications.bachelors.institution %></td>
+          <td><%= user.qualifications.bachelors.subject %></td>
+        </tr>
+        <tr>
+          <td>Masters</td>
+          <td><%= user.qualifications.masters.institution %></td>
+          <td><%= user.qualifications.masters.subject %></td>
+        </tr>
+        <tr>
+          <td>Other</td>
+          <td><%= user.qualifications.other.institution %></td>
+          <td><%= user.qualifications.other.subject %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <hr />
 
   <p class="lead">
     Thank you for taking Aspire’s National Employability Skills Test (NEST™).
@@ -20,7 +79,7 @@
 
   <div class="row justify-content-center">
     <div class="col-6">
-      <canvas id="<%= userScore._id %>"></canvas>
+      <canvas id="<%= userScore._id %>" class="border border-2 p-4"></canvas>
       <%- include('../profile/scripts/createScoreChart.ejs', { userScore,
       getChartData, scoreIndex: 0 }) %>
     </div>
@@ -30,10 +89,10 @@
 
   <table class="table table-hover">
     <tr>
-      <th>Module</th>
+      <th>Category</th>
       <th>Score</th>
       <th>Description</th>
-      <th>Feedback</th>
+      <th>Profile</th>
     </tr>
 
     <% user_feedbacks.map(row => { %>

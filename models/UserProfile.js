@@ -22,6 +22,10 @@ const schema = new Schema(
     mobile: {
       type: String,
     },
+    job_title: String,
+    current_employer: String,
+    organization: String,
+    work_experience: Number,
     role: { type: String, enum: ["admin", "basic"], default: "basic" },
     password: {
       type: String,
