@@ -12,8 +12,6 @@ const path = require("path");
 const passport = require("passport");
 const flash = require("connect-flash");
 
-const FileLogger = require("log-to-file");
-
 // create express app
 const app = express();
 const PORT = process.env.PORT || 3000;

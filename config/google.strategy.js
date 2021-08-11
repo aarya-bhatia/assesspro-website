@@ -17,7 +17,7 @@ module.exports = new GoogleStrategy(
       });
 
       if (currentUser) {
-        console.log("[google oauth2] found user: ", currentUser);
+        console.log("[google oauth2] found user: ", currentUser.name);
         return done(null, currentUser);
       }
       const duplicateEmail = await UserProfile.findOne({ email });
@@ -38,7 +38,7 @@ module.exports = new GoogleStrategy(
           provider: { name: profile.provider, id: profile.id },
         });
 
-        console.log("[google oauth2] created user: ", newUser);
+        console.log("[google oauth2] created user: ", newUser.name);
         return done(null, newUser);
       }
     } catch (err) {
