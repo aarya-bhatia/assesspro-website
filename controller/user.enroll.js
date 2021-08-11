@@ -30,21 +30,22 @@ async function createUserModule(user, assessment, module) {
   });
 }
 
-module.exports.isEnrolled = async (req, res, next) => {
-  const key = req.params.key;
-  const user_assessment = await UserAssessment.findOne({
-    user_id: req.user._id,
-    assessment_key: key,
-  });
+module.exports.isEnrolled = (key) => {
+  return async (req, res, next) => {
+    const user_assessment = await UserAssessment.findOne({
+      user_id: req.user._id,
+      assessment_key: key,
+    });
 
-  res.locals.user_assessment = user_assessment;
+    res.locals.user_assessment = user_assessment;
 
-  if (user_assessment) {
-    return next();
-  } else {
-    console.log("User is not enrolled in: ", key);
-    return res.redirect("/details/" + key);
-  }
+    if (user_assessment) {
+      return next();
+    } else {
+      console.log("User is not enrolled in: ", key);
+      return res.redirect("/details/" + key);
+    }
+  };
 };
 
 module.exports.EnrollUser = async (req, res) => {
@@ -74,11 +75,11 @@ module.exports.EnrollUser = async (req, res) => {
   }
 
   const user_id = req.user._id;
-  const assessment_id = assessment._id;
+  const assessment_key = assessment.key;
 
   await createUserAssessment(user, assessment);
 
-  const modules = await Module.find({ assessment_id });
+  const modules = await Module.find({ assessment_key });
 
   if (modules) {
     console.log(
@@ -107,12 +108,12 @@ module.exports.EnrollUser = async (req, res) => {
 
 module.exports.UnenrollUser = async (req, res) => {
   const user_id = req.user._id;
-  const key = req.params.key;
+  const assessment_key = req.params.key;
 
   console.log(`Unenrolling [user] ${req.user.name} from assessment:${key}`);
 
-  await UserAssessment.deleteOne({ user_id, assessment_key: key });
-  await UserModule.deleteMany({ user_id, assessment_key: key });
+  await UserAssessment.deleteOne({ user_id, assessment_key });
+  await UserModule.deleteMany({ user_id, assessment_key });
 
   res.redirect("/users/profile/");
 };

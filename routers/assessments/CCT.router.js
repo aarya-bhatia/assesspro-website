@@ -1,4 +1,4 @@
-const router = require("express").Router;
+const router = require("express").Router();
 
 router.get("/questions", async (req, res) => {});
 router.post("/submit", async (req, res) => {});

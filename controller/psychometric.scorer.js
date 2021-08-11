@@ -9,17 +9,22 @@ const {
 module.exports = async function (req, res) {
   const user_id = req.user._id;
   const { user_assessment } = res.locals;
-  const { assessment_id } = user_assessment;
+  const {
+    assessment_id,
+    assessment_key,
+    assessment_name,
+    assessment_plot_type,
+  } = user_assessment;
 
-  const module_scores = await score(user_id, assessment_id);
+  const module_scores = await score(user_id, assessment_key);
   console.log("Assessment Result ", module_scores);
 
   await UserScore.create({
-    user_id: user_id,
-    assessment_id: user_assessment.assessment_id,
-    assessment_name: user_assessment.assessment_name,
-    assessment_key: user_assessment.assessment_key,
-    plot_type: user_assessment.assessment_plot_type,
+    user_id,
+    assessment_id,
+    assessment_name,
+    assessment_key,
+    plot_type: assessment_plot_type,
     module_scores,
   });
 
@@ -45,13 +50,13 @@ async function scaleModuleScore(score, userModule) {
 }
 
 // Scores the assessment and returns the module scores array
-async function score(user_id, assessment_id) {
+async function score(user_id, assessment_key) {
   return new Promise(async (resolve) => {
     // stores the module scores
     let result = [];
 
     // Get user modules
-    const userModules = await UserModule.find({ user_id, assessment_id });
+    const userModules = await UserModule.find({ user_id, assessment_key });
 
     for (const userModule of userModules) {
       // Get the module id for current user module

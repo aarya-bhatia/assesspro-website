@@ -1,11 +1,11 @@
-const { formatTimeSpent, shuffleOrder } = require("../controller/util");
+const { formatTimeSpent, shuffleOrder } = require("../../controller/util");
 const {
   Module,
   UserModule,
   Question,
   UserAnswer,
   Assessment,
-} = require("../models");
+} = require("../../models");
 const router = require("express").Router({ mergeParams: true });
 
 // Assessment Home Page
@@ -133,7 +133,7 @@ router.post("/submit", async function (req, res) {
 });
 
 // Submit Assessment
-router.get("/score", require("../controller/psychometric.scorer"));
+router.get("/score", require("../../controller/psychometric.scorer"));
 
 module.exports = router;
 

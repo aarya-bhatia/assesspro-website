@@ -1,11 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-const { Assessment, UserAssessment } = require("../models");
-
+const { Assessment } = require("../models");
+const { isAuth } = require("../controller/auth");
+const { isEnrolled } = require("../controller/user.enroll");
 const router = require("express").Router();
 
-const { isAuth } = require("../controller/auth");
-
+// Assessment details page
 router.get("/details/:key", async (req, res) => {
   const { key } = req.params;
   const assessment = await Assessment.findOne({ key });
@@ -25,44 +25,35 @@ router.get("/details/:key", async (req, res) => {
   }
 });
 
-function isEnrolled(key) {
-  return async function (req, res, next) {
-    const user_assessment = await UserAssessment.findOne({
-      user_id: req.user._id,
-      assessment_key: key,
-    });
+module.exports = function () {
+  return new Promise(function (resolve, reject) {
+    // Set up Assessment routers
+    Assessment.find({})
+      .then((assessments) => {
+        assessments.forEach((assessment) => {
+          const key = assessment.key;
 
-    res.locals.user_assessment = user_assessment;
+          let file = `./assessments/${key}.router.js`;
 
-    if (user_assessment) {
-      return next();
-    } else {
-      console.log("User is not enrolled in: ", key);
-      return res.redirect("/details/" + key);
-    }
-  };
-}
+          if (key == "NEST" || key == "CPT") {
+            file = "./assessments/psychometric.router.js";
+          }
 
-router.use(
-  "/assessments/NEST",
-  [isAuth, isEnrolled("NEST")],
-  require("./psychometric.router")
-);
+          if (fs.existsSync(path.join(__dirname, file))) {
+            router.use(
+              `/assessments/${key}`,
+              [isAuth, isEnrolled(key)],
+              require(file)
+            );
 
-router.use(
-  "/assessments/CPT",
-  [isAuth, isEnrolled("CPT")],
-  require("./psychometric.router")
-);
+            console.log(key, " router is initialised");
+          }
+        });
 
-const assessments = ["CP", "CT", "CE", "CM", "CDT", "SL"];
-
-assessments.forEach((key) => {
-  router.use(
-    "/assessments/" + key,
-    [isAuth, isEnrolled(key)],
-    require("./assessments/" + key + ".router.js")
-  );
-});
-
-module.exports = router;
+        resolve(router);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
