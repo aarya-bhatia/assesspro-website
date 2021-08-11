@@ -1,7 +1,7 @@
 const { KeyValueResponse, UserScore, UserAssessment } = require("../../models");
 
-const questions = require("../../resources/json/cm.questions.json");
-const Motives = require("../../resources/json/cm.motives.json");
+const questions = require("../../resources/json/creativity.motivation.questions.json");
+const Motives = require("../../resources/json/creativity.motivation.motives.json");
 
 const router = require("express").Router();
 

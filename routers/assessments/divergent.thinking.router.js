@@ -3,7 +3,7 @@ const {
   DivergentScore,
   UserAssessment,
 } = require("../../models");
-const questions = require("../../resources/json/cdt.questions.json");
+const questions = require("../../resources/json/divergent.thinking.questions.json");
 const { isAdmin } = require("../../controller/auth");
 const baseURL = "/assessments/CDT";
 
