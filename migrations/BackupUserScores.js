@@ -46,7 +46,7 @@ async function fetch_profiles(arr, scores) {
 }
 
 mongoose.connection.once("open", async () => {
-  const scores = await UserScore.find({}); //.limit(5).exec();
+  const scores = await UserScore.find({});
   const arr = [];
 
   await fetch_profiles(arr, scores).then(() => {
