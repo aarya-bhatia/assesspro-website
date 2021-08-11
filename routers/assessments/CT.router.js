@@ -16,7 +16,7 @@ const options = [
   "Fully Agree",
 ];
 
-router.get("/questions", async (req, res) => {
+router.get("/", async (req, res) => {
   const user_assessment = res.locals.user_assessment;
   const { assessment_key } = user_assessment;
   const user_id = req.user._id;
@@ -28,7 +28,7 @@ router.get("/questions", async (req, res) => {
     user_id,
   });
 
-  res.render("creativity/CT.questions.ejs", {
+  res.render("assessments/rating.questions.ejs", {
     ...res.locals,
     user: req.user,
     questions,

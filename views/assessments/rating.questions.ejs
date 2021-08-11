@@ -1,17 +1,22 @@
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
 <div class="container">
-  <div class="display-4">Creativity Temperament Assessment</div>
+  <div class="display-4"><%= user_assessment.assessment_name %> Assessment</div>
   <p>
     Please read each statement given below and write in the right margin the
     appropriate number to indicate your opinion on each statement. Since this is
     a feedback instrument, be as truthful as you can.
   </p>
 
-  <form action="/creativity/CT/submit" method="POST" name="myForm">
+  <form
+    action="<%= user_assessment.assessment_url %>/submit"
+    method="POST"
+    name="myForm"
+  >
     <% questions.map(question => { %>
     <div class="shadow-sm rounded p-2 my-4 bg-light">
       <!-- Question begins -->
+
       <div class="p mb-2"><%= question.statement %></div>
 
       <% options.map((option, index) => { %>
@@ -22,6 +27,8 @@
           name="<%= question._id %>"
           id="<%= question._id %>_<%= index+1 %>"
           value="<%= index+1 %>"
+          data-input
+          data-value="<%= index+1 %>"
         />
         <label
           for="<%= question._id %>_<%= index+1 %>"
@@ -42,6 +49,10 @@
       value="Submit"
       onclick="handleSubmit();"
     />
+
+    <button class="btn btn-secondary" type="button" onclick="handleSave()">
+      Save
+    </button>
   </form>
 </div>
 
@@ -61,6 +72,33 @@
     if (confirm("Are you sure you want to submit the assessment?")) {
       document.myForm.submit();
     }
+  }
+
+  let saving = false;
+  const saveURL = "<%= user_assessment.assessment_url %>/save";
+
+  function handleSave() {
+    if (saving) {
+      return;
+    }
+    const data = {};
+    saving = true;
+    const inputs = document.querySelectorAll("[data-input]:checked");
+    for (const input of inputs) {
+      if (input.value) {
+        // console.log(input);
+        data[input.name] = input.dataset.value;
+      }
+    }
+
+    fetch(saveURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then(() => {
+      alert("Save successful");
+      saving = false;
+    });
   }
 
   document.myForm.addEventListener("submit", function (event) {

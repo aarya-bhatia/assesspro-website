@@ -1,23 +1,18 @@
 <%- include('../partials/header.ejs', { loggedIn }) %>
 
 <div class="container">
-  <div class="display-4">Creativity Environment Assessment</div>
+  <div class="display-4">Creativity Personality Assessment</div>
   <div class="lead">
-    Please circle the appropriate number from 0 to 10 in each of the following
-    scales. For each scale, if you strongly agree with the statement on the
-    left, you should circle 0. If you agree with this statement, but have
-    reservations, you should circle 2. If you strongly agree with the statement
-    on the right, please circle 10. If you basically agree with it but feel it
-    is too strong, circle 8. If your opinion is midway between the two
-    statements, circle 4 or 6 as per choice. Remember you must circle only one
-    number in each scale..
+    Given below are a number of scales. For each scale, there are 6 points. You
+    have to select only one number in each scale. If you agree very strongly
+    with the statement to the left of the scale, select 1; if you agree with it
+    strongly, select 2; if you agree moderately, select 3; if you agree very
+    strongly with the statement to the right of the scale, select 6; if you
+    agree with it strongly, select 5; if you agree moderately, select 5.
+    Remember only one number is to be selected in each scale.
   </div>
 
-  <form
-    action="/creativity/<%= user_assessment.assessment_key %>/submit/"
-    method="POST"
-    name="myForm"
-  >
+  <form action="/assessments/CP/submit" method="POST" name="myForm">
     <% questions.map((question, num) => { %>
 
     <div class="row shadow-sm rounded p-2 my-4 bg-light">
@@ -26,7 +21,7 @@
       <p><strong>Right: </strong><%= question.right_statement %></p>
 
       <div class="container d-flex justify-space-between">
-        <% [0,2,6,8,10].map(choice => { %>
+        <% [1,2,3,4,5,6].map(choice => { %>
         <div class="form-check me-2">
           <input
             type="radio"
@@ -43,6 +38,7 @@
 
     <% }) %>
 
+    <!-- Time spent since page load -->
     <input
       type="submit"
       class="btn btn-outline-primary"
@@ -96,7 +92,7 @@
 
     saving = true;
 
-    await fetch('/creativity/CE/save', {
+    fetch('/assessments/CP/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),

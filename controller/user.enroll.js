@@ -43,7 +43,7 @@ module.exports.isEnrolled = async (req, res, next) => {
     return next();
   } else {
     console.log("User is not enrolled in: ", key);
-    return res.redirect("/assessments/" + key);
+    return res.redirect("/details/" + key);
   }
 };
 

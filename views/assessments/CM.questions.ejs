@@ -42,7 +42,7 @@
     </ul>
   </div>
 
-  <form action="/creativity/CM/submit" method="POST" name="myForm">
+  <form action="/assessments/CM/submit" method="POST" name="myForm">
     <% questions.map((question, num) => { %>
 
     <div
@@ -110,7 +110,7 @@
   </form>
 </div>
 
-<script src="/js/creativity.motivation.js"></script>
+<script src="/js/assessments.motivation.js"></script>
 
 <script>
   populateUserAnswers(<%- JSON.stringify(user_answers) %>);

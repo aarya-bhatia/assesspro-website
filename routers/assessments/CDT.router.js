@@ -3,20 +3,20 @@ const {
   DivergentScore,
   UserAssessment,
 } = require("../../models");
-const questions = require("../../resources/json/cdt.questions.json");
+const questions = require("../../resources/json/CDT.questions.json");
 const { isAdmin } = require("../../controller/auth");
-const baseURL = "/creativity/CDT";
+const baseURL = "/assessments/CDT";
 
 const router = require("express").Router();
 
-router.get("/questions", async (req, res) => {
+router.get("/", async (req, res) => {
   let page = req.query.page || 1;
 
   if (page < 1) {
-    return res.redirect(baseURL + "/questions?page=4");
+    return res.redirect(baseURL + "/?page=4");
   }
   if (page > 4) {
-    return res.redirect(baseURL + "/questions?page=1");
+    return res.redirect(baseURL + "/?page=1");
   }
 
   const user_id = req.user._id;
@@ -27,7 +27,7 @@ router.get("/questions", async (req, res) => {
     question_id: page,
   });
 
-  res.render("creativity/CDT.questions.ejs", {
+  res.render("assessments/CDT.questions.ejs", {
     ...res.locals,
     user_id,
     page,
@@ -49,7 +49,7 @@ router.post("/add/:question_id", async (req, res) => {
     status: "pending",
   });
 
-  res.redirect(baseURL + "/questions?page=" + (req.query.page || 1));
+  res.redirect(baseURL + "/?page=" + (req.query.page || 1));
 });
 
 router.get("/remove/:response_id", async (req, res) => {
@@ -57,7 +57,7 @@ router.get("/remove/:response_id", async (req, res) => {
     _id: req.params.response_id,
   });
 
-  res.redirect(baseURL + "/questions?page=" + (req.query.page || 1));
+  res.redirect(baseURL + "/?page=" + (req.query.page || 1));
 });
 
 function getQuestion(id) {

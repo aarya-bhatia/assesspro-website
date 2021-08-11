@@ -1,40 +1,14 @@
 const { KeyValueResponse, UserScore, UserAssessment } = require("../../models");
 
 const questions = require("../../resources/json/cm.questions.json");
+const Motives = require("../../resources/json/CM.motives.json");
 
 const router = require("express").Router();
 
 const score_description =
   "Your preference measures the strength of 6 competing motives, namely, safety motive, achievement/competence motive, status/power/prominence motive, pioneering and innovating motive, altruistic/conscientiousness motive, and self-actualization motive.";
 
-const Motives = [
-  {
-    _id: 1,
-    name: "Safety motive",
-  },
-  {
-    _id: 2,
-    name: "Competence motive",
-  },
-  {
-    _id: 3,
-    name: "Status motive",
-  },
-  {
-    _id: 4,
-    name: "Pioneering-Innovative motive",
-  },
-  {
-    _id: 5,
-    name: "Altruistic motive",
-  },
-  {
-    _id: 6,
-    name: "Self-actualization motive",
-  },
-];
-
-router.get("/questions", async (req, res) => {
+router.get("/", async (req, res) => {
   const user_assessment = res.locals.user_assessment;
   const { assessment_key } = user_assessment;
 
@@ -47,7 +21,7 @@ router.get("/questions", async (req, res) => {
     };
   });
 
-  res.render("creativity/CM.questions.ejs", {
+  res.render("assessments/CM.questions.ejs", {
     ...res.locals,
     user: req.user,
     questions,

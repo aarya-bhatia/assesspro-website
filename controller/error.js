@@ -5,7 +5,7 @@ module.exports.PageNotFound = (req, res) => {
   res.status(404).render("error/404", { ...res.locals });
 };
 
-module.exports.ErrorHandler = (req, res, next) => {
+module.exports.ErrorHandler = (err, req, res, next) => {
   console.log(
     "=================================================================="
   );

@@ -13,9 +13,19 @@ router.get("/", (req, res) => {
 // Send Message
 router.post("/", async (req, res) => {
   const { name, email, message } = req.body;
-  console.log(req.body);
+
+  if (!name || !email || !message) {
+    return res.render("contact.us.ejs", {
+      ...res.locals,
+      success: null,
+      error: "Please provide a name, email and message.",
+    });
+  }
+
   try {
-    sendEmail(
+    console.log("Sending email to: ", process.env.CONTACT_US_EMAIL);
+
+    await sendEmail(
       process.env.CONTACT_US_EMAIL,
       "Someone sent a message!",
       {
@@ -27,14 +37,14 @@ router.post("/", async (req, res) => {
     );
 
     res.render("contact.us.ejs", {
-      loggedIn: res.locals.loggedIn,
+      ...res.locals,
       success: "Message sent successfully...",
       error: null,
     });
   } catch (err) {
     console.log(err);
     res.render("contact.us.ejs", {
-      loggedIn: res.locals.loggedIn,
+      ...res.locals,
       success: null,
       error: err.message,
     });

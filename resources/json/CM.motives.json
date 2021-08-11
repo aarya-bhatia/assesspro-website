@@ -1,0 +1,26 @@
+[
+    {
+        "_id": 1,
+        "name": "Safety motive"
+    },
+    {
+        "_id": 2,
+        "name": "Competence motive"
+    },
+    {
+        "_id": 3,
+        "name": "Status motive"
+    },
+    {
+        "_id": 4,
+        "name": "Pioneering-Innovative motive"
+    },
+    {
+        "_id": 5,
+        "name": "Altruistic motive"
+    },
+    {
+        "_id": 6,
+        "name": "Self-actualization motive"
+    }
+]

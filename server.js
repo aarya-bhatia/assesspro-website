@@ -1,5 +1,5 @@
 // Catch all async errors
-require("express-async-errors");
+// require("express-async-errors");
 
 // Load env vars
 if (process.env.NODE_ENV !== "production") {
@@ -41,9 +41,6 @@ const HomeRouter = require("./routers/home.router");
 const AuthRouter = require("./routers/auth.router");
 const UserRouter = require("./routers/user.router");
 const AssessmentRouter = require("./routers/assessment.router");
-const PsychometricAssessmentRouter = require("./routers/psychometric/router");
-const CreativityAssessmentRouter = require("./routers/creativity.router");
-const LeadershipAssessmentRouter = require("./routers/leadership.router");
 const ContactUsRouter = require("./routers/contact.router");
 
 // Middlewares
@@ -61,16 +58,7 @@ app.use(isLoggedIn);
 app.use("/", HomeRouter);
 app.use("/auth", AuthRouter);
 app.use("/users", isAuth, UserRouter);
-app.use("/assessments", AssessmentRouter);
-
-// Assessment routers
-app.use(
-  "/psychometric/:key",
-  [isAuth, isEnrolled],
-  PsychometricAssessmentRouter
-);
-app.use("/creativity", isAuth, CreativityAssessmentRouter);
-app.use("/leadership", isAuth, LeadershipAssessmentRouter);
+app.use(AssessmentRouter);
 app.use("/contact-us", ContactUsRouter);
 
 // Enroll and unenroll routes

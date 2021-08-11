@@ -288,7 +288,7 @@ module.exports.RetakeAssessment = async (req, res) => {
     }
   );
 
-  res.redirect("/assessments/" + assessment_key);
+  res.redirect("/details/" + assessment_key);
 };
 
 module.exports.DeleteScores = async (req, res) => {

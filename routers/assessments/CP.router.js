@@ -10,7 +10,7 @@ const router = require("express").Router();
 const score_description =
   "Having scored yourself on your personality, now identify the traits in which your score falls below 60%. You need to pay particular attention to these traits.";
 
-router.get("/questions", async (req, res) => {
+router.get("/", async (req, res) => {
   const user_assessment = res.locals.user_assessment;
   const { assessment_key } = user_assessment;
 
@@ -23,7 +23,7 @@ router.get("/questions", async (req, res) => {
     user_id: req.user._id,
   });
 
-  res.render("creativity/CP.questions.ejs", {
+  res.render("assessments/CP.questions.ejs", {
     ...res.locals,
     user: req.user,
     questions,

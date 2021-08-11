@@ -38,7 +38,7 @@
   />
 
   <% for(const response of responses) { %>
-  <form action="/creativity/CDT/remove/<%= response._id %>" method="GET">
+  <form action="/assessments/CDT/remove/<%= response._id %>" method="GET">
     <input type="hidden" name="page" value="<%= page %>" />
 
     <div class="d-flex my-2">
@@ -54,7 +54,7 @@
   <% } %>
 
   <form
-    action="/creativity/CDT/add/<%= question._id %>/?page=<%= page %>"
+    action="/assessments/CDT/add/<%= question._id %>/?page=<%= page %>"
     method="POST"
     name="addForm"
   >
@@ -75,6 +75,6 @@
   </form>
 </div>
 
-<script src="/js/creativity.divergent.js"></script>
+<script src="/js/assessments.divergent.js"></script>
 
 <%- include('../partials/footer.ejs') %>

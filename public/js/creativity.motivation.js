@@ -5,7 +5,7 @@ const calculateButtons = document.querySelectorAll("[data-calculate-button]");
 const inputFields = document.querySelectorAll("[data-input-field]");
 const totalSpans = document.querySelectorAll("[data-total-span]");
 
-const saveURL = "/creativity/CM/save/";
+const saveURL = "/assessments/CM/save/";
 
 let saving = false;
 
