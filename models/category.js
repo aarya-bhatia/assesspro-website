@@ -7,6 +7,11 @@ const schema = new mongoose.Schema(
     },
     name: String,
     description: String,
+    status: {
+      type: String,
+      enum: ["public", "private"],
+      default: "public",
+    },
   },
   { _id: false }
 );

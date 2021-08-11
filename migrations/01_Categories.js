@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const FILE = "resources/csv/Categories.csv";
 const { Category } = require("../models");
 
-const columns = { _id: 0, name: 1, description: 2 };
+const columns = { _id: 0, name: 1, description: 2, status: 3 };
 
 async function processRow(row) {
   const data = {};
