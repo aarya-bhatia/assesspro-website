@@ -1,4 +1,8 @@
-const { DivergentResponse, DivergentScore } = require("../../models");
+const {
+  DivergentResponse,
+  DivergentScore,
+  UserAssessment,
+} = require("../../models");
 const questions = require("../../resources/json/cdt.questions.json");
 const { isAdmin } = require("../../controller/auth");
 const baseURL = "/creativity/CDT";
@@ -188,6 +192,39 @@ router.get("/publish/:user_id", isAdmin, async (req, res) => {
   );
 
   res.redirect(baseURL + "/responses");
+});
+
+router.get("/retake", async (req, res) => {
+  const user_assessment = res.locals.user_assessment;
+  const { assessment_key } = user_assessment;
+
+  await DivergentResponse.updateMany(
+    { user_id: req.params.user_id },
+    {
+      $set: {
+        status: "pending",
+      },
+    }
+  );
+
+  await UserAssessment.updateOne(
+    { user_id: req.params.user_id, assessment_key },
+    {
+      $set: {
+        completed: false,
+      },
+      $inc: {
+        attempted: 1,
+      },
+    }
+  );
+
+  res.redirect(user_assessment.redirectURL);
+});
+
+router.get("/delete-score/:score_id", async (req, res) => {
+  await DivergentScore.deleteOne({ _id: req.params.score_id });
+  res.redirect("/users/scores");
 });
 
 module.exports = router;
