@@ -12,6 +12,27 @@
       document.getElementById('mobile').value = mobile;
   }
 
+  const work_experience = "<%= user.work_experience %>"
+  const organization = "<%= user.organization %>"
+  const job_title = "<%= user.job_title %>"
+  const current_employer = "<%= user.current_employer %>"
+
+    if(work_experience) {
+    document.getElementById("work_experience").value = work_experience
+    }
+
+    if(job_title) {
+    document.getElementById("job_title").value = job_title
+    }
+
+    if(organization) {
+    document.getElementById("organization").value = organization
+    }
+
+    if(current_employer) {
+    document.getElementById("current_employer").value = current_employer
+    }
+
   /* Set the status */
   document.getElementById('status').checked = "<%= user.status %>" === 'public';
 
