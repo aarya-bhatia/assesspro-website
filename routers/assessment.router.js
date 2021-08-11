@@ -1,60 +1,54 @@
-const fs = require("fs");
-const path = require("path");
-const { Assessment } = require("../models");
-const { isAuth } = require("../controller/auth");
-const { isEnrolled } = require("../controller/user.enroll");
 const router = require("express").Router();
+const { isEnrolled } = require("../controller/user.enroll");
 
-const assessments = ["CCT", "CDT", "CE", "CM", "CP", "CT", "NEST", "CPT", "SL"];
+router.use(
+  "/SL",
+  isEnrolled("SL"),
+  require("./assessments/social.leadership.router")
+);
 
-// module.exports = function () {
-//   return new Promise(function (resolve, reject) {
-//     Assessment.find({})
-//       .then((assessments) => {
-//         assessments.forEach((assessment) => {
-//           const key = assessment.key;
+router.use(
+  "/CT",
+  isEnrolled("CT"),
+  require("./assessments/temperament.router")
+);
 
-//           console.log(key);
+router.use(
+  "/CP",
+  isEnrolled("CP"),
+  require("./assessments/personality.router")
+);
 
-//           let file = `./assessments/${key}.router.js`;
+router.use("/CM", isEnrolled("CM"), require("./assessments/motivation.router"));
 
-//           if (key == "NEST" || key == "CPT") {
-//             file = "./assessments/psychometric.router.js";
-//           }
+router.use(
+  "/CE",
+  isEnrolled("CE"),
+  require("./assessments/environment.router")
+);
 
-//           if (fs.existsSync(path.join(__dirname, file))) {
-//             router.use("/" + key, [isAuth, isEnrolled(key)], require(file));
+router.use(
+  "/CDT",
+  isEnrolled("CDT"),
+  require("./assessments/divergent.thinking.router")
+);
 
-//             console.log(key, " router is initialised");
-//           } else {
-//             console.log(key, " could not be initialised");
-//           }
-//         });
+router.use(
+  "/CCT",
+  isEnrolled("CCT"),
+  require("./assessments/convergent.thinking.router")
+);
 
-//         resolve(router);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// };
+router.use(
+  "/NEST",
+  isEnrolled("NEST"),
+  require("./assessments/psychometric.router")
+);
 
-assessments.forEach((key) => {
-  let file = `./assessments/${key.toLowerCase()}.router.js`;
-
-  if (key == "NEST" || key == "CPT") {
-    file = "./assessments/psychometric.router.js";
-  }
-
-  console.log(file);
-
-  if (fs.existsSync(path.join(__dirname, file))) {
-    router.use("/" + key, [isAuth, isEnrolled(key)], require(file));
-
-    console.log(key, " router is initialised");
-  } else {
-    console.log(key, " could not be initialised");
-  }
-});
+router.use(
+  "/CPT",
+  isEnrolled("CPT"),
+  require("./assessments/psychometric.router")
+);
 
 module.exports = router;

@@ -64,23 +64,13 @@ app.use("/auth", AuthRouter);
 app.use("/users", isAuth, UserRouter);
 app.use("/contact-us", ContactUsRouter);
 app.use("/details", DetailsRouter);
-app.use("/assessments", AssessmentRouter);
+app.use("/assessments", isAuth, AssessmentRouter);
 
 // Enroll and unenroll routes
 app.get("/enroll/:key", [isAuth], EnrollUser);
 app.get("/unenroll/:key", [isAuth, isEnrolled], UnenrollUser);
 
-// Run after connecting with db
-// connection.once("open", function () {
-//   require("./routers/assessment.router")()
-//     .then((router) => {
-//       app.use("/assessments", router);
-//     })
-//     .catch((err) => {
-//       FileLogger(JSON.stringify(err), "error.log");
-//     });
-// });
-
+// Error handler
 app.get("*", PageNotFound);
 app.use(ErrorHandler);
 
