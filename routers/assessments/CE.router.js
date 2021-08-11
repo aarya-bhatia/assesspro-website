@@ -10,7 +10,7 @@ const router = require("express").Router();
 const score_description =
   "If your score is below 50% for any trait of the environment, you need to go into high gear and try to change that trait.";
 
-const traits = require("../../resources/json/CE.traits.json");
+const traits = require("../../resources/json/ce.traits.json");
 
 router.get("/", async (req, res) => {
   const { user_assessment } = res.locals;

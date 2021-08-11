@@ -40,7 +40,7 @@ const assessments = ["CCT", "CDT", "CE", "CM", "CP", "CT", "NEST", "CPT", "SL"];
 // };
 
 assessments.forEach((key) => {
-  let file = `./assessments/${key}.router.js`;
+  let file = `./assessments/${key.toLowerCase()}.router.js`;
 
   if (key == "NEST" || key == "CPT") {
     file = "./assessments/psychometric.router.js";
