@@ -7,7 +7,6 @@ const router = require("express").Router();
 
 module.exports = function () {
   return new Promise(function (resolve, reject) {
-    // Set up Assessment routers
     Assessment.find({})
       .then((assessments) => {
         assessments.forEach((assessment) => {
@@ -20,11 +19,7 @@ module.exports = function () {
           }
 
           if (fs.existsSync(path.join(__dirname, file))) {
-            router.use(
-              `/assessments/${key}`,
-              [isAuth, isEnrolled(key)],
-              require(file)
-            );
+            router.use("/" + key, [isAuth, isEnrolled(key)], require(file));
 
             console.log(key, " router is initialised");
           }

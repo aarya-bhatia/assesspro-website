@@ -68,16 +68,16 @@ app.use("/details", DetailsRouter);
 app.get("/enroll/:key", [isAuth], EnrollUser);
 app.get("/unenroll/:key", [isAuth, isEnrolled], UnenrollUser);
 
-// Error handlers
-app.get("*", PageNotFound);
-app.use(ErrorHandler);
-
 // Run after connecting with db
 connection.once("open", function () {
   // create all assessment routers
   require("./routers/assessment.router")()
     .then((router) => {
-      app.use(router);
+      app.use("/assessments", router);
+
+      // Error handlers
+      app.get("*", PageNotFound);
+      app.use(ErrorHandler);
 
       // start listening on port
       app.listen(PORT, () => {
