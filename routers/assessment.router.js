@@ -45,6 +45,9 @@ assessments.forEach((key) => {
   if (key == "NEST" || key == "CPT") {
     file = "./assessments/psychometric.router.js";
   }
+
+  console.log(file);
+
   if (fs.existsSync(path.join(__dirname, file))) {
     router.use("/" + key, [isAuth, isEnrolled(key)], require(file));
 
