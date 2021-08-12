@@ -1,106 +1,77 @@
-const {
-  UserModule,
-  UserScore,
-  UserAnswer,
-  Answer,
-  Module,
-} = require("../models");
+const { UserScore, UserAnswer, Answer, Module } = require("../models");
 
 module.exports = async function (req, res) {
   const user_id = req.user._id;
-  const { user_assessment } = res.locals;
-  const {
-    assessment_id,
-    assessment_key,
-    assessment_name,
-    assessment_plot_type,
-  } = user_assessment;
+  const user_assessment = res.locals.user_assessment;
+  const assessment_key = user_assessment.assessment_key;
 
-  const module_scores = await score(user_id, assessment_key);
-  console.log("Assessment Result ", module_scores);
-
-  await UserScore.create({
+  const modules = await Module.find({ assessment_key }).lean();
+  const answers = await Answer.find({ assessment_key }).lean();
+  const user_answers = await UserAnswer.find({
     user_id,
-    assessment_id,
-    assessment_name,
     assessment_key,
-    plot_type: assessment_plot_type,
+  }).lean();
+
+  const module_score_map = [];
+
+  for (const user_answer of user_answers) {
+    const answer = answers.find(function (answer) {
+      return (
+        answer.question_id == user_answer.question_id &&
+        answer.choice == user_answer.choice
+      );
+    });
+
+    if (!module_score_map[user_answer.module_id]) {
+      module_score_map[user_answer.module_id] = {
+        _id: user_answer.module_id,
+        name: user_answer.module_name,
+        score: 0,
+      };
+    }
+
+    module_score_map[user_answer.module_id].score += answer.points;
+  }
+
+  const module_scores = [];
+
+  for (const module_id of Object.keys(module_score_map)) {
+    const score_data = module_score_map[module_id];
+
+    const current_module = modules.find(function (module) {
+      return module._id == score_data._id;
+    });
+
+    if (current_module) {
+      const maxScore =
+        current_module.no_questions * current_module.scale_factor;
+
+      if (maxScore != 0) {
+        const scaled_score = Math.round((100 * score_data.score) / maxScore);
+        console.log(
+          `scaled score for module ${score_data.name} from ${score_data.score} to ${scaled_score}...`
+        );
+        score_data.score = scaled_score;
+      }
+    }
+
+    module_scores.push(score_data);
+  }
+
+  const user_score = await UserScore.create({
+    user_id,
+    assessment_key,
     module_scores,
+    assessment_id: user_assessment.assessment_id,
+    assessment_name: user_assessment.assessment_name,
+    plot_type: user_assessment.assessment_plot_type,
   });
+
+  console.log(user_score);
 
   user_assessment.attempts = (user_assessment.attempts || 0) + 1;
   user_assessment.completed = true;
-
   await user_assessment.save();
 
   res.redirect("/users/scores");
 };
-
-async function scaleModuleScore(score, userModule) {
-  const { module_id } = userModule;
-  const module = await Module.findById(module_id);
-  const { no_questions, scale_factor } = module;
-  const maxScore = no_questions * scale_factor;
-
-  if (maxScore === 0) {
-    return score;
-  }
-
-  return Math.round((100 * score) / maxScore);
-}
-
-// Scores the assessment and returns the module scores array
-async function score(user_id, assessment_key) {
-  return new Promise(async (resolve) => {
-    // stores the module scores
-    let result = [];
-
-    // Get user modules
-    const userModules = await UserModule.find({ user_id, assessment_key });
-
-    for (const userModule of userModules) {
-      // Get the module id for current user module
-      const { module_id, module_name } = userModule;
-
-      let score = 0;
-
-      // Get user answers for current module
-      // const userAnswers = await getUserAnswersForModule(user_id, module_id);
-      const userAnswers = await UserAnswer.find({
-        user_id,
-        module_id,
-      });
-
-      // Sum up total points for module answers.
-      for (const userAnswer of userAnswers) {
-        const { question_id, choice } = userAnswer;
-
-        const answer = await Answer.findOne({
-          question_id,
-          choice,
-        });
-
-        if (!answer) {
-          throw new Error(`Answer not found for question id ${question_id}
-      and choice ${choice}`);
-        }
-
-        score += answer.points;
-      }
-
-      // Scale the score
-      const scaled_score = await scaleModuleScore(score, userModule);
-      console.log(`Scaled Score from ${score} to ${scaled_score}`);
-      score = scaled_score;
-
-      // update module scores
-      result.push({
-        _id: module_id,
-        name: module_name,
-        score,
-      });
-    }
-
-    resolve(result);
-  });
-}

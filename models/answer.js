@@ -4,7 +4,8 @@ const model = mongoose.model;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
-  question_id: ObjectId,
+  assessment_key: String,
+  question_id: Number,
   choice: String,
   points: Number,
 });

@@ -12,8 +12,9 @@ const model = mongoose.model;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
+  assessment_key: String,
   user_id: { type: ObjectId, required: true },
-  question_id: { type: ObjectId, required: true },
+  question_id: { type: Number, required: true },
   module_id: { type: Number, required: true },
   module_name: String,
   choice: String,
