@@ -10,6 +10,8 @@ const FILE = "resources/csv/QuestionBank.csv";
 
 const Columns = initColumns(
   Array.from([
+    "_id",
+    "assessment_key",
     "module_id",
     "module_name",
     "content",
@@ -54,12 +56,16 @@ function getChoicesArray(row) {
 
 const processRow = async (row) => {
   // Create question
+  const _id = parseInt(row[Columns._id]);
+  const assessment_key = row[Columns.assessment_key];
   const module_id = parseInt(row[Columns.module_id]);
   const module_name = row[Columns.module_name];
   const content = row[Columns.content];
   const choices = getChoicesArray(row);
 
   const question = await Question.create({
+    _id,
+    assessment_key,
     module_id,
     module_name,
     content,
@@ -71,6 +77,7 @@ const processRow = async (row) => {
   // Create answers for each choice
   for (const choice of choices) {
     await Answer.create({
+      assessment_key,
       question_id: question._id,
       choice: choice._id,
       points: choice.points,

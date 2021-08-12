@@ -5,27 +5,27 @@
         "options": [
             {
                 "_id": "A",
-                "content": "To complete my pending tasks efficiently, even if that leaves little time for entertainment or relaxation "
+                "content": "To complete my pending tasks <em>efficiently</em>, even if that leaves little time for entertainment or relaxation "
             },
             {
                 "_id": "B",
-                "content": "To meet people who can help me become more prominent, even if family members feel I am neglecting them "
+                "content": "To <em>meet people</em> who can help me become more prominent, even if <em>family members feel</em> I am <em>neglecting</em> them "
             },
             {
                 "_id": "C",
-                "content": "To learn or do something off-beat, even if people crack jokes about it "
+                "content": "To learn or do something <em>off-beat</em>, even if people <em>crack jokes</em> about it "
             },
             {
                 "_id": "D",
-                "content": "To discharge home-related duties conscientiously, even if this leaves little time for fun and games "
+                "content": "To discharge home-related <em>duties conscientiously</em>, even if this leaves <em>little time for fun</em> and games "
             },
             {
                 "_id": "E",
-                "content": "To read books or do things that expand my awareness of myself and the world, even if friends call me anti-social "
+                "content": "To read books or do things that expand my <em>awareness</em> of myself and the world, even if <em>friends</em> call me <em>anti-social</em> "
             },
             {
                 "_id": "F",
-                "content": "To study investment alternatives, job opportunities, etc. for increasing my financial security, even by forgoing related activities like going to movies, meeting friends, etc."
+                "content": "To study investment alternatives, job opportunities, etc. for increasing my <em>financial security</em>, even by forgoing <em>related activities</em> like going to movies, meeting friends, etc."
             }
         ]
     },

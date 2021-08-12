@@ -1,6 +1,6 @@
-require("../config/db.config").connect();
+require("../../config/db.config").connect();
 
-const { Question } = require("../models");
+const { Question } = require("../../models");
 
 const imageDir = "/images/AbstractReasoning/";
 

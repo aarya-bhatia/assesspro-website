@@ -1,205 +1,197 @@
-﻿Module ID,Module Name,Question,Choice A,Choice B,Choice C,Choice D,Choice E,Points A,Points B,Points C,Points D,Points E,,
-1,Accuracy In English,"Excuse me. Do you know where the bus terminal is?  ""It is _____ the large police station.""",Opposite,Opposed to,Opposite with,Opposed,,1,0,0,0,0,,
-1,Accuracy In English,"Neha is not doing well in class. ""You must _____ that she is just a beginner at this level.""",Keep minding,Keep in mind,Keep to mind,Keeping in mind,,0,1,0,0,0,,
-1,Accuracy In English,I hope to visit the church _________,While I am there,While I will be there,While I am their,None,,1,0,0,0,0,,
-1,Accuracy In English,"Those students will perform in the annual school play.  ""Yes, it is _____ for next week.""",Time tabled,Scheduled,Put-on,Due,,0,1,0,0,0,,
-1,Accuracy In English,Indicate which if any of the following sentences does not contain an error.,The design was unique,The design was one of the most unique,The design was the most unique,None,,1,0,0,0,0,,
-1,Accuracy In English,Strauss finished ____________ two of his published compositions before his tenth birthday.,To write,Written,Writing,The write,,0,0,1,0,0,,
-1,Accuracy In English,As I get older I find myself getting ___________,More serious,Seriouser,Most serious,None,,1,0,0,0,0,,
-1,Accuracy In English,Our baseball team___ nine players.,Has,Have,Has been,is,,1,0,0,0,0,,
-1,Accuracy In English,He was thought ___________ the disease in Hong Kong. ,To catch,catching,to have caught,None,,0,0,1,0,0,,
-1,Accuracy In English,Q: What are you doing?                                            A:_______________,I were walking,I was walking,I am walking,I walking,,0,0,1,0,0,,
-1,Accuracy In English,"If you don't understand the text, don't hesitate _________________.",To ask a question,Asking the question,To ask question,To asking a question,,1,0,0,0,0,,
-1,Accuracy In English,The car was parked directly ________________ the office.,In front of,Before,Ahead,Preceding,,1,0,0,0,0,,
-1,Accuracy In English,"Never before _________________ as rapidly, as during the last three decades.",Communications have developed,Have communications developed,Have developed communications,None,,0,1,0,0,0,,
-1,Accuracy In English,The Eiffel Tower is ________ the Leaning Tower of Pisa.,As popular a tourist attraction than,As popular a tourist attraction as,As more popular a tourist attraction as,,,0,1,0,0,0,,
-1,Accuracy In English,It is not yet clearly understood __________________ cause obesity.,Why eating too many hamburgers can,Why eating too many hamburgers,Eating too many hamburgers can,,,1,0,0,0,0,,
-2,English Comprehension,Maintenance rehearsal involves,Making information meaningful,Counting backwards by threes,Using new information in a sentence,Silently repeating information,,0,0,0,1,0,,
-2,English Comprehension,"According to the passage, what happens if a short-term memory is not repeated?",It is never understood,It is remembered at a later date,It becomes a part of long-term memory,It is completely forgotten after 18 seconds,,0,0,0,1,0,,
-2,English Comprehension,Why were people in an experiment with meaningless syllables asked to count backward?,They would be able to concentrate better,They would have better long-term memory,They would not be able to repeat the nonsense syllable,They would be able to use rehersal strategies,,0,0,1,0,0,,
-2,English Comprehension,Elaborative rehearsal is:,Less effective than maintenance rehersal,Another name for maintenance rehersal,Effective only for simple material,More effective than maintenance rehersal,,0,0,0,1,0,,
-2,English Comprehension,"In the last paragraph, elaborate means",To give greater detail to,To give up,To summarize,To shorten,,1,0,0,0,0,,
-3,Verbal Reasoning,Sculptor: Sculpture::Poet:?,Canvas,Pen,Verse,chisel,,0,0,1,0,0,,
-3,Verbal Reasoning,Deceit is to fraud as decision is to;,choice,conclusion,indecision,,,0,1,0,0,0,,
-3,Verbal Reasoning,Horse is to Jockey as Car is to:,vehicle,passenger,taxi,chauffeur,,0,0,0,1,0,,
-3,Verbal Reasoning,Particular is to general as speculation is to:,surmise,hypothesis,reality,,,0,0,1,0,0,,
-3,Verbal Reasoning,Conference: Chairman::Newspaper:?,reporter,editor,distibutor,printer,,0,1,0,0,0,,
-3,Verbal Reasoning,Bread: Yeast:: Curd:?,bacteria,fungi,germs,virus,,1,0,0,0,0,,
-3,Verbal Reasoning,What is closet in meaning to Passageway?,passport,stop,corridor,ticket,,0,0,1,0,0,,
-3,Verbal Reasoning,Liquid is to Fluid as Comedian is to……….?,ridicule,solemnity,companion,humor,,0,0,0,1,0,,
-4,Abstract Reasoning,Which image does not belong to the group? ,A,B,C,D,,1,0,0,0,0,,
-4,Abstract Reasoning,Which shape completes the analogy? ,A,B,C,D,,0,0,0,1,0,,
-4,Abstract Reasoning,Which shape completes the analogy? ,A,B,C,D,,0,0,1,0,0,,
-4,Abstract Reasoning,Which circle completes the analogy? ,A,B,C,D,,0,0,1,0,0,,
-4,Abstract Reasoning,Which figure completes the series? ,A,B,C,D,,0,0,1,0,0,,
-4,Abstract Reasoning,Which of these comes next in sequence? ,A,B,C,D,,0,0,0,1,0,,
-4,Abstract Reasoning,Which comes next in the series? ,A,B,C,D,,0,0,0,1,0,,
-4,Abstract Reasoning,Which is the odd one out? ,A,B,C,D,,0,0,1,0,0,,
-5,Logical Reasoning,"Pointing to a photograph, a person tells his friend, “She is the grand-daughter of the elder brother of my father"". How is the girl in the photograph related to this man?",aunt,niece,daughter-in-law,none,,0,1,0,0,0,,
-5,Logical Reasoning,Shyam is older than Deepak who is older than Ram. Suman is older than Manish who is younger than Deepak. Shyam is younger than Suman. Ram is younger than Manish. Who is the eldest?,shyam,deepak,ram,suman,manish,0,0,0,1,0,,
-5,Logical Reasoning,"January, February, April, July, November, April, ?",july,december,october,january,,0,0,1,0,0,,
-5,Logical Reasoning,A is the husband of B. E is the daughter of C. A is the father of C. How is B related to E,mother,auth,cousin,grandmother,,0,0,0,1,0,,
-5,Logical Reasoning,"Rohit goes to visit his sister, who has a daughter Sheela. Sheela was playing chess with Namit. How is Rohit related to Namit?",brother,cousin,uncle,cannot be determined,,0,0,0,1,0,,
-5,Logical Reasoning,"When Jack, James, Jim and Jane stand by age, Jack being the youngest stands first while James brings up the rear. However, when they stand by height, Jim being the shortest stands first while James comes to the third spot. In both lines Jane remains at the second position. Who is immediately younger than James?",jack,jim,james,jane,,0,1,0,0,0,,
-5,Logical Reasoning,Five cars had a race. The Honda beat the Rover but could not overtake the Astra. The Renault failed to overtake the Granada but beat the Astra. Which car came last?,honda,astra,renault,granada,rover,0,0,0,0,1,,
-5,Logical Reasoning,Pankaj goes either hunting or fishing every day. If it is snowing & windy then Pankaj goes hunting. If it is sunny and not windy then Pankaj goes fishing. Sometimes it can be snowing and sunny. Which of the following statements must be true?,if it is not sunny and it is snowing then Pankaj goes hunting,if it is windy and not sunny then Pankaj goes hunting,If it is windy and Pankaj does not go hunting then it is not snowing,If it is windy and sunny then Pankaj goes hunting,If it is snowing and sunny then Pankaj goes hunting,0,0,1,0,0,,
-6,Numerical Reasoning,16: 56::32 : ?,96,112,120,128,,0,1,0,0,0,,
-6,Numerical Reasoning,"A person starts from his house, travels a distance of 12 m westwards, and then travels a distance of 10 m northwards, then a distance of 10 m southwards. What is his distance from his house presently?",12 m,22 m,18 m,8 m,,1,0,0,0,0,,
-6,Numerical Reasoning,A train travelling at 60 mph enters a tunnel that is 5 miles long. The train is one mile. How many minutes does it take for the whole train to pass through the tunnel?,7,4,10,5,6,0,0,0,0,1,,
-6,Numerical Reasoning,"The sum of the ages of the father, mother, son and daughter of a family is 95. How long are they to wait for the sum of their ages to become 107?",12 Years,8 Years,3 Years,2 Years,,0,0,1,0,0,,
-6,Numerical Reasoning,"If an article is sold at a certain price on 10% profit, what will be the gain percent if sold for double the price?",120%,125%,115%,60%,,1,0,0,0,0,,
-6,Numerical Reasoning,It takes Ram 3 hours to clean the house. It takes Shyam 2 hours to clean the house. How long would it take for them to clean it together?,72min,36min,84min,96min,,1,0,0,0,0,,
-6,Numerical Reasoning,"A school child got twice as many sums wrong as she got right. If she attempted 24 sums in all, how many did she solve correctly?",8,16,12,4,,1,0,0,0,0,,
-6,Numerical Reasoning,"In an office there are 30 men who are more than 165cm tall. If these men makeup three quarters of the men in the office, and the total number of men is one quarter of the total number of people in the office, how many people are there in the office?",80,60,130,160,,0,0,0,1,0,,
-7,Social Skills,"I prefer not to criticize others, even if I am sure they are wrong",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-7,Social Skills,I adjust my behavior according to the current situation and/or the person with whom I'm interacting at the time,Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-7,Social Skills,I am not at ease with people I don't know,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-7,Social Skills,"I express my opinions, even if others in the group disagree with me",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-7,Social Skills,I dislike situations in which I am expected to socialize,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-7,Social Skills,I feel free to politely voice my disagreement with someone in a position of authority,Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-7,Social Skills,"Looking back at typical conversations, I realize that I talked mostly about myself",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-7,Social Skills,"Talking to people in positions of authority makes me feel nervous, self-conscious, or unsure of myself",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-7,Social Skills,I will use intimidation to ensure that I get my way,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-7,Social Skills,"When I go out with other people, I’ll do what they suggest, even if I feel like doing something else",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-8,Team Work,"If I hand over one of my tasks to another person, I lose control of the final product",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-8,Team Work,"When someone does something that bothers me, I am able to express my feelings calmly and constructively",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-8,Team Work,"When working in a team, the potential for error is much higher than when working alone",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-8,Team Work,"I ask ""what"" rather than ""who"" went wrong when faced with an unexpected problem",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-8,Team Work,Delays before starting a group project irritate me; I feel I would get going faster on my own,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-8,Team Work,I have trouble adapting to people who hold a different belief system from my own,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-8,Team Work,"Once I make up my mind about something, it's a waste of time listening to other suggestions the following thought is typical of me: ""If you want something done right, you have to do it yourself!""",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-8,Team Work,The only role I would be comfortable with in a group is one with a lot of the decision-making power,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-8,Team Work,"As a group leader, I would have trouble showing others my gratitude when I know they have worked hard",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-8,Team Work,It would bother me to only be praised as a member of the group instead of getting individual recognition from supervisors/superiors,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,People tell me that I have an uncanny ability to guess what they are feeling,Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-9,Emotional Intelligence,I feel uneasy in situations where I am expected to share my emotions,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,I get so caught up in what I have to say that I am unaware of the reactions of my listeners,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,Emotionally charged situations make me uncomfortable,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,I find it difficult to understand people when they don’t have the same point of view as I do,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,"When I have a personal problem, I cannot think about anything else",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,I find myself snapping at others when I am feeling stressed,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,"Even when I do my best, I feel guilty about the things that were not done perfectly",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,"When a situation requires a change of plan or strategy, I feel confused",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-9,Emotional Intelligence,When having a heated discussion with a friend or co-worker: I try to keep control of my emotions but mostly fail,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-10,Self Management,I take time out to prioritize my tasks when I have a lot to get done,Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-10,Self Management,"I find it difficult to keep my pens, notepad, etc. and anything else I need on a regular basis in the same place",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-10,Self Management,I find myself rushing to get things done at the last minute,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-10,Self Management,I have a tendency to take on more tasks than I should,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-10,Self Management,"Whenever possible, I schedule the more important tasks at work during the time of day when I am most productive",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-10,Self Management,"Although I do not plan to , I tend to jump from one unfinished task to another ",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-10,Self Management,I do tasks carefully when I am sure that someone else will see the result ,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-10,Self Management,I find it difficult to accurately estimate the amount of time that a task will take,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-10,Self Management,"When I get an assignment, I start right away and keep working until it is complete",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1,,
-10,Self Management,I find it difficult to motivate myself to complete unpleasant but necessary tasks,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5,,
-11,Verbal Linguistic,I am careful about the direct and implied meanings of the words I choose.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,I am grammatically accurate.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,"I am sensitive to the sounds, rhythms, and inflections, especially as found in poetry.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,"I like to do crosswords, play Scrabble or have a go at other word puzzles.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,I can hold my own in verbal arguments or debates.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,"I like to talk through problems, explain solutions and ask questions.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,I can readily absorb information from the radio or audio cassettes.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,I really enjoy books. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,"I like puns, tongue twisters, nonsense rhymes, and double meanings.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,I often refer to things I have read or heard in conversations.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,People often ask me the meaning of words.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,Foreign languages interest me. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-11,Verbal Linguistic,I'm good at finding the fine points of word meanings.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I find satisfaction in dealing with numbers.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,"I prefer questions that have definite ""right"" and ""wrong"" answers.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I am interested in new scientific advances.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I like to put together a detailed itinerary for vacations or trips.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I enjoy the challenge of brain teasers or other puzzles that require logical thinking.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I can find specific examples to support a general point of view.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I can quickly and easily compute numbers in my head.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I enjoy Math and Science in school.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,"I look for structure, patterns, sequences, or logical order.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,"I can think in abstract, clear, imageless concepts. ",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I can find logical flaws in things people say and do at work or home. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,I can complete calculations quickly in my head.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-12,Logical Mathematical,Logic puzzles are fun.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,"I am good at putting together jigsaw puzzles, and reading instructions, patterns, or blueprints",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I tend to make a visual record of events with a camera or camcorder.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I find myself doodling when taking notes or thinking through something.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I have no problem reading maps and navigating.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I can visualize how things look from a different perspective.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,"Charts, graphs and tables help me interpret data. ",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,"When I close my eyes, I can see clear visual images.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I am responsive to color.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I often use a camcorder or camera to record my surroundings.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,"I enjoy visual puzzles such as mazes, jigsaw puzzles, 3-D images.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I navigate well in unfamiliar places.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I find Geometry easier than Algebra.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-13,Visual Spatial,I can manipulate three dimensional drawings in my head.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I appreciate a wide variety of music.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,"I understand the basic precepts of music such as harmony, chords, and keys.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I have a good sense of musical pitch.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I can play a musical instrument.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I often listen to music at home.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I find myself tapping in time to music.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I can identify different musical instruments.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I can’t imagine life without music.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I often whistle or hum a tune.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I like a musical background when I am working.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I have a pleasant singing voice. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I can tell when someone sings off key or out of tune. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-14,Musical,I often find a TV jingle or a tune running through my mind as I walk or work.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I like the most thrilling rides at the fun fair.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I need to physically handle something to fully understand it.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I use hand gestures or other kinds of body language to express myself.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I need to tackle a new learning experience ‘hands on’ rather than reading a manual or watching a video.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I find it difficult to sit still for long periods of time. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,"I frequently get insights or ideas when I am involved in physical activities, such as walking, swimming, or jogging.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I enjoy spending my free time outside.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,Sports are a part of my life. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I use gestures and non-verbal cues when I communicate.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I love to dance. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I am skilful in working with objects. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I learn best when I have to get up and do it for myself. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-15,Bodily Kinesthetic,I find it easiest to solve problems when I am doing something physical.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,"I am able to influence other individuals to believe and/or behave in response to my own beliefs, preferences and desires.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I have a large circle of close associates.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I have several very close personal friends.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I communicate well with people and can help resolve disputes.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I talk over problems with others rather than trying to resolve them by myself.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I prefer team and group sports to individual sports.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I have been called a leader and consider myself one.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I am comfortable in a crowd of people.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I would rather spend a Saturday night at a party than spend it at home alone.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I am a “team player”.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I am a good listener when friends have problems.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I like teaching things to others.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-16,Interpersonal,I have a natural ability to sort out arguments between friends. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,"I am aware of the complexity of my own feelings, emotions, and beliefs in various circumstances.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,My ability to understand my own emotions helps me to decide whether or how to be involved in certain situations.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I understand why I believe and behave the way I do.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I often spend ‘quiet time’ reflecting on the important issues in my life.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I am an independent thinker—I know my own mind.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I have a private hobby or interest which I don’t really share with anyone else.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I work for myself—or have seriously contemplated ‘doing your own thing.’,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I have specific goals in life that I think about regularly.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I would rather spend a weekend in a cabin or hide-away than at a large resort with lots of people.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I like to be involved in causes that help others.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I am keenly aware of my moral beliefs.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,I learn best when I have an emotional attachment to the subject.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-17,Intrapersonal,Fairness is important to me.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I am conscious of wildlife while on a walk and can ‘read’ weather signs.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I am a keen gardener.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I consider that conservation of resources and achieving sustainable growth are two of the biggest issues of our times.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I enjoy categorizing things by common traits,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,Classification helps me make sense of new data. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I enjoy working in a garden.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,Putting things in hierarchies makes sense to me,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I am good at categorizing and cataloguing information easily ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I enjoy keeping pets ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I like to learn about nature ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,"I like to camp, hike, walk and climb .",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I am conscious of changes in the weather.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-18,Naturalist,I enjoy nature and to be outdoors. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
+﻿Question ID,Assessment Key,Module ID,Module Name,Question,Choice A,Choice B,Choice C,Choice D,Choice E,Points A,Points B,Points C,Points D,Points E
+1,NEST,1,Accuracy In English,"Excuse me. Do you know where the bus terminal is?  ""It is _____ the large police station.""",Opposite,Opposed to,Opposite with,Opposed,,1,0,0,0,0
+2,NEST,1,Accuracy In English,"Neha is not doing well in class. ""You must _____ that she is just a beginner at this level.""",Keep minding,Keep in mind,Keep to mind,Keeping in mind,,0,1,0,0,0
+3,NEST,1,Accuracy In English,I hope to visit the church _________,While I am there,While I will be there,While I am their,None,,1,0,0,0,0
+4,NEST,1,Accuracy In English,"Those students will perform in the annual school play.  ""Yes, it is _____ for next week.""",Time tabled,Scheduled,Put-on,Due,,0,1,0,0,0
+5,NEST,1,Accuracy In English,Indicate which if any of the following sentences does not contain an error.,The design was unique,The design was one of the most unique,The design was the most unique,None,,1,0,0,0,0
+6,NEST,1,Accuracy In English,Strauss finished ____________ two of his published compositions before his tenth birthday.,To write,Written,Writing,The write,,0,0,1,0,0
+7,NEST,1,Accuracy In English,As I get older I find myself getting ___________,More serious,Seriouser,Most serious,None,,1,0,0,0,0
+8,NEST,1,Accuracy In English,Our baseball team___ nine players.,Has,Have,Has been,is,,1,0,0,0,0
+9,NEST,1,Accuracy In English,He was thought ___________ the disease in Hong Kong. ,To catch,catching,to have caught,None,,0,0,1,0,0
+10,NEST,1,Accuracy In English,Q: What are you doing?                                            A:_______________,I were walking,I was walking,I am walking,I walking,,0,0,1,0,0
+11,NEST,1,Accuracy In English,"If you don't understand the text, don't hesitate _________________.",To ask a question,Asking the question,To ask question,To asking a question,,1,0,0,0,0
+12,NEST,1,Accuracy In English,The car was parked directly ________________ the office.,In front of,Before,Ahead,Preceding,,1,0,0,0,0
+13,NEST,1,Accuracy In English,"Never before _________________ as rapidly, as during the last three decades.",Communications have developed,Have communications developed,Have developed communications,None,,0,1,0,0,0
+14,NEST,1,Accuracy In English,The Eiffel Tower is ________ the Leaning Tower of Pisa.,As popular a tourist attraction than,As popular a tourist attraction as,As more popular a tourist attraction as,,,0,1,0,0,0
+15,NEST,1,Accuracy In English,It is not yet clearly understood __________________ cause obesity.,Why eating too many hamburgers can,Why eating too many hamburgers,Eating too many hamburgers can,,,1,0,0,0,0
+16,NEST,2,English Comprehension,Maintenance rehearsal involves,Making information meaningful,Counting backwards by threes,Using new information in a sentence,Silently repeating information,,0,0,0,1,0
+17,NEST,2,English Comprehension,"According to the passage, what happens if a short-term memory is not repeated?",It is never understood,It is remembered at a later date,It becomes a part of long-term memory,It is completely forgotten after 18 seconds,,0,0,0,1,0
+18,NEST,2,English Comprehension,Why were people in an experiment with meaningless syllables asked to count backward?,They would be able to concentrate better,They would have better long-term memory,They would not be able to repeat the nonsense syllable,They would be able to use rehersal strategies,,0,0,1,0,0
+19,NEST,2,English Comprehension,Elaborative rehearsal is:,Less effective than maintenance rehersal,Another name for maintenance rehersal,Effective only for simple material,More effective than maintenance rehersal,,0,0,0,1,0
+20,NEST,2,English Comprehension,"In the last paragraph, elaborate means",To give greater detail to,To give up,To summarize,To shorten,,1,0,0,0,0
+21,NEST,3,Verbal Reasoning,Sculptor: Sculpture::Poet:?,Canvas,Pen,Verse,chisel,,0,0,1,0,0
+22,NEST,3,Verbal Reasoning,Deceit is to fraud as decision is to;,choice,conclusion,indecision,,,0,1,0,0,0
+23,NEST,3,Verbal Reasoning,Horse is to Jockey as Car is to:,vehicle,passenger,taxi,chauffeur,,0,0,0,1,0
+24,NEST,3,Verbal Reasoning,Particular is to general as speculation is to:,surmise,hypothesis,reality,,,0,0,1,0,0
+25,NEST,3,Verbal Reasoning,Conference: Chairman::Newspaper:?,reporter,editor,distibutor,printer,,0,1,0,0,0
+26,NEST,3,Verbal Reasoning,Bread: Yeast:: Curd:?,bacteria,fungi,germs,virus,,1,0,0,0,0
+27,NEST,3,Verbal Reasoning,What is closet in meaning to Passageway?,passport,stop,corridor,ticket,,0,0,1,0,0
+28,NEST,3,Verbal Reasoning,Liquid is to Fluid as Comedian is to……….?,ridicule,solemnity,companion,humor,,0,0,0,1,0
+29,NEST,4,Abstract Reasoning,Which image does not belong to the group? ,A,B,C,D,,1,0,0,0,0
+30,NEST,4,Abstract Reasoning,Which shape completes the analogy? ,A,B,C,D,,0,0,0,1,0
+31,NEST,4,Abstract Reasoning,Which shape completes the analogy? ,A,B,C,D,,0,0,1,0,0
+32,NEST,4,Abstract Reasoning,Which circle completes the analogy? ,A,B,C,D,,0,0,1,0,0
+33,NEST,4,Abstract Reasoning,Which figure completes the series? ,A,B,C,D,,0,0,1,0,0
+34,NEST,4,Abstract Reasoning,Which of these comes next in sequence? ,A,B,C,D,,0,0,0,1,0
+35,NEST,4,Abstract Reasoning,Which comes next in the series? ,A,B,C,D,,0,0,0,1,0
+36,NEST,4,Abstract Reasoning,Which is the odd one out? ,A,B,C,D,,0,0,1,0,0
+37,NEST,5,Logical Reasoning,"Pointing to a photograph, a person tells his friend, “She is the grand-daughter of the elder brother of my father"". How is the girl in the photograph related to this man?",aunt,niece,daughter-in-law,none,,0,1,0,0,0
+38,NEST,5,Logical Reasoning,Shyam is older than Deepak who is older than Ram. Suman is older than Manish who is younger than Deepak. Shyam is younger than Suman. Ram is younger than Manish. Who is the eldest?,shyam,deepak,ram,suman,manish,0,0,0,1,0
+39,NEST,5,Logical Reasoning,"January, February, April, July, November, April, ?",july,december,october,january,,0,0,1,0,0
+40,NEST,5,Logical Reasoning,A is the husband of B. E is the daughter of C. A is the father of C. How is B related to E,mother,auth,cousin,grandmother,,0,0,0,1,0
+41,NEST,5,Logical Reasoning,"Rohit goes to visit his sister, who has a daughter Sheela. Sheela was playing chess with Namit. How is Rohit related to Namit?",brother,cousin,uncle,cannot be determined,,0,0,0,1,0
+42,NEST,5,Logical Reasoning,"When Jack, James, Jim and Jane stand by age, Jack being the youngest stands first while James brings up the rear. However, when they stand by height, Jim being the shortest stands first while James comes to the third spot. In both lines Jane remains at the second position. Who is immediately younger than James?",jack,jim,james,jane,,0,1,0,0,0
+43,NEST,5,Logical Reasoning,Five cars had a race. The Honda beat the Rover but could not overtake the Astra. The Renault failed to overtake the Granada but beat the Astra. Which car came last?,honda,astra,renault,granada,rover,0,0,0,0,1
+44,NEST,5,Logical Reasoning,Pankaj goes either hunting or fishing every day. If it is snowing & windy then Pankaj goes hunting. If it is sunny and not windy then Pankaj goes fishing. Sometimes it can be snowing and sunny. Which of the following statements must be true?,if it is not sunny and it is snowing then Pankaj goes hunting,if it is windy and not sunny then Pankaj goes hunting,If it is windy and Pankaj does not go hunting then it is not snowing,If it is windy and sunny then Pankaj goes hunting,If it is snowing and sunny then Pankaj goes hunting,0,0,1,0,0
+45,NEST,6,Numerical Reasoning,16: 56::32 : ?,96,112,120,128,,0,1,0,0,0
+46,NEST,6,Numerical Reasoning,"A person starts from his house, travels a distance of 12 m westwards, and then travels a distance of 10 m northwards, then a distance of 10 m southwards. What is his distance from his house presently?",12 m,22 m,18 m,8 m,,1,0,0,0,0
+47,NEST,6,Numerical Reasoning,A train travelling at 60 mph enters a tunnel that is 5 miles long. The train is one mile. How many minutes does it take for the whole train to pass through the tunnel?,7,4,10,5,6,0,0,0,0,1
+48,NEST,6,Numerical Reasoning,"The sum of the ages of the father, mother, son and daughter of a family is 95. How long are they to wait for the sum of their ages to become 107?",12 Years,8 Years,3 Years,2 Years,,0,0,1,0,0
+49,NEST,6,Numerical Reasoning,"If an article is sold at a certain price on 10% profit, what will be the gain percent if sold for double the price?",120%,125%,115%,60%,,1,0,0,0,0
+50,NEST,6,Numerical Reasoning,It takes Ram 3 hours to clean the house. It takes Shyam 2 hours to clean the house. How long would it take for them to clean it together?,72min,36min,84min,96min,,1,0,0,0,0
+51,NEST,6,Numerical Reasoning,"A school child got twice as many sums wrong as she got right. If she attempted 24 sums in all, how many did she solve correctly?",8,16,12,4,,1,0,0,0,0
+52,NEST,6,Numerical Reasoning,"In an office there are 30 men who are more than 165cm tall. If these men makeup three quarters of the men in the office, and the total number of men is one quarter of the total number of people in the office, how many people are there in the office?",80,60,130,160,,0,0,0,1,0
+53,NEST,7,Social Skills,"I prefer not to criticize others, even if I am sure they are wrong",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+54,NEST,7,Social Skills,I adjust my behavior according to the current situation and/or the person with whom I'm interacting at the time,Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+55,NEST,7,Social Skills,I am not at ease with people I don't know,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+56,NEST,7,Social Skills,"I express my opinions, even if others in the group disagree with me",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+57,NEST,7,Social Skills,I dislike situations in which I am expected to socialize,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+58,NEST,7,Social Skills,I feel free to politely voice my disagreement with someone in a position of authority,Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+59,NEST,7,Social Skills,"Looking back at typical conversations, I realize that I talked mostly about myself",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+60,NEST,7,Social Skills,"Talking to people in positions of authority makes me feel nervous, self-conscious, or unsure of myself",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+61,NEST,7,Social Skills,I will use intimidation to ensure that I get my way,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+62,NEST,7,Social Skills,"When I go out with other people, I’ll do what they suggest, even if I feel like doing something else",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+63,NEST,8,Team Work,"If I hand over one of my tasks to another person, I lose control of the final product",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+64,NEST,8,Team Work,"When someone does something that bothers me, I am able to express my feelings calmly and constructively",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+65,NEST,8,Team Work,"When working in a team, the potential for error is much higher than when working alone",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+66,NEST,8,Team Work,"I ask ""what"" rather than ""who"" went wrong when faced with an unexpected problem",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+67,NEST,8,Team Work,Delays before starting a group project irritate me; I feel I would get going faster on my own,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+68,NEST,8,Team Work,I have trouble adapting to people who hold a different belief system from my own,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+69,NEST,8,Team Work,"Once I make up my mind about something, it's a waste of time listening to other suggestions the following thought is typical of me: ""If you want something done right, you have to do it yourself!""",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+70,NEST,8,Team Work,The only role I would be comfortable with in a group is one with a lot of the decision-making power,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+71,NEST,8,Team Work,"As a group leader, I would have trouble showing others my gratitude when I know they have worked hard",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+72,NEST,8,Team Work,It would bother me to only be praised as a member of the group instead of getting individual recognition from supervisors/superiors,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+73,NEST,9,Emotional Intelligence,People tell me that I have an uncanny ability to guess what they are feeling,Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+74,NEST,9,Emotional Intelligence,I feel uneasy in situations where I am expected to share my emotions,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+75,NEST,9,Emotional Intelligence,I get so caught up in what I have to say that I am unaware of the reactions of my listeners,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+76,NEST,9,Emotional Intelligence,Emotionally charged situations make me uncomfortable,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+77,NEST,9,Emotional Intelligence,I find it difficult to understand people when they don’t have the same point of view as I do,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+78,NEST,9,Emotional Intelligence,"When I have a personal problem, I cannot think about anything else",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+79,NEST,9,Emotional Intelligence,I find myself snapping at others when I am feeling stressed,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+80,NEST,9,Emotional Intelligence,"Even when I do my best, I feel guilty about the things that were not done perfectly",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+81,NEST,9,Emotional Intelligence,"When a situation requires a change of plan or strategy, I feel confused",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+82,NEST,9,Emotional Intelligence,When having a heated discussion with a friend or co-worker: I try to keep control of my emotions but mostly fail,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+83,NEST,10,Self Management,I take time out to prioritize my tasks when I have a lot to get done,Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+84,NEST,10,Self Management,"I find it difficult to keep my pens, notepad, etc. and anything else I need on a regular basis in the same place",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+85,NEST,10,Self Management,I find myself rushing to get things done at the last minute,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+86,NEST,10,Self Management,I have a tendency to take on more tasks than I should,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+87,NEST,10,Self Management,"Whenever possible, I schedule the more important tasks at work during the time of day when I am most productive",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+88,NEST,10,Self Management,"Although I do not plan to , I tend to jump from one unfinished task to another ",Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+89,NEST,10,Self Management,I do tasks carefully when I am sure that someone else will see the result ,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+90,NEST,10,Self Management,I find it difficult to accurately estimate the amount of time that a task will take,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+91,NEST,10,Self Management,"When I get an assignment, I start right away and keep working until it is complete",Always,Often,Sometimes,Rarely,Never,5,4,3,2,1
+92,NEST,10,Self Management,I find it difficult to motivate myself to complete unpleasant but necessary tasks,Always,Often,Sometimes,Rarely,Never,1,2,3,4,5
+93,CPT,11,Verbal Linguistic,I am careful about the direct and implied meanings of the words I choose.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+94,CPT,11,Verbal Linguistic,I am grammatically accurate.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+95,CPT,11,Verbal Linguistic,"I am sensitive to the sounds, rhythms, and inflections, especially as found in poetry.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+96,CPT,11,Verbal Linguistic,"I like to do crosswords, play Scrabble or have a go at other word puzzles.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+97,CPT,11,Verbal Linguistic,I can hold my own in verbal arguments or debates.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+98,CPT,11,Verbal Linguistic,"I like to talk through problems, explain solutions and ask questions.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+99,CPT,11,Verbal Linguistic,I can readily absorb information from the radio or audio cassettes.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+100,CPT,11,Verbal Linguistic,I really enjoy books. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+101,CPT,11,Verbal Linguistic,"I like puns, tongue twisters, nonsense rhymes, and double meanings.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+102,CPT,11,Verbal Linguistic,I often refer to things I have read or heard in conversations.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+103,CPT,11,Verbal Linguistic,People often ask me the meaning of words.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+104,CPT,11,Verbal Linguistic,Foreign languages interest me. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+105,CPT,11,Verbal Linguistic,I'm good at finding the fine points of word meanings.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+106,CPT,12,Logical Mathematical,I find satisfaction in dealing with numbers.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+107,CPT,12,Logical Mathematical,"I prefer questions that have definite ""right"" and ""wrong"" answers.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+108,CPT,12,Logical Mathematical,I am interested in new scientific advances.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+109,CPT,12,Logical Mathematical,I like to put together a detailed itinerary for vacations or trips.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+110,CPT,12,Logical Mathematical,I enjoy the challenge of brain teasers or other puzzles that require logical thinking.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+111,CPT,12,Logical Mathematical,I can find specific examples to support a general point of view.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+112,CPT,12,Logical Mathematical,I can quickly and easily compute numbers in my head.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+113,CPT,12,Logical Mathematical,I enjoy Math and Science in school.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+114,CPT,12,Logical Mathematical,"I look for structure, patterns, sequences, or logical order.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+115,CPT,12,Logical Mathematical,"I can think in abstract, clear, imageless concepts. ",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+116,CPT,12,Logical Mathematical,I can find logical flaws in things people say and do at work or home. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+117,CPT,12,Logical Mathematical,I can complete calculations quickly in my head.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+118,CPT,12,Logical Mathematical,Logic puzzles are fun.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+119,CPT,13,Visual Spatial,"I am good at putting together jigsaw puzzles, and reading instructions, patterns, or blueprints",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+120,CPT,13,Visual Spatial,I tend to make a visual record of events with a camera or camcorder.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+121,CPT,13,Visual Spatial,I find myself doodling when taking notes or thinking through something.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+122,CPT,13,Visual Spatial,I have no problem reading maps and navigating.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+123,CPT,13,Visual Spatial,I can visualize how things look from a different perspective.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+124,CPT,13,Visual Spatial,"Charts, graphs and tables help me interpret data. ",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+125,CPT,13,Visual Spatial,"When I close my eyes, I can see clear visual images.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+126,CPT,13,Visual Spatial,I am responsive to color.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+127,CPT,13,Visual Spatial,I often use a camcorder or camera to record my surroundings.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+128,CPT,13,Visual Spatial,"I enjoy visual puzzles such as mazes, jigsaw puzzles, 3-D images.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+129,CPT,13,Visual Spatial,I navigate well in unfamiliar places.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+130,CPT,13,Visual Spatial,I find Geometry easier than Algebra.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+131,CPT,13,Visual Spatial,I can manipulate three dimensional drawings in my head.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+132,CPT,14,Musical,I appreciate a wide variety of music.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+133,CPT,14,Musical,"I understand the basic precepts of music such as harmony, chords, and keys.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+134,CPT,14,Musical,I have a good sense of musical pitch.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+135,CPT,14,Musical,I can play a musical instrument.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+136,CPT,14,Musical,I often listen to music at home.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+137,CPT,14,Musical,I find myself tapping in time to music.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+138,CPT,14,Musical,I can identify different musical instruments.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+139,CPT,14,Musical,I can’t imagine life without music.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+140,CPT,14,Musical,I often whistle or hum a tune.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+141,CPT,14,Musical,I like a musical background when I am working.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+142,CPT,14,Musical,I have a pleasant singing voice. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+143,CPT,14,Musical,I can tell when someone sings off key or out of tune. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+144,CPT,14,Musical,I often find a TV jingle or a tune running through my mind as I walk or work.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+145,CPT,15,Bodily Kinesthetic,I like the most thrilling rides at the fun fair.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+146,CPT,15,Bodily Kinesthetic,I need to physically handle something to fully understand it.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+147,CPT,15,Bodily Kinesthetic,I use hand gestures or other kinds of body language to express myself.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+148,CPT,15,Bodily Kinesthetic,I need to tackle a new learning experience ‘hands on’ rather than reading a manual or watching a video.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+149,CPT,15,Bodily Kinesthetic,I find it difficult to sit still for long periods of time. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+150,CPT,15,Bodily Kinesthetic,"I frequently get insights or ideas when I am involved in physical activities, such as walking, swimming, or jogging.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+151,CPT,15,Bodily Kinesthetic,I enjoy spending my free time outside.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+152,CPT,15,Bodily Kinesthetic,Sports are a part of my life. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+153,CPT,15,Bodily Kinesthetic,I use gestures and non-verbal cues when I communicate.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+154,CPT,15,Bodily Kinesthetic,I love to dance. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+155,CPT,15,Bodily Kinesthetic,I am skilful in working with objects. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+156,CPT,15,Bodily Kinesthetic,I learn best when I have to get up and do it for myself. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+157,CPT,15,Bodily Kinesthetic,I find it easiest to solve problems when I am doing something physical.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+158,CPT,16,Interpersonal,"I am able to influence other individuals to believe and/or behave in response to my own beliefs, preferences and desires.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+159,CPT,16,Interpersonal,I have a large circle of close associates.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+160,CPT,16,Interpersonal,I have several very close personal friends.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+161,CPT,16,Interpersonal,I communicate well with people and can help resolve disputes.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+162,CPT,16,Interpersonal,I talk over problems with others rather than trying to resolve them by myself.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+163,CPT,16,Interpersonal,I prefer team and group sports to individual sports.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+164,CPT,16,Interpersonal,I have been called a leader and consider myself one.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+165,CPT,16,Interpersonal,I am comfortable in a crowd of people.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+166,CPT,16,Interpersonal,I would rather spend a Saturday night at a party than spend it at home alone.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+167,CPT,16,Interpersonal,I am a “team player”.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+168,CPT,16,Interpersonal,I am a good listener when friends have problems.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+169,CPT,16,Interpersonal,I like teaching things to others.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+170,CPT,16,Interpersonal,I have a natural ability to sort out arguments between friends. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+171,CPT,17,Intrapersonal,"I am aware of the complexity of my own feelings, emotions, and beliefs in various circumstances.",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+172,CPT,17,Intrapersonal,My ability to understand my own emotions helps me to decide whether or how to be involved in certain situations.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+173,CPT,17,Intrapersonal,I understand why I believe and behave the way I do.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+174,CPT,17,Intrapersonal,I often spend ‘quiet time’ reflecting on the important issues in my life.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+175,CPT,17,Intrapersonal,I am an independent thinker—I know my own mind.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+176,CPT,17,Intrapersonal,I have a private hobby or interest which I don’t really share with anyone else.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+177,CPT,17,Intrapersonal,I work for myself—or have seriously contemplated ‘doing your own thing.’,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+178,CPT,17,Intrapersonal,I have specific goals in life that I think about regularly.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+179,CPT,17,Intrapersonal,I would rather spend a weekend in a cabin or hide-away than at a large resort with lots of people.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+180,CPT,17,Intrapersonal,I like to be involved in causes that help others.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+181,CPT,17,Intrapersonal,I am keenly aware of my moral beliefs.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+182,CPT,17,Intrapersonal,I learn best when I have an emotional attachment to the subject.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+183,CPT,17,Intrapersonal,Fairness is important to me.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+184,CPT,18,Naturalist,I am conscious of wildlife while on a walk and can ‘read’ weather signs.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+185,CPT,18,Naturalist,I am a keen gardener.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+186,CPT,18,Naturalist,I consider that conservation of resources and achieving sustainable growth are two of the biggest issues of our times.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+187,CPT,18,Naturalist,I enjoy categorizing things by common traits,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+188,CPT,18,Naturalist,Classification helps me make sense of new data. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+189,CPT,18,Naturalist,I enjoy working in a garden.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+190,CPT,18,Naturalist,Putting things in hierarchies makes sense to me,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+191,CPT,18,Naturalist,I am good at categorizing and cataloguing information easily ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+192,CPT,18,Naturalist,I enjoy keeping pets ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+193,CPT,18,Naturalist,I like to learn about nature ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+194,CPT,18,Naturalist,"I like to camp, hike, walk and climb .",Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+195,CPT,18,Naturalist,I am conscious of changes in the weather.,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
+196,CPT,18,Naturalist,I enjoy nature and to be outdoors. ,Never,Rarely,Sometimes,Often,Always,1,2,3,4,5
