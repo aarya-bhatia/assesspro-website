@@ -139,7 +139,6 @@ router.post("/submit", async function (req, res) {
 });
 
 // Submit Assessment
-const { scoreNew } = require("../../controller/psychometric.scorer");
 router.get("/score", async function (req, res) {
   const user_id = req.user._id;
   const user_assessment = res.locals.user_assessment;
