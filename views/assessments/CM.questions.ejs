@@ -51,13 +51,13 @@
       data-question-id="<%= question._id %>"
     >
       <!-- Question begins -->
-      <div class="p"><%= num+1 %>. <%= question.statement %>...</div>
+      <div class="p"><%= num+1 %>. <%- question.statement %>...</div>
       <hr />
 
       <!-- options begin -->
       <% question.options.map(option => { %>
       <div class="row my-2">
-        <div class="col-md-10"><%= option._id %>. <%= option.content %></div>
+        <div class="col-md-10"><%= option._id %>. <%- option.content %></div>
         <div class="col-md-2">
           <input
             type="number"
