@@ -22,36 +22,9 @@ const schema = new Schema(
     mobile: {
       type: String,
     },
-    job_title: String,
-    current_employer: String,
-    organization: String,
-    work_experience: Number,
-    role: { type: String, enum: ["admin", "basic"], default: "basic" },
-    password: {
+    user_type: {
       type: String,
-      trim: true,
-      minlength: [6, "Minimum password length is 6 characters"],
-    },
-    img_url: String,
-    provider: {
-      name: String,
-      id: String,
-    },
-    bio: String,
-    dob: {
-      day: Number,
-      month: Number,
-      year: Number,
-    },
-    address: {
-      city: String,
-      state: String,
-      zip: String,
-    },
-    status: {
-      type: String,
-      enum: ["public", "private"],
-      default: "public",
+      enum: ["student", "professional"],
     },
     qualifications: {
       grade10: {
@@ -74,6 +47,39 @@ const schema = new Schema(
         subject: String,
         institution: String,
       },
+    },
+    profession: String,
+    organization: String,
+    work_experience: Number,
+    highest_qualification: String,
+    qualification_details: String,
+    role: { type: String, enum: ["admin", "basic"], default: "basic" },
+    password: {
+      type: String,
+      trim: true,
+      minlength: [6, "Minimum password length is 6 characters"],
+    },
+    img_url: String,
+    provider: {
+      name: String,
+      id: String,
+    },
+    bio: String,
+    dob: {
+      day: Number,
+      month: Number,
+      year: Number,
+    },
+    address: {
+      country: String,
+      state: String,
+      city: String,
+      zip: String,
+    },
+    status: {
+      type: String,
+      enum: ["public", "private"],
+      default: "public",
     },
   },
   { timestamps: true }

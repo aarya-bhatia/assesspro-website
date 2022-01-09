@@ -76,8 +76,41 @@
 
     <div class="h4">Location</div>
 
+    <!-- country input -->
+    <div class="col-md-3">
+      <label for="country" class="form-label">Country</label>
+      <input
+        type="text"
+        class="form-control"
+        id="country"
+        name="country"
+        placeholder="Country"
+      />
+    </div>
+
+    <!-- state input -->
+    <div class="col-md-3">
+      <label for="state" class="form-label">State</label>
+      <% if(user.country && user.country.trim().toUpperCase() === "INDIA") { %>
+      <select name="state" id="state" class="form-select">
+        <option value="">State</option>
+        <% states.map(state=> { %>
+        <option value="<%= state.key %>"><%= state.value %></option>
+        <% }) %>
+      </select>
+      <%} else { %>
+      <input
+        type="text"
+        class="form-control"
+        id="state"
+        name="state"
+        placeholder="State"
+      />
+      <% } %>
+    </div>
+
     <!-- city input -->
-    <div class="col-md-6">
+    <div class="col-md-3">
       <label for="city" class="form-label">City</label>
       <input
         type="text"
@@ -88,19 +121,8 @@
       />
     </div>
 
-    <!-- state input -->
-    <div class="col-md-4">
-      <label for="state" class="form-label">State</label>
-      <select name="state" id="state" class="form-select">
-        <option value="">State</option>
-        <% states.map(state=> { %>
-        <option value="<%= state.key %>"><%= state.value %></option>
-        <% }) %>
-      </select>
-    </div>
-
     <!-- zip input -->
-    <div class="col-md-2">
+    <div class="col-md-3">
       <label for="zip" class="form-label">Zip</label>
       <input
         type="text"
@@ -111,12 +133,11 @@
       />
     </div>
 
+    <!-- DATE OF BIRTH SECTION -->
+    <div class="h4">Date of Birth</div>
     <p class="form-text">
       Please enter the day, month and year of your birth below.
     </p>
-
-    <!-- DATE OF BIRTH SECTION -->
-    <div class="h4">Date of Birth</div>
 
     <!-- dob day -->
     <div class="col-md-4">
@@ -169,87 +190,136 @@
       </div>
     </div>
 
-    <!-- EDUCATIONAL QUALIFICATIONS SECTION -->
-    <div class="h4">Educational Qualifications</div>
-
-    <!-- start loop -->
-    <% qualificationKeys.map(level=> { %>
-
-    <!-- qualification name -->
-    <div class="col-md-4">
-      <p><%= level.title %></p>
+    <!-- User Type Selection -->
+    <div class="h4">Background</div>
+    <p class="form-text">
+      Please select if you are a student or a professional?
+    </p>
+    <div class="form-check">
+      <input
+        name="user_type"
+        value="student"
+        type="radio"
+        class="form-check-input"
+        id="student"
+      />
+      <label for="student" class="form-check-label"> Student </label>
+    </div>
+    <div class="form-check">
+      <input
+        name="user_type"
+        value="professional"
+        type="radio"
+        class="form-check-input"
+        id="professional"
+      />
+      <label for="professional" class="form-check-label"> Professional </label>
     </div>
 
-    <!-- qualification subject -->
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Subject"
-        class="form-control"
-        name="<%= level.subjectKey %>"
-        id="<%= level.subjectKey %>"
-      />
+    <!-- student qualifications -->
+
+    <div id="student_qualifications">
+      <div class="h4">Qualifications</div>
+
+      <!-- start loop -->
+      <% qualificationKeys.map(level=> { %>
+
+      <!-- qualification name -->
+      <div class="col-md-3">
+        <p><%= level.title %></p>
+      </div>
+
+      <!-- qualification subject -->
+      <div class="col-md-3">
+        <input
+          type="text"
+          placeholder="Subject"
+          class="form-control"
+          name="<%= level.subjectKey %>"
+          id="<%= level.subjectKey %>"
+        />
+      </div>
+
+      <!-- qualification institution -->
+      <div class="col-md-3">
+        <input
+          type="text"
+          placeholder="Institution"
+          class="form-control"
+          name="<%= level.institutionKey %>"
+          id="<%= level.institutionKey %>"
+        />
+      </div>
+
+      <!-- end loop -->
+      <% }) %>
     </div>
 
-    <!-- qualification institution -->
-    <div class="col-md-4">
-      <input
-        type="text"
-        placeholder="Institution"
-        class="form-control"
-        name="<%= level.institutionKey %>"
-        id="<%= level.institutionKey %>"
-      />
-    </div>
+    <!-- professional qualifications -->
 
-    <!-- end loop -->
-    <% }) %>
+    <div id="professional_qualifications">
+      <div class="h4">Qualifications</div>
 
-    <!-- work details -->
-    <div class="h4">Work</div>
+      <div class="col-md-6">
+        <label for="organization" class="form-label">Organization</label>
+        <input
+          type="text"
+          placeholder="Organization"
+          class="form-control"
+          name="organization"
+          id="organization"
+        />
+      </div>
 
-    <div class="col-md-6">
-      <label for="organization" class="form-label">Organization</label>
-      <input
-        type="text"
-        placeholder="Name of Organization"
-        class="form-control"
-        name="organization"
-        id="organization"
-      />
-    </div>
+      <div class="col-md-6">
+        <label for="profession" class="form-label">Profession</label>
+        <input
+          type="text"
+          placeholder="Profession"
+          class="form-control"
+          name="profession"
+          id="profession"
+        />
+      </div>
 
-    <div class="col-md-6">
-      <label for="job_title" class="form-label">Job Title</label>
-      <input
-        type="text"
-        placeholder="Job Title"
-        class="form-control"
-        name="job_title"
-        id="job_title"
-      />
-    </div>
+      <div class="col-md-6">
+        <label for="work_experience" class="form-label">Work Experience</label>
+        <input
+          type="number"
+          placeholder="Years of Work Experience"
+          class="form-control"
+          name="work_experience"
+          id="work_experience"
+        />
+      </div>
 
-    <div class="col-md-6">
-      <label for="work_experience" class="form-label">Work Experience</label>
-      <input
-        type="number"
-        placeholder="Years of Work Experience"
-        class="form-control"
-        name="work_experience"
-        id="work_experience"
-      />
-    </div>
+      <div class="col-md-6">
+        <label for="highest_qualification" class="form-label"
+          >Highest Qualification</label
+        >
+        <select
+          name="highest_qualification"
+          id="highest_qualification"
+          class="form-control"
+        >
+          <option value="Grade 12">Grade 12</option>
+          <option value="Graduate">Graduate</option>
+          <option value="Post Graduate">Post Graduate</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
 
-    <div class="col-md-6">
-      <label for="current_employer" class="form-label">Current Employer</label>
-      <input
-        type="text"
-        placeholder="Name of current employer"
-        class="form-control"
-        name="current_employer"
-        id="current_employer"
-      />
+      <div class="col-md-12">
+        <label for="qualification_details"
+          >Details of Highest Qualification</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="qualification_details"
+          id="qualification_details"
+        />
+      </div>
     </div>
 
     <!-- submit button -->
@@ -264,64 +334,148 @@
 <%- include('../partials/footer.ejs') %>
 
 <script type="text/javascript">
-  /* Set the bio */
-  const user_bio = "<%= user.bio %>";
 
-  if (user_bio) {
-    document.getElementById('bio').innerHTML = user_bio
-  }
+  /* Auto fill user details */
 
-  const mobile = "<%= user.mobile %>";
+  function autofillStudentQualificationValues()
+  {
+    /* Set the qualification fields */
+    const qualifications = <%- user.qualifications %>;
 
-  if (mobile) {
-    document.getElementById('mobile').value = mobile;
-  }
-
-  const work_experience = "<%= user.work_experience %>"
-  const organization = "<%= user.organization %>"
-  const job_title = "<%= user.job_title %>"
-  const current_employer = "<%= user.current_employer %>"
-
-  if (work_experience) {
-    document.getElementById("work_experience").value = work_experience
-  }
-
-  if (job_title) {
-    document.getElementById("job_title").value = job_title
-  }
-
-  if (organization) {
-    document.getElementById("organization").value = organization
-  }
-
-  if (current_employer) {
-    document.getElementById("current_employer").value = current_employer
-  }
-
-  /* Set the status */
-  document.getElementById('status').checked = "<%= user.status %>" === 'public';
-
-  /* Set the address and dob fields */
-  Object.entries({ ...<%- user.address %>, ...<%- user.dob %> })
-    .forEach(([key, value]) => {
-      if (key) {
-        document.getElementById(key).value = value
-      }
-    })
-
-  /* Set the qualification fields */
-  const qualifications = <%- user.qualifications %>;
-
-  if (qualifications) {
-    Object.entries(qualifications).forEach(([key, value]) => {
-      if (key && value) {
-        if (value.subject) {
-          document.getElementById(key + '-' + 'subject').value = value.subject;
+    if (qualifications) {
+      Object.entries(qualifications).forEach(([key, value]) => {
+        if (key && value) {
+          if (value.subject) {
+            document.getElementById(key + '-' + 'subject').value = value.subject;
+          }
+          if (value.institution) {
+            document.getElementById(key + '-' + 'institution').value = value.institution;
+          }
         }
-        if (value.institution) {
-          document.getElementById(key + '-' + 'institution').value = value.institution;
-        }
-      }
-    })
+      })
+    }
   }
+
+  function autofillProfessionalQualificationValues()
+  {
+    if ("<%= user.organization %>")
+    {
+      document.getElementById("organization").value = "<%= user.organization %>"
+    }
+
+    if ("<%= user.work_experience %>")
+    {
+      document.getElementById("work_experience").value = "<%= user.work_experience %>"
+    }
+
+    if ("<%= user.profession %>")
+    {
+      document.getElementById("profession").value = "<%= user.profession %>"
+    }
+
+    if ("<%= user.highest_qualification %>")
+    {
+      document.getElementById("highest_qualification").value = "<%= user.highest_qualification %>"
+    }
+
+    if("<%= user.qualification_details %>")
+    {
+      document.getElementById("qualification_details").value = "<%= user.qualification_details %>"
+    }
+  }
+
+  if ("<%= user.bio %>")
+  {
+    document.getElementById('bio').innerHTML = "<%= user.bio %>"
+  }
+
+  if ("<%= user.mobile %>")
+  {
+    document.getElementById('mobile').value = "<%= user.mobile %>";
+  }
+
+  if("<%= user.user_type %>" === "student")
+  {
+    document.getElementById("student").checked = true
+    autofillStudentQualificationValues();
+  }
+  else if("<%= user.user_type %>" === "professional")
+  {
+    document.getElementById("professional").checked = true
+    autofillProfessionalQualificationValues();
+  }
+
+  if("<%= user.status %>" === "public")
+  {
+    document.getElementById('status').checked = true;
+  }
+
+  if("<%= user.address.country %>")
+  {
+    document.getElementById("country").value = "<%= user.address.country %>"
+  }
+
+  if("<%= user.address.city %>")
+  {
+    document.getElementById("city").value = "<%= user.address.city %>"
+  }
+
+  if("<%= user.address.state %>")
+  {
+    document.getElementById("state").value = "<%= user.address.state %>"
+  }
+
+  if("<%= user.address.zip %>")
+  {
+    document.getElementById("zip").value = "<%= user.address.zip %>"
+  }
+
+  if("<%= user.dob.year %>")
+  {
+    document.getElementById("year").value = "<%= user.dob.year %>"
+  }
+
+  if("<%= user.dob.month %>")
+  {
+    document.getElementById("month").value = "<%= user.dob.month %>"
+  }
+
+  if("<%= user.dob.day %>")
+  {
+    document.getElementById("day").value = "<%= user.dob.day %>"
+  }
+
+  /* Hide and show qualifications section */
+  const HIDE = "none";
+  const SHOW = "block";
+  const professionalSection = document.getElementById("professional_qualifications")
+  const studentSection = document.getElementById("student_qualifications")
+
+  professionalSection.style.display = HIDE;
+  studentSection.style.display = HIDE;
+
+  if("<%= user.user_type %>" === "student")
+  {
+    studentSection.style.display = SHOW;
+  }
+  else if("<%= user.user_type %>" === "professional")
+  {
+    professionalSection.style.display = SHOW;
+  }
+
+  document.getElementById("student").addEventListener("change", function(){
+    professionalSection.style.display = HIDE;
+    studentSection.style.display = SHOW;
+    autofillStudentQualificationValues();
+    document.getElementById("grade10-institution").setAttribute('required', true)
+    document.getElementById("grade10-subject").setAttribute('required', true)
+  })
+
+  document.getElementById("professional").addEventListener("change", function(){
+    professionalSection.style.display = SHOW;
+    studentSection.style.display = HIDE;
+    autofillProfessionalQualificationValues();
+    document.getElementById("grade10-institution").setAttribute('required', false)
+    document.getElementById("grade10-subject").setAttribute('required', false)
+  })
 </script>

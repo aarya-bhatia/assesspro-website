@@ -21,7 +21,8 @@ const {
 } = require("./util");
 
 // Get profile update page
-module.exports.getProfileUpdateForm = (req, res) => {
+module.exports.getProfileUpdateForm = (req, res) =>
+{
   res.render("profile/update", {
     loggedIn: true,
     user: req.user,
@@ -35,7 +36,8 @@ module.exports.getProfileUpdateForm = (req, res) => {
 };
 
 // Get signed in user's profile page
-module.exports.getUserProfile = async (req, res) => {
+module.exports.getUserProfile = async (req, res) =>
+{
   const user_id = req.user._id;
   const assessments = await UserAssessment.find({ user_id });
 
@@ -49,7 +51,8 @@ module.exports.getUserProfile = async (req, res) => {
   });
 };
 
-module.exports.getUserScores = async (req, res) => {
+module.exports.getUserScores = async (req, res) =>
+{
   // Get assessment scores
   const userScores = await UserScore.find({ user_id: req.user._id })
     .sort("-date")
@@ -66,7 +69,8 @@ module.exports.getUserScores = async (req, res) => {
   });
 };
 
-module.exports.peekProfile = async (req, res) => {
+module.exports.peekProfile = async (req, res) =>
+{
   const user_id = req.params.id;
   const user = await UserProfile.findById(user_id);
   const userScores = await UserScore.find({ user_id }).sort("-date").exec();
@@ -83,7 +87,8 @@ module.exports.peekProfile = async (req, res) => {
   });
 };
 
-module.exports.listUsers = async (req, res) => {
+module.exports.listUsers = async (req, res) =>
+{
   const users = await UserProfile.find();
   res.render("admin/userList", {
     loggedIn: true,
@@ -91,11 +96,13 @@ module.exports.listUsers = async (req, res) => {
   });
 };
 
-async function getNESTReport(req, res) {
+async function getNESTReport(req, res)
+{
   const { userScore } = res.locals;
   const user_feedbacks = [];
 
-  for (const module of userScore.module_scores) {
+  for (const module of userScore.module_scores)
+  {
     const module_id = module._id;
     const module_name = module.name;
     const module_score = module.score;
@@ -122,11 +129,13 @@ async function getNESTReport(req, res) {
   });
 }
 
-module.exports.openReport = async (req, res) => {
+module.exports.openReport = async (req, res) =>
+{
   const userScore = await UserScore.findById(req.params.user_score_id);
   res.locals.userScore = userScore;
 
-  if (userScore.assessment_key == "NEST") {
+  if (userScore.assessment_key == "NEST")
+  {
     return getNESTReport(req, res);
   }
 
@@ -138,7 +147,8 @@ module.exports.openReport = async (req, res) => {
     userScore.assessment_key + ".ejs"
   );
 
-  if (!fs.existsSync(file)) {
+  if (!fs.existsSync(file))
+  {
     return res.render("error/index", {
       ...res.locals,
       message: "Sorry, this report is not currently available!",
@@ -154,9 +164,11 @@ module.exports.openReport = async (req, res) => {
 };
 
 // Upload profile picture
-module.exports.uploadProfilePicture = async (req, res) => {
+module.exports.uploadProfilePicture = async (req, res) =>
+{
   console.log("uploaded profile picture");
-  if (!req.file) {
+  if (!req.file)
+  {
     // throw Error("File Not Found");
     return res.redirect(
       "/users/profile/update?error=Please select an image to upload"
@@ -165,12 +177,16 @@ module.exports.uploadProfilePicture = async (req, res) => {
   const { key } = req.file;
   img_url = `/users/images/${key}`;
 
-  UserProfile.findById(req.user._id).then((found) => {
+  UserProfile.findById(req.user._id).then((found) =>
+  {
     found.img_url = img_url;
 
-    found.save().then((user) => {
-      req.logIn(user, (err) => {
-        if (!err) {
+    found.save().then((user) =>
+    {
+      req.logIn(user, (err) =>
+      {
+        if (!err)
+        {
           res.redirect("/users/profile/update");
         }
       });
@@ -178,84 +194,161 @@ module.exports.uploadProfilePicture = async (req, res) => {
   });
 };
 
-module.exports.downloadProfilePicture = async (req, res) => {
+module.exports.downloadProfilePicture = async (req, res) =>
+{
   const { key } = req.params;
   const readStream = downloadImage(key);
   readStream.pipe(res);
 };
 
-module.exports.deleteUserScore = async (req, res) => {
+module.exports.deleteUserScore = async (req, res) =>
+{
   await UserScore.findOneAndRemove({ _id: req.params.score_id });
   res.redirect("/users/scores");
 };
 
 /* update user profile */
-module.exports.updateUserProfile = async (req, res) => {
-  const user = req.user;
+module.exports.updateUserProfile = async (req, res) => 
+{
+  // console.log(req.body);
 
-  /* update name, email and bio */
-  const fields = [
-    "name",
-    "email",
-    "bio",
-    "mobile",
-    "work_experience",
-    "organization",
-    "current_employer",
-    "job_title",
-  ];
+  if (req.body.name)
+  {
+    req.user.name = req.body.name;
+  }
 
-  fields.map((key) => {
-    if (req.body[key]) {
-      user[key] = req.body[key];
+  if (req.body.email)
+  {
+    req.user.email = req.body.email;
+  }
+
+  if (req.body.bio)
+  {
+    req.user.bio = req.body.bio;
+  }
+
+  if (req.body.mobile)
+  {
+    req.user.mobile = req.body.mobile;
+  }
+
+  if (req.body.user_type)
+  {
+    req.user.user_type = req.body.user_type
+  }
+
+  if (req.body.country)
+  {
+    req.user.address.country = req.body.country;
+  }
+
+  if (req.body.city)
+  {
+    req.user.address.city = req.body.city;
+  }
+
+  if (req.body.state)
+  {
+    req.user.address.state = req.body.state;
+  }
+
+  if (req.body.zip)
+  {
+    req.user.address.zip = req.body.zip;
+  }
+
+  if (req.body.year)
+  {
+    req.user.dob.year = req.body.year;
+  }
+
+  if (req.body.month)
+  {
+    req.user.dob.month = req.body.month;
+  }
+
+  if (req.body.day)
+  {
+    req.user.dob.day = req.body.day;
+  }
+
+  if (req.body.status === "on")
+  {
+    req.user.status = "public";
+  }
+  else
+  {
+    req.user.status = "private";
+  }
+
+  if (req.body.user_type === "student")
+  {
+    qualificationKeys.map((element) => 
+    {
+      const { key, subjectKey, institutionKey } = element;
+
+      if (req.body[subjectKey]) 
+      {
+        req.user.qualifications[key].subject = req.body[subjectKey];
+      }
+
+      if (req.body[institutionKey]) 
+      {
+        req.user.qualifications[key].institution = req.body[institutionKey];
+      }
+    });
+  }
+  else
+  {
+    if (req.body.organization)
+    {
+      req.user.organization = req.body.organization;
     }
-  });
 
-  /* update address information */
-  ["city", "state", "zip"].map((key) => {
-    if (req.body[key]) {
-      user.address[key] = req.body[key];
+    if (req.body.profession)
+    {
+      req.user.profession = req.body.profession;
     }
-  });
 
-  /* update date of birth information */
-  ["day", "month", "year"].map((key) => {
-    if (req.body[key]) {
-      user.dob[key] = req.body[key];
+    if (req.body.highest_qualification)
+    {
+      req.user.highest_qualification = req.body.highest_qualification;
     }
-  });
 
-  /* update status */
-  user.status = req.body.status === "on" ? "public" : "private";
-
-  /* update qualifications */
-  qualificationKeys.map((element) => {
-    const { key, subjectKey, institutionKey } = element;
-
-    if (req.body[subjectKey]) {
-      user.qualifications[key].subject = req.body[subjectKey];
+    if (req.body.qualification_details)
+    {
+      req.user.qualification_details = req.body.qualification_details;
     }
-    if (req.body[institutionKey]) {
-      user.qualifications[key].institution = req.body[institutionKey];
+
+    if (req.body.work_experience)
+    {
+      req.user.work_experience = req.body.work_experience;
     }
-  });
+  }
 
-  /* update user in db */
-  let profile = await UserProfile.findById({ _id: user._id });
+  /* Update Account */
 
-  Object.assign(profile, user);
+  let profile = await UserProfile.findById({ _id: req.user._id });
+
+  Object.assign(profile, req.user);
+
   const newProfile = await profile.save();
 
-  /* authenticate user */
-  req.logIn(newProfile, (err) => {
-    if (!err) {
+  /* Authenticate User */
+
+  req.logIn(newProfile, (err) =>
+  {
+    if (!err)
+    {
       console.log("updated user", req.user);
       res.redirect("/users/profile");
     }
   });
+
 };
 
-module.exports.DeleteAccount = async (req, res) => {
+module.exports.DeleteAccount = async (req, res) =>
+{
   const user_id = req.user._id;
   req.logout();
 
@@ -265,11 +358,13 @@ module.exports.DeleteAccount = async (req, res) => {
   res.redirect("/");
 };
 
-module.exports.getSettings = (req, res) => {
+module.exports.getSettings = (req, res) =>
+{
   res.render("profile/settings", { loggedIn: true });
 };
 
-module.exports.RetakeAssessment = async (req, res) => {
+module.exports.RetakeAssessment = async (req, res) =>
+{
   const user_id = req.user._id;
   const assessment_key = req.params.key;
 
@@ -302,13 +397,15 @@ module.exports.RetakeAssessment = async (req, res) => {
   res.redirect("/details/" + assessment_key);
 };
 
-module.exports.DeleteScores = async (req, res) => {
+module.exports.DeleteScores = async (req, res) =>
+{
   const doc = await UserScore.deleteMany({ user_id: req.user._id });
   console.log(doc);
   res.redirect("/users/scores");
 };
 
-module.exports.DeleteAnswers = async (req, res) => {
+module.exports.DeleteAnswers = async (req, res) =>
+{
   const doc = await UserAnswer.deleteMany({ user_id: req.user._id });
   console.log(doc);
   res.redirect("/");

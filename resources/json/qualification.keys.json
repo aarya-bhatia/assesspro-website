@@ -1,32 +1,32 @@
 [
   {
-    "title":"Grade 10",
+    "title": "Grade 10",
     "key": "grade10",
-    "subjectKey":"grade10-subject",
-    "institutionKey":"grade10-institution"
+    "subjectKey": "grade10-subject",
+    "institutionKey": "grade10-institution"
   },
   {
-    "title":"Grade 12",
+    "title": "Grade 12",
     "key": "grade12",
-    "subjectKey":"grade12-subject",
-    "institutionKey":"grade12-institution"
+    "subjectKey": "grade12-subject",
+    "institutionKey": "grade12-institution"
   },
   {
-    "title":"Bachelors",
+    "title": "Bachelors",
     "key": "bachelors",
-    "subjectKey":"bachelors-subject",
-    "institutionKey":"bachelors-institution"
+    "subjectKey": "bachelors-subject",
+    "institutionKey": "bachelors-institution"
   },
   {
-    "title":"Masters",
+    "title": "Masters",
     "key": "masters",
-    "subjectKey":"masters-subject",
-    "institutionKey":"masters-institution"
+    "subjectKey": "masters-subject",
+    "institutionKey": "masters-institution"
   },
   {
-    "title":"Other",
+    "title": "Other",
     "key": "other",
-    "subjectKey":"other-subject",
-    "institutionKey":"other-institution"
+    "subjectKey": "other-subject",
+    "institutionKey": "other-institution"
   }
 ]

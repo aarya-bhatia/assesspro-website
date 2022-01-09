@@ -1,21 +1,110 @@
 <div class="container">
   <%- include('./thumbnail', { img_url: user.img_url }) %>
 
-  <h4 class="my-4"><%= user.name %></h4>
-  <p><strong>Email: </strong><%= user.email %></p>
-  <p><strong>Mobile: </strong><%= user.mobile %></p>
-  <p>
-    <strong>Location: </strong><%= user.address.city %>, <%= user.address.state
-    %>
-  </p>
-  <p><strong>Bio: </strong><%= user.bio %></p>
-  <p><strong>Privacy status: </strong><%= user.status %></p>
-  <p>
-    <strong>Date of Birth: </strong><%= user.dob.day %>-<%= user.dob.month
-    %>-<%= user.dob.year %>
-  </p>
+  <table class="table">
+    <tr>
+      <td>
+        <strong>Name</strong>
+      </td>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Email</strong>
+      </td>
+      <td><%= user.email %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Mobile</strong>
+      </td>
+      <td><%= user.mobile %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Country</strong>
+      </td>
+      <td><%= user.address.country %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>City</strong>
+      </td>
+      <td><%= user.address.city %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>State</strong>
+      </td>
+      <td><%= user.address.state %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Zip</strong>
+      </td>
+      <td><%= user.address.zip %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Bio</strong>
+      </td>
+      <td><%= user.bio %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Privacy</strong>
+      </td>
+      <td><%= user.status %></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Date of Birth</strong>
+      </td>
+      <td>
+        <% if(user.dob.day && user.dob.month && user.dob.year) { %> <%=
+        user.dob.day %>/<%= user.dob.month %>/<%= user.dob.year %> <% } else {
+        %> NA <% } %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Background</strong>
+      </td>
+      <td><%= user.user_type %></td>
+    </tr>
+    <% if(user.user_type === 'professional') { %>
+    <tr>
+      <td>
+        <strong>Organization</strong>
+      </td>
+      <td><%= user.organization %></td>
+    </tr>
 
-  <!-- qualifications -->
+    <tr>
+      <td>
+        <strong>Profession</strong>
+      </td>
+      <td><%= user.profession %></td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Highest Qualification</strong>
+      </td>
+      <td><%= user.highest_qualification %></td>
+    </tr>
+
+    <tr>
+      <td>
+        <strong>Qualification Details</strong>
+      </td>
+      <td><%= user.qualification_details %></td>
+    </tr>
+
+    <% } %>
+  </table>
+
+  <% if(user.user_type === 'student') { %>
   <table class="table table-hover">
     <tr>
       <th>Qualification</th>
@@ -48,4 +137,5 @@
       <td><%= user.qualifications.other.subject %></td>
     </tr>
   </table>
+  <% } %>
 </div>
