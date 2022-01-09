@@ -24,9 +24,21 @@
           </div>
 
           <% if(assessment.short_para) { %>
-          <p><%= assessment.short_para %></p>
+
+          <div>
+            <%= assessment.short_para.substring(0, 150) %>
+            <% if(assessment.short_para.length >= 150) { %>
+              ... <a href="/details/<%= assessment.key %>">See More</a>
+            <% } %>
+          </div>
+
           <% } else if(assessment.description) { %>
-          <p><%= assessment.description %></p>
+          <div>
+            <%= assessment.description.substring(0, 150) %>
+            <% if(assessment.description.length >= 150) { %>
+              ... <a href="/details/<%= assessment.key %>">See More</a>
+            <% } %>
+          </div>
           <% } %>
 
           <a
