@@ -153,7 +153,20 @@ router.get("/score", async function (req, res) {
 
   const module_score_map = [];
 
+  /* Init all module scores to 0 */
+
+  for(const module of modules)
+  {
+    module_score_map[module._id] = {
+      _id: module._id,
+      name: module.name,
+      score: 0
+    }
+  }
+
   for (const user_answer of user_answers) {
+
+    /* To find points awarded for this answer */
     const answer = answers.find(function (answer) {
       return (
         answer.question_id == user_answer.question_id &&
@@ -161,17 +174,11 @@ router.get("/score", async function (req, res) {
       );
     });
 
-    if (!module_score_map[user_answer.module_id]) {
-      module_score_map[user_answer.module_id] = {
-        _id: user_answer.module_id,
-        name: user_answer.module_name,
-        score: 0,
-      };
-    }
-
+    /* update score for module containing the current answer */
     module_score_map[user_answer.module_id].score += answer.points;
   }
 
+  /* Get final scores */
   const module_scores = [];
 
   for (const module_id of Object.keys(module_score_map)) {
@@ -187,9 +194,9 @@ router.get("/score", async function (req, res) {
 
       if (maxScore != 0) {
         const scaled_score = Math.round((100 * score_data.score) / maxScore);
-        console.log(
-          `scaled score for module ${score_data.name} from ${score_data.score} to ${scaled_score}...`
-        );
+        // console.log(
+        //   `scaled score for module ${score_data.name} from ${score_data.score} to ${scaled_score}...`
+        // );
         score_data.score = scaled_score;
       }
     }
