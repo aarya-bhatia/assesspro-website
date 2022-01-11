@@ -23,7 +23,7 @@ const {
 // Get profile update page
 module.exports.getProfileUpdateForm = (req, res) =>
 {
-  res.render("profile/update", {
+  res.render("profile/profile.update.ejs", {
     loggedIn: true,
     user: req.user,
     qualificationKeys,
@@ -76,7 +76,7 @@ module.exports.peekProfile = async (req, res) =>
   const userScores = await UserScore.find({ user_id }).sort("-date").exec();
   const divergentScores = await DivergentScore.find({ user_id: req.user._id });
 
-  res.render("profile/peekProfile", {
+  res.render("profile/profile.snippet.ejs", {
     loggedIn: true,
     user,
     userScores,
