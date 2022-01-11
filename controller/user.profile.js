@@ -53,9 +53,25 @@ module.exports.getUserProfile = async (req, res) =>
 
 module.exports.getUserScores = async (req, res) =>
 {
+  let page = 1;
+
+  if(req.query.page)
+  {
+    page = req.query.page;
+  }
+
+  if(page <= 0) 
+  {
+    res.redirect("/users/scores")
+  }
+
+  const results_per_page = 3
+  
   // Get assessment scores
   const userScores = await UserScore.find({ user_id: req.user._id })
     .sort("-date")
+    .limit(results_per_page)
+    .skip(results_per_page * (page - 1))
     .exec();
 
   const divergentScores = await DivergentScore.find({ user_id: req.user._id });
@@ -66,6 +82,7 @@ module.exports.getUserScores = async (req, res) =>
     userScores,
     divergentScores,
     getChartData,
+    page,
   });
 };
 

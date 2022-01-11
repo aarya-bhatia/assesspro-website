@@ -14,6 +14,23 @@
   referrerpolicy="no-referrer"
 ></script>
 
+<div class="d-flex justify-content-center">
+  <!-- Pagination -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item <%= Number(page) === 1 ? 'disabled' : '' %>"><a class="page-link" href="/users/scores?page=<%= Number(page)-1 %>">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="/users/scores?page=1">1</a></li>
+      <li class="page-item"><a class="page-link" href="/users/scores?page=2">2</a></li>
+      <li class="page-item"><a class="page-link" href="/users/scores?page=3">3</a></li>
+      <li class="page-item <%= userScores.length === 0 ? 'disabled' : '' %>"><a class="page-link" href="/users/scores?page=<%= Number(page)+1 %>">Next</a></li>
+    </ul>
+  </nav>
+</div>
+
+<script>
+
+</script>
+
 <!-- SCORES -->
 <!-- left col of row has table, and right has the chart -->
 <div class="container mt-2">
