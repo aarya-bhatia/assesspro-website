@@ -218,116 +218,121 @@
 
     <!-- student qualifications -->
 
-    <div id="student_qualifications">
+    <div id="student_qualifications" class="container-fluid">
       <div class="h4">Qualifications</div>
 
-      <!-- start loop -->
-      <% qualificationKeys.map(level=> { %>
-
-      <!-- qualification name -->
-      <div class="col-md-3">
-        <p><%= level.title %></p>
-      </div>
-
-      <!-- qualification subject -->
-      <div class="col-md-3">
-        <input
-          type="text"
-          placeholder="Subject"
-          class="form-control"
-          name="<%= level.subjectKey %>"
-          id="<%= level.subjectKey %>"
-        />
-      </div>
-
-      <!-- qualification institution -->
-      <div class="col-md-3">
-        <input
-          type="text"
-          placeholder="Institution"
-          class="form-control"
-          name="<%= level.institutionKey %>"
-          id="<%= level.institutionKey %>"
-        />
-      </div>
-
-      <!-- end loop -->
-      <% }) %>
+      <table class="table">
+        <% qualificationKeys.map(level=> { %>
+        <tr>
+          <td><%= level.title %></td>
+          <td>
+            <!-- qualification subject -->
+            <input
+              type="text"
+              placeholder="Subject"
+              class="form-control"
+              name="<%= level.subjectKey %>"
+              id="<%= level.subjectKey %>"
+            />
+          </td>
+          <td>
+            <!-- qualification institution -->
+            <input
+              type="text"
+              placeholder="Institution"
+              class="form-control"
+              name="<%= level.institutionKey %>"
+              id="<%= level.institutionKey %>"
+            />
+          </td>
+        </tr>
+        <% }) %>
+      </table>
     </div>
 
     <!-- professional qualifications -->
 
-    <div id="professional_qualifications">
+    <div id="professional_qualifications" class="container-fluid">
+
       <div class="h4">Qualifications</div>
 
-      <div class="col-md-6">
-        <label for="organization" class="form-label">Organization</label>
-        <input
-          type="text"
-          placeholder="Organization"
-          class="form-control"
-          name="organization"
-          id="organization"
-        />
-      </div>
+      <table class="table">
+        <tr>
+          <td>Organization</td>
+          <td>
+            <input
+              type="text"
+              placeholder="Organization"
+              class="form-control"
+              name="organization"
+              id="organization"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Designation</td>
+          <td>
+            <input
+              type="text"
+              placeholder="Designation"
+              class="form-control"
+              name="designation"
+              id="designation"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Work Experience</td>
+          <td>
+            <input
+              type="number"
+              placeholder="Years of Work Experience"
+              class="form-control"
+              name="work_experience"
+              id="work_experience"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Highest Qualification</td>
+          <td>
+            <select
+              name="highest_qualification"
+              id="highest_qualification"
+              class="form-control"
+            >
+              <option value="Grade 12">Grade 12</option>
+              <option value="Graduate">Graduate</option>
+              <option value="Post Graduate">Post Graduate</option>
+              <option value="Other">Other</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Discipline</td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              name="discipline"
+              id="discipline"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Institution</td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              name="institution"
+              id="institution"
+            />
+          </td>
+        </tr>
+      </table>
 
-      <div class="col-md-6">
-        <label for="designation" class="form-label">Designation</label>
-        <input
-          type="text"
-          placeholder="Designation"
-          class="form-control"
-          name="designation"
-          id="designation"
-        />
-      </div>
-
-      <div class="col-md-6">
-        <label for="work_experience" class="form-label">Work Experience</label>
-        <input
-          type="number"
-          placeholder="Years of Work Experience"
-          class="form-control"
-          name="work_experience"
-          id="work_experience"
-        />
-      </div>
-
-      <div class="col-md-6">
-        <label for="highest_qualification" class="form-label"
-          >Highest Qualification</label
-        >
-        <select
-          name="highest_qualification"
-          id="highest_qualification"
-          class="form-control"
-        >
-          <option value="Grade 12">Grade 12</option>
-          <option value="Graduate">Graduate</option>
-          <option value="Post Graduate">Post Graduate</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label for="discipline">Discipline</label>
-        <input
-          type="text"
-          class="form-control"
-          name="discipline"
-          id="discipline"
-        />
-      </div>
-
-      <div class="col-md-6">
-        <label for="institution">Institution</label>
-        <input
-          type="text"
-          class="form-control"
-          name="institution"
-          id="institution"
-        />
-      </div>
+     
     </div>
 
     <!-- submit button -->
