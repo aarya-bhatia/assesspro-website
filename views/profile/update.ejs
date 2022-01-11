@@ -272,13 +272,13 @@
       </div>
 
       <div class="col-md-6">
-        <label for="profession" class="form-label">Profession</label>
+        <label for="designation" class="form-label">Designation</label>
         <input
           type="text"
-          placeholder="Profession"
+          placeholder="Designation"
           class="form-control"
-          name="profession"
-          id="profession"
+          name="designation"
+          id="designation"
         />
       </div>
 
@@ -309,15 +309,23 @@
         </select>
       </div>
 
-      <div class="col-md-12">
-        <label for="qualification_details"
-          >Details of Highest Qualification</label
-        >
+      <div class="col-md-6">
+        <label for="discipline">Discipline</label>
         <input
           type="text"
           class="form-control"
-          name="qualification_details"
-          id="qualification_details"
+          name="discipline"
+          id="discipline"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="institution">Institution</label>
+        <input
+          type="text"
+          class="form-control"
+          name="institution"
+          id="institution"
         />
       </div>
     </div>
@@ -368,9 +376,9 @@
       document.getElementById("work_experience").value = "<%= user.work_experience %>"
     }
 
-    if ("<%= user.profession %>")
+    if ("<%= user.designation %>")
     {
-      document.getElementById("profession").value = "<%= user.profession %>"
+      document.getElementById("designation").value = "<%= user.designation %>"
     }
 
     if ("<%= user.highest_qualification %>")
@@ -378,9 +386,14 @@
       document.getElementById("highest_qualification").value = "<%= user.highest_qualification %>"
     }
 
-    if("<%= user.qualification_details %>")
+    if("<%= user.discipline %>")
     {
-      document.getElementById("qualification_details").value = "<%= user.qualification_details %>"
+      document.getElementById("discipline").value = "<%= user.discipline %>"
+    }
+
+    if("<%= user.institution %>")
+    {
+      document.getElementById("institution").value = "<%= user.institution %>"
     }
   }
 

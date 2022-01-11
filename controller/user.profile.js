@@ -305,9 +305,9 @@ module.exports.updateUserProfile = async (req, res) =>
       req.user.organization = req.body.organization;
     }
 
-    if (req.body.profession)
+    if (req.body.designation)
     {
-      req.user.profession = req.body.profession;
+      req.user.designation = req.body.designation;
     }
 
     if (req.body.highest_qualification)
@@ -315,9 +315,14 @@ module.exports.updateUserProfile = async (req, res) =>
       req.user.highest_qualification = req.body.highest_qualification;
     }
 
-    if (req.body.qualification_details)
+    if (req.body.discipline)
     {
-      req.user.qualification_details = req.body.qualification_details;
+      req.user.discipline = req.body.discipline;
+    }
+
+    if (req.body.institution)
+    {
+      req.user.institution = req.body.institution;
     }
 
     if (req.body.work_experience)
