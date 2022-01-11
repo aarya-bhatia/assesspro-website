@@ -1,8 +1,9 @@
 <div class="container">
-
-  <%- include('./thumbnail', { img_url: user.img_url }) %>
-
   <table class="table">
+    <tr>
+        <td><strong>Test Date</strong></td>
+        <td><%= date %></td>
+    </tr>
     <tr>
       <td>
         <strong>Name</strong>
@@ -51,13 +52,6 @@
       </td>
       <td><%= user.bio %></td>
     </tr>
-    <tr>
-      <td>
-        <strong>Privacy</strong>
-      </td>
-      <td><%= user.status %></td>
-    </tr>
-    <tr>
       <td>
         <strong>Date of Birth</strong>
       </td>

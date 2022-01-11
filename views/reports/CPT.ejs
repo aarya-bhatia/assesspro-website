@@ -13,8 +13,7 @@
 
 <div class="container">
   <div class="display-4">CPT Report</div>
-  <p><strong>Test Date: </strong><%= userScore.date %></p>
-  <%- include('../profile/profile.details.ejs.ejs', { user }) %>
+  <%- include('../profile/profile.details.report.ejs', { user, date:userScore.date }) %>
   <p class="lead">
     The Theory of Multiple suggests that each individual possesses at least
     eight relatively independent mental abilities or intelligences. Career

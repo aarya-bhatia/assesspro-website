@@ -10,8 +10,7 @@
 
 <div class="container">
   <div class="display-4">NEST Report</div>
-  <p><strong>Test Date: </strong><%= userScore.date %></p>
-  <%- include('../profile/profile.details.ejs.ejs', { user }) %>
+  <%- include('../profile/profile.details.report.ejs', { user,date:userScore.date }) %>
   <hr />
   <p class="lead">
     Thank you for taking Aspire’s National Employability Skills Test (NEST™).
@@ -20,13 +19,15 @@
     potential job fit.
   </p>
 
-  <div class="row justify-content-center mb-4">
-    <div class="col-md-6">
+  <!-- <div class="row justify-content-center mb-4">
+    <div class="col-md-6"> -->
+      <div class="container">
       <canvas id="<%= userScore._id %>" class="border border-2 p-4"></canvas>
       <%- include('../profile/scripts/createScoreChart.ejs', { userScore,
       getChartData, scoreIndex: 0 }) %>
-    </div>
-  </div>
+      </div>
+    <!-- </div>
+  </div> -->
 
   <div class="text-center">
     <button class="btn btn-primary no-print" id="save_0">Save as Image</button>
