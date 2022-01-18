@@ -18,6 +18,8 @@ const {
 
 const { uploadImage } = require("../config/s3.config");
 
+const { isAdmin } = require("../controller/auth")
+
 // Router
 const router = require("express").Router();
 

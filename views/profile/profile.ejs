@@ -2,22 +2,20 @@
 include('./profile.details.ejs', { user }) %>
 
 <div class="container">
-  <a href="/users/profile/update" class="btn btn-outline-primary"
-    >Update Profile</a
-  >
-  <br />
-  <% if(user.role == 'admin') { %>
-  <ul class="nav">
+  <a href="/users/profile/update" class="btn btn-outline-primary">Update Profile</a>
+
+  <ul class="nav justify-content-center">
+    <% if(user.role == 'admin') { %>
     <li class="nav-item">
       <a href="/assessments/CDT/responses/" class="nav-link"
-        >See Divergent Thinking Responses</a
+        >Divergent Thinking Responses</a
       >
     </li>
     <li class="nav-item">
       <a href="/users/" class="nav-link">View All Users</a>
     </li>
+    <% } %>
   </ul>
-  <% } %>
 </div>
 
 <%- include('./assessmentList', { assessments }) %> <%-

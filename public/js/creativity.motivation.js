@@ -105,6 +105,7 @@ function populateUserAnswers(user_answers) {
     const key = answer.key;
     const value = answer.value;
     const { question_id, option_id } = parseKey(key);
+    // console.log(question_id, option_id)
     populateValue(question_id, option_id, value);
   }
 }
@@ -126,7 +127,7 @@ function handleSubmit() {
     calculateTotal(id);
     if (question.total > 0 && question.total != 30) {
       return alert(
-        "Please make sure that for all statements the total comes on to excatly 30 points."
+        "Please make sure that for all statements the total comes on to exactly 30 points."
       );
     }
   }
