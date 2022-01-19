@@ -1,0 +1,101 @@
+<%- include('../partials/header.ejs', { loggedIn }) %>
+
+<div class="container">
+  <div class="display-4">Convergent Thinking Assessment</div>
+  <!-- <div class="lead"></div> -->
+
+  <form
+    action="/assessments/<%= user_assessment.assessment_key %>/submit/"
+    method="POST"
+    name="myForm"
+  >
+    <% questions.map(question => { %>
+    <div class="row shadow-sm rounded p-2 my-4 bg-light">
+      <!-- Begin question -->
+      <% question.content.map(line => { %>
+      <p><%= line %></p>
+      <% }) %> 
+      <% if(question.type === "choice") { %> 
+      <% question.options.map((option, index) => { %>
+      <div class="form-check">
+        <input
+          type="radio"
+          class="form-check-input"
+          name="<%= question.id %>"
+          id="<%= question.id %>_<%= index %>"
+          value="<%= option %>"
+        />
+        <label for="<%= question.id %>_<%= index %>"><%= option %></label>
+      </div>
+      <% }) %> 
+      <% } else if(question.type === "text") { %>
+      <input
+        class="form-control"
+        type="text"
+        name="<%= question.id %>"
+        id="<%= question.id %>"
+      />
+      <% } %>
+      <!-- End Question -->
+    </div>
+    <% }) %>
+
+    <input
+      type="submit"
+      class="btn btn-outline-primary"
+      value="Submit"
+      onclick="handleSubmit(); "
+    />
+    <!-- <button
+      type="button"
+      class="btn btn-outline-success"
+      onclick="handleSave();"
+    >
+      Save
+    </button> -->
+  </form>
+</div>
+
+<script>
+  function handleSubmit() {
+    if (confirm("Are you sure you want to submit the assessment?")) {
+      document.myForm.submit();
+    }
+  }
+
+  document.myForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+  });
+
+  let save = false;
+
+  async function handleSave() {
+    if (saving) {
+      return;
+    }
+
+    // const inputs = document.querySelectorAll(`input[type='radio']:checked`);
+
+    // const data = [];
+
+    // for(const input of inputs) {
+    //   data.push({
+    //     question_id: input.name,
+    //     value: input.value
+    //   })
+    // }
+
+    saving = true;
+
+    // await fetch('/assessments/CCT/save', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data),
+    // }).then(() => {
+    //   alert('Save successful')
+    //   saving = false;
+    // })
+  }
+</script>
+
+<%- include('../partials/footer.ejs') %>
