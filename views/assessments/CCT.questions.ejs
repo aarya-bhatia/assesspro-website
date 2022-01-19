@@ -10,7 +10,7 @@
     name="myForm"
   >
     <% questions.map(question => { %>
-    <div class="shadow-sm rounded p-2 my-4 bg-light">
+    <div class="row shadow-sm rounded p-2 my-4 bg-light">
       <!-- Begin question -->
       <% question.content.map(line => { %>
       <p><%= line %></p>
@@ -29,14 +29,12 @@
       </div>
       <% }) %> 
       <% } else if(question.type === "text") { %>
-        <div class="mx-2 my-2">
-        <input
-          class="form-control"
-          type="text"
-          name="<%= question.id %>"
-          id="<%= question.id %>"
-        />
-      </div>
+      <input
+        class="form-control"
+        type="text"
+        name="<%= question.id %>"
+        id="<%= question.id %>"
+      />
       <% } %>
       <!-- End Question -->
     </div>
@@ -59,16 +57,6 @@
 </div>
 
 <script>
-  // Autofill
-  const responses = <%- responses %>;
-
-  for(const response of responses)
-  {
-    document.getElementById(response.key).value = response.value;
-  }
-</script>
-
-<script>
   function handleSubmit() {
     if (confirm("Are you sure you want to submit the assessment?")) {
       document.myForm.submit();
@@ -82,13 +70,13 @@
   let save = false;
 
   async function handleSave() {
-    // if (saving) {
-    //   return;
-    // }
+    if (saving) {
+      return;
+    }
 
     // const inputs = document.querySelectorAll(`input[type='radio']:checked`);
 
-    // const data = []
+    // const data = [];
 
     // for(const input of inputs) {
     //   data.push({
@@ -97,9 +85,9 @@
     //   })
     // }
 
-    // saving = true;
+    saving = true;
 
-    // await fetch('/assessments/<%= user_assessment.assessment_key %>/save', {
+    // await fetch('/assessments/CCT/save', {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
     //   body: JSON.stringify(data),
