@@ -28,6 +28,7 @@ const schema = new Schema({
       score: Number,
     },
   ],
+  score: Number,
   date: {
     type: Date,
     default: Date.now,

@@ -45,6 +45,44 @@
   <p><%= userScore.description %></p>
   <% } %>
 
+  <!-- Divergent Thinking Score -->
+  <% if(userScore.assessment_key === "CDT") { %>
+      <table class="table table-hover">
+        <tr>
+          <th>Question</th>
+          <th>Score</th>
+        </tr>
+        <% for(const score of userScore.scores) { %>
+        <tr>
+          <td><%= score._id %></td>
+          <td><%= score.score %></td>
+        </tr>
+        <% } %>
+      </table>
+
+  <a href="/assessments/CDT/retake" class="btn btn-outline-primary my-2"
+    >Take Again</a
+  >
+
+  <a
+    href="/assessments/CDT/delete-score/<%= userScore._id %>"
+    class="btn btn-outline-danger my-2"
+    >Delete Score</a
+  >
+
+  <a
+    href="/assessments/CDT/report/<%= userScore._id %>"
+    class="btn btn-outline-success"
+  >
+    View Report</a
+  >
+  <!-- Convergent Thinking Score -->
+  <% } else if(userScore.assessment_key === "CCT") { %>
+      <div>
+      Your Score: <strong><%= userScore.score %></strong>
+      </div>
+  <!-- All Other Score -->
+  <% } else { %>
   <div class="row">
     <div class="col-lg-6 mb-3">
       <table class="table table-hover">
@@ -102,42 +140,8 @@
       console.log("Chart created for score: <%= userScore._id %>");
     </script>
   </div>
+  <% } %>
+
   <% }) %>
 
-  <!-- Divergent thinking scores -->
-  <% for(const divScore of divergentScores) { %>
-  <div class="display-6">Divergent Thinking</div>
-  <div class="lead">
-    <span><%= divScore.createdAt %></span>
-  </div>
-  <table class="table table-hover">
-    <tr>
-      <th>Question</th>
-      <th>Score</th>
-    </tr>
-    <% for(const score of divScore.scores) { %>
-    <tr>
-      <td><%= score._id %></td>
-      <td><%= score.score %></td>
-    </tr>
-    <% } %>
-  </table>
-  <a href="/assessments/CDT/retake" class="btn btn-outline-primary my-2"
-    >Take Again</a
-  >
-
-  <a
-    href="/assessments/CDT/delete-score/<%= divScore._id %>"
-    class="btn btn-outline-danger my-2"
-    >Delete Score</a
-  >
-
-  <a
-    href="/assessments/CDT/report/<%= divScore._id %>"
-    class="btn btn-outline-success"
-  >
-    View Report</a
-  >
-  <% } %>
-</div>
 <%- include('../partials/footer.ejs') %>
